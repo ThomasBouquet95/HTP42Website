@@ -123,85 +123,71 @@ export function DiagramTransform({ className }: Props) {
 }
 
 /**
- * Three diagrams for the three sided proposition. Same field and the same
- * stroke rules as the expertise set, so they read as one family, and each one
- * draws the specific mechanism rather than a generic symbol: a matched expert
- * placed into a client team, a partner reaching into a vetted pool, and work
- * arriving at a specialist who would rather deliver than sell.
+ * Three icons for the three sided proposition. Deliberately literal and much
+ * simpler than the expertise diagrams: at this size a plain subject reads at a
+ * glance where a drawn mechanism does not. Same field and stroke rules, and one
+ * accent element each, so they still belong to the same family.
  */
 
-/** For clients: the right expert, sourced and placed inside your team. */
+/** For clients: the companies that hire us. */
 export function DiagramClients({ className }: Props) {
   return (
     <Field className={className}>
-      {/* the client team */}
-      <rect
-        x="48"
-        y="12"
-        width="42"
-        height="48"
-        rx="3"
-        className={S.base}
-        strokeDasharray="4 4"
-      />
-      <circle cx="69" cy="24" r="3.4" className={S.fillBase} />
-      <circle cx="69" cy="48" r="3.4" className={S.fillBase} />
-      {/* the sourced expert, and the seat they take */}
-      <circle cx="14" cy="36" r="7" className={S.accent} />
-      <circle cx="14" cy="36" r="3" className={S.fillAccent} />
-      <path d="M24 36h16" className={S.accent} />
-      <path d="M40 36l-5-4M40 36l-5 4" className={S.accent} />
-      <circle cx="69" cy="36" r="4" className={S.fillAccent} />
+      <path d="M8 60h80" className={S.base} />
+      {/* two buildings, so it reads as companies rather than one office */}
+      <rect x="16" y="24" width="30" height="36" rx="2" className={S.base} />
+      <rect x="54" y="12" width="28" height="48" rx="2" className={S.accent} />
+      {[32, 44].map((y) => (
+        <rect
+          key={y}
+          x="24"
+          y={y}
+          width="7"
+          height="7"
+          rx="1"
+          className={S.base}
+        />
+      ))}
+      {[20, 32, 44].map((y) => (
+        <rect
+          key={y}
+          x="62"
+          y={y}
+          width="7"
+          height="7"
+          rx="1"
+          className={S.accent}
+        />
+      ))}
+      <rect x="33" y="47" width="7" height="13" rx="1" className={S.base} />
     </Field>
   );
 }
 
-/** For senior leaders: judgment about who to trust, put to work. */
+/** For senior leaders: one person, and the judgment you can stake on them. */
 export function DiagramLeaders({ className }: Props) {
   return (
     <Field className={className}>
-      {/* the curated pool they reach into */}
-      <path
-        d="M76 10 C 90 24, 90 48, 76 62"
-        className={S.base}
-        strokeDasharray="4 4"
-      />
-      {/* the partner */}
-      <circle cx="14" cy="36" r="7" className={S.accent} />
-      <circle cx="14" cy="36" r="3" className={S.fillAccent} />
-      {/* vouching for named specialists */}
-      <path d="M24 36 C 42 33, 44 17, 58 16" className={S.base} />
-      <path d="M24 36h36" className={S.base} />
-      <path d="M24 36 C 42 39, 44 55, 58 56" className={S.base} />
-      <circle cx="64" cy="16" r="3.8" className={S.fillAccent} />
-      <circle cx="66" cy="36" r="3.8" className={S.fillAccent} />
-      <circle cx="64" cy="56" r="3.8" className={S.fillBase} />
+      <circle cx="33" cy="24" r="10" className={S.base} />
+      <path d="M15 54 C 15 40, 51 40, 51 54" className={S.base} />
+      {/* the vouch */}
+      <circle cx="70" cy="38" r="13" className={S.accent} />
+      <path d="M64 38l5 5 8-10" className={S.accent} />
     </Field>
   );
 }
 
-/** For experts: work arrives, and the delivery goes out. */
+/** For experts: the specialists themselves. */
 export function DiagramExperts({ className }: Props) {
   return (
     <Field className={className}>
-      {/* work arriving from the network */}
-      {[14, 36, 58].map((y) => (
-        <g key={y}>
-          <circle cx="11" cy={y} r="3.4" className={S.fillBase} />
-          <path
-            d={y === 36 ? "M17 36h14" : `M17 ${y} C 26 ${y}, 27 36, 33 36`}
-            className={S.base}
-          />
-        </g>
-      ))}
-      <path d="M33 36l-5-4M33 36l-5 4" className={S.base} />
-      {/* the specialist */}
-      <circle cx="46" cy="36" r="8" className={S.accent} />
-      <circle cx="46" cy="36" r="3.2" className={S.fillAccent} />
-      {/* what they hand over */}
-      <path d="M55 36h8" className={S.accent} />
-      <rect x="64" y="24" width="24" height="24" rx="2.5" className={S.base} />
-      <path d="M70 32h12M70 40h8" className={S.base} />
+      <circle cx="19" cy="27" r="7.5" className={S.base} />
+      <path d="M6 52 C 6 42, 30 42, 30 52" className={S.base} />
+      <circle cx="77" cy="27" r="7.5" className={S.base} />
+      <path d="M66 52 C 66 42, 90 42, 90 52" className={S.base} />
+      {/* the one matched to the brief */}
+      <circle cx="48" cy="22" r="10" className={S.accent} />
+      <path d="M34 55 C 34 40, 62 40, 62 55" className={S.accent} />
     </Field>
   );
 }
