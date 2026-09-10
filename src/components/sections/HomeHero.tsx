@@ -11,10 +11,6 @@ import { capabilityKeywords } from "@/content/site";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-const HERO_FACTS = [
-  { value: "50+", label: "Vetted senior experts" },
-  { value: "200+", label: "Engagements delivered" },
-];
 
 export function HomeHero() {
   const reduced = useReducedMotion();
@@ -99,30 +95,11 @@ export function HomeHero() {
             </Button>
           </motion.div>
         </div>
-
-        {/* Quiet fact rail */}
-        <motion.dl
-          className="rule-on-dark mt-14 grid grid-cols-1 gap-x-10 gap-y-6 pt-7 sm:grid-cols-2 md:mt-16"
-          initial={reduced ? undefined : { opacity: 0, y: 18 }}
-          animate={reduced ? undefined : { opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8, ease: EASE }}
-        >
-          {HERO_FACTS.map((fact) => (
-            <div key={fact.label} className="flex items-baseline gap-3.5">
-              <dt className="text-2xl font-medium tracking-[-0.03em] text-white tnum">
-                {fact.value}
-              </dt>
-              <dd className="max-w-[16ch] text-[0.8125rem] leading-snug text-white/60">
-                {fact.label}
-              </dd>
-            </div>
-          ))}
-        </motion.dl>
       </div>
 
       {/* Capability marquee on the section seam */}
       <motion.div
-        className="rule-on-dark relative mt-12 py-5 md:mt-14"
+        className="rule-on-dark relative mt-20 py-5 md:mt-24"
         initial={reduced ? undefined : { opacity: 0 }}
         animate={reduced ? undefined : { opacity: 1 }}
         transition={{ duration: 1, delay: 0.95 }}

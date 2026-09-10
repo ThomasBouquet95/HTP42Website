@@ -44,8 +44,8 @@ export const offerings: Offering[] = [
     index: "02",
     slug: "consulting-projects",
     name: "Consulting Projects",
-    promise: "A team of senior experts, not a pyramid of juniors.",
-    body: "When you need a programme delivered rather than a role filled, we assemble the team from the network. Senior experts who have done it before, amplified by AI rather than padded out with juniors learning your problem on your budget. We take it from strategy through implementation to the change management that makes it hold.",
+    promise: "Senior experts empowered by AI, not a pyramid of juniors.",
+    body: "When you need a programme delivered rather than a role filled, we assemble the team from the network. Senior experts who have done it before, empowered by AI rather than padded out with juniors learning your problem on your budget. We take it from strategy through implementation to the change management that makes it hold.",
     points: [
       {
         label: "Senior only teams",
