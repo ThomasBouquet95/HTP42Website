@@ -36,21 +36,27 @@ export function TheNetwork() {
           <h3 className="eyebrow border-b border-ink/12 pb-4 text-ink-300">
             Our partners
           </h3>
-          <Stagger className="grid grid-cols-1 gap-x-8 gap-y-10 pt-9 sm:grid-cols-2 lg:grid-cols-4 lg:grid-rows-[auto_auto_auto_auto] lg:gap-y-0">
+          <Stagger className="grid grid-cols-1 gap-x-8 gap-y-10 pt-9 max-sm:gap-y-0 sm:grid-cols-2 lg:grid-cols-4 lg:grid-rows-[auto_auto_auto_auto] lg:gap-y-0">
             {leadership.map((person) => (
               <StaggerItem
                 key={person.name}
                 as="article"
-                className="group grid content-start lg:row-span-4 lg:grid-rows-subgrid"
+                className="group grid content-start max-sm:grid-cols-[5.5rem_1fr] max-sm:items-start max-sm:gap-x-5 max-sm:border-t max-sm:border-ink/10 max-sm:py-6 max-sm:first:border-t-0 max-sm:first:pt-0 lg:row-span-4 lg:grid-rows-subgrid"
               >
-                <PartnerPortrait name={person.name} photo={person.photo} />
-                <h4 className="mt-5 text-[1.125rem] tracking-[-0.024em] text-ink transition-colors duration-500 group-hover:text-brand md:text-[1.25rem]">
+                <div className="max-sm:row-span-3">
+                  <PartnerPortrait
+                    name={person.name}
+                    photo={person.photo}
+                    sizes="(min-width: 1024px) 22vw, (min-width: 640px) 44vw, 5.5rem"
+                  />
+                </div>
+                <h4 className="mt-5 text-[1.125rem] tracking-[-0.024em] text-ink transition-colors duration-500 group-hover:text-brand max-sm:mt-0 md:text-[1.25rem]">
                   {person.name}
                 </h4>
                 <p className="mt-1.5 text-[0.8125rem] font-medium tracking-[-0.006em] text-brand">
                   {person.role}
                 </p>
-                <p className="mt-3 max-w-[40ch] text-[0.875rem] leading-relaxed text-ink-400">
+                <p className="mt-3 max-w-[40ch] text-[0.875rem] leading-relaxed text-ink-400 max-sm:col-span-2 max-sm:mt-4">
                   {person.note}
                 </p>
               </StaggerItem>

@@ -1,14 +1,22 @@
 import Image from "next/image";
+import { Mark } from "@/components/ui/Logo";
 
 /**
  * A partner portrait, or a typeset monogram when we do not yet hold a
  * photograph for that person. The monogram is deliberately designed rather
  * than a grey silhouette: a missing asset should still look like a decision.
  *
- * Portraits run greyscale and come up to full colour on hover. That is partly
- * restraint, and partly practical: the source photographs arrive from
- * different shoots in different treatments, and a single tonal register is
- * what stops a row of four from looking like a collage.
+ * Portraits render in colour. An earlier version ran them greyscale and
+ * brought them up on hover, which was a way of reconciling photographs from
+ * different shoots. The four are now one consistent branded set, so the
+ * treatment no longer earns its place, and dropping it also removes a state
+ * that touch devices could never reach.
+ *
+ * The mark sits in the top right corner, drawn as SVG over the photograph
+ * rather than baked into the pixels. That keeps it crisp at any size, places
+ * it identically on all four, and lets it take the right colour on a light or
+ * a dark ground. It lands in the same corner the studio originals used, which
+ * is background gradient in every one of them.
  */
 export function PartnerPortrait({
   name,
@@ -40,7 +48,7 @@ export function PartnerPortrait({
           alt={`Portrait of ${name}`}
           fill
           sizes={sizes}
-          className="object-cover object-top grayscale transition-[filter,transform] duration-[900ms] ease-out-expo group-hover:scale-[1.03] group-hover:grayscale-0"
+          className="object-cover object-top transition-transform duration-[900ms] ease-out-expo group-hover:scale-[1.03]"
         />
       ) : (
         <span
@@ -54,6 +62,15 @@ export function PartnerPortrait({
           {initials}
         </span>
       )}
+
+      {photo ? (
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute top-[4.5%] right-[4.5%] w-[9%] min-w-[0.875rem] text-brand/90"
+        >
+          <Mark className="h-auto w-full" />
+        </span>
+      ) : null}
     </div>
   );
 }

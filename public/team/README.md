@@ -17,9 +17,9 @@ Square portraits for the partner cards on the homepage network section and on
   eyes in the upper third.
 - JPEG, quality 85 or so. These are lazy loaded and served through the Next.js
   image optimiser, which handles the responsive sizes and WebP conversion.
-- Colour or black and white both work. The cards render every portrait
-  greyscale and bring it up to full colour on hover, which is what keeps a row
-  of four from different shoots looking consistent.
+- Colour, and from the same shoot where possible. The cards render portraits
+  as supplied, so a photograph in a noticeably different treatment will read as
+  the odd one out.
 - If a partner has no file here, drop the `photo` line for them in
   `src/content/network.ts` and the card falls back to a typeset monogram.
 

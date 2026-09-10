@@ -159,25 +159,28 @@ export default function NetworkPage() {
             lead="A partner is accountable for every piece of work we take on. Each brings deep life sciences experience and an extensive network of their own. These are the people who frame the work, match the expertise, and stay on it to the end."
           />
 
-          <Stagger className="mt-14 grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 md:mt-16 lg:grid-cols-4 lg:grid-rows-[auto_auto_auto_auto] lg:gap-y-0">
+          <Stagger className="mt-14 grid grid-cols-1 gap-x-8 gap-y-12 max-sm:gap-y-0 sm:grid-cols-2 md:mt-16 lg:grid-cols-4 lg:grid-rows-[auto_auto_auto_auto] lg:gap-y-0">
             {leadership.map((person) => (
               <StaggerItem
                 key={person.name}
                 as="article"
-                className="group grid content-start lg:row-span-4 lg:grid-rows-subgrid"
+                className="group grid content-start max-sm:grid-cols-[5.5rem_1fr] max-sm:items-start max-sm:gap-x-5 max-sm:border-t max-sm:border-white/12 max-sm:py-6 max-sm:first:border-t-0 max-sm:first:pt-0 lg:row-span-4 lg:grid-rows-subgrid"
               >
-                <PartnerPortrait
-                  name={person.name}
-                  photo={person.photo}
-                  onDark
-                />
-                <h3 className="mt-6 text-[1.25rem] tracking-[-0.026em] text-white transition-colors duration-500 group-hover:text-azure">
+                <div className="max-sm:row-span-3">
+                  <PartnerPortrait
+                    name={person.name}
+                    photo={person.photo}
+                    onDark
+                    sizes="(min-width: 1024px) 22vw, (min-width: 640px) 44vw, 5.5rem"
+                  />
+                </div>
+                <h3 className="mt-6 text-[1.25rem] tracking-[-0.026em] text-white transition-colors duration-500 group-hover:text-azure max-sm:mt-0">
                   {person.name}
                 </h3>
                 <p className="mt-2 text-[0.8125rem] leading-snug font-medium tracking-[-0.006em] text-azure/90">
                   {person.role}
                 </p>
-                <p className="mt-4 max-w-[40ch] text-[0.875rem] leading-relaxed text-white/60">
+                <p className="mt-4 max-w-[40ch] text-[0.875rem] leading-relaxed text-white/60 max-sm:col-span-2">
                   {person.note}
                 </p>
               </StaggerItem>

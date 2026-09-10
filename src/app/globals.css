@@ -381,6 +381,14 @@
   }
 }
 
+/* Hide the scrollbar on swipeable tracks, where the snap points are the cue. */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 /* Custom scrollbar — subtle, matches the palette */
 @layer base {
   ::-webkit-scrollbar {
