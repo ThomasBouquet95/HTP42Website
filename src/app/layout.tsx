@@ -1,5 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Inter_Tight, Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import {
+  Inter_Tight,
+  Instrument_Serif,
+  JetBrains_Mono,
+  Poppins,
+} from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { site } from "@/content/site";
@@ -25,11 +30,19 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
 });
 
+/** The brand wordmark face. Two weights, used only in the logo lockups. */
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  display: "swap",
+  variable: "--font-poppins",
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.shortName} — ${site.tagline}`,
-    template: `%s — ${site.shortName}`,
+    default: `${site.shortName} · ${site.tagline}`,
+    template: `%s · ${site.shortName}`,
   },
   description: site.description,
   keywords: [
@@ -49,12 +62,12 @@ export const metadata: Metadata = {
     locale: "en_GB",
     url: site.url,
     siteName: site.name,
-    title: `${site.name} — ${site.tagline}`,
+    title: `${site.name} · ${site.tagline}`,
     description: site.description,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — ${site.tagline}`,
+    title: `${site.name} · ${site.tagline}`,
     description: site.description,
   },
   robots: { index: true, follow: true },
@@ -74,7 +87,7 @@ export default function RootLayout({
   return (
     <html
       lang="en-GB"
-      className={`${interTight.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}
+      className={`${interTight.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} ${poppins.variable}`}
     >
       <body>
         <Header />

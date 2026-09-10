@@ -78,8 +78,7 @@ export function HomeHero() {
             transition={{ duration: 0.8, delay: 0.55, ease: EASE }}
           >
             A senior expert network for clinical data, AI, technology strategy
-            and digital transformation. Two to eight seniors, named before
-            signature. Six to ten weeks to an answer you can act on.
+            and digital transformation.
           </motion.p>
 
           <motion.div

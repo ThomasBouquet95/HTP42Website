@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Linkedin, Mail, MapPin } from "lucide-react";
-import { Mark } from "@/components/ui/Logo";
+import { LogoStacked } from "@/components/ui/Logo";
 import { site } from "@/content/site";
 import { practices } from "@/content/expertise";
 import { caseStudies } from "@/content/cases";
@@ -41,21 +41,10 @@ export function Footer() {
         <div className="grid grid-cols-2 gap-x-8 gap-y-12 py-16 md:grid-cols-12 md:py-20">
           {/* Identity + contact */}
           <div className="col-span-2 md:col-span-4 lg:col-span-3">
-            <Link
-              href="/"
-              className="inline-flex flex-col gap-4"
-              aria-label="HealthTechPartners 42 — home"
-            >
-              <Mark className="h-6 w-auto text-azure" />
-              <span className="flex flex-col leading-tight">
-                <span className="text-base font-semibold tracking-[-0.022em]">
-                  HealthTech Partners 42
-                </span>
-                <span className="eyebrow mt-1.5 text-white/50">
-                  Life sciences · Data · AI
-                </span>
-              </span>
-            </Link>
+            <LogoStacked />
+            <p className="eyebrow mt-4 text-white/50">
+              Life sciences · Data · AI
+            </p>
 
             <p className="mt-7 max-w-xs text-sm leading-relaxed text-white/60">
               A senior expert network for life sciences data, AI and technology.
@@ -126,7 +115,7 @@ export function Footer() {
 
         <div className="flex flex-col gap-4 border-t border-white/10 py-7 md:flex-row md:items-center md:justify-between">
           <p className="text-xs text-white/50">
-            © {year} HealthTechPartners 42. All rights reserved.
+            © {year} HealthTech Partners 42. All rights reserved.
           </p>
           <ul className="flex flex-wrap items-center gap-x-7 gap-y-2">
             <li>

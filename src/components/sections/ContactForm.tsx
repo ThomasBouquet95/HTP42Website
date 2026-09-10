@@ -33,7 +33,7 @@ export function ContactForm() {
     const data = new FormData(event.currentTarget);
     const get = (key: string) => String(data.get(key) ?? "").trim();
 
-    const subject = `${get("topic")} — enquiry from ${get("organisation") || get("name")}`;
+    const subject = `${get("topic")}: enquiry from ${get("organisation") || get("name")}`;
     const body = [
       `Name: ${get("name")}`,
       `Organisation: ${get("organisation")}`,
@@ -44,7 +44,6 @@ export function ContactForm() {
       "The decision we're facing:",
       get("message"),
       "",
-      "—",
       "Sent from htp42.com",
     ].join("\n");
 
@@ -165,7 +164,7 @@ export function ContactForm() {
             role="status"
           >
             <Check className="size-4" strokeWidth={2.25} aria-hidden="true" />
-            Opening your mail client — press send there.
+            Opening your mail client. Press send there.
           </motion.p>
         )}
       </div>

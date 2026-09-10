@@ -75,7 +75,7 @@ export function DiagramStandards({ className }: Props) {
   );
 }
 
-/** Technology Strategy — a blueprint stack with a platform baseline. */
+/** Technology Strategy: a layered blueprint on a common baseline. */
 export function DiagramBlueprint({ className }: Props) {
   return (
     <Field className={className}>

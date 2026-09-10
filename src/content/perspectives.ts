@@ -12,9 +12,9 @@ export type Perspective = {
 export const perspectives: Perspective[] = [
   {
     slug: "data-limited-not-ai-limited",
-    title: "Most of your AI use cases are data-limited, not AI-limited",
+    title: "Most of your AI use cases are data limited, not AI limited",
     standfirst:
-      "The uncomfortable finding from nearly every research data engagement we run: the model is rarely the constraint. Why the distinction changes what you should fund next.",
+      "The uncomfortable finding from nearly every research data engagement we run: the model is rarely the constraint. Why that distinction changes what you should fund next.",
     category: "Data & AI",
     readTime: "8 min read",
     date: "2026-07-22",
@@ -25,7 +25,7 @@ export const perspectives: Perspective[] = [
     slug: "eu-ai-act-vendor-due-diligence",
     title: "The EU AI Act arrives through procurement, not the regulator",
     standfirst:
-      "Pharma customers are auditing their vendors' AI governance now, well ahead of enforcement. What a credible answer looks like — and how long it actually takes to build.",
+      "Pharma customers are auditing their suppliers' AI governance now, well ahead of enforcement. What a credible answer looks like, and how long it actually takes to build.",
     category: "Governance",
     readTime: "6 min read",
     date: "2026-05-14",
@@ -47,7 +47,7 @@ export const perspectives: Perspective[] = [
     slug: "metadata-repository-trends",
     title: "Clinical metadata management is becoming a graph problem",
     standfirst:
-      "USDM, DDF and protocol-to-ADaM traceability all push in the same direction. Why relational metadata repositories are running out of road.",
+      "USDM, DDF and protocol to ADaM traceability all push in the same direction. Why relational metadata repositories are running out of road.",
     category: "Clinical Standards",
     readTime: "9 min read",
     date: "2026-01-28",
@@ -57,7 +57,7 @@ export const perspectives: Perspective[] = [
     slug: "secondary-use-ai-leverage",
     title: "Leveraging AI for the secondary use of clinical data",
     standfirst:
-      "Data collected for one trial is an asset for the next decade — if the platform, consent model and metadata make it findable and defensible.",
+      "Data collected for one trial is an asset for the next decade, provided the architecture, consent model and metadata make it findable and defensible.",
     category: "Data & AI",
     readTime: "7 min read",
     date: "2025-11-12",
@@ -67,7 +67,7 @@ export const perspectives: Perspective[] = [
     slug: "cloud-migration-clinical-trials",
     title: "Why cloud migration is still critical for modern clinical trials",
     standfirst:
-      "Not for the cost saving — that argument was always weak. For the elasticity, the data gravity and the AI access layer you cannot build on-premise.",
+      "Not for the cost saving, because that argument was always weak. For the elasticity, the data gravity and the AI access layer you cannot build on premise.",
     category: "Technology",
     readTime: "6 min read",
     date: "2025-09-03",

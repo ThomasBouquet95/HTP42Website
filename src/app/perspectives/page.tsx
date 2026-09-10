@@ -12,7 +12,7 @@ import { site } from "@/content/site";
 export const metadata: Metadata = {
   title: "Perspectives",
   description:
-    "Short, specific pieces on life sciences data, AI governance, clinical standards and technology strategy — written by the experts who deliver the work.",
+    "Short, specific pieces on life sciences data, AI governance, clinical standards and technology strategy, written by the experts who deliver the work.",
 };
 
 const [lead, ...rest] = perspectives;
@@ -44,7 +44,7 @@ export default function PerspectivesPage() {
             <span className="accent-italic text-azure">No trend reports.</span>
           </>,
         ]}
-        lead="Every piece here comes out of work we have actually done, and is written by the expert who did it. Full versions are sent on request — ask and it arrives the same day."
+        lead="Every piece here comes out of work we have actually done, and is written by the expert who did it. Full versions are sent on request, and arrive the same day."
         facts={[
           { label: "Pieces", value: String(perspectives.length) },
           { label: "Topics", value: String(categories.length) },

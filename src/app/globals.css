@@ -23,7 +23,7 @@
   --color-brand: #1450c8;
   --color-brand-dark: #0e3c9b;
   --color-brand-soft: #e8effb;
-  --color-azure: #4a9dff;
+  --color-azure: #1e91f9;
   --color-azure-dim: #2e7fdb;
 
   /* ---- Type ---------------------------------------------------------- */
@@ -32,6 +32,9 @@
   --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, "SFMono-Regular",
     Menlo, monospace;
+  /* The brand wordmark face, used only in the logo lockups. */
+  --font-brand: var(--font-poppins), var(--font-inter-tight), ui-sans-serif,
+    system-ui, sans-serif;
 
   /* ---- Fluid display scale ------------------------------------------- */
   --text-eyebrow: 0.6875rem;

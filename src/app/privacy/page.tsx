@@ -4,21 +4,21 @@ import { LegalPage, type LegalSection } from "@/components/LegalPage";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "How HealthTechPartners 42 handles personal data collected through this website and during client engagements.",
+    "How HealthTech Partners 42 handles personal data collected through this website and during client engagements.",
 };
 
 const SECTIONS: LegalSection[] = [
   {
     heading: "Who we are",
     paragraphs: [
-      "HealthTechPartners 42 (HTP42) is a consulting and expert network business headquartered in Basel, Switzerland. This policy explains how we handle personal data collected through htp42.com and in the course of client and expert relationships.",
+      "HealthTech Partners 42 (HTP42) is a consulting and expert network business headquartered in Basel, Switzerland. This policy explains how we handle personal data collected through htp42.com and in the course of client and expert relationships.",
       "For any question about this policy or to exercise your rights over your data, write to ops@htp42.com.",
     ],
   },
   {
     heading: "What this website collects",
     paragraphs: [
-      "This website does not run advertising trackers, does not sell data, and does not set marketing cookies. The enquiry form on our contact page composes a message in your own email client and submits nothing to our servers — the resulting email reaches us the same way any other email does.",
+      "This website does not run advertising trackers, does not sell data, and does not set marketing cookies. The enquiry form on our contact page composes a message in your own email client and submits nothing to our servers, so the resulting email reaches us the same way any other email does.",
       "Our hosting provider processes standard server request data (IP address, user agent, requested URL, timestamp) for security and operational purposes. This data is not used to build profiles.",
     ],
   },
@@ -39,7 +39,7 @@ const SECTIONS: LegalSection[] = [
   {
     heading: "Experts in our network",
     paragraphs: [
-      "For experts in the HTP42 network we process professional profile information, engagement history and the commercial details necessary to contract and pay for work. Public profiles on this website are published with the level of identification each expert has agreed to — which is why many appear as first name and initial.",
+      "For experts in the HTP42 network we process professional profile information, engagement history and the commercial details necessary to contract and pay for work. Public profiles on this website are published with the level of identification each expert has agreed to, which is why many appear as first name and initial.",
     ],
   },
   {

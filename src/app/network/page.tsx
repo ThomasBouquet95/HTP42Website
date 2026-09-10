@@ -21,8 +21,8 @@ export const metadata: Metadata = {
 };
 
 const JOIN_CRITERIA = [
-  "You have held the role, not just advised on it — head of function, VP, CTO or principal architect at a sponsor, CRO or platform company.",
-  "You want senior work in small teams, not a staffing pipeline or a body-shop rate card.",
+  "You have held the role, not just advised on it. Head of function, VP, CTO or principal architect at a sponsor, a CRO or a clinical technology company.",
+  "You want senior work in small teams, not a staffing pipeline or a body shop rate card.",
   "You are comfortable being named on an engagement before it is signed, and accountable for it afterwards.",
   "You would rather tell a client something inconvenient than protect a follow-on sale.",
 ];
@@ -43,7 +43,7 @@ export default function NetworkPage() {
             than a <span className="accent-italic text-azure">firm.</span>
           </>,
         ]}
-        lead="HealthTechPartners 42 was founded in Basel by former Novartis leadership on a simple observation: the people who actually know how to fix a pharma data estate do not want to work at a large consultancy, and the clients who need them cannot find them."
+        lead="HealthTech Partners 42 was founded in Basel by former Novartis leadership on a simple observation: the people who actually know how to fix a pharma data estate do not want to work at a large consultancy, and the clients who need them cannot find them."
         facts={[
           { label: "Senior experts", value: String(expertCount) },
           { label: "Disciplines", value: String(disciplines.length) },
@@ -89,7 +89,7 @@ export default function NetworkPage() {
                 <p className="max-w-[48ch] text-[clamp(1.25rem,1.05rem+0.7vw,1.625rem)] leading-[1.32] tracking-[-0.022em] text-ink">
                   A consultancy has to keep its bench busy. A marketplace has
                   no view on quality. Both structures work against the client
-                  in the same place — who is actually in the room.
+                  in the same place: who is actually in the room.
                 </p>
               </Reveal>
 
@@ -98,7 +98,7 @@ export default function NetworkPage() {
                   <p className="body-copy">
                     We hold a curated network of {expertCount} senior experts
                     across six disciplines. Each has held the role they now
-                    advise on. None of them sits on a bench — they are
+                    advise on. None of them sits on a bench. They are
                     practising principals, fractional CTOs and independent
                     advisors who take HTP42 engagements because the work is
                     senior and the teams are small.
@@ -218,7 +218,7 @@ export default function NetworkPage() {
                 .
               </>
             }
-            lead="Published as first name and initial where our experts prefer it — most hold current engagements elsewhere. Full profiles are shared under NDA during scoping."
+            lead="Published as first name and initial where our experts prefer it, since most hold current engagements elsewhere. Full profiles are shared under NDA during scoping."
           />
 
           <div className="mt-14 flex flex-col gap-16 md:mt-16 md:gap-20">
@@ -358,7 +358,7 @@ export default function NetworkPage() {
                 .
               </>
             }
-            lead="We do not hold reseller agreements or vendor commissions — it would compromise the advice. These two partnerships exist because they extend what we can deliver."
+            lead="We do not hold reseller agreements or vendor commissions, because it would compromise the advice. These two partnerships exist because they extend what our experts can deliver."
           />
 
           <Stagger className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-ink/10 bg-ink/10 md:mt-16 md:grid-cols-2">

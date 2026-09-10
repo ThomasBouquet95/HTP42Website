@@ -43,7 +43,7 @@ export function NetworkTeaser() {
               </span>
             </>
           }
-          lead="Our experts are practising principals, fractional CTOs and independent advisors who choose HTP42 engagements because the work is senior and the teams are small. That is why we can field a former Novartis platform CTO and a CDISC standards programme manager on the same eight-week engagement."
+          lead="Our experts are practising principals, fractional CTOs and independent advisors who choose HTP42 engagements because the work is senior and the teams are small. That is how we can field a former Novartis technology CTO and a CDISC standards programme manager on the same eight week engagement."
         />
 
         {/* Disciplines */}
@@ -109,7 +109,7 @@ export function NetworkTeaser() {
             Our experts held senior roles at
           </p>
         </div>
-        <Marquee items={ALUMNI} onDark duration={40} separator="—" />
+        <Marquee items={ALUMNI} onDark duration={40} separator="·" />
       </div>
     </section>
   );

@@ -21,12 +21,12 @@ const PATTERNS = [
   {
     index: "02",
     title: "Evidence beats conviction",
-    body: "Where we benchmarked — GenAI against incumbent tooling, cloud scenarios against an optimised current state — the result surprised the client at least once. That is what a benchmark is for.",
+    body: "Where our experts benchmarked, whether GenAI against incumbent tooling or cloud scenarios against an optimised current state, the result surprised the client at least once. That is what a benchmark is for.",
   },
   {
     index: "03",
-    title: "Advice without delivery decays",
-    body: "Three of these engagements moved from recommendation to production build with the same team. The others handed over deliverables designed to survive without us.",
+title: "Advice without follow through decays",
+body: "Three of these engagements carried straight on from recommendation into execution with the same experts. The others handed over deliverables designed to survive without us.",
   },
 ];
 
@@ -49,10 +49,10 @@ export default function ImpactPage() {
             internally.
           </>,
         ]}
-        lead="Client names stay confidential — sector, scale, duration and team composition do not. Each study sets out the problem as the client framed it, what we actually did, and what changed as a result."
+        lead="Client names stay confidential. Sector, scale, duration and team composition do not. Each study sets out the problem as the client framed it, what our experts actually did, and what changed as a result."
         facts={[
           { label: "Case studies", value: String(caseStudies.length) },
-          { label: "Years covered", value: years.join("–") },
+          { label: "Years covered", value: years.join(" to ") },
           { label: "Shortest engagement", value: "6 weeks" },
           { label: "Largest team", value: "8 specialists" },
         ]}
@@ -107,7 +107,7 @@ export default function ImpactPage() {
             <span className="accent-italic text-azure">could be yours.</span>
           </>
         }
-        body="If one of these looks like the problem in front of you, the fastest route is a thirty-minute call with the partner who led it."
+        body="If one of these looks like the problem in front of you, the fastest route is a thirty minute call with the partner who led it."
         secondary={{ label: "See our expertise", href: "/expertise" }}
       />
     </>

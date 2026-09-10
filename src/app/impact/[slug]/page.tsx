@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     title: study.title,
     description: study.headline,
     openGraph: {
-      title: `${study.title} — HTP42 case study`,
+      title: `${study.title} · HTP42 case study`,
       description: study.headline,
       type: "article",
     },

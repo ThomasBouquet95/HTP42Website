@@ -22,7 +22,7 @@ export default function NotFound() {
 
         <p className="lead mt-8 max-w-xl text-white/55">
           The address you followed doesn&apos;t resolve to anything we publish.
-          It may have moved when we rebuilt the site — the sections below cover
+          It may have moved when we rebuilt the site. The sections below cover
           everything.
         </p>
 

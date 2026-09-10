@@ -51,7 +51,7 @@ export function CtaBand({
             <Reveal delay={0.12}>
               <p className="lead text-white/60">
                 {body ??
-                  "A first conversation is thirty minutes with a partner, not a sales call. If we are not the right people for the problem, we will say so — and usually point you at who is."}
+                  "A first conversation is thirty minutes with a partner, not a sales call. If we are not the right people for the problem, we will say so, and usually point you at who is."}
               </p>
             </Reveal>
 

@@ -37,7 +37,7 @@ export function LegalPage({
         lead={intro}
         facts={[
           { label: "Last updated", value: formatDate(updated) },
-          { label: "Entity", value: "HealthTechPartners 42" },
+          { label: "Entity", value: "HealthTech Partners 42" },
           { label: "Jurisdiction", value: "Switzerland" },
           { label: "Contact", value: "ops@htp42.com" },
         ]}

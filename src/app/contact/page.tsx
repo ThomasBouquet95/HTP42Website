@@ -9,14 +9,14 @@ import { site } from "@/content/site";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Start a conversation with HealthTechPartners 42. A first call is thirty minutes with a partner, not a sales call. Basel, Paris, Copenhagen, Singapore.",
+    "Start a conversation with HealthTech Partners 42. A first call is thirty minutes with a partner, not a sales call. Basel, Paris, Copenhagen, Singapore.",
 };
 
 const WHAT_HAPPENS = [
   {
     step: "01",
     title: "You hear back within one working day",
-    body: "From a partner, not a coordinator. If your enquiry lands outside what we do, we will say so in that first reply rather than book a call to tell you.",
+body: "From a partner, not a coordinator. If your enquiry lands outside what we do, we will say so in that first reply rather than book a call to tell you.",
   },
   {
     step: "02",
@@ -26,7 +26,7 @@ const WHAT_HAPPENS = [
   {
     step: "03",
     title: "A named team and a fixed shape",
-    body: "Within a week you get a one-page proposal: the two to eight experts we would field, their background, the streams, the duration and the price.",
+    body: "Within a week you get a one page proposal: the two to eight experts we would field, their background, the streams, the duration and the price.",
   },
 ];
 
@@ -46,7 +46,7 @@ const DIRECT = [
   {
     icon: Linkedin,
     label: "LinkedIn",
-    value: "HealthTechPartners 42",
+    value: "HealthTech Partners 42",
     href: site.contact.linkedin,
     external: true,
   },
@@ -74,7 +74,7 @@ export default function ContactPage() {
           </>,
           "should be in the room.",
         ]}
-        lead="A first conversation is thirty minutes with a partner. If we are not the right people for the problem, we will say so — and usually point you at who is."
+        lead="A first conversation is thirty minutes with a partner. If we are not the right people for the problem, we will say so, and usually point you at who is."
       />
 
       {/* Form + direct routes */}

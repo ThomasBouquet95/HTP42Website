@@ -15,7 +15,7 @@ export const leadership: Expert[] = [
   {
     name: "Pascal Bouquet",
     role: "Chief Executive Officer, Managing Partner",
-    note: "Former Novartis VP and Head of Technology (CTO) for data42. Health data, AI strategy and clinical data platforms.",
+    note: "Former Novartis VP and Head of Technology (CTO) for data42. Health data, AI strategy and clinical data systems.",
   },
   {
     name: "Marius C.",
@@ -25,12 +25,12 @@ export const leadership: Expert[] = [
   {
     name: "Linda D.",
     role: "Executive Director, Head of Data Strategy & Analytics",
-    note: "Data strategy leader with deep experience in clinical trial re-engineering and biostatistics.",
+    note: "Data strategy leader with deep experience in clinical trial reengineering and biostatistics.",
   },
   {
     name: "Venkataraman Balasubramaniam",
-    role: "Partner, Singapore — Enterprise Technical Architect",
-    note: "TOGAF 9 and AWS certified. Designed cloud-based analytics platforms at Novartis.",
+    role: "Partner, Singapore. Enterprise Technical Architect",
+    note: "TOGAF 9 and AWS certified. Designed cloud based analytics environments at Novartis.",
   },
   {
     name: "Taline N.",
@@ -53,18 +53,18 @@ export const disciplines: Discipline[] = [
       },
       {
         name: "Paul R.",
-        role: "Data Strategy & Analytics Consultant — Data Mesh",
-        note: "20+ years bridging business and IT; specialist in domain-driven data ecosystems.",
+        role: "Data Strategy & Analytics Consultant, Data Mesh",
+        note: "20+ years bridging business and IT, specialist in domain driven data ecosystems.",
       },
       {
         name: "Laurent V.",
-        role: "Professor of Mathematics — Data Science, AI & Complex Systems",
-        note: "25+ years, 80+ publications; leads funded research in knowledge graphs and NLP.",
+        role: "Professor of Mathematics, Data Science and Complex Systems",
+        note: "25+ years and 80+ publications. Leads funded research in knowledge graphs and NLP.",
       },
       {
         name: "Roozbeh B.",
         role: "Data & AI Advisor, Life Sciences",
-        note: "Founded a boutique consultancy for pharma data platforms and MLOps.",
+        note: "Founded a boutique consultancy for pharma data engineering and MLOps.",
       },
       {
         name: "Tim O.",
@@ -82,27 +82,27 @@ export const disciplines: Discipline[] = [
       {
         name: "Eric G.",
         role: "Executive Leader, Clinical Data Science & Biostatistics",
-        note: "Built cross-regional teams at Sanofi; established data governance and AI applications.",
+        note: "Built cross regional teams at Sanofi and established data governance and AI applications.",
       },
       {
         name: "Søren K.",
         role: "Biostatistics Leader & Digital Health Strategist",
-        note: "20+ years leading biostatistics units; integrated agile methods and wearable solutions.",
+        note: "20+ years leading biostatistics units, integrating agile methods and wearable solutions.",
       },
       {
         name: "Phoebe B.",
         role: "Senior Statistical Programmer & Automation Specialist",
-        note: "CDISC standards, regulatory submissions and SAS/R/Python automation.",
+        note: "CDISC standards, regulatory submissions and SAS, R and Python automation.",
       },
       {
         name: "Nathalie S.",
         role: "Senior Expert, CDISC Standards & Clinical Data Operations",
-        note: "Founded two CROs; delivered CDISC SDTM validation for FDA submissions.",
+        note: "Founded two CROs and delivered CDISC SDTM validation for FDA submissions.",
       },
       {
         name: "Nick De Donder",
         role: "Data Standards Consultant & Programme Director",
-        note: "15+ years; former CDISC Open Rules Programme Manager, 25+ international presentations.",
+        note: "15+ years, former CDISC Open Rules Programme Manager, 25+ international presentations.",
       },
       {
         name: "Yannick L.",
@@ -112,12 +112,12 @@ export const disciplines: Discipline[] = [
       {
         name: "Juan Carlos R.",
         role: "Graph Data Scientist & Clinical Data Solutions Specialist",
-        note: "Graph analytics, metadata management and CDISC-compliant systems.",
+        note: "Graph analytics, metadata management and CDISC compliant systems.",
       },
       {
         name: "Skander M.",
         role: "Data Scientist & Clinical Programming Innovator",
-        note: "Deploys large language models and document-intelligence platforms for trial operations.",
+        note: "Deploys large language models and document intelligence for trial operations.",
       },
     ],
   },
@@ -125,27 +125,27 @@ export const disciplines: Discipline[] = [
     index: "03",
     name: "Technology, Architecture & Engineering",
     summary:
-      "Enterprise architecture, cloud platforms, GxP validation and full-stack delivery at sponsor scale.",
+      "Enterprise architecture, cloud engineering, GxP validation and full stack delivery at sponsor scale.",
     experts: [
       {
         name: "Paul F.",
         role: "Senior Technology Executive, Life Sciences & IT Strategy",
-        note: "Two decades at Johnson & Johnson leading clinical data platforms and AWS deployments.",
+        note: "Two decades at Johnson & Johnson leading clinical data systems and AWS deployments.",
       },
       {
         name: "Homayoun P.",
         role: "Technology Leader",
-        note: "30+ years in research, design and architecture; Lead Architect in Clinical Development Digital at Novartis.",
+        note: "30+ years in research, design and architecture. Lead Architect in Clinical Development Digital at Novartis.",
       },
       {
         name: "Antoine N.",
         role: "Full-Stack Developer & Open-Source Contributor",
-        note: "20+ years in Python and Vue.js; led open-source healthcare and pharmaceutical tooling.",
+        note: "20+ years in Python and Vue.js, leading open source healthcare and pharmaceutical tooling.",
       },
       {
         name: "Kannan R.",
         role: "Senior IT Leader, Head of IT",
-        note: "15+ years; oversaw Nestlé's global IT and led network and security transformation in biotech.",
+        note: "15+ years. Oversaw Nestlé's global IT and led network and security transformation in biotech.",
       },
       {
         name: "Saurabh",
@@ -168,17 +168,17 @@ export const disciplines: Discipline[] = [
       {
         name: "Christian H.",
         role: "Healthcare AI Strategist & Digital Health Transformation Leader",
-        note: "Drove global digital innovation at Novartis and Amgen; advises health tech startups.",
+        note: "Drove global digital innovation at Novartis and Amgen, and advises health tech startups.",
       },
       {
         name: "Stéphane R.",
         role: "Global Digital Health & Pharmaceutical Innovation Leader",
-        note: "Led data governance frameworks at Roche-Genentech; advises on clinical development optimisation.",
+        note: "Led data governance frameworks at Roche Genentech and advises on clinical development optimisation.",
       },
       {
         name: "Christian B.",
         role: "Digital Transformation & Clinical Innovation Advisor",
-        note: "MD/PhD with 20+ years; pioneered the digital health journey at Novo Nordisk.",
+        note: "MD and PhD with 20+ years. Pioneered the digital health journey at Novo Nordisk.",
       },
       {
         name: "Rado A.",
@@ -192,13 +192,13 @@ export const disciplines: Discipline[] = [
       },
       {
         name: "Edward O.",
-        role: "Strategic Scientific Director — Genomics, Biotechnology & AI",
-        note: "Founder of Oakley Genomics; leads computational genomics and gene therapy solutions.",
+        role: "Strategic Scientific Director, Genomics and Biotechnology",
+        note: "Founder of Oakley Genomics, leading computational genomics and gene therapy work.",
       },
       {
         name: "Josephus G.",
         role: "Biomedical AI Specialist",
-        note: "Biomedical AI, NLP and predictive modelling; designed CNNs at Novartis.",
+        note: "Biomedical AI, NLP and predictive modelling. Designed CNNs at Novartis.",
       },
     ],
   },
@@ -221,27 +221,27 @@ export const disciplines: Discipline[] = [
       {
         name: "François Henri B.",
         role: "Digital R&D Strategy & Partnerships Leader",
-        note: "20+ years transforming pharmaceutical R&D through in-silico modelling.",
+        note: "20+ years transforming pharmaceutical R&D through in silico modelling.",
       },
       {
         name: "Laura P.",
         role: "Strategic Consultant",
-        note: "IT transformation, healthcare pathways and value-based funding models.",
+        note: "IT transformation, healthcare pathways and value based funding models.",
       },
       {
         name: "Rachel O.",
         role: "Operational Excellence Expert & Mental Health Innovator",
-        note: "Led billion-dollar portfolios; founded the digital mental health platform ROCC GmbH.",
+        note: "Led billion dollar portfolios and founded the digital mental health venture ROCC GmbH.",
       },
       {
         name: "Karin M.",
         role: "Marketing Advisor, Life Sciences & HealthTech",
-        note: "20+ years across pharmaceutical and medical device sectors; PhD in Genetic Engineering.",
+        note: "20+ years across pharmaceutical and medical device sectors, with a PhD in Genetic Engineering.",
       },
       {
         name: "Annette I.",
         role: "Scientific & Strategy Lead, Biotech Innovation & Global Health",
-        note: "PhD-trained executive with 15+ years in translational research and global health strategy.",
+        note: "PhD trained executive with 15+ years in translational research and global health strategy.",
       },
     ],
   },
@@ -253,13 +253,13 @@ export const disciplines: Discipline[] = [
     experts: [
       {
         name: "Hervé J.",
-        role: "Expert, Clinical Drug Development & Strategic Programme Leadership",
-        note: "25+ years; founded Spes Bioventure to support biotech drug development strategy.",
+        role: "Expert, Clinical Drug Development and Programme Leadership",
+        note: "25+ years. Founded Spes Bioventure to support biotech drug development strategy.",
       },
       {
         name: "Séverine D.",
         role: "Global Medical & Clinical Affairs Leader",
-        note: "20+ years leading international clinical trials; former VP at BioScience GmbH.",
+        note: "20+ years leading international clinical trials, former VP at BioScience GmbH.",
       },
       {
         name: "Lars B.",
@@ -302,14 +302,14 @@ export const modelComparison = {
       freelance: "None beyond the individual",
     },
     {
-      dimension: "Delivery capability",
-      htp42: "Advises and builds production systems",
-      large: "Advisory, delivery subcontracted",
+      dimension: "Continuity",
+      htp42: "The same expert advises and delivers",
+      large: "Advisory, delivery handed off",
       freelance: "Individual contribution only",
     },
     {
       dimension: "Time to answer",
-      htp42: "6–10 weeks typical",
+      htp42: "6 to 10 weeks typical",
       large: "One to two quarters",
       freelance: "Depends entirely on scoping",
     },
@@ -329,14 +329,14 @@ export const values = [
   },
   {
     title: "Evidence over conviction",
-    body: "Benchmarks, instrumented proofs of concept and structured interviews — not pattern-matching from another industry. We would rather change our mind in week four than be wrong in month nine.",
+    body: "Benchmarks, instrumented proofs of concept and structured interviews, rather than pattern matching from another industry. We would rather change our mind in week four than be wrong in month nine.",
   },
   {
     title: "The standards are the commons",
-    body: "We contribute to CDISC, DDF and the open-source tooling the industry depends on. What is good for the commons is good for our clients, and it keeps our advice free of vendor incentive.",
+    body: "We contribute to CDISC, DDF and the open source tooling the industry depends on. What is good for the commons is good for our clients, and it keeps our advice free of vendor incentive.",
   },
   {
     title: "Small teams, real ownership",
-    body: "Two to eight people, all senior, all named. Small enough that everyone knows the whole problem; senior enough that nobody needs supervising.",
+    body: "Two to eight people, all senior, all named. Small enough that everyone knows the whole problem, senior enough that nobody needs supervising.",
   },
 ];

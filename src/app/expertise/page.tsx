@@ -11,7 +11,7 @@ import { practices } from "@/content/expertise";
 export const metadata: Metadata = {
   title: "Expertise",
   description:
-    "Four practices: Data & AI, Clinical Data & Standards, Technology Strategy & Architecture, and Digital Transformation & Operating Model — advisory and delivery under one contract.",
+    "Four practices: Data & AI, Clinical Data & Standards, Technology Strategy & Architecture, and Digital Transformation & Operating Model. Senior experts who advise and stay to deliver."
 };
 
 export default function ExpertisePage() {
@@ -26,16 +26,16 @@ export default function ExpertisePage() {
         titleLines={[
           "Four practices,",
           <>
-            <span className="accent-italic text-azure">no seam</span> between
+            <span className="accent-italic text-azure">one team</span> from
           </>,
-          "advice and delivery.",
+          "advice to delivery.",
         ]}
-        lead="The team that recommends the architecture is the team that deploys it. That single fact changes what we are willing to recommend — and what we are prepared to be held to."
+        lead="The expert who recommends the architecture is the expert who sees it through. That single fact changes what we are willing to recommend, and what we are prepared to be held to."
         facts={[
           { label: "Practices", value: "4" },
           { label: "Service lines", value: "14" },
-          { label: "Typical engagement", value: "6–26 weeks" },
-          { label: "Team size", value: "2–8 seniors" },
+          { label: "Typical engagement", value: "6 to 26 weeks" },
+          { label: "Team size", value: "2 to 8 seniors" },
         ]}
       />
 
@@ -192,7 +192,7 @@ export default function ExpertisePage() {
             until we talk.
           </>
         }
-        body="Most engagements cross two or three practices. Describe the decision you are facing and we will tell you which experts it needs — and whether we are the right firm at all."
+        body="Most engagements cross two or three practices. Describe the decision you are facing and we will tell you which experts it needs, and whether we are the right firm at all."
         secondary={{ label: "Meet the network", href: "/network" }}
       />
     </>

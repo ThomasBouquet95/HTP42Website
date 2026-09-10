@@ -4,14 +4,14 @@ import { LegalPage, type LegalSection } from "@/components/LegalPage";
 export const metadata: Metadata = {
   title: "Terms & Conditions",
   description:
-    "Terms governing use of the HealthTechPartners 42 website, and the basis on which engagements are contracted.",
+    "Terms governing use of the HealthTech Partners 42 website, and the basis on which engagements are contracted.",
 };
 
 const SECTIONS: LegalSection[] = [
   {
     heading: "Scope of these terms",
     paragraphs: [
-      "These terms govern your use of htp42.com. Consulting engagements are governed by their own written agreement — a signed statement of work, master services agreement and, where personal or clinical data is involved, a data processing agreement. Nothing on this website forms part of those contracts or amends them.",
+      "These terms govern your use of htp42.com. Consulting engagements are governed by their own written agreement: a signed statement of work, a master services agreement and, where personal or clinical data is involved, a data processing agreement. Nothing on this website forms part of those contracts or amends them.",
     ],
   },
   {
@@ -24,14 +24,14 @@ const SECTIONS: LegalSection[] = [
   {
     heading: "Intellectual property",
     paragraphs: [
-      "The content, structure, design and code of this website are owned by HealthTechPartners 42 or licensed to us. You may read, quote briefly with attribution, and link to it. You may not republish substantial extracts, reproduce the design, or use our name or marks to imply endorsement or partnership.",
-      "Third-party names, standards and product marks referenced on this site — including CDISC, DDF, USDM, OpenStudyBuilder, COSA and the names of former employers of our experts — remain the property of their respective owners and are used descriptively.",
+      "The content, structure, design and code of this website are owned by HealthTech Partners 42 or licensed to us. You may read, quote briefly with attribution, and link to it. You may not republish substantial extracts, reproduce the design, or use our name or marks to imply endorsement or partnership.",
+      "Names, standards and product marks referenced on this site, among them CDISC, DDF, USDM, OpenStudyBuilder, COSA and the names of former employers of our experts, remain the property of their respective owners and are used descriptively.",
     ],
   },
   {
     heading: "Engagements and named teams",
     paragraphs: [
-      "Where we describe naming experts before signature and not substituting them afterwards, that commitment takes effect through the engagement contract, subject to the usual carve-outs for illness, incapacity and force majeure. In those cases we propose a replacement of equivalent seniority for the client's approval, or reduce scope.",
+      "Where we describe naming experts before signature and not substituting them afterwards, that commitment takes effect through the engagement contract, subject to the usual carve outs for illness, incapacity and force majeure. In those cases we propose a replacement of equivalent seniority for the client's approval, or reduce scope.",
     ],
   },
   {
@@ -43,7 +43,7 @@ const SECTIONS: LegalSection[] = [
   {
     heading: "External links",
     paragraphs: [
-      "This site links to third-party sites, including those of our partners and our experts' professional profiles. We do not control that content and accept no responsibility for it.",
+      "This site links to external sites, including those of our partners and our experts' professional profiles. We do not control that content and accept no responsibility for it.",
     ],
   },
   {
