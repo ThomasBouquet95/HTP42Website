@@ -1,6 +1,5 @@
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Stagger, StaggerItem } from "@/components/motion/Reveal";
-import { offeringDiagrams } from "@/components/ui/AreaDiagram";
 import { offerings } from "@/content/offerings";
 
 /**
@@ -9,9 +8,12 @@ import { offerings } from "@/content/offerings";
  * handing over a whole solution is the thing prospects most need to understand
  * before they call.
  *
- * Each card splits into a tinted header carrying the name, the promise and
- * the diagram, then the detail beneath on the paper ground. That gives the
- * two offerings a clear shape instead of two stacks of prose.
+ * Layout note: at two up the cards are a row subgrid, so the number, the name,
+ * the promise, the paragraph and each of the three defining points share their
+ * track with the matching element in the other card. Everything reads across
+ * as well as down, and the two cards are the same height by construction
+ * rather than by luck. No icons: with the diagrams gone the typography and the
+ * hairline rules carry the structure.
  */
 export function Offerings() {
   return (
@@ -32,54 +34,52 @@ export function Offerings() {
           lead="Some clients need experts embedded in their own team for a specific need, over months or years. Others need a result delivered against defined deliverables. We find and assemble the AI empowered experts for you, and carry the accountability for what they deliver."
         />
 
-        <Stagger className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-ink/10 bg-ink/10 md:mt-16 lg:grid-cols-2">
-          {offerings.map((offering) => {
-            const Diagram = offeringDiagrams[offering.icon];
-            return (
-              <StaggerItem key={offering.slug}>
-                <article className="group flex h-full flex-col bg-paper">
-                  {/* Header: identity and promise */}
-                  <div className="relative overflow-hidden border-b border-ink/[0.08] bg-paper-2/70 px-7 pt-7 pb-8 transition-colors duration-700 group-hover:bg-brand-soft/45 md:px-9 md:pt-8 md:pb-9">
-                    <div className="flex items-start justify-between gap-6">
-                      <span className="eyebrow tnum text-ink-300">
-                        {offering.index}
-                      </span>
-                      <Diagram className="h-14 w-[4.75rem] shrink-0 md:h-[4.25rem] md:w-[5.75rem]" />
-                    </div>
+        <Stagger className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-ink/10 bg-ink/10 md:mt-16 lg:grid-cols-2 lg:grid-rows-[repeat(7,auto)] lg:gap-y-0">
+          {offerings.map((offering) => (
+            <StaggerItem
+              key={offering.slug}
+              as="article"
+              className="grid bg-paper px-7 pt-7 pb-8 transition-colors duration-700 hover:bg-brand-soft/35 md:px-10 md:pt-9 md:pb-10 lg:row-span-7 lg:grid-rows-subgrid"
+            >
+              {/* 1. number, on its own rule */}
+              <div className="flex items-center gap-5">
+                <span className="eyebrow tnum text-ink-300">
+                  {offering.index}
+                </span>
+                <span aria-hidden="true" className="h-px flex-1 bg-ink/12" />
+              </div>
 
-                    <h3 className="mt-7 text-[1.625rem] tracking-[-0.032em] text-ink md:text-[1.875rem]">
-                      {offering.name}
-                    </h3>
+              {/* 2. name */}
+              <h3 className="mt-7 text-[1.6875rem] leading-[1.08] tracking-[-0.034em] text-ink md:text-[2rem]">
+                {offering.name}
+              </h3>
 
-                    <p className="mt-3 max-w-[30ch] text-[1.0625rem] leading-snug font-medium tracking-[-0.014em] text-brand md:text-[1.125rem]">
-                      {offering.promise}
-                    </p>
+              {/* 3. the promise */}
+              <p className="mt-3 max-w-[42ch] text-[1.0625rem] leading-snug font-medium tracking-[-0.016em] text-brand md:text-[1.1875rem]">
+                {offering.promise}
+              </p>
+
+              {/* 4. how it works */}
+              <p className="body-copy mt-6 max-w-[46ch]">{offering.body}</p>
+
+              {/* 5, 6, 7. the three defining points, one per track */}
+              <dl className="mt-8 grid lg:row-span-3 lg:grid-rows-subgrid">
+                {offering.points.map((point) => (
+                  <div
+                    key={point.label}
+                    className="border-t border-ink/[0.09] pt-5 pb-6 last:pb-0"
+                  >
+                    <dt className="text-[0.9375rem] leading-snug font-medium tracking-[-0.012em] text-ink">
+                      {point.label}
+                    </dt>
+                    <dd className="mt-2 max-w-[52ch] text-[0.875rem] leading-relaxed text-ink-400">
+                      {point.detail}
+                    </dd>
                   </div>
-
-                  {/* Body: how it works */}
-                  <div className="flex flex-1 flex-col px-7 pt-7 pb-8 md:px-9 md:pt-8 md:pb-10">
-                    <p className="body-copy max-w-[46ch]">{offering.body}</p>
-
-                    <dl className="mt-8 flex flex-col">
-                      {offering.points.map((point) => (
-                        <div
-                          key={point.label}
-                          className="border-t border-ink/[0.09] py-4 first:pt-0"
-                        >
-                          <dt className="text-[0.9375rem] leading-snug font-medium tracking-[-0.012em] text-ink">
-                            {point.label}
-                          </dt>
-                          <dd className="mt-2 max-w-[52ch] text-[0.875rem] leading-relaxed text-ink-400">
-                            {point.detail}
-                          </dd>
-                        </div>
-                      ))}
-                    </dl>
-                  </div>
-                </article>
-              </StaggerItem>
-            );
-          })}
+                ))}
+              </dl>
+            </StaggerItem>
+          ))}
         </Stagger>
       </div>
     </section>

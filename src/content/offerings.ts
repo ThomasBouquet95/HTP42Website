@@ -6,7 +6,6 @@ export type Offering = {
   body: string;
   /** Three lines that define what the offering actually is. */
   points: { label: string; detail: string }[];
-  icon: "deploy" | "project";
 };
 
 /** The two ways clients work with HTP42. */
@@ -34,7 +33,6 @@ export const offerings: Offering[] = [
           "Screened by a partner before onboarding, reviewed on every engagement, and replaced by us if the fit is wrong.",
       },
     ],
-    icon: "deploy",
   },
   {
     index: "02",
@@ -59,6 +57,5 @@ export const offerings: Offering[] = [
           "Subject matter experts do the work, experienced project managers keep it moving, and a partner stands behind the quality. All of them empowered by AI.",
       },
     ],
-    icon: "project",
   },
 ];
