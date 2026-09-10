@@ -381,6 +381,15 @@
   }
 }
 
+/*
+ * Bespoke line diagrams. The field is 96 units wide but renders as small as
+ * 40px, so a stroke in user units falls under a pixel and vanishes. Holding it
+ * at a constant device width keeps the same drawing legible at every size.
+ */
+.diagram :is(path, circle, rect, line, polyline, polygon, ellipse) {
+  vector-effect: non-scaling-stroke;
+}
+
 /* Hide the scrollbar on swipeable tracks, where the snap points are the cue. */
 @utility no-scrollbar {
   scrollbar-width: none;

@@ -114,7 +114,7 @@ export default function ContactPage() {
                   const content = (
                     <>
                       <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-full border border-ink/12 text-ink-400 transition-all duration-500 group-hover:border-brand/35 group-hover:bg-brand-soft group-hover:text-brand">
-                        <Icon className="size-4" strokeWidth={1.6} aria-hidden="true" />
+                        <Icon className="size-4" strokeWidth={1.75} aria-hidden="true" />
                       </span>
                       <span className="flex flex-col">
                         <span className="eyebrow text-ink-300">

@@ -57,12 +57,12 @@ export function Footer() {
                   href={`mailto:${site.contact.email}`}
                   className="group inline-flex items-center gap-2.5 text-white/70 transition-colors hover:text-azure"
                 >
-                  <Mail className="size-3.5 shrink-0" strokeWidth={1.6} />
+                  <Mail className="size-3.5 shrink-0" strokeWidth={1.75} />
                   <span className="link-wipe">{site.contact.email}</span>
                 </a>
               </li>
               <li className="inline-flex items-center gap-2.5 text-white/60">
-                <MapPin className="size-3.5 shrink-0" strokeWidth={1.6} />
+                <MapPin className="size-3.5 shrink-0" strokeWidth={1.75} />
                 {site.contact.hq}
               </li>
               <li>
@@ -72,7 +72,7 @@ export function Footer() {
                   rel="noreferrer noopener"
                   className="group inline-flex items-center gap-2.5 text-white/70 transition-colors hover:text-azure"
                 >
-                  <Linkedin className="size-3.5 shrink-0" strokeWidth={1.6} />
+                  <Linkedin className="size-3.5 shrink-0" strokeWidth={1.75} />
                   <span className="link-wipe">LinkedIn</span>
                 </a>
               </li>

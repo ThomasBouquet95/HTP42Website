@@ -1,18 +1,25 @@
 /**
  * Four bespoke line diagrams, one per expertise area. Drawn on a shared field
- * with a common 1.4 stroke so they read as a set rather than four icons.
- * Accent strokes pick up the brand blue on hover via `group`.
+ * so they read as a set rather than four icons. Accent strokes pick up the
+ * brand blue on hover via `group`.
+ *
+ * On stroke weight: the field is 96 units wide but renders at 54px on the
+ * homepage cards, so a stroke set in user units came out under a pixel there
+ * and disappeared. The `diagram` class holds the stroke at a constant device
+ * width instead, so these read the same at 40px as at 96px. The opacities are
+ * set for contrast too: the previous base stroke measured 1.76:1 against
+ * paper, well under the 3:1 that a meaningful graphic needs.
  */
 
 type Props = { className?: string };
 
 const S = {
-  base: "stroke-ink/25 transition-colors duration-700 group-hover:stroke-ink/40",
+  base: "stroke-ink/50 transition-colors duration-700 group-hover:stroke-ink/70",
   accent:
-    "stroke-brand/45 transition-colors duration-700 group-hover:stroke-brand",
+    "stroke-brand/75 transition-colors duration-700 group-hover:stroke-brand",
   fillAccent:
-    "fill-brand/20 transition-all duration-700 group-hover:fill-brand/60",
-  fillBase: "fill-ink/15 transition-all duration-700 group-hover:fill-ink/25",
+    "fill-brand/70 transition-all duration-700 group-hover:fill-brand",
+  fillBase: "fill-ink/45 transition-all duration-700 group-hover:fill-ink/65",
 };
 
 function Field({ children, className }: { children: React.ReactNode; className?: string }) {
@@ -20,9 +27,10 @@ function Field({ children, className }: { children: React.ReactNode; className?:
     <svg
       viewBox="0 0 96 72"
       fill="none"
-      strokeWidth="1.4"
+      strokeWidth="1.6"
       strokeLinecap="round"
-      className={className ?? "h-[4.5rem] w-24"}
+      strokeLinejoin="round"
+      className={`diagram ${className ?? "h-[4.5rem] w-24"}`}
       aria-hidden="true"
       role="presentation"
     >
@@ -31,45 +39,52 @@ function Field({ children, className }: { children: React.ReactNode; className?:
   );
 }
 
-/** Data & AI — scattered sources resolving into one inference node. */
+/** Data & AI: scattered sources resolving into one inference node. */
 export function DiagramDataAI({ className }: Props) {
   return (
     <Field className={className}>
-      {[
-        [8, 12],
-        [8, 30],
-        [8, 48],
-        [8, 62],
-      ].map(([x, y], i) => (
-        <g key={i}>
-          <circle cx={x} cy={y} r="3" className={S.fillBase} />
-          <path d={`M${x + 5} ${y} C 24 ${y}, 30 37, 44 37`} className={S.base} />
+      {[14, 36, 58].map((y) => (
+        <g key={y}>
+          <circle cx="9" cy={y} r="3.6" className={S.fillBase} />
+          <path
+            d={`M14 ${y} C 26 ${y}, 30 36, 42 36`}
+            className={S.base}
+          />
         </g>
       ))}
-      <circle cx="48" cy="37" r="9" className={S.accent} />
-      <circle cx="48" cy="37" r="3.2" className={S.fillAccent} />
-      <path d="M57 37h10" className={S.accent} />
-      <path d="M67 21v32" className={S.base} />
-      {[21, 30, 44, 53].map((y, i) => (
-        <path key={i} d={`M67 ${y}h${i % 2 === 0 ? 21 : 14}`} className={S.base} />
+      <circle cx="48" cy="36" r="10" className={S.accent} />
+      <circle cx="48" cy="36" r="3.6" className={S.fillAccent} />
+      <path d="M58 36h8" className={S.accent} />
+      <path d="M66 20v32" className={S.base} />
+      {[20, 36, 52].map((y, i) => (
+        <path key={y} d={`M66 ${y}h${i === 1 ? 14 : 22}`} className={S.base} />
       ))}
     </Field>
   );
 }
 
-/** Clinical Data & Standards — layered study data with a traceability spine. */
+/** Clinical Data & Standards: layered study data with a traceability spine. */
 export function DiagramStandards({ className }: Props) {
   return (
     <Field className={className}>
-      {[10, 26, 42, 58].map((y, i) => (
+      {[13, 32, 51].map((y, i) => (
         <g key={y}>
-          <rect x="10" y={y} width={70 - i * 6} height="9" rx="1.5" className={S.base} />
-          <path d={`M${16 + i * 4} ${y + 4.5}h${18 - i * 2}`} className={i === 0 ? S.accent : S.base} />
+          <rect
+            x="9"
+            y={y}
+            width={64 - i * 8}
+            height="12"
+            rx="2"
+            className={S.base}
+          />
+          {i === 0 ? (
+            <path d="M15 19h22" className={S.accent} />
+          ) : null}
         </g>
       ))}
-      <path d="M86 14v49" className={S.accent} strokeDasharray="3 3" />
-      {[14, 30, 46, 62].map((y) => (
-        <circle key={y} cx="86" cy={y} r="2.4" className={S.fillAccent} />
+      <path d="M84 15v44" className={S.accent} strokeDasharray="4 4" />
+      {[19, 38, 57].map((y) => (
+        <circle key={y} cx="84" cy={y} r="3" className={S.fillAccent} />
       ))}
     </Field>
   );

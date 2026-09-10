@@ -112,7 +112,7 @@ export function Header() {
                 aria-expanded={open}
                 className="inline-flex size-10 items-center justify-center rounded-full text-white transition-colors duration-400 hover:bg-white/10 lg:hidden"
               >
-                <Menu className="size-5" strokeWidth={1.6} />
+                <Menu className="size-5" strokeWidth={1.75} />
               </button>
             </div>
           </div>
@@ -146,7 +146,7 @@ export function Header() {
                 aria-label="Close menu"
                 className="inline-flex size-10 items-center justify-center rounded-full text-white transition-colors hover:bg-white/10"
               >
-                <X className="size-5" strokeWidth={1.6} />
+                <X className="size-5" strokeWidth={1.75} />
               </button>
             </div>
 

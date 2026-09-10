@@ -49,7 +49,7 @@ export function ExpertiseAreas() {
                     <span className="eyebrow tnum text-ink-300">
                       {area.index}
                     </span>
-                    <Diagram className="h-10 w-[3.375rem] shrink-0 md:h-11 md:w-[3.75rem]" />
+                    <Diagram className="h-12 w-[4.25rem] shrink-0 md:h-[3.25rem] md:w-[4.625rem]" />
                   </div>
 
                   {/* 2. name */}
