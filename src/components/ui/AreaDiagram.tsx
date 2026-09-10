@@ -122,9 +122,99 @@ export function DiagramTransform({ className }: Props) {
   );
 }
 
+/**
+ * Three diagrams for the three sided proposition. Same field and the same
+ * stroke rules as the expertise set, so they read as one family, and each one
+ * draws the specific mechanism rather than a generic symbol: a matched expert
+ * placed into a client team, a partner reaching into a vetted pool, and work
+ * arriving at a specialist who would rather deliver than sell.
+ */
+
+/** For clients: the right expert, sourced and placed inside your team. */
+export function DiagramClients({ className }: Props) {
+  return (
+    <Field className={className}>
+      {/* the client team */}
+      <rect
+        x="48"
+        y="12"
+        width="42"
+        height="48"
+        rx="3"
+        className={S.base}
+        strokeDasharray="4 4"
+      />
+      <circle cx="69" cy="24" r="3.4" className={S.fillBase} />
+      <circle cx="69" cy="48" r="3.4" className={S.fillBase} />
+      {/* the sourced expert, and the seat they take */}
+      <circle cx="14" cy="36" r="7" className={S.accent} />
+      <circle cx="14" cy="36" r="3" className={S.fillAccent} />
+      <path d="M24 36h16" className={S.accent} />
+      <path d="M40 36l-5-4M40 36l-5 4" className={S.accent} />
+      <circle cx="69" cy="36" r="4" className={S.fillAccent} />
+    </Field>
+  );
+}
+
+/** For senior leaders: judgment about who to trust, put to work. */
+export function DiagramLeaders({ className }: Props) {
+  return (
+    <Field className={className}>
+      {/* the curated pool they reach into */}
+      <path
+        d="M76 10 C 90 24, 90 48, 76 62"
+        className={S.base}
+        strokeDasharray="4 4"
+      />
+      {/* the partner */}
+      <circle cx="14" cy="36" r="7" className={S.accent} />
+      <circle cx="14" cy="36" r="3" className={S.fillAccent} />
+      {/* vouching for named specialists */}
+      <path d="M24 36 C 42 33, 44 17, 58 16" className={S.base} />
+      <path d="M24 36h36" className={S.base} />
+      <path d="M24 36 C 42 39, 44 55, 58 56" className={S.base} />
+      <circle cx="64" cy="16" r="3.8" className={S.fillAccent} />
+      <circle cx="66" cy="36" r="3.8" className={S.fillAccent} />
+      <circle cx="64" cy="56" r="3.8" className={S.fillBase} />
+    </Field>
+  );
+}
+
+/** For experts: work arrives, and the delivery goes out. */
+export function DiagramExperts({ className }: Props) {
+  return (
+    <Field className={className}>
+      {/* work arriving from the network */}
+      {[14, 36, 58].map((y) => (
+        <g key={y}>
+          <circle cx="11" cy={y} r="3.4" className={S.fillBase} />
+          <path
+            d={y === 36 ? "M17 36h14" : `M17 ${y} C 26 ${y}, 27 36, 33 36`}
+            className={S.base}
+          />
+        </g>
+      ))}
+      <path d="M33 36l-5-4M33 36l-5 4" className={S.base} />
+      {/* the specialist */}
+      <circle cx="46" cy="36" r="8" className={S.accent} />
+      <circle cx="46" cy="36" r="3.2" className={S.fillAccent} />
+      {/* what they hand over */}
+      <path d="M55 36h8" className={S.accent} />
+      <rect x="64" y="24" width="24" height="24" rx="2.5" className={S.base} />
+      <path d="M70 32h12M70 40h8" className={S.base} />
+    </Field>
+  );
+}
+
 export const diagrams = {
   brain: DiagramDataAI,
   database: DiagramStandards,
   blueprint: DiagramBlueprint,
   transform: DiagramTransform,
+} as const;
+
+export const audienceDiagrams = {
+  clients: DiagramClients,
+  leaders: DiagramLeaders,
+  experts: DiagramExperts,
 } as const;

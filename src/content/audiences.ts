@@ -6,6 +6,7 @@ export type Audience = {
   problem: string;
   /** What HTP42 changes for them. */
   gains: string[];
+  icon: "clients" | "leaders" | "experts";
 };
 
 /**
@@ -18,6 +19,7 @@ export const audiences: Audience[] = [
   {
     index: "01",
     who: "Clients",
+    icon: "clients",
     label: "Pharma, biotech and clinical technology teams",
     problem:
       "You need highly specific expertise. Large consultancies are costly and generalist, hiring is slow, and managing independents creates its own contracting overhead.",
@@ -31,6 +33,7 @@ export const audiences: Audience[] = [
   {
     index: "02",
     who: "Senior leaders",
+    icon: "leaders",
     label: "Partners who bring opportunities and reputation",
     problem:
       "You know who to trust beyond a CV. But putting that judgment to work means carrying the admin, contracting and payment chasing that comes with it.",
@@ -44,6 +47,7 @@ export const audiences: Audience[] = [
   {
     index: "03",
     who: "Experts",
+    icon: "experts",
     label: "Specialists who would rather deliver than sell",
     problem:
       "You want to focus on delivery, not on selling yourself. Your pipeline leans on your own network, and you miss the tools and peers of a larger firm.",
