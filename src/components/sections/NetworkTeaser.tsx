@@ -3,7 +3,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { Marquee } from "@/components/ui/Marquee";
-import { disciplines, expertCount, leadership } from "@/content/network";
+import { EXPERT_COUNT, disciplines, leadership } from "@/content/network";
 
 const ALUMNI = [
   "Novartis",
@@ -18,9 +18,8 @@ const ALUMNI = [
 ] as const;
 
 /**
- * The talent proposition. Framed as an argument about structure — a network is
- * a better instrument than either a firm or a marketplace — with the bench
- * behind it as evidence.
+ * The talent proposition: depth matched to the subject matter, with enough of
+ * it to staff a real programme. The disciplines behind it are the evidence.
  */
 export function NetworkTeaser() {
   return (
@@ -37,13 +36,13 @@ export function NetworkTeaser() {
           onDark
           title={
             <>
-              {expertCount} senior experts.{" "}
+              {EXPERT_COUNT}+ senior experts,{" "}
               <span className="accent-italic text-azure">
-                None of them on a bench.
+                matched to your subject.
               </span>
             </>
           }
-          lead="Our experts are practising principals, fractional CTOs and independent advisors who choose HTP42 engagements because the work is senior and the teams are small. That is how we can field a former Novartis technology CTO and a CDISC standards programme manager on the same eight week engagement."
+          lead="Practising principals, fractional CTOs and independent advisors who take HTP42 engagements because the work is senior and the teams are small. That is how we field a former Novartis technology CTO and a CDISC standards programme manager on the same eight week engagement, and source new expertise when a brief calls for it."
         />
 
         {/* Disciplines */}
@@ -59,7 +58,7 @@ export function NetworkTeaser() {
                     {discipline.index}
                   </span>
                   <span className="eyebrow tnum text-azure">
-                    {discipline.experts.length} experts
+                    {discipline.count} experts
                   </span>
                 </div>
                 <h3 className="mt-6 text-lg tracking-[-0.026em] text-white transition-colors duration-500 group-hover:text-azure md:text-xl">

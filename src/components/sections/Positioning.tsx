@@ -1,6 +1,7 @@
 import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Reveal, DrawRule } from "@/components/motion/Reveal";
 import { clientTypes } from "@/content/site";
+import { EXPERT_COUNT } from "@/content/network";
 
 /**
  * The statement of intent. Deliberately one editorial assertion at headline
@@ -23,36 +24,40 @@ export function Positioning() {
         <div className="pt-9 lg:pt-12">
           <Reveal>
             <p className="max-w-[34ch] text-[clamp(1.6rem,1.1rem+1.7vw,2.6rem)] leading-[1.16] tracking-[-0.03em] text-ink">
-              Large consultancies sell you the team they have available.
-              Marketplaces sell you whoever bids. We do{" "}
-              <span className="accent-italic text-brand">neither</span>.
+              We bring the{" "}
+              <span className="accent-italic text-brand">
+                specific deep expertise
+              </span>{" "}
+              your problem needs, and nothing you do not.
             </p>
           </Reveal>
 
           <Reveal delay={0.1}>
             <div className="mt-11 grid max-w-4xl grid-cols-1 gap-x-12 gap-y-6 md:grid-cols-2">
               <p className="body-copy">
-                HTP42 is a network of more than forty senior experts in life
+                HTP42 is a network of more than fifty senior experts in life
                 sciences data, AI and technology. Former VPs, CTOs, heads of
                 function and principal architects from Novartis, Roche, Sanofi,
                 Novo Nordisk, Johnson &amp; Johnson and Amgen. For each
-                engagement we assemble the specific people your problem
-                requires, name them before you sign, and stand the team down
-                when the work is done.
+                engagement we match the subject matter expertise your problem
+                actually calls for, name those people before you sign, and
+                stand the team down when the work is done.
               </p>
               <p className="body-copy">
-                It means no pyramid to feed and no juniors learning your domain
-                on your budget. It also means we can be honest: three of our
-                last ten engagements recommended against the investment the
-                client expected to make. That is the point of a network. Nobody
-                has a bench to keep busy.
+                That means topic specific matching rather than whoever is
+                available, senior review before anyone is onboarded, and the
+                option to source new experts through our extended network when
+                the brief needs it. Where a single specialist is not enough, we
+                assemble two to eight of them into one accountable team.
               </p>
             </div>
           </Reveal>
 
           <Reveal delay={0.16}>
             <div className="mt-11">
-              <ArrowLink href="/network">How the model works</ArrowLink>
+              <ArrowLink href="/network">
+                How the network works
+              </ArrowLink>
             </div>
           </Reveal>
 
@@ -70,6 +75,11 @@ export function Positioning() {
                   </li>
                 ))}
               </ul>
+              <p className="mt-6 max-w-[52ch] text-[0.8125rem] leading-relaxed text-ink-400">
+                {EXPERT_COUNT}+ senior experts on the bench, plus sourcing
+                through our extended network when a brief calls for expertise
+                we do not already hold.
+              </p>
             </div>
           </Reveal>
         </div>

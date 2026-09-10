@@ -4,7 +4,7 @@ import { modelComparison } from "@/content/network";
 
 /**
  * The argument, as a table. On desktop it is a real comparison grid; below the
- * lg breakpoint it becomes stacked per-dimension cards, because a three-column
+ * lg breakpoint it becomes stacked per-dimension cards, because a three column
  * table at phone width is unreadable however you style it.
  */
 export function ModelComparison() {
@@ -18,7 +18,7 @@ export function ModelComparison() {
           <table className="w-full border-collapse text-left">
             <caption className="sr-only">
               How the HTP42 network compares with a large consultancy and a
-              freelance marketplace
+              single independent consultant
             </caption>
             <thead>
               <tr className="border-b border-ink/12 bg-paper-2">
@@ -34,7 +34,9 @@ export function ModelComparison() {
                   </span>
                 </th>
                 <th scope="col" className="w-[25%] px-6 py-5">
-                  <span className="eyebrow text-ink-300">Marketplace</span>
+                  <span className="eyebrow text-ink-300">
+                    Independent consultant
+                  </span>
                 </th>
               </tr>
             </thead>
@@ -77,7 +79,7 @@ export function ModelComparison() {
                         strokeWidth={2}
                         aria-hidden="true"
                       />
-                      {row.freelance}
+                      {row.solo}
                     </span>
                   </td>
                 </tr>
@@ -116,10 +118,10 @@ export function ModelComparison() {
                   </div>
                   <div className="px-5 py-4">
                     <dt className="eyebrow text-ink-300">
-                      Freelance marketplace
+                      Independent consultant
                     </dt>
                     <dd className="mt-2 text-[0.875rem] leading-snug text-ink-400">
-                      {row.freelance}
+                      {row.solo}
                     </dd>
                   </div>
                 </div>

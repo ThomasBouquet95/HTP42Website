@@ -43,7 +43,7 @@ const SECTIONS: LegalSection[] = [
   {
     heading: "External links",
     paragraphs: [
-      "This site links to external sites, including those of our partners and our experts' professional profiles. We do not control that content and accept no responsibility for it.",
+      "This site links to external sites, including our LinkedIn presence and our experts' professional profiles. We do not control that content and accept no responsibility for it.",
     ],
   },
   {

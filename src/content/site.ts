@@ -18,8 +18,8 @@ export const site = {
 
 export const nav = [
   { label: "Expertise", href: "/expertise" },
-  { label: "Client Impact", href: "/impact" },
   { label: "The Network", href: "/network" },
+  { label: "Client Impact", href: "/impact" },
   { label: "Perspectives", href: "/perspectives" },
   { label: "Contact", href: "/contact" },
 ] as const;
@@ -33,10 +33,10 @@ export const proofPoints = [
     note: "Across pharma, biotech, CROs and clinical technology companies",
   },
   {
-    value: 40,
+    value: 50,
     suffix: "+",
     label: "Senior experts on call",
-    note: "Former VPs, CTOs, heads of function and principal architects",
+    note: "Plus the ability to source new experts for your needs through our extended network",
   },
   {
     value: 90,
@@ -63,9 +63,9 @@ export const differentiators = [
   },
   {
     index: "02",
-    title: "Seniors only. No pyramid",
-    body: "There is no leverage model to feed. You are not funding a bench of analysts learning your domain on your budget. Every person on the engagement is someone you would have hired directly if you could find them.",
-    metric: "Zero junior workstreams",
+    title: "Matched to your subject matter",
+    body: "We do not send whoever is free. We match the specific subject matter expertise your problem needs, review it at senior level before anyone is onboarded, and tell you exactly who you are getting.",
+    metric: "Topic specific expert matching",
   },
   {
     index: "03",
@@ -88,7 +88,7 @@ export const differentiators = [
   {
     index: "06",
     title: "Network economics",
-    body: "A large firm sells you the team it has available. We assemble the team your problem requires, five experts for eight weeks or eight specialists across twenty six, then stand down. You pay for expertise, not overhead.",
+    body: "One independent adviser gives you depth in one place. A large firm gives you scale without it. We assemble the specific experts your problem needs, five for eight weeks or eight across twenty six, and source new ones through our extended network when the brief calls for it.",
     metric: "Assembled per problem",
   },
 ] as const;
@@ -120,15 +120,3 @@ export const clientTypes = [
   "Health technology investors",
 ] as const;
 
-export const partners = [
-  {
-    name: "Appsilon",
-    role: "Validated open source computing",
-    body: "A technology partner for pharmaceutical companies that want to speed up drug development and become ready for the open source and AI revolution within validated, regulatory compliant computing environments.",
-  },
-  {
-    name: "Rekonnekt",
-    role: "Executive network & convening",
-    body: "A transformational networking community that fuses movement, adventure and purpose to spark genuine connections among high performing business professionals and entrepreneurs.",
-  },
-] as const;

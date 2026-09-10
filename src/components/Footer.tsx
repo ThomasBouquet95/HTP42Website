@@ -25,8 +25,8 @@ const columns = [
     links: [
       { label: "The network", href: "/network" },
       { label: "Our model", href: "/network#model" },
+      { label: "Where the depth sits", href: "/network#disciplines" },
       { label: "Perspectives", href: "/perspectives" },
-      { label: "Partners", href: "/network#partners" },
       { label: "Contact", href: "/contact" },
     ],
   },

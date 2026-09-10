@@ -1,4 +1,4 @@
-export type Expert = {
+export type Leader = {
   name: string;
   role: string;
   note: string;
@@ -8,19 +8,28 @@ export type Discipline = {
   index: string;
   name: string;
   summary: string;
-  experts: Expert[];
+  /** Depth in the network. Individual profiles are shared under NDA. */
+  count: number;
 };
 
-export const leadership: Expert[] = [
+/** Headline network size. Extended sourcing sits on top of this. */
+export const EXPERT_COUNT = 50;
+
+export const leadership: Leader[] = [
   {
     name: "Pascal Bouquet",
     role: "Chief Executive Officer, Managing Partner",
     note: "Former Novartis VP and Head of Technology (CTO) for data42. Health data, AI strategy and clinical data systems.",
   },
   {
-    name: "Marius C.",
-    role: "Chief Technology Officer",
-    note: "Programme director specialising in graph-based data science, open source and pharmaceutical data modelling.",
+    name: "Gabriel Eichler",
+    role: "Senior Advisor, Data, AI and Digital Transformation",
+    note: "Former VP and Chief Data Officer for data42 at Novartis, where he led enterprise data strategy, governance and analytics. Founder and Managing Director of Oak Health Partners, advising top 10 pharma, venture backed innovators and investors on data and AI strategy, product development and commercialisation.",
+  },
+  {
+    name: "Jennifer Cubino",
+    role: "Senior Advisor, Clinical Operations and Real World Evidence",
+    note: "Clinical operations executive with end to end expertise across interventional and non interventional research, from first in human through pivotal and post authorisation studies. Deep real world data, EMR and privacy experience across oncology, immunology, cardiometabolic, neurology and rare disease, leading global matrixed teams.",
   },
   {
     name: "Linda D.",
@@ -28,315 +37,190 @@ export const leadership: Expert[] = [
     note: "Data strategy leader with deep experience in clinical trial reengineering and biostatistics.",
   },
   {
+    name: "Marius C.",
+    role: "Chief Technology Officer",
+    note: "Programme director specialising in graph based data science, open source and pharmaceutical data modelling.",
+  },
+  {
     name: "Venkataraman Balasubramaniam",
     role: "Partner, Singapore. Enterprise Technical Architect",
     note: "TOGAF 9 and AWS certified. Designed cloud based analytics environments at Novartis.",
   },
-  {
-    name: "Taline N.",
-    role: "Recruitment & Talent Development",
-    note: "Builds the network. Attracts high-performing experts and designs performance management programmes.",
-  },
 ];
 
+/**
+ * Where the depth sits. We publish the shape of the network and its depth,
+ * not the individuals: the bench itself is the firm's intellectual property,
+ * and named profiles are shared under NDA during scoping.
+ */
 export const disciplines: Discipline[] = [
   {
     index: "01",
     name: "Data & AI Strategy",
     summary:
       "Data mesh, governance, knowledge graphs and AI enablement inside global pharmaceutical organisations.",
-    experts: [
-      {
-        name: "Steffen H.",
-        role: "Data & AI Strategy Leader",
-        note: "Builds scalable data ecosystems within global pharmaceutical organisations.",
-      },
-      {
-        name: "Paul R.",
-        role: "Data Strategy & Analytics Consultant, Data Mesh",
-        note: "20+ years bridging business and IT, specialist in domain driven data ecosystems.",
-      },
-      {
-        name: "Laurent V.",
-        role: "Professor of Mathematics, Data Science and Complex Systems",
-        note: "25+ years and 80+ publications. Leads funded research in knowledge graphs and NLP.",
-      },
-      {
-        name: "Roozbeh B.",
-        role: "Data & AI Advisor, Life Sciences",
-        note: "Founded a boutique consultancy for pharma data engineering and MLOps.",
-      },
-      {
-        name: "Tim O.",
-        role: "Enterprise Data & Architecture Leader",
-        note: "Drives enterprise architecture and AI enablement across pharma.",
-      },
-    ],
+    count: 9,
   },
   {
     index: "02",
     name: "Clinical Data Science & Biostatistics",
     summary:
       "CDISC standards, statistical programming, submission readiness and clinical data automation.",
-    experts: [
-      {
-        name: "Eric G.",
-        role: "Executive Leader, Clinical Data Science & Biostatistics",
-        note: "Built cross regional teams at Sanofi and established data governance and AI applications.",
-      },
-      {
-        name: "Søren K.",
-        role: "Biostatistics Leader & Digital Health Strategist",
-        note: "20+ years leading biostatistics units, integrating agile methods and wearable solutions.",
-      },
-      {
-        name: "Phoebe B.",
-        role: "Senior Statistical Programmer & Automation Specialist",
-        note: "CDISC standards, regulatory submissions and SAS, R and Python automation.",
-      },
-      {
-        name: "Nathalie S.",
-        role: "Senior Expert, CDISC Standards & Clinical Data Operations",
-        note: "Founded two CROs and delivered CDISC SDTM validation for FDA submissions.",
-      },
-      {
-        name: "Nick De Donder",
-        role: "Data Standards Consultant & Programme Director",
-        note: "15+ years, former CDISC Open Rules Programme Manager, 25+ international presentations.",
-      },
-      {
-        name: "Yannick L.",
-        role: "Senior Clinical Data Management Expert",
-        note: "Led clinical data initiatives across pharmaceutical and CRO environments.",
-      },
-      {
-        name: "Juan Carlos R.",
-        role: "Graph Data Scientist & Clinical Data Solutions Specialist",
-        note: "Graph analytics, metadata management and CDISC compliant systems.",
-      },
-      {
-        name: "Skander M.",
-        role: "Data Scientist & Clinical Programming Innovator",
-        note: "Deploys large language models and document intelligence for trial operations.",
-      },
-    ],
+    count: 11,
   },
   {
     index: "03",
     name: "Technology, Architecture & Engineering",
     summary:
       "Enterprise architecture, cloud engineering, GxP validation and full stack delivery at sponsor scale.",
-    experts: [
-      {
-        name: "Paul F.",
-        role: "Senior Technology Executive, Life Sciences & IT Strategy",
-        note: "Two decades at Johnson & Johnson leading clinical data systems and AWS deployments.",
-      },
-      {
-        name: "Homayoun P.",
-        role: "Technology Leader",
-        note: "30+ years in research, design and architecture. Lead Architect in Clinical Development Digital at Novartis.",
-      },
-      {
-        name: "Antoine N.",
-        role: "Full-Stack Developer & Open-Source Contributor",
-        note: "20+ years in Python and Vue.js, leading open source healthcare and pharmaceutical tooling.",
-      },
-      {
-        name: "Kannan R.",
-        role: "Senior IT Leader, Head of IT",
-        note: "15+ years. Oversaw Nestlé's global IT and led network and security transformation in biotech.",
-      },
-      {
-        name: "Saurabh",
-        role: "Consultant, Technical Product Development & Systems Architecture",
-        note: "Leads backend architecture and digital transformation programmes.",
-      },
-      {
-        name: "Michaël P.",
-        role: "Product & Technology Leader",
-        note: "Held CTO, CPO and CIO roles at startups and research institutions in biomedical AI.",
-      },
-    ],
+    count: 8,
   },
   {
     index: "04",
     name: "Digital Health & AI Innovation",
     summary:
       "Digital health strategy, medical imaging AI, genomics and translational innovation.",
-    experts: [
-      {
-        name: "Christian H.",
-        role: "Healthcare AI Strategist & Digital Health Transformation Leader",
-        note: "Drove global digital innovation at Novartis and Amgen, and advises health tech startups.",
-      },
-      {
-        name: "Stéphane R.",
-        role: "Global Digital Health & Pharmaceutical Innovation Leader",
-        note: "Led data governance frameworks at Roche Genentech and advises on clinical development optimisation.",
-      },
-      {
-        name: "Christian B.",
-        role: "Digital Transformation & Clinical Innovation Advisor",
-        note: "MD and PhD with 20+ years. Pioneered the digital health journey at Novo Nordisk.",
-      },
-      {
-        name: "Rado A.",
-        role: "Digital Health Leader",
-        note: "20+ years integrating digital innovation into predictive and personalised medicine.",
-      },
-      {
-        name: "Agata K.",
-        role: "Medical Imaging AI Strategist, Oncology",
-        note: "Data scientist at Roche developing deep learning models for tumour segmentation.",
-      },
-      {
-        name: "Edward O.",
-        role: "Strategic Scientific Director, Genomics and Biotechnology",
-        note: "Founder of Oakley Genomics, leading computational genomics and gene therapy work.",
-      },
-      {
-        name: "Josephus G.",
-        role: "Biomedical AI Specialist",
-        note: "Biomedical AI, NLP and predictive modelling. Designed CNNs at Novartis.",
-      },
-    ],
+    count: 9,
   },
   {
     index: "05",
     name: "Strategy, Transformation & Programme Leadership",
     summary:
       "Operating model design, GxP transformation programmes, PMO leadership and commercial strategy.",
-    experts: [
-      {
-        name: "Marco L.",
-        role: "Digital Strategy Transformation & Global Programme Leader",
-        note: "Built PMOs and led GxP digital transformation at Novo Nordisk and Novartis.",
-      },
-      {
-        name: "Matthias M.",
-        role: "Executive Leader, Pharmaceutical Engineering & Operations",
-        note: "Global experience in site transformation, CapEx delivery and manufacturing readiness.",
-      },
-      {
-        name: "François Henri B.",
-        role: "Digital R&D Strategy & Partnerships Leader",
-        note: "20+ years transforming pharmaceutical R&D through in silico modelling.",
-      },
-      {
-        name: "Laura P.",
-        role: "Strategic Consultant",
-        note: "IT transformation, healthcare pathways and value based funding models.",
-      },
-      {
-        name: "Rachel O.",
-        role: "Operational Excellence Expert & Mental Health Innovator",
-        note: "Led billion dollar portfolios and founded the digital mental health venture ROCC GmbH.",
-      },
-      {
-        name: "Karin M.",
-        role: "Marketing Advisor, Life Sciences & HealthTech",
-        note: "20+ years across pharmaceutical and medical device sectors, with a PhD in Genetic Engineering.",
-      },
-      {
-        name: "Annette I.",
-        role: "Scientific & Strategy Lead, Biotech Innovation & Global Health",
-        note: "PhD trained executive with 15+ years in translational research and global health strategy.",
-      },
-    ],
+    count: 8,
   },
   {
     index: "06",
     name: "Drug Development & Regulatory Affairs",
     summary:
       "Clinical development strategy, medical affairs and regulatory pathways for pharma and devices.",
-    experts: [
-      {
-        name: "Hervé J.",
-        role: "Expert, Clinical Drug Development and Programme Leadership",
-        note: "25+ years. Founded Spes Bioventure to support biotech drug development strategy.",
-      },
-      {
-        name: "Séverine D.",
-        role: "Global Medical & Clinical Affairs Leader",
-        note: "20+ years leading international clinical trials, former VP at BioScience GmbH.",
-      },
-      {
-        name: "Lars B.",
-        role: "Business Development & Regulatory Affairs Executive",
-        note: "Senior executive experienced in CE certification and ISO 13485 implementation.",
-      },
-    ],
+    count: 5,
   },
 ];
 
-export const expertCount = disciplines.reduce(
-  (n, d) => n + d.experts.length,
-  leadership.length,
-);
-
-/** Why a network beats both a large firm and a freelance marketplace. */
+/**
+ * Why a curated network sits between a large firm and a single independent
+ * adviser: the depth of a specialist, with the ability to assemble a team.
+ */
 export const modelComparison = {
   columns: [
     { key: "htp42", label: "HTP42", accent: true },
     { key: "large", label: "Large consultancy" },
-    { key: "freelance", label: "Freelance marketplace" },
+    { key: "solo", label: "Independent consultant" },
   ],
   rows: [
     {
       dimension: "Who does the work",
       htp42: "Named seniors, agreed before signature",
       large: "Partner sells, associates deliver",
-      freelance: "Whoever is available and bids",
+      solo: "The one person you engaged",
     },
     {
       dimension: "Domain depth",
-      htp42: "Held the role at a global sponsor",
+      htp42: "Sourced for your specific subject matter",
       large: "Industry practice, generalist core",
-      freelance: "Variable, unverified",
+      solo: "Deep, but only where they specialise",
     },
     {
-      dimension: "Accountability",
-      htp42: "One engagement partner, one contract",
-      large: "Distributed across a hierarchy",
-      freelance: "None beyond the individual",
+      dimension: "Scaling up",
+      htp42: "Experts assembled into teams of two to eight",
+      large: "Large teams, variable seniority",
+      solo: "The capacity of one person",
     },
     {
       dimension: "Continuity",
       htp42: "The same expert advises and delivers",
       large: "Advisory, delivery handed off",
-      freelance: "Individual contribution only",
+      solo: "Ends when they move to the next client",
     },
     {
       dimension: "Time to answer",
       htp42: "6 to 10 weeks typical",
       large: "One to two quarters",
-      freelance: "Depends entirely on scoping",
+      solo: "Bound by their availability",
     },
     {
-      dimension: "Cost structure",
-      htp42: "Senior rates, no overhead pyramid",
-      large: "Blended rates funding the bench",
-      freelance: "Low rate, high management cost",
+      dimension: "Finding the right person",
+      htp42: "Curated bench plus an extended sourcing network",
+      large: "Whoever the practice has free",
+      solo: "You run the search yourself",
     },
   ],
 };
 
-export const values = [
+export type Value = {
+  index: string;
+  title: string;
+  definition: string;
+  practice: string[];
+};
+
+/** The six values, and what each one means in day to day delivery. */
+export const values: Value[] = [
   {
-    title: "Candour over comfort",
-    body: "If the answer is that your programme should stop, we will say so and show the working. Three of our last ten engagements recommended against the investment the client expected to make.",
+    index: "01",
+    title: "AI Augmented Expertise",
+    definition:
+      "Members with deep expertise leverage AI to its maximum potential, to increase productivity, accelerate delivery and scale their impact.",
+    practice: [
+      "AI used systematically in day to day work",
+      "Faster research, analysis, synthesis and delivery",
+      "Expert judgment ensures quality, relevance and trust",
+    ],
   },
   {
-    title: "Evidence over conviction",
-    body: "Benchmarks, instrumented proofs of concept and structured interviews, rather than pattern matching from another industry. We would rather change our mind in week four than be wrong in month nine.",
+    index: "02",
+    title: "Real Expertise",
+    definition:
+      "Experts who deeply understand the subject matter, not generic profiles or random consultants.",
+    practice: [
+      "Topic specific expert matching",
+      "Relevant life sciences experience",
+      "Senior review before onboarding",
+    ],
   },
   {
-    title: "The standards are the commons",
-    body: "We contribute to CDISC, DDF and the open source tooling the industry depends on. What is good for the commons is good for our clients, and it keeps our advice free of vendor incentive.",
+    index: "03",
+    title: "Talent Quality",
+    definition:
+      "Experts are carefully selected, regularly reviewed and actively supported for consistent delivery.",
+    practice: [
+      "Structured expert qualification process",
+      "Regular performance reviews",
+      "Ongoing coaching and support",
+    ],
   },
   {
-    title: "Small teams, real ownership",
-    body: "Two to eight people, all senior, all named. Small enough that everyone knows the whole problem, senior enough that nobody needs supervising.",
+    index: "04",
+    title: "Client First",
+    definition:
+      "Flexible, responsive support adapted to evolving client needs and continuous feedback.",
+    practice: [
+      "Frequent client feedback loops",
+      "Clear communication and alignment",
+      "Fast response to changing needs",
+    ],
+  },
+  {
+    index: "05",
+    title: "Human Standards",
+    definition:
+      "Nice, humble, collaborative people with strong soft skills and no ego issues.",
+    practice: [
+      "Soft skills assessed upfront",
+      "No ego collaboration expected",
+      "Respectful client team integration",
+    ],
+  },
+  {
+    index: "06",
+    title: "Practical Impact",
+    definition:
+      "Useful, grounded solutions that solve real problems, without unnecessary complexity or buzzwords.",
+    practice: [
+      "Focus on measurable outcomes",
+      "No unnecessary complexity",
+      "Clear value delivered quickly",
+    ],
   },
 ];
