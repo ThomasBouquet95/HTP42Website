@@ -14,7 +14,7 @@ export const offerings: Offering[] = [
     index: "01",
     slug: "expert-deployment",
     name: "Expert Deployment",
-    promise: "We find the experts. You sign one contract.",
+    promise: "We find vetted experts. You sign one contract.",
     body: "You tell us the need. We find the right experts, vet them, and embed them in your team for as long as the need lasts, whether that is a few months or a few years. HTP42 is your single counterparty wherever in the world they sit, and we carry the contracting, administration, payment and legal work so you never manage a roster of independents.",
     points: [
       {

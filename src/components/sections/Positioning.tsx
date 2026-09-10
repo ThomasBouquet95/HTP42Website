@@ -45,11 +45,12 @@ export function Positioning() {
                 is done.
               </p>
               <p className="body-copy">
-                There are two ways that works. We find an expert and staff them
-                onto your team, with HTP42 as your single contracting party and
-                the administration and legal work on us. Or, when the work needs
-                a team, we assemble one from the network and deliver the
-                programme end to end.
+                There are two ways that works. We find vetted experts and
+                embed them in your team for as long as the need lasts, with
+                HTP42 as your single contracting party and the administration
+                and legal work on us. Or, for more complex needs, we
+                assemble a senior team to deliver the programme end to end,
+                against outcomes agreed before we start.
               </p>
             </div>
           </Reveal>

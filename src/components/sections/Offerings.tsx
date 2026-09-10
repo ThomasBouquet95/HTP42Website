@@ -18,9 +18,11 @@ export function Offerings() {
           eyebrow="How we work with you"
           title={
             <>
-              Two ways in.{" "}
-              <span className="accent-italic text-brand">One network</span>{" "}
-              behind both.
+              Embed our experts, or{" "}
+              <span className="accent-italic text-brand">
+                hand us the programme
+              </span>
+              .
             </>
           }
           lead="Some clients need experts embedded in their own team for a specific need, over months or years. Others need a programme delivered, from strategy through implementation and change management. The sourcing, the vetting and the accountability are the same either way."

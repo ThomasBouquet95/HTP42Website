@@ -104,12 +104,13 @@ export default function NetworkPage() {
                     which reach 500+ senior specialists.
                   </p>
                   <p className="body-copy">
-                    Clients use that two ways. Either we find an expert and
-                    staff them onto your team, with HTP42 as the single
+                    Clients use that two ways. Either we find vetted experts
+                    and embed them in your own team, with HTP42 as the single
                     contracting party carrying the administration and legal
-                    work. Or we assemble a senior team from the network and
-                    deliver the programme end to end, named before you sign and
-                    with one engagement partner accountable throughout.
+                    work. Or, for more complex needs, we assemble a
+                    senior team to deliver the programme end to end against
+                    agreed outcomes, named before you sign and with one
+                    engagement partner accountable throughout.
                   </p>
                 </div>
               </Reveal>
