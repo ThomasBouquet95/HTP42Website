@@ -12,7 +12,7 @@ import { capabilityKeywords } from "@/content/site";
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 const HERO_FACTS = [
-  { value: "50+", label: "Vetted senior experts on call" },
+  { value: "50+", label: "Vetted senior experts" },
   { value: "200+", label: "Engagements delivered" },
 ];
 

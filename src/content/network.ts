@@ -56,7 +56,7 @@ export const disciplines: Discipline[] = [
     index: "01",
     name: "Data & AI Strategy",
     summary:
-      "Data mesh, governance, knowledge graphs and AI enablement inside global pharmaceutical organisations.",
+      "Data governance, knowledge graphs, analytics and AI enablement inside global pharmaceutical organisations.",
   },
   {
     index: "02",
