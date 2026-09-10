@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import type { Metadata } from "next";
 import { Mail } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
@@ -39,10 +40,10 @@ export default function PerspectivesPage() {
         titleLines={[
           "Specific arguments",
           "about specific",
-          <>
+          <Fragment key="accent">
             problems.{" "}
             <span className="accent-italic text-azure">No trend reports.</span>
-          </>,
+          </Fragment>,
         ]}
         lead="Every piece here comes out of work we have actually done, and is written by the expert who did it. Full versions are sent on request, and arrive the same day."
         facts={[

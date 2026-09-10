@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
 import { CtaBand } from "@/components/CtaBand";
@@ -12,6 +13,7 @@ import {
   StaggerItem,
   DrawRule,
 } from "@/components/motion/Reveal";
+import { PartnerPortrait } from "@/components/ui/PartnerPortrait";
 import { EXPERT_COUNT, disciplines, leadership } from "@/content/network";
 
 export const metadata: Metadata = {
@@ -38,9 +40,9 @@ export default function NetworkPage() {
         ]}
         titleLines={[
           "Deep expertise,",
-          <>
+          <Fragment key="matched">
             <span className="accent-italic text-azure">matched</span> to your
-          </>,
+          </Fragment>,
           "subject matter.",
         ]}
         lead="Knowing who to trust with a specific problem is not something a CV database can tell you. It sits with senior leaders who have already worked with these people. Put those leaders and the experts they vouch for in one network, and clients get access they cannot source alone."
@@ -148,20 +150,27 @@ export default function NetworkPage() {
             lead="A partner is accountable for every piece of work we take on. Each brings deep life sciences experience and an extensive network of their own. These are the people who frame the work, match the expertise, and stay on it to the end."
           />
 
-          <Stagger className="mt-14 grid grid-cols-1 gap-x-10 gap-y-10 md:mt-16 md:grid-cols-2 lg:grid-cols-3">
+          <Stagger className="mt-14 grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 md:mt-16 lg:grid-cols-4 lg:grid-rows-[auto_auto_auto_auto] lg:gap-y-0">
             {leadership.map((person) => (
-              <StaggerItem key={person.name}>
-                <article className="rule-on-dark group pt-6">
-                  <h3 className="text-[1.25rem] tracking-[-0.026em] text-white transition-colors duration-500 group-hover:text-azure">
-                    {person.name}
-                  </h3>
-                  <p className="mt-2 text-[0.8125rem] leading-snug font-medium tracking-[-0.006em] text-azure/90">
-                    {person.role}
-                  </p>
-                  <p className="mt-4 max-w-[40ch] text-[0.875rem] leading-relaxed text-white/60">
-                    {person.note}
-                  </p>
-                </article>
+              <StaggerItem
+                key={person.name}
+                as="article"
+                className="group grid content-start lg:row-span-4 lg:grid-rows-subgrid"
+              >
+                <PartnerPortrait
+                  name={person.name}
+                  photo={person.photo}
+                  onDark
+                />
+                <h3 className="mt-6 text-[1.25rem] tracking-[-0.026em] text-white transition-colors duration-500 group-hover:text-azure">
+                  {person.name}
+                </h3>
+                <p className="mt-2 text-[0.8125rem] leading-snug font-medium tracking-[-0.006em] text-azure/90">
+                  {person.role}
+                </p>
+                <p className="mt-4 max-w-[40ch] text-[0.875rem] leading-relaxed text-white/60">
+                  {person.note}
+                </p>
               </StaggerItem>
             ))}
           </Stagger>

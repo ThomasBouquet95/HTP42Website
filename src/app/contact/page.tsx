@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import type { Metadata } from "next";
 import { Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
@@ -68,10 +69,10 @@ export default function ContactPage() {
         ]}
         titleLines={[
           "Tell us what you need.",
-          <>
+          <Fragment key="accent">
             We&apos;ll find you the{" "}
             <span className="accent-italic text-azure">right</span>
-          </>,
+          </Fragment>,
           "expert for it.",
         ]}
         lead="A first conversation is thirty minutes with a partner. If nobody in the network is the right match, we will say so, and usually point you at who is."

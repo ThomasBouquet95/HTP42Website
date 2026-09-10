@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
 import { CtaBand } from "@/components/CtaBand";
@@ -26,9 +27,9 @@ export default function ExpertisePage() {
         titleLines={[
           "The range our",
           "experts cover,",
-          <>
+          <Fragment key="accent">
             <span className="accent-italic text-azure">in detail</span>.
-          </>,
+          </Fragment>,
         ]}
         lead="A network at the intersection of life sciences, data and AI. Everything below is set out in full, so you can see the depth behind each area and check whether we cover what you need. If we do not, tell us anyway."
       />

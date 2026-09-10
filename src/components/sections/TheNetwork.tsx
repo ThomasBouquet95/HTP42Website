@@ -3,6 +3,7 @@ import { Check } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
+import { PartnerPortrait } from "@/components/ui/PartnerPortrait";
 import { EXPERT_COUNT, leadership } from "@/content/network";
 import { audiences, networkEffect } from "@/content/audiences";
 
@@ -35,20 +36,23 @@ export function TheNetwork() {
           <h3 className="eyebrow border-b border-ink/12 pb-4 text-ink-300">
             Our partners
           </h3>
-          <Stagger className="grid grid-cols-1 gap-x-10 gap-y-9 pt-9 md:grid-cols-2 lg:grid-cols-3">
+          <Stagger className="grid grid-cols-1 gap-x-8 gap-y-10 pt-9 sm:grid-cols-2 lg:grid-cols-4 lg:grid-rows-[auto_auto_auto_auto] lg:gap-y-0">
             {leadership.map((person) => (
-              <StaggerItem key={person.name}>
-                <article className="group">
-                  <h4 className="text-[1.125rem] tracking-[-0.024em] text-ink transition-colors duration-500 group-hover:text-brand md:text-[1.25rem]">
-                    {person.name}
-                  </h4>
-                  <p className="mt-1.5 text-[0.8125rem] font-medium tracking-[-0.006em] text-brand">
-                    {person.role}
-                  </p>
-                  <p className="mt-3 max-w-[40ch] text-[0.875rem] leading-relaxed text-ink-400">
-                    {person.note}
-                  </p>
-                </article>
+              <StaggerItem
+                key={person.name}
+                as="article"
+                className="group grid content-start lg:row-span-4 lg:grid-rows-subgrid"
+              >
+                <PartnerPortrait name={person.name} photo={person.photo} />
+                <h4 className="mt-5 text-[1.125rem] tracking-[-0.024em] text-ink transition-colors duration-500 group-hover:text-brand md:text-[1.25rem]">
+                  {person.name}
+                </h4>
+                <p className="mt-1.5 text-[0.8125rem] font-medium tracking-[-0.006em] text-brand">
+                  {person.role}
+                </p>
+                <p className="mt-3 max-w-[40ch] text-[0.875rem] leading-relaxed text-ink-400">
+                  {person.note}
+                </p>
               </StaggerItem>
             ))}
           </Stagger>

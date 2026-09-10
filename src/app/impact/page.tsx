@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
 import { CtaBand } from "@/components/CtaBand";
@@ -44,10 +45,10 @@ export default function ImpactPage() {
         titleLines={[
           "The work, written",
           "up the way we'd",
-          <>
+          <Fragment key="accent">
             <span className="accent-italic text-azure">present it</span>{" "}
             internally.
-          </>,
+          </Fragment>,
         ]}
         lead="We do not attribute individual engagements to named clients. Sector, scale, duration and team composition we can share. Each study sets out the problem as the client framed it, what our experts actually did, and what changed as a result."
         facts={[
