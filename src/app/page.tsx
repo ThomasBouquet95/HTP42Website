@@ -1,6 +1,6 @@
 import { HomeHero } from "@/components/sections/HomeHero";
 import { Positioning } from "@/components/sections/Positioning";
-import { PracticesGrid } from "@/components/sections/PracticesGrid";
+import { ExpertiseAreas } from "@/components/sections/ExpertiseAreas";
 import { ProofPoints } from "@/components/sections/ProofPoints";
 import { WhyHtp42 } from "@/components/sections/WhyHtp42";
 import { FeaturedCases } from "@/components/sections/FeaturedCases";
@@ -13,7 +13,7 @@ export default function HomePage() {
     <>
       <HomeHero />
       <Positioning />
-      <PracticesGrid />
+      <ExpertiseAreas />
       <ProofPoints />
       <WhyHtp42 />
       <FeaturedCases />

@@ -7,7 +7,7 @@ export type CaseStudy = {
   year: string;
   duration: string;
   team: string;
-  practices: string[];
+  areas: string[];
   tags: string[];
   /** One line consequence, used on cards and in the index. */
   headline: string;
@@ -32,7 +32,7 @@ export const caseStudies: CaseStudy[] = [
     year: "2026",
     duration: "26 weeks",
     team: "8 specialists",
-    practices: ["Clinical Data & Standards", "Technology Strategy & Architecture"],
+    areas: ["Clinical Data & Standards", "Technology Strategy & Architecture"],
     tags: ["OpenStudyBuilder", "CDISC", "AWS", "SDTM and ADaM", "Go live"],
     headline:
       "The largest single OpenStudyBuilder deployment in HTP42's history, delivered end to end as prime technical subcontractor.",
@@ -84,7 +84,7 @@ export const caseStudies: CaseStudy[] = [
     year: "2026",
     duration: "8 weeks",
     team: "7 specialists",
-    practices: ["Clinical Data & Standards", "Data & AI"],
+    areas: ["Clinical Data & Standards", "Data & AI"],
     tags: ["USDM 4.0", "DDF", "Semantic harmonisation", "AI access layer", "AWS"],
     headline:
       "A production ready semantic backbone and AI query layer built in eight weeks, positioning the client as a finalist in a global pharma digital data flow programme.",
@@ -135,7 +135,7 @@ export const caseStudies: CaseStudy[] = [
     year: "2026",
     duration: "8 to 10 weeks",
     team: "5 experts",
-    practices: [
+    areas: [
       "Digital Transformation & Operating Model",
       "Clinical Data & Standards",
     ],
@@ -189,7 +189,7 @@ export const caseStudies: CaseStudy[] = [
     year: "2025",
     duration: "6 weeks",
     team: "2 consultants",
-    practices: ["Data & AI"],
+    areas: ["Data & AI"],
     tags: ["EU AI Act", "AI governance", "Risk triage", "Data usage audit"],
     headline:
       "An AI governance policy the client could put in front of pharma customers within six weeks, reducing commercial risk while EU AI Act work continued.",
@@ -239,7 +239,7 @@ export const caseStudies: CaseStudy[] = [
     year: "2026",
     duration: "8 to 10 weeks",
     team: "2 consultants",
-    practices: ["Data & AI"],
+    areas: ["Data & AI"],
     tags: ["Data strategy", "Governance", "Use case design", "Cloud"],
     headline:
       "A shared research data vision agreed before the technology decision, avoiding a decade of technology led lock in.",
@@ -290,7 +290,7 @@ export const caseStudies: CaseStudy[] = [
     year: "2026",
     duration: "6 weeks",
     team: "2 consultants",
-    practices: ["Data & AI"],
+    areas: ["Data & AI"],
     tags: ["GenAI", "Benchmarking", "Process automation", "Investment decision"],
     headline:
       "An evidence based decision on production GenAI automation, reached before any major technology or change management investment.",
@@ -340,7 +340,7 @@ export const caseStudies: CaseStudy[] = [
     year: "2025",
     duration: "6 weeks",
     team: "2 experts",
-    practices: ["Technology Strategy & Architecture"],
+    areas: ["Technology Strategy & Architecture"],
     tags: [
       "Enterprise readiness",
       "Integration patterns",

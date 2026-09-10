@@ -2,15 +2,15 @@ import Link from "next/link";
 import { Linkedin, Mail, MapPin } from "lucide-react";
 import { LogoStacked } from "@/components/ui/Logo";
 import { site } from "@/content/site";
-import { practices } from "@/content/expertise";
+import { expertiseAreas } from "@/content/expertise";
 import { caseStudies } from "@/content/cases";
 
 const columns = [
   {
     heading: "Expertise",
-    links: practices.map((p) => ({
-      label: p.name,
-      href: `/expertise#${p.slug}`,
+    links: expertiseAreas.map((a) => ({
+      label: a.name,
+      href: `/expertise#${a.slug}`,
     })),
   },
   {

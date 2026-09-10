@@ -1,5 +1,5 @@
 /**
- * Four bespoke line diagrams, one per practice. Drawn on a shared 96×72 field
+ * Four bespoke line diagrams, one per expertise area. Drawn on a shared field
  * with a common 1.4 stroke so they read as a set rather than four icons.
  * Accent strokes pick up the brand blue on hover via `group`.
  */

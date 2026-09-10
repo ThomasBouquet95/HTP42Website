@@ -5,13 +5,13 @@ import { EngagementModel } from "@/components/sections/EngagementModel";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Reveal, Stagger, StaggerItem, DrawRule } from "@/components/motion/Reveal";
-import { diagrams } from "@/components/ui/PracticeDiagram";
-import { practices } from "@/content/expertise";
+import { diagrams } from "@/components/ui/AreaDiagram";
+import { expertiseAreas } from "@/content/expertise";
 
 export const metadata: Metadata = {
   title: "Expertise",
   description:
-    "Four practices: Data & AI, Clinical Data & Standards, Technology Strategy & Architecture, and Digital Transformation & Operating Model. Senior experts who advise and stay to deliver."
+    "A senior expert network at the intersection of life sciences, data, AI and technology. The areas shown here are illustrative examples of where our experts work, not a service catalogue."
 };
 
 export default function ExpertisePage() {
@@ -24,32 +24,32 @@ export default function ExpertisePage() {
           { label: "Expertise", href: "/expertise" },
         ]}
         titleLines={[
-          "Four practices,",
+          "A network at the",
           <>
-            <span className="accent-italic text-azure">one team</span> from
+            <span className="accent-italic text-azure">intersection</span> of
           </>,
-          "advice to delivery.",
+          "life sciences, data and AI.",
         ]}
-        lead="The expert who recommends the architecture is the expert who sees it through. That single fact changes what we are willing to recommend, and what we are prepared to be held to."
+        lead="We do not sell a fixed set of services. The areas below are illustrative examples of where our experts are most often asked in. The network reaches well beyond them, and we source further still when a brief calls for it."
       />
 
-      {/* Practice index — a quick jump list before the long-form sections. */}
+      {/* A quick jump list before the long form sections. */}
       <section className="border-b border-ink/10 bg-paper py-10 md:py-12">
         <div className="shell">
           <Reveal>
-            <Eyebrow>Jump to a practice</Eyebrow>
+            <Eyebrow>Illustrative areas</Eyebrow>
           </Reveal>
           <Stagger className="mt-6 flex flex-wrap gap-x-2.5 gap-y-2.5">
-            {practices.map((practice) => (
-              <StaggerItem key={practice.slug}>
+            {expertiseAreas.map((area) => (
+              <StaggerItem key={area.slug}>
                 <a
-                  href={`#${practice.slug}`}
+                  href={`#${area.slug}`}
                   className="group inline-flex items-baseline gap-2.5 rounded-full border border-ink/12 px-4 py-2 text-[0.8125rem] font-medium tracking-[-0.006em] text-ink-600 transition-all duration-500 hover:border-brand/40 hover:bg-brand-soft hover:text-brand"
                 >
                   <span className="eyebrow tnum text-ink-300 transition-colors duration-500 group-hover:text-brand">
-                    {practice.index}
+                    {area.index}
                   </span>
-                  {practice.name}
+                  {area.name}
                 </a>
               </StaggerItem>
             ))}
@@ -57,12 +57,12 @@ export default function ExpertisePage() {
         </div>
       </section>
 
-      {practices.map((practice, i) => {
-        const Diagram = diagrams[practice.icon];
+      {expertiseAreas.map((area, i) => {
+        const Diagram = diagrams[area.icon];
         return (
           <section
-            key={practice.slug}
-            id={practice.slug}
+            key={area.slug}
+            id={area.slug}
             className={`section scroll-mt-24 ${
               i % 2 === 0 ? "bg-paper" : "bg-paper-2"
             }`}
@@ -70,28 +70,28 @@ export default function ExpertisePage() {
             <div className="shell">
               <DrawRule />
               <div className="grid grid-cols-1 gap-x-12 gap-y-12 pt-8 lg:grid-cols-12">
-                {/* Sticky practice rail */}
+                {/* Sticky area rail */}
                 <div className="lg:col-span-4">
                   <div className="lg:sticky lg:top-28">
                     <Reveal>
-                      <Eyebrow index={practice.index}>Practice</Eyebrow>
+                      <Eyebrow index={area.index}>Example area</Eyebrow>
                     </Reveal>
 
                     <Reveal delay={0.06}>
                       <h2 className="mt-6 max-w-[16ch] text-display-sm tracking-[-0.032em] text-ink">
-                        {practice.name}
+                        {area.name}
                       </h2>
                     </Reveal>
 
                     <Reveal delay={0.12}>
                       <p className="mt-6 max-w-[34ch] text-[1.0625rem] leading-relaxed font-medium tracking-[-0.012em] text-brand">
-                        {practice.promise}
+                        {area.promise}
                       </p>
                     </Reveal>
 
                     <Reveal delay={0.18}>
                       <p className="body-copy mt-6 max-w-[42ch]">
-                        {practice.lead}
+                        {area.lead}
                       </p>
                     </Reveal>
 
@@ -106,7 +106,7 @@ export default function ExpertisePage() {
                 {/* Services */}
                 <div className="lg:col-span-8">
                   <Stagger className="flex flex-col">
-                    {practice.services.map((service, si) => (
+                    {area.services.map((service, si) => (
                       <StaggerItem key={service.slug}>
                         <article
                           id={service.slug}
@@ -116,7 +116,7 @@ export default function ExpertisePage() {
                         >
                           <div className="flex items-baseline gap-4">
                             <span className="eyebrow tnum text-ink-300">
-                              {practice.index}.{si + 1}
+                              {area.index}.{si + 1}
                             </span>
                           </div>
 
@@ -159,7 +159,7 @@ export default function ExpertisePage() {
                   <Reveal delay={0.08}>
                     <div className="mt-11">
                       <ArrowLink href="/impact">
-                        See this work in practice
+                        See this expertise at work
                       </ArrowLink>
                     </div>
                   </Reveal>
@@ -176,13 +176,13 @@ export default function ExpertisePage() {
         eyebrow="Next step"
         title={
           <>
-            These practices are
+            These areas are
             <br />
             <span className="accent-italic text-azure">examples</span> of our
             work, not a menu.
           </>
         }
-        body="The network is broader than any four headings. Most engagements cross several of these, and plenty sit outside them entirely. Describe what you are trying to decide and we will match the expertise to it."
+        body="The network is broader than any four headings. Most engagements cross several of these, and plenty sit outside them entirely. Tell us what you need and we will match the expertise to it."
         secondary={{ label: "Meet the network", href: "/network" }}
       />
     </>

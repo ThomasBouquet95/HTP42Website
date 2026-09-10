@@ -30,12 +30,14 @@ npm start        # serve the production build
 ## Information architecture
 
 The original site had a flat list of nine services and no case studies. This
-rebuild groups the offering into four practices and leads with evidence.
+rebuild leads with evidence. HTP42 does not sell a fixed set of services, so the
+four groupings shown are illustrative examples of where its experts work, not a
+practice structure.
 
 ```
-/                       Positioning → practices → proof → why → impact → network → thinking → CTA
-/expertise              4 practices, 14 service lines, engagement model
-/impact                 7 case studies, filterable by practice
+/                       Positioning, expertise areas, proof, why, impact, network, thinking, CTA
+/expertise              Illustrative expertise areas, engagement model
+/impact                 7 case studies, filterable by expertise area
 /impact/[slug]          Problem → intervention → outcomes → impact
 /network                The operating model, the comparison, 41 experts, partners, join
 /perspectives           Published thinking, requested by email
@@ -82,7 +84,7 @@ information, not decoration.
 | File | Holds |
 | ---- | ----- |
 | `src/content/site.ts` | Brand, nav, contact, proof points, differentiators, partners |
-| `src/content/expertise.ts` | 4 practices, 14 services, engagement model |
+| `src/content/expertise.ts` | Illustrative expertise areas, their service lines, engagement model |
 | `src/content/cases.ts` | 7 case studies |
 | `src/content/network.ts` | Leadership, 6 disciplines, model comparison, values |
 | `src/content/perspectives.ts` | Published thinking |

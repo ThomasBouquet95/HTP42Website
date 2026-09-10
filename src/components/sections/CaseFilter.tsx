@@ -4,13 +4,13 @@ import { useMemo, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { CaseRow } from "@/components/ui/CaseRow";
 import { caseStudies } from "@/content/cases";
-import { practices } from "@/content/expertise";
+import { expertiseAreas } from "@/content/expertise";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 const ALL = "All engagements";
 
 /**
- * Filters the case list by practice. Client-side and instant — with seven
+ * Filters the case list by expertise area. Client side and instant: with seven
  * studies there is nothing to fetch, so the interaction should feel free.
  */
 export function CaseFilter() {
@@ -20,22 +20,22 @@ export function CaseFilter() {
   const filters = useMemo(() => {
     const counts = new Map<string, number>();
     for (const study of caseStudies) {
-      for (const practice of study.practices) {
-        counts.set(practice, (counts.get(practice) ?? 0) + 1);
+      for (const area of study.areas) {
+        counts.set(area, (counts.get(area) ?? 0) + 1);
       }
     }
     return [
       { label: ALL, count: caseStudies.length },
-      ...practices
-        .filter((p) => counts.has(p.name))
-        .map((p) => ({ label: p.name, count: counts.get(p.name) ?? 0 })),
+      ...expertiseAreas
+        .filter((a) => counts.has(a.name))
+        .map((a) => ({ label: a.name, count: counts.get(a.name) ?? 0 })),
     ];
   }, []);
 
   const shown =
     active === ALL
       ? caseStudies
-      : caseStudies.filter((c) => c.practices.includes(active));
+      : caseStudies.filter((c) => c.areas.includes(active));
 
   return (
     <section aria-labelledby="all-cases-heading" className="section bg-paper">
@@ -48,7 +48,7 @@ export function CaseFilter() {
         <div className="flex flex-col gap-5 border-b border-ink/12 pb-7 md:flex-row md:items-end md:justify-between">
           <div
             role="group"
-            aria-label="Filter case studies by practice"
+            aria-label="Filter case studies by expertise"
             className="flex flex-wrap gap-2"
           >
             {filters.map((filter) => {

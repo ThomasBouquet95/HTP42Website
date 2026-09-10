@@ -6,7 +6,7 @@ export type Service = {
   deliverables: string[];
 };
 
-export type Practice = {
+export type ExpertiseArea = {
   slug: string;
   index: string;
   name: string;
@@ -16,7 +16,7 @@ export type Practice = {
   services: Service[];
 };
 
-export const practices: Practice[] = [
+export const expertiseAreas: ExpertiseArea[] = [
   {
     slug: "data-and-ai",
     index: "01",
@@ -270,8 +270,8 @@ export const practices: Practice[] = [
   },
 ];
 
-export const allServices = practices.flatMap((p) =>
-  p.services.map((s) => ({ ...s, practice: p.name, practiceSlug: p.slug })),
+export const allServices = expertiseAreas.flatMap((a) =>
+  a.services.map((s) => ({ ...s, area: a.name, areaSlug: a.slug })),
 );
 
 /** How engagements actually run. */

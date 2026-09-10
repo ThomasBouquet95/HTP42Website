@@ -29,7 +29,7 @@ export const perspectives: Perspective[] = [
     category: "Governance",
     readTime: "6 min read",
     date: "2026-05-14",
-    author: "HTP42 Responsible AI practice",
+    author: "HTP42 Responsible AI experts",
     featured: true,
   },
   {

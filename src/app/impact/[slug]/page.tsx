@@ -228,11 +228,11 @@ export default async function CaseStudyPage({ params }: Params) {
                 </p>
               </div>
               <div>
-                <h3 className="eyebrow text-white/50">Practices involved</h3>
+                <h3 className="eyebrow text-white/50">Expertise involved</h3>
                 <ul className="mt-3 space-y-1.5">
-                  {study.practices.map((practice) => (
-                    <li key={practice} className="text-[0.9375rem] text-white/75">
-                      {practice}
+                  {study.areas.map((area) => (
+                    <li key={area} className="text-[0.9375rem] text-white/75">
+                      {area}
                     </li>
                   ))}
                 </ul>

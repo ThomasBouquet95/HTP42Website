@@ -4,10 +4,10 @@ import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
 import { site } from "@/content/site";
-import { practices } from "@/content/expertise";
+import { expertiseAreas } from "@/content/expertise";
 
 const TOPICS = [
-  ...practices.map((p) => p.name),
+  ...expertiseAreas.map((a) => a.name),
   "A specific case study",
   "Joining the expert network",
   "Briefings, events and convenings",
