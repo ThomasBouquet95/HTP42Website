@@ -32,7 +32,7 @@ export default function ExpertisePage() {
             <span className="accent-italic text-azure">in detail</span>.
           </Fragment>,
         ]}
-        lead="You tell us what you need. We listen, match the senior expert who has already done it, and stay accountable until the work lands. The areas below are illustrative examples set out in full, so you can see the depth behind each one. If you do not find what you need, tell us anyway."
+        lead="You tell us what you need. We match the senior expert who has already done it, and stay accountable until the work lands. The areas below are illustrative."
         facts={proofFacts}
       />
 

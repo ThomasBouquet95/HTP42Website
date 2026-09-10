@@ -31,7 +31,7 @@ export function Offerings() {
               .
             </>
           }
-          lead="Some clients need experts embedded in their own team for a specific need, over months or years. Others need a result delivered against defined deliverables. We find and assemble the AI empowered experts for you, and carry the accountability for what they deliver."
+          lead="Some clients need experts embedded in their own team. Others need a result delivered against defined deliverables. We find and assemble the AI empowered experts, and carry the accountability."
         />
 
         <Stagger className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-ink/10 bg-ink/10 md:mt-16 lg:grid-cols-2 lg:grid-rows-[repeat(7,auto)] lg:gap-y-0">

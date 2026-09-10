@@ -48,7 +48,7 @@ export default function NetworkPage() {
           </Fragment>,
           "subject matter.",
         ]}
-        lead="Knowing who to trust with a specific problem is not something a CV database can tell you. It sits with senior leaders who have already worked with these people. Put those leaders and the experts they vouch for in one network, and clients get access they cannot source alone."
+        lead="Knowing who to trust with a specific problem is not something a CV database can tell you. It sits with the senior leaders who have already worked with these people."
         facts={proofFacts}
       />
 
@@ -156,7 +156,7 @@ export default function NetworkPage() {
                 .
               </>
             }
-            lead="A partner is accountable for every piece of work we take on. Each brings deep life sciences experience and an extensive network of their own. These are the people who frame the work, match the expertise, and stay on it to the end."
+            lead="A partner is accountable for every piece of work we take on. These are the people who frame it, match the expertise, and stay on it to the end."
           />
 
           <Stagger className="mt-14 grid grid-cols-1 gap-x-8 gap-y-12 max-sm:gap-y-0 sm:grid-cols-2 md:mt-16 lg:grid-cols-4 lg:grid-rows-[auto_auto_auto_auto] lg:gap-y-0">
@@ -228,7 +228,7 @@ export default function NetworkPage() {
                 .
               </>
             }
-            lead="We publish the shape of the network and its depth, not the individuals. Named profiles, backgrounds and references are shared under NDA once we know what the engagement needs."
+            lead="We publish the shape of the network and its depth, not the individuals. Named profiles are shared under NDA once we know what the engagement needs."
           />
 
           <Stagger className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-ink/10 bg-ink/10 md:mt-16 md:grid-cols-2 lg:grid-cols-3">

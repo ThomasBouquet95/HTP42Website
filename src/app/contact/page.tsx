@@ -75,7 +75,7 @@ export default function ContactPage() {
           </Fragment>,
           "expert for it.",
         ]}
-        lead="A first conversation is thirty minutes with a partner. If nobody in the network is the right match, we will say so, and usually point you at who is."
+        lead="A first conversation is thirty minutes with a partner. If nobody in the network is the right match, we will say so."
       />
 
       {/* Form + direct routes */}

@@ -15,22 +15,22 @@ export const offerings: Offering[] = [
     slug: "expert-deployment",
     name: "Expert Deployment",
     promise: "We find proven experts. You sign one contract.",
-    body: "You tell us the need. We find the right experts from our own network or its extended reach, confirm their credentials and their track record, and embed them in your team for as long as the need lasts, whether that is a few months or a few years.",
+    body: "You tell us the need. We find the right experts from our network or its extended reach, check their credentials and track record, and embed them for as long as the need lasts.",
     points: [
       {
         label: "One expert or several, embedded in your team",
         detail:
-          "Matched on subject matter for a specific need, over the short to long term, working inside your own team and reporting into it.",
+          "Matched on subject matter, working inside your team and reporting into it, over the short to long term.",
       },
       {
         label: "A fixed day rate, and one contract",
         detail:
-          "You face HTP42 as your single counterparty wherever in the world they sit. Contracting, administration, payment and legal sit with us.",
+          "One counterparty, wherever in the world they sit. Contracting, administration, payment and legal sit with us.",
       },
       {
         label: "Proven experts, continuously managed",
         detail:
-          "Screened by a partner before onboarding, reviewed on every engagement, and replaced by us if the fit is wrong.",
+          "Screened by a partner, reviewed on every engagement, and replaced by us if the fit is wrong.",
       },
     ],
   },
@@ -44,17 +44,17 @@ export const offerings: Offering[] = [
       {
         label: "A holistic team shaped to your need",
         detail:
-          "Subject matter experts do the work, experienced project managers keep it moving, and a partner stands behind the quality. All of them empowered by AI.",
+          "Subject matter experts do the work, project managers keep it moving, a partner stands behind the quality. All empowered by AI.",
       },
       {
         label: "Defined deliverables, agreed before we start",
         detail:
-          "Scope, outputs and outcomes fixed up front, so you know exactly what lands and when.",
+          "Scope and outputs fixed up front, so you know what lands and when.",
       },
       {
         label: "An end to end solution",
         detail:
-          "Strategy, design, implementation and the organisational change that decides whether any of it holds.",
+          "Strategy, design, implementation and the change that decides whether any of it holds.",
       },
     ],
   },

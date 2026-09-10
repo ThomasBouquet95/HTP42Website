@@ -20,7 +20,7 @@ export const audiences: Audience[] = [
     who: "Clients",
     label: "Pharma, biotech and clinical technology teams",
     problem:
-      "You need highly specific expertise. Large consultancies are costly and generalist, permanent hiring is slow and hard to justify, and managing a handful of independents creates its own overhead in timesheets, contracts and payments.",
+      "You need highly specific expertise. Large consultancies are costly and generalist, hiring is slow, and managing independents creates its own contracting overhead.",
     gains: [
       "Access to hard to find experts, matched to each specific need",
       "Vetted, high quality talent through continuous talent management",
@@ -33,7 +33,7 @@ export const audiences: Audience[] = [
     who: "Senior leaders",
     label: "Partners who bring opportunities and reputation",
     problem:
-      "You have the network, and you know who to trust beyond a CV. But putting that judgment to work means finding specialists you would stake your reputation on, then carrying the admin, contracting and payment chasing that comes with it.",
+      "You know who to trust beyond a CV. But putting that judgment to work means carrying the admin, contracting and payment chasing that comes with it.",
     gains: [
       "You focus on clients and projects, we carry admin, contracting, payment and legal",
       "Specialists you can put your reputation behind, vetted to a shared standard",
@@ -46,7 +46,7 @@ export const audiences: Audience[] = [
     who: "Experts",
     label: "Specialists who would rather deliver than sell",
     problem:
-      "You want to focus on delivery and value creation, not on selling yourself. Your pipeline depends too heavily on your own network, you sometimes need expertise outside your own domain, and you miss the tools and peer support of a larger firm.",
+      "You want to focus on delivery, not on selling yourself. Your pipeline leans on your own network, and you miss the tools and peers of a larger firm.",
     gains: [
       "Relevant projects without having to sell continuously",
       "Opportunities generated across the HTP42 network, not just your contacts",
@@ -58,4 +58,4 @@ export const audiences: Audience[] = [
 
 /** The point the three sides add up to. */
 export const networkEffect =
-  "Senior leaders know who to trust beyond a CV. Experts know their subject better than anyone. Put both in one network and clients get access they could not source alone.";
+  "Senior leaders know who to trust. Experts know their subject. Put both in one network and clients get access they could not source alone.";

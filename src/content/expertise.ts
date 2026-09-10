@@ -23,7 +23,7 @@ export const expertiseAreas: ExpertiseArea[] = [
     name: "Data & AI",
     promise:
       "Turn a fragmented data estate into a strategy your business actually asked for.",
-    lead: "Most pharma data programmes fail in the same way: technology decisions get made before anyone has agreed what the business needs the data to do. Our experts start from the use cases, the ones that are data limited rather than AI limited, and work backwards to governance and architecture. Then they stay to help you get it done.",
+    lead: "Most data programmes fail the same way: technology gets chosen before anyone agrees what the data is for. Our experts start from the use cases and work backwards.",
     icon: "brain",
     services: [
       {
@@ -32,7 +32,7 @@ export const expertiseAreas: ExpertiseArea[] = [
         summary:
           "A business driven data vision, governance foundation and phased roadmap, set before technology decisions lock you in.",
         detail:
-          "Our experts run structured stakeholder engagement across research, development, IT and business functions, then synthesise a data strategy covering vision, objectives, guiding principles and governance. The output is designed to be used: a document your leadership can align on, use case cards that translate business need into data requirements, and a roadmap sequenced against real dependencies.",
+          "Our experts run stakeholder engagement across research, development, IT and the business, then set the vision, principles and governance. You get use case cards and a roadmap sequenced against real dependencies.",
         deliverables: [
           "Research or enterprise data strategy document",
           "Strategic use case cards with data requirements",
@@ -45,9 +45,9 @@ export const expertiseAreas: ExpertiseArea[] = [
         slug: "responsible-ai-governance",
         name: "Responsible AI & EU AI Act",
         summary:
-          "AI governance you can show a customer, an auditor or a regulator, not a policy that lives in a drawer.",
+          "AI governance you can show a customer, an auditor or a regulator.",
         detail:
-          "Pharma customers now audit their suppliers' AI governance, and the EU AI Act puts a deadline on it. Our experts produce a working governance policy, an AI record and intake process, a RACI that names actual owners, and a risk triaged audit of how client data is being used across your technical functions. Then they sequence the remediation.",
+          "Customers now audit supplier AI governance, and the EU AI Act sets a deadline. Our experts deliver a working policy, an intake process, a RACI with named owners, and a risk triaged audit.",
         deliverables: [
           "AI Governance Policy v1.0",
           "AI intake form, risk triage and AI Record template",
@@ -60,9 +60,9 @@ export const expertiseAreas: ExpertiseArea[] = [
         slug: "secondary-use-and-rwd",
         name: "Secondary Use & Real World Data",
         summary:
-          "Design the governance, architecture and analytics that let clinical, operational and real world data serve a second purpose.",
+          "Governance, architecture and analytics that let clinical and real world data serve a second purpose.",
         detail:
-          "Data collected for one trial is an asset for the next decade, provided the architecture, consent model and metadata make it findable and defensible. Our experts design data environments purpose built for secondary use, integrate advanced analytics and AI driven methods, and put the privacy and security controls in place that make regulatory and ethical review straightforward.",
+          "Trial data is an asset for the next decade, if architecture, consent and metadata keep it findable and defensible. Our experts build environments for exactly that, with the privacy controls review demands.",
         deliverables: [
           "Secondary use architecture and data model",
           "Data repurposing and provenance model",
@@ -74,9 +74,9 @@ export const expertiseAreas: ExpertiseArea[] = [
         slug: "genai-operations",
         name: "GenAI & Operations Automation",
         summary:
-          "Tightly scoped proofs of concept that produce an evidence based go or no go, before the change programme.",
+          "Tightly scoped proofs of concept that produce an evidence based go or no go.",
         detail:
-          "Everyone can demo GenAI. Very few organisations know whether it beats their existing tooling on accuracy, completeness and review burden. Our experts build narrow, instrumented proofs of concept against live cases, benchmark them against what you use today, and hand back the numbers plus a toolchain assessment and a phase two scope. Including the case for not proceeding.",
+          "Everyone can demo GenAI. Few know whether it beats current tooling on accuracy or review burden. Our experts run instrumented proofs against live cases and hand back the numbers, including the case for stopping.",
         deliverables: [
           "Working proof of concept against live business cases",
           "Benchmark of GenAI against existing tooling",
@@ -93,7 +93,7 @@ export const expertiseAreas: ExpertiseArea[] = [
     name: "Clinical Data & Standards",
     promise:
       "Deep, unglamorous, standards level expertise. The kind that decides whether a submission goes smoothly.",
-    lead: "This is where HTP42 started and where our bench is deepest: metadata, CDISC, statistical computing, study definition. Our experts have led clinical data functions at global sponsors and CROs, chaired standards programmes, and built the open source tooling the industry now runs on.",
+    lead: "Where HTP42 started, and where our bench is deepest. Our experts have led data functions at sponsors and CROs, chaired standards programmes, and built the tooling the industry runs on.",
     icon: "database",
     services: [
       {
@@ -102,7 +102,7 @@ export const expertiseAreas: ExpertiseArea[] = [
         summary:
           "Technology selection, assessment, proof of concept and integration across the full clinical data lifecycle.",
         detail:
-          "No single product covers clinical data management end to end, which leaves every sponsor with an integration problem. Our experts evaluate technology against a proven framework, validate it through assessments and proofs of concept, build what the market has left as a gap, and integrate the result into your environment with the change management and process reengineering that actually makes it stick.",
+          "No single product covers clinical data management end to end, so every sponsor has an integration problem. Our experts evaluate the technology, build what the market leaves as a gap, and integrate it.",
         deliverables: [
           "Technology evaluation framework and vendor assessment",
           "Proof of concept and minimum viable product",
@@ -117,7 +117,7 @@ export const expertiseAreas: ExpertiseArea[] = [
         summary:
           "Metadata repositories, controlled terminology and the semantic backbone that makes study data traceable.",
         detail:
-          "Metadata is the difference between a data estate and a data asset. Our experts design and implement metadata repositories, controlled terminology management and semantic harmonisation layers, including graph based models, so that a definition made once at study design propagates cleanly to submission and traceability becomes a query rather than an archaeology project.",
+          "Metadata is the difference between a data estate and a data asset. Our experts build repositories, controlled terminology and semantic layers, including graph models, so a definition made once carries through to submission.",
         deliverables: [
           "Metadata repository design and implementation",
           "Controlled terminology governance model",
@@ -132,7 +132,7 @@ export const expertiseAreas: ExpertiseArea[] = [
         summary:
           "Strategy, architecture, deployment and governance for OSB, aligned to CDISC and DDF under the COSA framework.",
         detail:
-          "We field one of the most experienced OpenStudyBuilder teams in the industry, having delivered the largest single OSB deployment in our history as prime technical subcontractor to a global pharma programme. Our experts cover deployment strategy, technical architecture, security, integration, USDM compliant study definition, CDISC workshops, training and post go live support.",
+          "One of the most experienced OpenStudyBuilder teams in the industry, having delivered our largest OSB deployment as prime technical subcontractor to a global pharma. Deployment, architecture, security, integration and USDM study definition.",
         deliverables: [
           "OSB deployment strategy and technical architecture",
           "Dev, test and production deployment with MDR and CT configuration",
@@ -147,7 +147,7 @@ export const expertiseAreas: ExpertiseArea[] = [
         summary:
           "Define, select and integrate an SCE that stands up to compliance and to your statisticians.",
         detail:
-          "An SCE decision commits you for a decade. Our experts help define requirements against your actual analysis workload, evaluate the options across commercial and validated open source, and support integration into your existing environment, including the AI enabled analytics layer that increasingly differentiates one option from another.",
+          "An SCE decision commits you for a decade. Our experts define requirements against your real analysis workload, weigh commercial against validated open source, and support integration, including the AI enabled analytics layer.",
         deliverables: [
           "SCE requirements definition and workload analysis",
           "Vendor and open source solution evaluation",
@@ -164,16 +164,16 @@ export const expertiseAreas: ExpertiseArea[] = [
     name: "Technology Strategy & Architecture",
     promise:
       "An honest read on your technology landscape, and a blueprint that survives contact with enterprise pharma.",
-    lead: "Whether you are a sponsor deciding what to keep and what to replace, or a clinical technology company trying to become credible to large pharma buyers, the question is the same: does this architecture hold at enterprise scale, and what does it cost to get there? Our architects have built and bought at that scale.",
+    lead: "Sponsor deciding what to replace, or vendor trying to earn credibility with large pharma: the question is the same. Does this architecture hold at enterprise scale, and what does it cost?",
     icon: "blueprint",
     services: [
       {
         slug: "technology-assessment",
         name: "Technology Assessment",
         summary:
-          "A structured evaluation of your IT landscape across organisation, architecture, change practice, usability and total cost of ownership.",
+          "A structured evaluation across organisation, architecture, change practice, usability and cost of ownership.",
         detail:
-          "Our experts assess the current landscape to identify strengths, weaknesses and optimisation opportunities, then recommend a strategy for innovation and efficiency. The framework deliberately spans more than technology: organisational structure, architectural integrity, development and change management practices, usability and total cost of ownership. Most of the value sits in the gaps between those dimensions.",
+          "Our experts assess the landscape for strengths, weaknesses and where value leaks. The framework spans organisation, architecture, change practice, usability and cost of ownership, because most of the value sits between them.",
         deliverables: [
           "Current state assessment across five dimensions",
           "Optimisation opportunity register, effort sized",
@@ -188,7 +188,7 @@ export const expertiseAreas: ExpertiseArea[] = [
         summary:
           "Cloud native architecture for clinical and research environments, designed by people who have run it in production.",
         detail:
-          "Our architects design and review the architecture underneath clinical and research data: AWS and Azure landing zones, data layers, integration patterns, the API surfaces that let AI agents query your data, and the security and validation posture GxP demands. They hold TOGAF and cloud certifications and have built analytics environments at global sponsor scale.",
+          "Our architects design and review the architecture underneath clinical and research data: AWS and Azure landing zones, data layers, integration patterns, the API surfaces AI agents query, and the validation posture GxP demands.",
         deliverables: [
           "Target architecture and landing zone design",
           "Integration and API pattern library",
@@ -203,7 +203,7 @@ export const expertiseAreas: ExpertiseArea[] = [
         summary:
           "For clinical technology companies: what large pharma will require of you, and the roadmap to meet it.",
         detail:
-          "Selling into enterprise pharma is a different discipline from building good software. Our experts bring senior sponsor side perspective on integration expectations, deployment models, validation requirements and process fit, then translate that into a technical and organisational roadmap that supports commercial expansion into large accounts.",
+          "Selling into enterprise pharma is a different discipline from building good software. Our experts bring sponsor side perspective on integration, deployment, validation and process fit, then turn it into a roadmap you can execute.",
         deliverables: [
           "Pharma enterprise requirements summary",
           "Deployment and integration pattern definition",
@@ -220,7 +220,7 @@ export const expertiseAreas: ExpertiseArea[] = [
     name: "Digital Transformation & Operating Model",
     promise:
       "Change the organisation, not just the technology. Otherwise nothing changes.",
-    lead: "Technology programmes fail on organisation design far more often than on technology. Our experts work on the operating model itself, the roles, handovers, sourcing, governance and sequencing of change, and they convene the industry conversations where the hard questions get asked honestly.",
+    lead: "Programmes fail on organisation design far more often than on technology. Our experts work on the operating model itself: roles, handovers, sourcing, governance and the sequencing of change.",
     icon: "transform",
     services: [
       {
@@ -229,7 +229,7 @@ export const expertiseAreas: ExpertiseArea[] = [
         summary:
           "As is mapping, RACI, sourcing strategy and costed future state scenarios you can choose between.",
         detail:
-          "Our experts map processes, roles, handovers and vendor dependencies across clinical data management, clinical operations, biostatistics and medical writing, diagnose where variability is actually costing you, then design future state operating model scenarios, typically from an optimised current model through to a cloud native, AI enabled target, with the transformation roadmap to get from one to the other.",
+          "Our experts map processes, roles, handovers and vendor dependencies across clinical data management, operations, biostatistics and medical writing, find where variability costs you, then design costed future state scenarios and the route between them.",
         deliverables: [
           "As is process, RACI, vendor and data flow mapping",
           "Root cause analysis and diagnosis report",
@@ -244,7 +244,7 @@ export const expertiseAreas: ExpertiseArea[] = [
         summary:
           "Senior programme leaders who have run GxP digital transformation at global sponsors, embedded in your team.",
         detail:
-          "Some engagements do not need advice, they need someone who has done it before to hold the programme together. We place experienced programme directors and PMO leads into transformation programmes, with the authority and standing to make decisions in the room rather than escalate them.",
+          "Some engagements do not need advice. They need someone who has done it before. We place programme directors and PMO leads with the standing to decide in the room rather than escalate.",
         deliverables: [
           "Embedded programme direction and PMO setup",
           "Governance, reporting and decision cadence",
@@ -258,7 +258,7 @@ export const expertiseAreas: ExpertiseArea[] = [
         summary:
           "We build the industry forums where the hardest questions in clinical development get discussed off the record.",
         detail:
-          "HTP42 convenes senior industry experts under the Chatham House Rule to accelerate collaboration in clinical development and open source standards. We also design and run bespoke executive meetings and customer group events for up to fifty participants, in Basel, Paris, Nice, Cannes and Singapore, where the agenda, the speakers and the setting are all built for candour.",
+          "HTP42 convenes senior experts under the Chatham House Rule to speed collaboration on clinical development and open source standards. We also run executive meetings for up to fifty, from Basel to Singapore.",
         deliverables: [
           "Expert convenings under the Chatham House Rule",
           "Open source community and COSA engagement",
@@ -280,24 +280,24 @@ export const engagementModel = [
     step: "01",
     name: "Understand",
     duration: "Days 1 to 5",
-    body: "A short conversation with the sponsor establishes what you are trying to achieve, which subject matter it touches, and therefore which expertise the work actually needs.",
+    body: "A short conversation establishes what you are trying to achieve, and therefore which expertise the work needs.",
   },
   {
     step: "02",
     name: "Match",
     duration: "Week 1",
-    body: "We match the expertise from the network, name the people, and publish who does what. You meet them before the engagement starts. No substitutions after signature.",
+    body: "We match the expertise, name the people, and publish who does what. You meet them before we start.",
   },
   {
     step: "03",
     name: "Run",
     duration: "Weeks 2 to 8",
-    body: "Parallel workstreams with a single accountable lead. Stakeholder interviews, technical deep dives and workshops run concurrently, with a working session every two weeks so there are no surprises at the end.",
+    body: "Parallel workstreams under one accountable lead, with a working session every two weeks so there are no surprises at the end.",
   },
   {
     step: "04",
     name: "Land",
     duration: "Final 2 weeks",
-    body: "Structured deliverables and an executive summary built around what you set out in week one. The same experts stay on to help you act on it.",
+    body: "Structured deliverables and an executive summary built around what you set out in week one. The same experts stay on to help you act.",
   },
 ] as const;

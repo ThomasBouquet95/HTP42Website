@@ -45,7 +45,7 @@ export default function PerspectivesPage() {
             <span className="accent-italic text-azure">No trend reports.</span>
           </Fragment>,
         ]}
-        lead="Every piece here comes out of work we have actually done, and is written by the expert who did it. Full versions are sent on request, and arrive the same day."
+        lead="Every piece comes out of work we have actually done, written by the expert who did it. Full versions are sent on request."
         facts={[
           { label: "Pieces", value: String(perspectives.length) },
           { label: "Topics", value: String(categories.length) },
@@ -121,7 +121,7 @@ export default function PerspectivesPage() {
                 .
               </>
             }
-            lead="Grouped by nothing in particular. If a title is relevant to something you are working on, ask for it and we will send it across with our current thinking on top."
+            lead="If a title is relevant to something you are working on, ask and we will send it across."
           />
 
           <Stagger className="mt-14 flex flex-col md:mt-16">

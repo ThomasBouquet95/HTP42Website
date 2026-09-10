@@ -26,7 +26,7 @@ export function EngagementModel() {
               </span>
             </>
           }
-          lead="The shape rarely changes. We establish what you need, name the experts it takes, and get them working. You meet them before the engagement starts, and the same people stay on it to the end."
+          lead="The shape rarely changes. We establish what you need, name the experts it takes, and get them working. The same people stay on it to the end."
         />
 
         <div className="relative mt-16 md:mt-20">

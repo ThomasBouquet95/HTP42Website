@@ -50,7 +50,7 @@ export default function ImpactPage() {
             internally.
           </Fragment>,
         ]}
-        lead="We do not attribute individual engagements to named clients. Sector, scale, duration and team composition we can share. Each study sets out the problem as the client framed it, what our experts actually did, and what changed as a result."
+        lead="We do not name clients. Each study sets out the problem as the client framed it, what our experts did, and what changed as a result."
         facts={[
           { label: "Case studies", value: String(caseStudies.length) },
           { label: "Years covered", value: years.join(" to ") },
@@ -77,7 +77,7 @@ export default function ImpactPage() {
                 .
               </>
             }
-            lead="Read across seven engagements and the same lessons surface. We would rather say them out loud than let a case study imply we get it right first time."
+            lead="Read across seven engagements and the same lessons surface. We would rather say them out loud."
           />
 
           <Stagger className="mt-14 grid grid-cols-1 gap-x-12 gap-y-10 md:mt-16 md:grid-cols-3">

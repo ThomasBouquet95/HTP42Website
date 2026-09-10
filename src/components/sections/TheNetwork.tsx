@@ -28,7 +28,7 @@ export function TheNetwork() {
               to be in it.
             </>
           }
-          lead="It starts with the partners. Each brings deep life sciences experience and an extensive network of their own, which is how we reach the right expertise rather than the available expertise."
+          lead="It starts with the partners. Each brings deep life sciences experience and a network of their own, which is how we reach the right expertise rather than the available expertise."
         />
 
         {/* The partners */}
