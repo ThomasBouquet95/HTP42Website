@@ -164,15 +164,19 @@ export function DiagramClients({ className }: Props) {
   );
 }
 
-/** For senior leaders: one person, and the judgment you can stake on them. */
+/** For senior leaders: one person, and the trust they can vouch with. */
 export function DiagramLeaders({ className }: Props) {
   return (
     <Field className={className}>
-      <circle cx="33" cy="24" r="10" className={S.base} />
-      <path d="M15 54 C 15 40, 51 40, 51 54" className={S.base} />
-      {/* the vouch */}
-      <circle cx="70" cy="38" r="13" className={S.accent} />
-      <path d="M64 38l5 5 8-10" className={S.accent} />
+      <circle cx="28" cy="24" r="9.5" className={S.base} />
+      <path d="M12 53 C 12 40, 44 40, 44 53" className={S.base} />
+      {/* the trust mark: a shield, which reads as vouched where a bare tick
+          only reads as done */}
+      <path
+        d="M57 25 L71 18 L85 25 V40 C85 50, 78 56, 71 59 C64 56, 57 50, 57 40 Z"
+        className={S.accent}
+      />
+      <path d="M65 38l4.5 4.5 8.5-10" className={S.accent} />
     </Field>
   );
 }
