@@ -20,13 +20,13 @@ export function EngagementModel() {
           onDark
           title={
             <>
-              Framed in a week.{" "}
+              Understood in days.{" "}
               <span className="accent-italic text-azure">
-                Answered in eight.
+                Matched in a week.
               </span>
             </>
           }
-          lead="The shape of an engagement rarely changes, because the discipline is in the framing. We would rather spend the first week arguing about the question than the last month defending the answer."
+          lead="The shape rarely changes. We establish what you need, name the experts it takes, and get them working. You meet them before the engagement starts, and the same people stay on it to the end."
         />
 
         <div className="relative mt-16 md:mt-20">

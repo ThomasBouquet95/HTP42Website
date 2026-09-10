@@ -24,13 +24,13 @@ export default function ExpertisePage() {
           { label: "Expertise", href: "/expertise" },
         ]}
         titleLines={[
-          "A network at the",
+          "The range our",
+          "experts cover,",
           <>
-            <span className="accent-italic text-azure">intersection</span> of
+            <span className="accent-italic text-azure">in detail</span>.
           </>,
-          "life sciences, data and AI.",
         ]}
-        lead="You tell us what you need. We listen, match you with the senior expert who has already solved it inside a global pharma, and stay with you until the work lands."
+        lead="A network at the intersection of life sciences, data and AI. Everything below is set out in full, so you can see the depth behind each area and check whether we cover what you need. If we do not, tell us anyway."
       />
 
       {/* A quick jump list before the long form sections. */}

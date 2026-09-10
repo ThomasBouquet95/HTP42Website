@@ -22,7 +22,7 @@ export function ProofPoints() {
           </div>
         </Reveal>
 
-        <Stagger className="mt-12 grid grid-cols-1 gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+        <Stagger className="mt-12 grid grid-cols-1 gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
           {proofPoints.map((point) => (
             <StaggerItem key={point.label}>
               <div className="rule-on-dark pt-6">
