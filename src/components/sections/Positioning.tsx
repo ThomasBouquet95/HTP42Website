@@ -11,8 +11,14 @@ import { clientTypes } from "@/content/site";
  */
 export function Positioning() {
   return (
-    <section className="section relative bg-paper">
+    <section
+      aria-labelledby="the-firm-heading"
+      className="section relative bg-paper"
+    >
       <div className="shell">
+        <h2 id="the-firm-heading" className="sr-only">
+          The firm
+        </h2>
         <DrawRule />
         <div className="grid grid-cols-1 gap-x-12 gap-y-12 pt-7 lg:grid-cols-12 lg:pt-10">
           <div className="lg:col-span-3">

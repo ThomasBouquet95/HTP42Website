@@ -26,7 +26,7 @@ export function HomeHero() {
   const fieldOpacity = useTransform(scrollY, [0, 520], [1, 0.25]);
 
   return (
-    <section className="grain relative flex min-h-[clamp(38rem,92svh,58rem)] flex-col justify-end overflow-hidden bg-ink pt-32 pb-0 md:pt-40">
+    <section className="grain relative flex min-h-[clamp(38rem,92svh,58rem)] flex-col justify-end overflow-hidden bg-ink pt-28 pb-0 md:pt-32">
       {/* Ambient field */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
         <div className="absolute inset-0 bg-[radial-gradient(115%_75%_at_78%_0%,rgba(46,127,219,0.26),transparent_58%)]" />
@@ -53,7 +53,7 @@ export function HomeHero() {
             <Eyebrow onDark>Life sciences · Data &amp; AI</Eyebrow>
           </motion.div>
 
-          <h1 className="mt-8 text-display-lg text-white lg:text-display-xl">
+          <h1 className="mt-7 text-display-lg leading-[0.98] text-white lg:text-display-xl">
             <RevealLines
               delay={0.14}
               stagger={0.1}
@@ -72,7 +72,7 @@ export function HomeHero() {
           </h1>
 
           <motion.p
-            className="lead mt-9 max-w-xl text-white/60"
+            className="lead mt-8 max-w-xl text-white/60"
             initial={reduced ? undefined : { opacity: 0, y: 16 }}
             animate={reduced ? undefined : { opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.55, ease: EASE }}
@@ -83,16 +83,16 @@ export function HomeHero() {
           </motion.p>
 
           <motion.div
-            className="mt-11 flex flex-wrap items-center gap-3"
+            className="mt-10 flex flex-wrap items-center gap-3"
             initial={reduced ? undefined : { opacity: 0, y: 16 }}
             animate={reduced ? undefined : { opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.66, ease: EASE }}
           >
             <Button
               href="/contact"
+              variant="light"
               size="lg"
               withArrow
-              className="!bg-white !text-ink hover:!bg-azure hover:!text-white"
             >
               Start a conversation
             </Button>
@@ -104,7 +104,7 @@ export function HomeHero() {
 
         {/* Quiet fact rail */}
         <motion.dl
-          className="rule-on-dark mt-16 grid grid-cols-1 gap-x-10 gap-y-6 pt-8 sm:grid-cols-3 md:mt-20"
+          className="rule-on-dark mt-14 grid grid-cols-1 gap-x-10 gap-y-6 pt-7 sm:grid-cols-3 md:mt-16"
           initial={reduced ? undefined : { opacity: 0, y: 18 }}
           animate={reduced ? undefined : { opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8, ease: EASE }}
@@ -124,7 +124,7 @@ export function HomeHero() {
 
       {/* Capability marquee on the section seam */}
       <motion.div
-        className="rule-on-dark relative mt-14 py-5 md:mt-16"
+        className="rule-on-dark relative mt-12 py-5 md:mt-14"
         initial={reduced ? undefined : { opacity: 0 }}
         animate={reduced ? undefined : { opacity: 1 }}
         transition={{ duration: 1, delay: 0.95 }}

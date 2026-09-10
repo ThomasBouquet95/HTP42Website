@@ -38,8 +38,12 @@ export function CaseFilter() {
       : caseStudies.filter((c) => c.practices.includes(active));
 
   return (
-    <section className="section bg-paper">
+    <section aria-labelledby="all-cases-heading" className="section bg-paper">
       <div className="shell">
+        <h2 id="all-cases-heading" className="sr-only">
+          All case studies
+        </h2>
+
         {/* Filter rail */}
         <div className="flex flex-col gap-5 border-b border-ink/12 pb-7 md:flex-row md:items-end md:justify-between">
           <div

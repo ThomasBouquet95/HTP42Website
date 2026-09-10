@@ -57,7 +57,7 @@ export function CtaBand({
 
             <Reveal delay={0.18}>
               <div className="mt-9 flex flex-wrap items-center gap-3">
-                <Button href={primary.href} variant="solid" size="lg" withArrow className="!bg-white !text-ink hover:!bg-azure hover:!text-white">
+                <Button href={primary.href} variant="light" size="lg" withArrow>
                   {primary.label}
                 </Button>
                 {secondary && (

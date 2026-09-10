@@ -180,15 +180,25 @@ export function Header() {
                 transition={{ duration: 0.6, delay: 0.42, ease: EASE }}
                 className="mt-12"
               >
-                <a
-                  href={`mailto:${site.contact.email}`}
-                  className="text-[1.0625rem] font-medium text-azure"
+                {/* The header CTA is hidden below 640px, so the panel carries it. */}
+                <Link
+                  href="/contact"
+                  className="inline-flex h-12 items-center justify-center rounded-full bg-white px-6 text-[0.875rem] font-medium tracking-[-0.008em] text-ink transition-colors duration-500 hover:bg-azure hover:text-white"
                 >
-                  {site.contact.email}
-                </a>
-                <p className="mt-2 text-sm text-white/60">
-                  {site.contact.hq}
-                </p>
+                  Start a conversation
+                </Link>
+
+                <div className="mt-9">
+                  <a
+                    href={`mailto:${site.contact.email}`}
+                    className="text-[1.0625rem] font-medium text-azure"
+                  >
+                    {site.contact.email}
+                  </a>
+                  <p className="mt-2 text-sm text-white/60">
+                    {site.contact.hq}
+                  </p>
+                </div>
               </motion.div>
             </div>
           </motion.div>

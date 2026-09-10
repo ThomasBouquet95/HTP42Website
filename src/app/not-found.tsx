@@ -6,7 +6,7 @@ import { nav } from "@/content/site";
 
 export default function NotFound() {
   return (
-    <section className="grain relative flex min-h-[80svh] items-center overflow-hidden bg-ink pt-32 pb-20">
+    <section className="grain relative flex min-h-[80svh] items-center overflow-hidden bg-ink pt-36 pb-20 md:pt-44">
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
         <div className="absolute inset-0 bg-[radial-gradient(110%_70%_at_80%_0%,rgba(46,127,219,0.2),transparent_58%)]" />
         <div className="absolute inset-0 bg-[repeating-linear-gradient(to_right,rgba(255,255,255,0.035)_0_1px,transparent_1px_8.3333%)]" />
@@ -29,9 +29,9 @@ export default function NotFound() {
         <div className="mt-11 flex flex-wrap items-center gap-3">
           <Button
             href="/"
+            variant="light"
             size="lg"
             withArrow
-            className="!bg-white !text-ink hover:!bg-azure hover:!text-white"
           >
             Back to the homepage
           </Button>

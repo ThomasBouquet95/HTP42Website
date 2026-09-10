@@ -34,9 +34,7 @@ export function ModelComparison() {
                   </span>
                 </th>
                 <th scope="col" className="w-[25%] px-6 py-5">
-                  <span className="eyebrow text-ink-300">
-                    Freelance marketplace
-                  </span>
+                  <span className="eyebrow text-ink-300">Marketplace</span>
                 </th>
               </tr>
             </thead>

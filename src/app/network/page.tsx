@@ -262,7 +262,7 @@ export default function NetworkPage() {
                             <h4 className="text-[1.0625rem] font-medium tracking-[-0.022em] text-ink transition-colors duration-500 group-hover:text-brand">
                               {expert.name}
                             </h4>
-                            <p className="mt-1.5 text-[0.8125rem] leading-snug font-medium text-brand">
+                            <p className="mt-1.5 text-[0.8125rem] leading-snug font-medium text-ink-600">
                               {expert.role}
                             </p>
                             <p className="mt-3 text-[0.8125rem] leading-relaxed text-ink-400">
