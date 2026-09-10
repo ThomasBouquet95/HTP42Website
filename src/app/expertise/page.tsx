@@ -30,7 +30,7 @@ export default function ExpertisePage() {
           </>,
           "life sciences, data and AI.",
         ]}
-        lead="We do not sell a fixed set of services. The areas below are illustrative examples of where our experts are most often asked in. The network reaches well beyond them, and we source further still when a brief calls for it."
+        lead="You tell us what you need. We listen, match you with the senior expert who has already solved it inside a global pharma, and stay with you until the work lands."
       />
 
       {/* A quick jump list before the long form sections. */}
@@ -176,13 +176,16 @@ export default function ExpertisePage() {
         eyebrow="Next step"
         title={
           <>
-            These areas are
+            Whatever you need,
             <br />
-            <span className="accent-italic text-azure">examples</span> of our
-            work, not a menu.
+            someone in the network has{" "}
+            <span className="accent-italic text-azure">
+              already done it
+            </span>
+            .
           </>
         }
-        body="The network is broader than any four headings. Most engagements cross several of these, and plenty sit outside them entirely. Tell us what you need and we will match the expertise to it."
+        body="Tell us what you are trying to achieve. We will match the senior expertise to it, from across the network and beyond it when the brief calls for it."
         secondary={{ label: "Meet the network", href: "/network" }}
       />
     </>

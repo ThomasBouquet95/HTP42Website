@@ -19,14 +19,11 @@ export function ExpertiseAreas() {
           eyebrow="Expertise"
           title={
             <>
-              A network at the{" "}
-              <span className="accent-italic text-brand">
-                intersection
-              </span>{" "}
-              of life sciences, data and AI.
+              The expertise our clients ask for{" "}
+              <span className="accent-italic text-brand">most often</span>.
             </>
           }
-          lead="The areas below are illustrative, not exhaustive. They are simply where our experts are most often asked in. Tell us what you need and we match the expertise to it, wherever in the network it sits."
+          lead="You tell us what you need. We listen, match the senior expert who has already done it, and stay accountable until the work lands."
         />
 
         <Stagger className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-ink/10 bg-ink/10 md:mt-16 md:grid-cols-2">
