@@ -108,8 +108,8 @@ export default function NetworkPage() {
                     and embed them in your own team, with HTP42 as the single
                     contracting party carrying the administration and legal
                     work. Or, for more complex needs, we assemble a
-                    senior team to deliver the programme end to end against
-                    agreed outcomes, named before you sign and with one
+                    senior team to deliver an end to end solution against
+                    agreed deliverables, named before you sign and with one
                     engagement partner accountable throughout.
                   </p>
                 </div>

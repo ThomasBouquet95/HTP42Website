@@ -48,8 +48,8 @@ export function Positioning() {
                 embed them in your team for as long as the need lasts, with
                 HTP42 as your single contracting party and the administration
                 and legal work on us. Or, for more complex needs, we
-                assemble a senior team to deliver the programme end to end,
-                against outcomes agreed before we start.
+                assemble a senior team to deliver an end to end solution,
+                against deliverables agreed before we start.
               </p>
             </div>
           </Reveal>

@@ -4,6 +4,7 @@ export type Offering = {
   name: string;
   promise: string;
   body: string;
+  /** Three lines that define what the offering actually is. */
   points: { label: string; detail: string }[];
   icon: "deploy" | "project";
 };
@@ -15,27 +16,22 @@ export const offerings: Offering[] = [
     slug: "expert-deployment",
     name: "Expert Deployment",
     promise: "We find proven experts. You sign one contract.",
-    body: "You tell us the need. We find the right experts, vet them, and embed them in your team for as long as the need lasts, whether that is a few months or a few years. HTP42 is your single counterparty wherever in the world they sit, and we carry the contracting, administration, payment and legal work so you never manage a roster of independents.",
+    body: "You tell us the need. We find the right experts, vet them, and embed them in your team for as long as the need lasts, whether that is a few months or a few years.",
     points: [
       {
-        label: "Hard to find expertise, matched to your need",
+        label: "One expert or several, embedded in your team",
         detail:
-          "Sourced on subject matter rather than availability, from our own experts or through their networks.",
+          "Matched on subject matter for a specific need, over the medium to long term, working inside your own team and reporting into it.",
       },
       {
-        label: "One counterparty, one contract",
+        label: "A fixed day rate, and one contract",
         detail:
-          "You face HTP42, not a set of individuals. One agreement, one invoice, one point of accountability, however many experts are involved.",
+          "You face HTP42 as your single counterparty wherever in the world they sit. Contracting, administration, payment and legal sit with us.",
       },
       {
-        label: "Administration and legal handled",
+        label: "Proven experts, continuously managed",
         detail:
-          "Contracting, timesheets, payments, compliance and cross border arrangements sit with us.",
-      },
-      {
-        label: "Continuously managed talent",
-        detail:
-          "Screened by a partner before onboarding, reviewed on every engagement, supported throughout.",
+          "Screened by a partner before onboarding, reviewed on every engagement, and replaced by us if the fit is wrong.",
       },
     ],
     icon: "deploy",
@@ -45,27 +41,22 @@ export const offerings: Offering[] = [
     slug: "consulting-projects",
     name: "Consulting Projects",
     promise: "Senior experts empowered by AI, not a pyramid of juniors.",
-    body: "When you need a programme delivered rather than a role filled, we assemble the team from the network. Senior experts who have done it before, empowered by AI rather than padded out with juniors learning your problem on your budget. We take it from strategy through implementation to the change management that makes it hold.",
+    body: "When you need a result rather than a role filled, we assemble the team from the network and own the delivery of it.",
     points: [
       {
-        label: "Experts, project managers and a partner",
+        label: "Defined deliverables, agreed before we start",
         detail:
-          "Subject matter experts do the work, experienced project managers keep it moving, and a network partner stands behind the quality of what is delivered.",
+          "Scope, outputs and outcomes fixed up front, so you know exactly what lands and when.",
       },
       {
-        label: "AI augmented delivery",
+        label: "An end to end solution",
         detail:
-          "Our experts use AI systematically, so research, analysis and synthesis move faster while judgment stays human.",
+          "Strategy, design, implementation and the organisational change that decides whether any of it holds.",
       },
       {
-        label: "Strategy through to change management",
+        label: "A holistic team shaped to your need",
         detail:
-          "Strategy, design, end to end implementation, and the organisational change that decides whether any of it lasts.",
-      },
-      {
-        label: "One accountable partner",
-        detail:
-          "A single engagement partner from framing to handover, and the experts named before you sign.",
+          "Subject matter experts do the work, experienced project managers keep it moving, and a partner stands behind the quality. All of them empowered by AI.",
       },
     ],
     icon: "project",

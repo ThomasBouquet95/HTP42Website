@@ -12,7 +12,7 @@ import { expertiseAreas } from "@/content/expertise";
  */
 export function ExpertiseAreas() {
   return (
-    <section id="expertise" className="section bg-paper-2">
+    <section id="expertise" className="section bg-paper">
       <div className="shell">
         <SectionHeader
           index="02"
@@ -42,11 +42,11 @@ export function ExpertiseAreas() {
                     <Diagram className="h-10 w-[3.375rem] shrink-0 md:h-11 md:w-[3.75rem]" />
                   </div>
 
-                  <h3 className="mt-6 text-[1.0625rem] leading-tight tracking-[-0.024em] text-ink transition-colors duration-500 group-hover:text-brand md:text-[1.1875rem]">
+                  <h3 className="mt-6 text-[1.1875rem] leading-tight tracking-[-0.026em] text-ink transition-colors duration-500 group-hover:text-brand md:text-[1.3125rem]">
                     {area.name}
                   </h3>
 
-                  <p className="mt-3.5 max-w-[30ch] text-[0.8125rem] leading-relaxed text-ink-600">
+                  <p className="mt-4 max-w-[30ch] text-[0.875rem] leading-relaxed text-ink-600">
                     {area.promise}
                   </p>
 
@@ -54,17 +54,17 @@ export function ExpertiseAreas() {
                     {area.services.map((service) => (
                       <li
                         key={service.slug}
-                        className="border-b border-ink/[0.07] py-2 text-[0.75rem] leading-snug tracking-[-0.003em] text-ink-400 transition-colors duration-500 last:border-0 group-hover:text-ink-600"
+                        className="border-b border-ink/[0.07] py-2.5 text-[0.8125rem] leading-snug tracking-[-0.005em] text-ink-400 transition-colors duration-500 last:border-0 group-hover:text-ink-600"
                       >
                         {service.name}
                       </li>
                     ))}
                   </ul>
 
-                  <span className="mt-6 inline-flex items-center gap-1.5 text-[0.75rem] font-medium text-ink transition-colors duration-500 group-hover:text-brand">
+                  <span className="mt-7 inline-flex items-center gap-2 text-[0.8125rem] font-medium text-ink transition-colors duration-500 group-hover:text-brand">
                     <span className="link-wipe">Explore this area</span>
                     <ArrowUpRight
-                      className="arrow-step size-3"
+                      className="arrow-step size-3.5"
                       strokeWidth={1.75}
                       aria-hidden="true"
                     />

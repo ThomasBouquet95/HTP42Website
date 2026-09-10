@@ -6,7 +6,7 @@ import { offerings } from "@/content/offerings";
 /**
  * The two ways clients work with HTP42. This is the commercial model, so it
  * earns full width cards: the distinction between embedding experts and
- * handing over a programme is the thing prospects most need to understand
+ * handing over a whole solution is the thing prospects most need to understand
  * before they call.
  *
  * Each card splits into a tinted header carrying the name, the promise and
@@ -24,12 +24,12 @@ export function Offerings() {
             <>
               Embed our experts, or{" "}
               <span className="accent-italic text-brand">
-                hand us the programme
+                hand us the solution
               </span>
               .
             </>
           }
-          lead="Some clients need experts embedded in their own team for a specific need, over months or years. Others need a programme delivered from strategy through implementation. We find and assemble the AI empowered experts for you, and carry the accountability for what they deliver."
+          lead="Some clients need experts embedded in their own team for a specific need, over months or years. Others need a result delivered against defined deliverables. We find and assemble the AI empowered experts for you, and carry the accountability for what they deliver."
         />
 
         <Stagger className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-ink/10 bg-ink/10 md:mt-16 lg:grid-cols-2">
@@ -60,13 +60,16 @@ export function Offerings() {
                   <div className="flex flex-1 flex-col px-7 pt-7 pb-8 md:px-9 md:pt-8 md:pb-10">
                     <p className="body-copy max-w-[46ch]">{offering.body}</p>
 
-                    <dl className="mt-8 grid grid-cols-1 gap-x-8 gap-y-5 sm:grid-cols-2">
+                    <dl className="mt-8 flex flex-col">
                       {offering.points.map((point) => (
-                        <div key={point.label} className="rule pt-4">
-                          <dt className="text-[0.875rem] leading-snug font-medium tracking-[-0.01em] text-ink">
+                        <div
+                          key={point.label}
+                          className="border-t border-ink/[0.09] py-4 first:pt-0"
+                        >
+                          <dt className="text-[0.9375rem] leading-snug font-medium tracking-[-0.012em] text-ink">
                             {point.label}
                           </dt>
-                          <dd className="mt-2 text-[0.8125rem] leading-relaxed text-ink-400">
+                          <dd className="mt-2 max-w-[52ch] text-[0.875rem] leading-relaxed text-ink-400">
                             {point.detail}
                           </dd>
                         </div>

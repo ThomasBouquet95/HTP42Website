@@ -11,7 +11,7 @@ export function PerspectivesTeaser() {
     <section className="section bg-paper">
       <div className="shell">
         <SectionHeader
-          index="06"
+          index="05"
           eyebrow="Perspectives"
           title={
             <>
