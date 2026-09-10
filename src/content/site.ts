@@ -1,3 +1,5 @@
+import { leadership } from "@/content/network";
+
 export const site = {
   name: "HealthTech Partners 42",
   shortName: "HTP42",
@@ -28,7 +30,9 @@ export const nav = [
 /** Headline proof points. Sourced from HTP42 delivery history. */
 export const proofPoints = [
   {
-    value: 5,
+    // Derived, so the headline number cannot drift from the partners actually
+    // listed on the site. It said five while four were shown.
+    value: leadership.length,
     suffix: "",
     label: "Partners",
     note: "Deep life sciences experience and extensive networks of their own",
