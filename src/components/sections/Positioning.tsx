@@ -1,6 +1,6 @@
 import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Reveal, DrawRule } from "@/components/motion/Reveal";
-import { clientTypes } from "@/content/site";
+import { ClientStrip } from "@/components/ui/ClientStrip";
 import { EXPERT_COUNT } from "@/content/network";
 
 /**
@@ -35,13 +35,14 @@ export function Positioning() {
           <Reveal delay={0.1}>
             <div className="mt-11 grid max-w-4xl grid-cols-1 gap-x-12 gap-y-6 md:grid-cols-2">
               <p className="body-copy">
-                HTP42 is a network of more than fifty senior experts in life
-                sciences data, AI and technology. Former VPs, CTOs, heads of
-                function and principal architects from Novartis, Roche, Sanofi,
-                Novo Nordisk, Johnson &amp; Johnson and Amgen. For each
-                engagement we match the subject matter expertise your problem
-                actually calls for, name those people before you sign, and
-                stand the team down when the work is done.
+                Business, technology and scientific expertise, all of it with
+                deep life sciences experience. Former VPs, CTOs, heads of
+                function, principal architects and clinical leaders who have
+                held the roles they now advise on, at Novartis, Roche, Sanofi,
+                Novo Nordisk, Johnson &amp; Johnson and Amgen. We match the
+                subject matter your problem actually calls for, name those
+                people before you sign, and stand the team down when the work
+                is done.
               </p>
               <p className="body-copy">
                 There are two ways that works. We find an expert and staff them
@@ -65,20 +66,13 @@ export function Positioning() {
           <Reveal delay={0.22}>
             <div className="rule mt-16 pt-7">
               <h3 className="eyebrow text-ink-300">Who we work with</h3>
-              <ul className="mt-5 flex flex-wrap gap-x-3 gap-y-2.5">
-                {clientTypes.map((type) => (
-                  <li
-                    key={type}
-                    className="rounded-full border border-ink/10 bg-paper-2 px-3.5 py-1.5 text-[0.8125rem] font-medium tracking-[-0.006em] text-ink-600"
-                  >
-                    {type}
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-6 max-w-[52ch] text-[0.8125rem] leading-relaxed text-ink-400">
-                {EXPERT_COUNT}+ senior experts on the bench, plus sourcing
-                through our extended network when a brief calls for expertise
-                we do not already hold.
+              <div className="mt-7">
+                <ClientStrip />
+              </div>
+              <p className="mt-9 max-w-[56ch] text-[0.8125rem] leading-relaxed text-ink-400">
+                {EXPERT_COUNT}+ vetted senior experts you can access directly,
+                and 500+ more reachable through their own networks. Every one
+                of them reviewed by a partner before they join an engagement.
               </p>
             </div>
           </Reveal>

@@ -23,7 +23,7 @@ export function Offerings() {
               behind both.
             </>
           }
-          lead="Some clients need one expert placed inside their team. Others need a team to deliver a programme end to end. The sourcing, the vetting and the accountability are the same either way."
+          lead="Some clients need experts embedded in their own team for a specific need, over months or years. Others need a programme delivered, from strategy through implementation and change management. The sourcing, the vetting and the accountability are the same either way."
         />
 
         <Stagger className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-ink/10 bg-ink/10 md:mt-16 lg:grid-cols-2">

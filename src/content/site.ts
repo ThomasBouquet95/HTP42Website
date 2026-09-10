@@ -35,14 +35,14 @@ export const proofPoints = [
   {
     value: 50,
     suffix: "+",
-    label: "Vetted senior experts on call",
-    note: "Every expert reviewed by a partner on subject matter depth and delivery record before onboarding",
+    label: "Vetted senior experts",
+    note: "Every one reviewed by a partner on subject matter depth and delivery record before onboarding",
   },
   {
-    value: 200,
+    value: 500,
     suffix: "+",
-    label: "Reachable through our experts' networks",
-    note: "Sourced and vetted to the same standard when a brief needs expertise we do not already hold",
+    label: "Extended network through those experts",
+    note: "Reachable through our experts' own networks, and vetted to the same standard before they join an engagement",
   },
 ] as const;
 
@@ -57,19 +57,25 @@ export const capabilityKeywords = [
   "Secondary Use & RWD",
   "GenAI Operations",
   "Statistical Computing",
-  "Data Mesh & Governance",
+  "Data Governance",
   "Cloud Architecture",
   "Knowledge Graphs",
   "Metadata Repositories",
   "Responsible AI",
 ] as const;
 
-export const clientTypes = [
-  "Top 10 global pharma",
-  "Mid size European pharma",
-  "Biotech R&D organisations",
-  "Clinical technology companies",
-  "Contract research organisations",
-  "Health technology investors",
-] as const;
+/**
+ * Named clients for the logo strip. `logo` points at a file under
+ * public/logos/ when the real asset is available; until then the wordmark is
+ * set in type. Casing follows each brand's own usage.
+ */
+export type Client = { name: string; logo?: string };
+
+export const clients: Client[] = [
+  { name: "Novartis" },
+  { name: "Roche" },
+  { name: "Novo Nordisk" },
+  { name: "argenx" },
+  { name: "eClinical Solutions" },
+];
 

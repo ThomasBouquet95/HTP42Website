@@ -49,7 +49,7 @@ export default function ImpactPage() {
             internally.
           </>,
         ]}
-        lead="Client names stay confidential. Sector, scale, duration and team composition do not. Each study sets out the problem as the client framed it, what our experts actually did, and what changed as a result."
+        lead="We do not attribute individual engagements to named clients. Sector, scale, duration and team composition we can share. Each study sets out the problem as the client framed it, what our experts actually did, and what changed as a result."
         facts={[
           { label: "Case studies", value: String(caseStudies.length) },
           { label: "Years covered", value: years.join(" to ") },

@@ -100,7 +100,8 @@ export default function NetworkPage() {
                     now advise on. We match on subject matter rather than
                     availability, review every candidate at senior level before
                     onboarding, and where the brief calls for expertise we do
-                    not already hold, we source it through our extended network.
+                    not already hold, we source it through their networks,
+                    which reach 500+ senior specialists.
                   </p>
                   <p className="body-copy">
                     Clients use that two ways. Either we find an expert and
@@ -230,9 +231,10 @@ export default function NetworkPage() {
             <div className="rule mt-12 pt-7">
               <p className="max-w-[62ch] text-[0.9375rem] leading-relaxed text-ink-600">
                 Not seeing your subject? The bench is the starting point, not
-                the limit. We source new experts through our extended network
-                when a brief calls for expertise we do not already hold, under
-                the same qualification and senior review as everyone else.
+                the limit. Our experts' own networks reach 500+ more senior
+                specialists, and we source from them when a brief calls for
+                expertise we do not already hold, under the same qualification
+                and senior review as everyone else.
               </p>
               <div className="mt-7">
                 <ArrowLink href="/contact">

@@ -20,7 +20,7 @@ export function FeaturedCases() {
               consequence.
             </>
           }
-          lead="Client names stay confidential. The work does not have to be. Each of these is written the way we would present it internally, including what was hard and what we would do differently."
+          lead="We do not attribute individual engagements to named clients, but the work speaks for itself. Each of these is written the way we would present it internally, including what was hard and what we would do differently."
         />
 
         <div className="mt-14 md:mt-16">

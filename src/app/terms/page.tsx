@@ -18,7 +18,7 @@ const SECTIONS: LegalSection[] = [
     heading: "Content on this website",
     paragraphs: [
       "The material on this site is provided for general information. It describes capabilities and past work; it is not advice, and it should not be relied on for a regulatory, clinical, technical or investment decision without engaging us or another qualified adviser.",
-      "Case studies describe engagements we have delivered. Client names are withheld under confidentiality obligations. Figures are drawn from engagement records; sector descriptions are generalised deliberately so that clients remain unidentifiable.",
+      "Case studies describe engagements we have delivered. Individual engagements are not attributed to named clients, under our confidentiality obligations. Figures are drawn from engagement records, and sector descriptions are generalised deliberately. Client names shown elsewhere on this site appear with permission.",
     ],
   },
   {
