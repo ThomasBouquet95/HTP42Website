@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { Check } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { PartnerPortrait } from "@/components/ui/PartnerPortrait";
+import { ThreeSides } from "@/components/sections/ThreeSides";
 import { EXPERT_COUNT, leadership } from "@/content/network";
-import { audiences, networkEffect } from "@/content/audiences";
+import { networkEffect } from "@/content/audiences";
 
 /**
  * The network, in one section. Previously this was split across a "why HTP42"
@@ -73,49 +73,9 @@ export function TheNetwork() {
             </p>
           </Reveal>
 
-          <Stagger className="mt-9 grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-brand/20 bg-brand/15 lg:grid-cols-3">
-            {audiences.map((audience) => (
-              <StaggerItem key={audience.index}>
-                <article className="group flex h-full flex-col bg-brand-soft p-6 transition-colors duration-700 hover:bg-white md:p-7">
-                  <div className="flex items-baseline justify-between gap-4">
-                    <span className="eyebrow tnum text-ink-400">
-                      {audience.index}
-                    </span>
-                    <span className="eyebrow text-brand">
-                      For {audience.who}
-                    </span>
-                  </div>
-
-                  <h4 className="mt-6 max-w-[22ch] text-[1.0625rem] leading-tight tracking-[-0.024em] text-ink transition-colors duration-500 group-hover:text-brand md:text-[1.1875rem]">
-                    {audience.label}
-                  </h4>
-
-                  <p className="mt-4 max-w-[40ch] text-[0.875rem] leading-relaxed text-ink-600">
-                    {audience.problem}
-                  </p>
-
-                  <div className="mt-7 border-t border-brand/20 pt-5">
-                    <h5 className="eyebrow text-brand">What changes</h5>
-                    <ul className="mt-4 flex flex-col gap-2.5">
-                      {audience.gains.map((gain) => (
-                        <li
-                          key={gain}
-                          className="flex gap-2.5 text-[0.8125rem] leading-snug text-ink"
-                        >
-                          <Check
-                            className="mt-[0.1875rem] size-3 shrink-0 text-brand"
-                            strokeWidth={2.5}
-                            aria-hidden="true"
-                          />
-                          {gain}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </article>
-              </StaggerItem>
-            ))}
-          </Stagger>
+          <div className="mt-9">
+            <ThreeSides />
+          </div>
         </div>
 
         {/* What the three sides add up to */}

@@ -14,7 +14,10 @@ import {
   DrawRule,
 } from "@/components/motion/Reveal";
 import { PartnerPortrait } from "@/components/ui/PartnerPortrait";
+import { ThreeSides } from "@/components/sections/ThreeSides";
 import { EXPERT_COUNT, disciplines, leadership } from "@/content/network";
+import { networkEffect } from "@/content/audiences";
+import { proofFacts } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "The Network",
@@ -46,83 +49,89 @@ export default function NetworkPage() {
           "subject matter.",
         ]}
         lead="Knowing who to trust with a specific problem is not something a CV database can tell you. It sits with senior leaders who have already worked with these people. Put those leaders and the experts they vouch for in one network, and clients get access they cannot source alone."
-        facts={[
-          { label: "Senior experts", value: `${EXPERT_COUNT}+` },
-          { label: "Disciplines", value: String(disciplines.length) },
-          { label: "Headquarters", value: "Basel, CH" },
-          { label: "Also present", value: "Paris · CPH · SG" },
-        ]}
+        facts={proofFacts}
       />
 
-      {/* 01 — the model */}
+      {/* 01. why HTP42: the three sided argument, then the comparison */}
       <section className="section bg-paper">
         <div className="shell">
-          <DrawRule />
-          <div className="grid grid-cols-1 gap-x-12 gap-y-12 pt-7 lg:grid-cols-12">
-            <div className="lg:col-span-4">
-              <div className="lg:sticky lg:top-28">
-                <Reveal>
-                  <Eyebrow index="01">Our model</Eyebrow>
-                </Reveal>
-                <Reveal delay={0.06}>
-                  <h2
-                    id="model"
-                    className="mt-7 max-w-[18ch] scroll-mt-28 text-display-sm text-ink"
-                  >
-                    The depth of a specialist, with the{" "}
-                    <span className="accent-italic text-brand">
-                      reach of a team
-                    </span>
-                    .
-                  </h2>
-                </Reveal>
-                <Reveal delay={0.12}>
-                  <p className="rule mt-9 max-w-[30ch] pt-7 text-[0.9375rem] leading-relaxed text-ink-400">
-                    The table opposite is the whole argument. One independent
-                    adviser gives you depth in one place. A large firm gives you
-                    scale without it.
-                  </p>
-                </Reveal>
+          <SectionHeader
+            index="01"
+            eyebrow="Why HTP42"
+            title={
+              <>
+                One network,{" "}
+                <span className="accent-italic text-brand">three reasons</span>{" "}
+                to be in it.
+              </>
+            }
+            lead={networkEffect}
+          />
+
+          <div className="mt-14 grid grid-cols-1 gap-x-10 gap-y-6 md:mt-16 md:grid-cols-2">
+            <Reveal>
+              <p className="body-copy">
+                We hold a curated network of more than {EXPERT_COUNT} senior
+                experts across six disciplines. Each has held the role they now
+                advise on. We match on subject matter rather than availability,
+                review every candidate at senior level before onboarding, and
+                where the brief calls for expertise we do not already hold, we
+                source it through their networks, which reach 500+ senior
+                specialists.
+              </p>
+            </Reveal>
+            <Reveal delay={0.06}>
+              <p className="body-copy">
+                Clients use that two ways. Either we find vetted experts and
+                embed them in your own team, with HTP42 as the single
+                contracting party carrying the administration and legal work.
+                Or, for more complex needs, we assemble a senior team to
+                deliver an end to end solution against agreed deliverables,
+                named before you sign and with one engagement partner
+                accountable throughout.
+              </p>
+            </Reveal>
+          </div>
+
+          <div className="mt-12 md:mt-14">
+            <Reveal>
+              <h3 className="eyebrow border-b border-ink/12 pb-4 text-ink-300">
+                Why it works, from three sides
+              </h3>
+            </Reveal>
+            <Reveal delay={0.06}>
+              <p className="body-copy max-w-[62ch] pt-7">
+                HTP42 solves a different problem for each side, and each side
+                makes the others better. That is the whole design, and it is
+                why the access we can offer clients is difficult to replicate.
+              </p>
+            </Reveal>
+            <div className="mt-9">
+              <ThreeSides />
+            </div>
+          </div>
+
+          <div className="mt-16 md:mt-20">
+            <Reveal>
+              <h3
+                id="model"
+                className="eyebrow scroll-mt-28 border-b border-ink/12 pb-4 text-ink-300"
+              >
+                The depth of a specialist, with the reach of a team
+              </h3>
+            </Reveal>
+            <Reveal delay={0.06}>
+              <p className="body-copy max-w-[62ch] pt-7">
+                The table below is the whole argument. One independent adviser
+                gives you depth in one place. A large firm gives you scale
+                without it.
+              </p>
+            </Reveal>
+            <Reveal delay={0.12}>
+              <div className="mt-9">
+                <ModelComparison />
               </div>
-            </div>
-
-            <div className="lg:col-span-8">
-              <Reveal delay={0.1}>
-                <p className="max-w-[48ch] text-[clamp(1.25rem,1.05rem+0.7vw,1.625rem)] leading-[1.32] tracking-[-0.022em] text-ink">
-                  Our job is to find the right expertise for your problem, then
-                  put enough of it around the table to finish the work.
-                </p>
-              </Reveal>
-
-              <Reveal delay={0.16}>
-                <div className="mt-10 grid grid-cols-1 gap-x-10 gap-y-6 md:grid-cols-2">
-                  <p className="body-copy">
-                    We hold a curated network of more than {EXPERT_COUNT} senior
-                    experts across six disciplines. Each has held the role they
-                    now advise on. We match on subject matter rather than
-                    availability, review every candidate at senior level before
-                    onboarding, and where the brief calls for expertise we do
-                    not already hold, we source it through their networks,
-                    which reach 500+ senior specialists.
-                  </p>
-                  <p className="body-copy">
-                    Clients use that two ways. Either we find vetted experts
-                    and embed them in your own team, with HTP42 as the single
-                    contracting party carrying the administration and legal
-                    work. Or, for more complex needs, we assemble a
-                    senior team to deliver an end to end solution against
-                    agreed deliverables, named before you sign and with one
-                    engagement partner accountable throughout.
-                  </p>
-                </div>
-              </Reveal>
-
-              <Reveal delay={0.22}>
-                <div className="rule mt-12 pt-8">
-                  <ModelComparison />
-                </div>
-              </Reveal>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>

@@ -64,8 +64,8 @@ export function HomeHero() {
             animate={reduced ? undefined : { opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.55, ease: EASE }}
           >
-            A senior expert network for clinical data, AI, technology strategy
-            and digital transformation.
+            A senior expert network for life sciences. Business, technology and
+            scientific expertise, all of it with deep industry experience.
           </motion.p>
 
           <motion.div

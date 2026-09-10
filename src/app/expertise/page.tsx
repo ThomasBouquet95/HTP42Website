@@ -8,6 +8,7 @@ import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Reveal, Stagger, StaggerItem, DrawRule } from "@/components/motion/Reveal";
 import { diagrams } from "@/components/ui/AreaDiagram";
 import { expertiseAreas } from "@/content/expertise";
+import { proofFacts } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Expertise",
@@ -31,7 +32,8 @@ export default function ExpertisePage() {
             <span className="accent-italic text-azure">in detail</span>.
           </Fragment>,
         ]}
-        lead="A network at the intersection of life sciences, data and AI. Everything below is set out in full, so you can see the depth behind each area and check whether we cover what you need. If we do not, tell us anyway."
+        lead="You tell us what you need. We listen, match the senior expert who has already done it, and stay accountable until the work lands. The areas below are illustrative examples set out in full, so you can see the depth behind each one. If you do not find what you need, tell us anyway."
+        facts={proofFacts}
       />
 
       {/* A quick jump list before the long form sections. */}

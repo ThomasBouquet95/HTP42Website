@@ -15,7 +15,7 @@ export const offerings: Offering[] = [
     slug: "expert-deployment",
     name: "Expert Deployment",
     promise: "We find proven experts. You sign one contract.",
-    body: "You tell us the need. We find the right experts, vet them, and embed them in your team for as long as the need lasts, whether that is a few months or a few years.",
+    body: "You tell us the need. We find the right experts from our own network or its extended reach, confirm their credentials and their track record, and embed them in your team for as long as the need lasts, whether that is a few months or a few years.",
     points: [
       {
         label: "One expert or several, embedded in your team",
@@ -42,6 +42,11 @@ export const offerings: Offering[] = [
     body: "When you need a result rather than a role filled, we assemble the team from the network and own the delivery of it.",
     points: [
       {
+        label: "A holistic team shaped to your need",
+        detail:
+          "Subject matter experts do the work, experienced project managers keep it moving, and a partner stands behind the quality. All of them empowered by AI.",
+      },
+      {
         label: "Defined deliverables, agreed before we start",
         detail:
           "Scope, outputs and outcomes fixed up front, so you know exactly what lands and when.",
@@ -50,11 +55,6 @@ export const offerings: Offering[] = [
         label: "An end to end solution",
         detail:
           "Strategy, design, implementation and the organisational change that decides whether any of it holds.",
-      },
-      {
-        label: "A holistic team shaped to your need",
-        detail:
-          "Subject matter experts do the work, experienced project managers keep it moving, and a partner stands behind the quality. All of them empowered by AI.",
       },
     ],
   },

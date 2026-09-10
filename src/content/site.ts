@@ -90,3 +90,13 @@ export const clients: Client[] = [
   { name: "Appsilon" },
 ];
 
+/**
+ * The same four numbers as a hero facts rail. The homepage band and the
+ * interior page heroes read from one source, so they cannot drift apart.
+ */
+export const proofFacts = proofPoints.map((point) => ({
+  label: point.label,
+  value: `${point.value}${point.suffix}`,
+}));
+
+
