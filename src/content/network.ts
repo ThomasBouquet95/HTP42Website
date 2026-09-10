@@ -34,16 +34,6 @@ export const leadership: Leader[] = [
     role: "Partner",
     note: "Data strategy leader with deep experience in clinical trial reengineering and biostatistics.",
   },
-  {
-    name: "Marius C.",
-    role: "Partner",
-    note: "Programme director specialising in graph based data science, open source and pharmaceutical data modelling.",
-  },
-  {
-    name: "Venkataraman Balasubramaniam",
-    role: "Partner",
-    note: "TOGAF 9 and AWS certified. Designed cloud based analytics environments at Novartis.",
-  },
 ];
 
 /**

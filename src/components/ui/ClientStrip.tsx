@@ -1,47 +1,67 @@
 import { clients } from "@/content/site";
 
 /**
- * The client strip. Set as a hairline bounded band with the names distributed
- * across the full measure, so it reads as a logo row rather than a list. Each
- * entry renders its real logo when one is available under public/logos/, and
- * a typeset wordmark until then, so the row stays consistent either way.
- * Brand casing is respected as published.
+ * The client strip, as a continuous rotation. Nine names will not sit in one
+ * row at any sensible size, so the row scrolls instead of wrapping or being
+ * truncated. Each entry renders its real logo when one is available under
+ * public/logos/ and a typeset wordmark until then, so the row stays visually
+ * consistent either way. Brand casing follows each company's own usage.
+ *
+ * The track renders the set twice and translates by half its width, which
+ * keeps the loop seamless without measuring anything. It holds still for
+ * anyone who has asked for reduced motion.
  */
 export function ClientStrip({ onDark = false }: { onDark?: boolean }) {
+  const run = (
+    <ul className="flex shrink-0 items-center" aria-hidden="true">
+      {clients.map((client) => (
+        <li key={client.name} className="px-7 md:px-10">
+          {client.logo ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={client.logo}
+              alt=""
+              className={`h-6 w-auto object-contain md:h-8 ${
+                onDark
+                  ? "opacity-60 brightness-0 invert"
+                  : "opacity-55 grayscale"
+              }`}
+            />
+          ) : (
+            <span
+              className={`block whitespace-nowrap text-[1.125rem] leading-none font-medium tracking-[-0.018em] md:text-[1.375rem] ${
+                onDark ? "text-white/60" : "text-ink-300"
+              }`}
+            >
+              {client.name}
+            </span>
+          )}
+        </li>
+      ))}
+    </ul>
+  );
+
   return (
     <div
-      className={`border-y ${
-        onDark ? "border-white/12" : "border-ink/10"
-      }`}
+      className={`border-y ${onDark ? "border-white/12" : "border-ink/10"}`}
     >
-      <ul className="flex flex-wrap items-center justify-between gap-x-8 gap-y-7 py-7 md:gap-x-12 md:py-9">
+      {/* A readable list for assistive technology, since the track is duplicated. */}
+      <h4 className="sr-only">Clients we work with</h4>
+      <ul className="sr-only">
         {clients.map((client) => (
-          <li key={client.name} className="shrink-0">
-            {client.logo ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={client.logo}
-                alt={client.name}
-                className={`h-6 w-auto object-contain transition-all duration-500 md:h-8 ${
-                  onDark
-                    ? "opacity-60 brightness-0 invert hover:opacity-100"
-                    : "opacity-55 grayscale hover:opacity-100 hover:grayscale-0"
-                }`}
-              />
-            ) : (
-              <span
-                className={`block text-[1.125rem] leading-none font-medium tracking-[-0.018em] transition-colors duration-500 md:text-[1.375rem] ${
-                  onDark
-                    ? "text-white/60 hover:text-white"
-                    : "text-ink-300 hover:text-ink"
-                }`}
-              >
-                {client.name}
-              </span>
-            )}
-          </li>
+          <li key={client.name}>{client.name}</li>
         ))}
       </ul>
+
+      <div className="marquee-mask overflow-hidden py-7 md:py-9">
+        <div
+          className="marquee-track"
+          style={{ ["--marquee-duration" as string]: "46s" }}
+        >
+          {run}
+          {run}
+        </div>
+      </div>
     </div>
   );
 }

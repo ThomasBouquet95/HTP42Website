@@ -25,7 +25,7 @@ export const audiences: Audience[] = [
       "Access to hard to find experts, matched to each specific need",
       "Vetted, high quality talent through continuous talent management",
       "One counterparty for contracting, administration and expert management",
-      "Senior teams for larger work, without a pyramid of juniors",
+      "Senior teams for larger work, staffed with experts throughout",
     ],
   },
   {

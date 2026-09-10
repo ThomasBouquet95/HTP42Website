@@ -18,7 +18,7 @@ export const perspectives: Perspective[] = [
     category: "Data & AI",
     readTime: "8 min read",
     date: "2026-07-22",
-    author: "Linda D., Head of Data Strategy & Analytics",
+    author: "Linda D., Partner",
     featured: true,
   },
   {
@@ -40,7 +40,7 @@ export const perspectives: Perspective[] = [
     category: "Clinical Standards",
     readTime: "11 min read",
     date: "2026-03-09",
-    author: "Marius C., Chief Technology Officer",
+    author: "HTP42 clinical standards experts",
     featured: true,
   },
   {
@@ -51,7 +51,7 @@ export const perspectives: Perspective[] = [
     category: "Clinical Standards",
     readTime: "9 min read",
     date: "2026-01-28",
-    author: "Juan Carlos R., Graph Data Scientist",
+    author: "HTP42 clinical standards experts",
   },
   {
     slug: "secondary-use-ai-leverage",
@@ -61,7 +61,7 @@ export const perspectives: Perspective[] = [
     category: "Data & AI",
     readTime: "7 min read",
     date: "2025-11-12",
-    author: "Steffen H., Data & AI Strategy Leader",
+    author: "HTP42 data and AI experts",
   },
   {
     slug: "cloud-migration-clinical-trials",
@@ -71,7 +71,7 @@ export const perspectives: Perspective[] = [
     category: "Technology",
     readTime: "6 min read",
     date: "2025-09-03",
-    author: "Venkataraman Balasubramaniam, Partner, Singapore",
+    author: "HTP42 technology experts",
   },
 ];
 

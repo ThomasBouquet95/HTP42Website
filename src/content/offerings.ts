@@ -21,7 +21,7 @@ export const offerings: Offering[] = [
       {
         label: "One expert or several, embedded in your team",
         detail:
-          "Matched on subject matter for a specific need, over the medium to long term, working inside your own team and reporting into it.",
+          "Matched on subject matter for a specific need, over the short to long term, working inside your own team and reporting into it.",
       },
       {
         label: "A fixed day rate, and one contract",
@@ -40,7 +40,7 @@ export const offerings: Offering[] = [
     index: "02",
     slug: "consulting-projects",
     name: "Consulting Projects",
-    promise: "Senior experts empowered by AI, not a pyramid of juniors.",
+    promise: "Senior experts empowered by AI.",
     body: "When you need a result rather than a role filled, we assemble the team from the network and own the delivery of it.",
     points: [
       {

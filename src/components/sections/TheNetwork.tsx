@@ -69,12 +69,12 @@ export function TheNetwork() {
             </p>
           </Reveal>
 
-          <Stagger className="mt-9 grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-ink/10 bg-ink/10 lg:grid-cols-3">
+          <Stagger className="mt-9 grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-brand/20 bg-brand/15 lg:grid-cols-3">
             {audiences.map((audience) => (
               <StaggerItem key={audience.index}>
-                <article className="group flex h-full flex-col bg-paper p-6 transition-colors duration-700 hover:bg-paper-2 md:p-7">
+                <article className="group flex h-full flex-col bg-brand-soft p-6 transition-colors duration-700 hover:bg-white md:p-7">
                   <div className="flex items-baseline justify-between gap-4">
-                    <span className="eyebrow tnum text-ink-300">
+                    <span className="eyebrow tnum text-ink-400">
                       {audience.index}
                     </span>
                     <span className="eyebrow text-brand">
@@ -86,17 +86,17 @@ export function TheNetwork() {
                     {audience.label}
                   </h4>
 
-                  <p className="mt-4 max-w-[40ch] text-[0.875rem] leading-relaxed text-ink-400">
+                  <p className="mt-4 max-w-[40ch] text-[0.875rem] leading-relaxed text-ink-600">
                     {audience.problem}
                   </p>
 
-                  <div className="rule mt-7 pt-5">
-                    <h5 className="eyebrow text-ink-300">What changes</h5>
+                  <div className="mt-7 border-t border-brand/20 pt-5">
+                    <h5 className="eyebrow text-brand">What changes</h5>
                     <ul className="mt-4 flex flex-col gap-2.5">
                       {audience.gains.map((gain) => (
                         <li
                           key={gain}
-                          className="flex gap-2.5 text-[0.8125rem] leading-snug text-ink-600"
+                          className="flex gap-2.5 text-[0.8125rem] leading-snug text-ink"
                         >
                           <Check
                             className="mt-[0.1875rem] size-3 shrink-0 text-brand"

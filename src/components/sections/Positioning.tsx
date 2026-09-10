@@ -11,7 +11,7 @@ export function Positioning() {
   return (
     <section
       aria-labelledby="the-firm-heading"
-      className="section relative bg-paper"
+      className="section relative bg-paper pb-0"
     >
       <div className="shell">
         <h2 id="the-firm-heading" className="sr-only">
@@ -27,7 +27,7 @@ export function Positioning() {
               <span className="accent-italic text-brand">
                 specific deep expertise
               </span>{" "}
-              your problem needs, and nothing you do not.
+              your problem needs.
             </p>
           </Reveal>
 
@@ -66,11 +66,17 @@ export function Positioning() {
           <Reveal delay={0.22}>
             <div className="mt-16 md:mt-20">
               <h3 className="eyebrow mb-5 text-ink-300">Who we work with</h3>
-              <ClientStrip />
             </div>
           </Reveal>
         </div>
       </div>
+
+      {/* Full width, so the rotation reads as a band rather than a column. */}
+      <Reveal delay={0.26}>
+        <div className="mt-2">
+          <ClientStrip />
+        </div>
+      </Reveal>
     </section>
   );
 }

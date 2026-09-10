@@ -82,7 +82,11 @@ export const clients: Client[] = [
   { name: "Novartis" },
   { name: "Roche" },
   { name: "Novo Nordisk" },
+  { name: "Sandoz" },
+  { name: "Pierre Fabre" },
   { name: "argenx" },
   { name: "eClinical Solutions" },
+  { name: "QuantHealth" },
+  { name: "Appsilon" },
 ];
 

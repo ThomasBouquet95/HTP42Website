@@ -3,7 +3,6 @@
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Marquee } from "@/components/ui/Marquee";
 import { NetworkField } from "@/components/ui/NetworkField";
 import { RevealLines } from "@/components/motion/Reveal";
@@ -40,15 +39,8 @@ export function HomeHero() {
 
       <div className="shell relative w-full">
         <div className="max-w-4xl">
-          <motion.div
-            initial={reduced ? undefined : { opacity: 0, y: 12 }}
-            animate={reduced ? undefined : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: EASE }}
-          >
-            <Eyebrow onDark>Life sciences · Data &amp; AI</Eyebrow>
-          </motion.div>
 
-          <h1 className="mt-7 text-display-lg leading-[0.98] text-white lg:text-display-xl">
+          <h1 className="text-display-lg leading-[0.98] text-white lg:text-display-xl">
             <RevealLines
               delay={0.14}
               stagger={0.1}
