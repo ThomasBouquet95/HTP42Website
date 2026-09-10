@@ -12,7 +12,7 @@ import { capabilityKeywords } from "@/content/site";
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 const HERO_FACTS = [
-  { value: "40+", label: "Senior experts on call" },
+  { value: "50+", label: "Senior experts on call" },
   { value: "200+", label: "Engagements delivered" },
   { value: "Basel", label: "Founded by former Novartis leadership" },
 ];

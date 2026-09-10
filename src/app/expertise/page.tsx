@@ -31,12 +31,6 @@ export default function ExpertisePage() {
           "advice to delivery.",
         ]}
         lead="The expert who recommends the architecture is the expert who sees it through. That single fact changes what we are willing to recommend, and what we are prepared to be held to."
-        facts={[
-          { label: "Practices", value: "4" },
-          { label: "Service lines", value: "14" },
-          { label: "Typical engagement", value: "6 to 26 weeks" },
-          { label: "Team size", value: "2 to 8 seniors" },
-        ]}
       />
 
       {/* Practice index — a quick jump list before the long-form sections. */}
@@ -104,9 +98,6 @@ export default function ExpertisePage() {
                     <Reveal delay={0.24}>
                       <div className="rule mt-9 pt-7">
                         <Diagram className="h-[4.5rem] w-24" />
-                        <p className="mt-6 text-[0.8125rem] text-ink-300">
-                          {practice.services.length} service lines
-                        </p>
                       </div>
                     </Reveal>
                   </div>
@@ -185,14 +176,13 @@ export default function ExpertisePage() {
         eyebrow="Next step"
         title={
           <>
-            Not sure which practice
+            These practices are
             <br />
-            your problem sits in?{" "}
-            <span className="accent-italic text-azure">Neither are we</span>,
-            until we talk.
+            <span className="accent-italic text-azure">examples</span> of our
+            work, not a menu.
           </>
         }
-        body="Most engagements cross two or three practices. Describe the decision you are facing and we will tell you which experts it needs, and whether we are the right firm at all."
+        body="The network is broader than any four headings. Most engagements cross several of these, and plenty sit outside them entirely. Describe what you are trying to decide and we will match the expertise to it."
         secondary={{ label: "Meet the network", href: "/network" }}
       />
     </>

@@ -53,14 +53,9 @@ export function NetworkTeaser() {
                 href="/network#disciplines"
                 className="group rule-on-dark block pt-6"
               >
-                <div className="flex items-baseline justify-between gap-4">
-                  <span className="eyebrow tnum text-white/50">
-                    {discipline.index}
-                  </span>
-                  <span className="eyebrow tnum text-azure">
-                    {discipline.count} experts
-                  </span>
-                </div>
+                <span className="eyebrow tnum text-white/50">
+                  {discipline.index}
+                </span>
                 <h3 className="mt-6 text-lg tracking-[-0.026em] text-white transition-colors duration-500 group-hover:text-azure md:text-xl">
                   {discipline.name}
                 </h3>

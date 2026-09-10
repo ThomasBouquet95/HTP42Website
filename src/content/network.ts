@@ -8,8 +8,6 @@ export type Discipline = {
   index: string;
   name: string;
   summary: string;
-  /** Depth in the network. Individual profiles are shared under NDA. */
-  count: number;
 };
 
 /** Headline network size. Extended sourcing sits on top of this. */
@@ -24,12 +22,12 @@ export const leadership: Leader[] = [
   {
     name: "Gabriel Eichler",
     role: "Senior Advisor, Data, AI and Digital Transformation",
-    note: "Former VP and Chief Data Officer for data42 at Novartis, where he led enterprise data strategy, governance and analytics. Founder and Managing Director of Oak Health Partners, advising top 10 pharma, venture backed innovators and investors on data and AI strategy, product development and commercialisation.",
+    note: "Former VP and Chief Data Officer for data42 at Novartis. Founder of Oak Health Partners, advising top 10 pharma and investors on data, AI and digital transformation.",
   },
   {
     name: "Jennifer Cubino",
     role: "Senior Advisor, Clinical Operations and Real World Evidence",
-    note: "Clinical operations executive with end to end expertise across interventional and non interventional research, from first in human through pivotal and post authorisation studies. Deep real world data, EMR and privacy experience across oncology, immunology, cardiometabolic, neurology and rare disease, leading global matrixed teams.",
+    note: "Clinical operations executive spanning first in human through post authorisation studies. Deep real world data, EMR and privacy experience, leading global matrixed teams across oncology, immunology and rare disease.",
   },
   {
     name: "Linda D.",
@@ -59,42 +57,36 @@ export const disciplines: Discipline[] = [
     name: "Data & AI Strategy",
     summary:
       "Data mesh, governance, knowledge graphs and AI enablement inside global pharmaceutical organisations.",
-    count: 9,
   },
   {
     index: "02",
     name: "Clinical Data Science & Biostatistics",
     summary:
       "CDISC standards, statistical programming, submission readiness and clinical data automation.",
-    count: 11,
   },
   {
     index: "03",
     name: "Technology, Architecture & Engineering",
     summary:
       "Enterprise architecture, cloud engineering, GxP validation and full stack delivery at sponsor scale.",
-    count: 8,
   },
   {
     index: "04",
     name: "Digital Health & AI Innovation",
     summary:
       "Digital health strategy, medical imaging AI, genomics and translational innovation.",
-    count: 9,
   },
   {
     index: "05",
     name: "Strategy, Transformation & Programme Leadership",
     summary:
       "Operating model design, GxP transformation programmes, PMO leadership and commercial strategy.",
-    count: 8,
   },
   {
     index: "06",
     name: "Drug Development & Regulatory Affairs",
     summary:
       "Clinical development strategy, medical affairs and regulatory pathways for pharma and devices.",
-    count: 5,
   },
 ];
 
@@ -159,17 +151,6 @@ export type Value = {
 export const values: Value[] = [
   {
     index: "01",
-    title: "AI Augmented Expertise",
-    definition:
-      "Members with deep expertise leverage AI to its maximum potential, to increase productivity, accelerate delivery and scale their impact.",
-    practice: [
-      "AI used systematically in day to day work",
-      "Faster research, analysis, synthesis and delivery",
-      "Expert judgment ensures quality, relevance and trust",
-    ],
-  },
-  {
-    index: "02",
     title: "Real Expertise",
     definition:
       "Experts who deeply understand the subject matter, not generic profiles or random consultants.",
@@ -180,7 +161,7 @@ export const values: Value[] = [
     ],
   },
   {
-    index: "03",
+    index: "02",
     title: "Talent Quality",
     definition:
       "Experts are carefully selected, regularly reviewed and actively supported for consistent delivery.",
@@ -188,6 +169,17 @@ export const values: Value[] = [
       "Structured expert qualification process",
       "Regular performance reviews",
       "Ongoing coaching and support",
+    ],
+  },
+  {
+    index: "03",
+    title: "AI Augmented Expertise",
+    definition:
+      "Members with deep expertise leverage AI to its maximum potential, to increase productivity, accelerate delivery and scale their impact.",
+    practice: [
+      "AI used systematically in day to day work",
+      "Faster research, analysis, synthesis and delivery",
+      "Expert judgment ensures quality, relevance and trust",
     ],
   },
   {

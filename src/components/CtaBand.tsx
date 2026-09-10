@@ -34,13 +34,12 @@ export function CtaBand({
               <h2 className="mt-7 max-w-[20ch] text-display-sm text-white md:text-display">
                 {title ?? (
                   <>
-                    Tell us the decision you
+                    Tell us what you need.
                     <br />
-                    need to make.{" "}
                     <span className="accent-italic text-azure">
-                      We&apos;ll tell you
+                      We&apos;ll find you
                     </span>{" "}
-                    who should be in the room.
+                    the right expert for it.
                   </>
                 )}
               </h2>
@@ -51,7 +50,7 @@ export function CtaBand({
             <Reveal delay={0.12}>
               <p className="lead text-white/60">
                 {body ??
-                  "A first conversation is thirty minutes with a partner, not a sales call. If we are not the right people for the problem, we will say so, and usually point you at who is."}
+                  "A first conversation is thirty minutes with a partner, not a sales call. If nobody in the network is the right match, we will say so, and usually point you at who is."}
               </p>
             </Reveal>
 

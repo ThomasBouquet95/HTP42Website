@@ -41,7 +41,7 @@ export function ContactForm() {
       `Email: ${get("email")}`,
       `Topic: ${get("topic")}`,
       "",
-      "The decision we're facing:",
+      "What we need:",
       get("message"),
       "",
       "Sent from htp42.com",
@@ -130,14 +130,14 @@ export function ContactForm() {
 
       <div>
         <label className={label} htmlFor="message">
-          The decision you&apos;re facing *
+          What you need *
         </label>
         <textarea
           id="message"
           name="message"
           required
           rows={5}
-          placeholder="A sentence or two is plenty. What decision does this work need to support, and by when?"
+          placeholder="A sentence or two is plenty. What are you trying to achieve, and by when?"
           className={`${field} mt-2.5 resize-y leading-relaxed`}
         />
       </div>

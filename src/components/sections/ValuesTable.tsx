@@ -31,11 +31,7 @@ export function ValuesTable() {
               <div className="lg:col-span-4">
                 <div className="flex items-baseline gap-4">
                   <span
-                    className={`inline-flex size-6 shrink-0 items-center justify-center rounded-full text-[0.6875rem] font-medium tnum transition-colors duration-500 ${
-                      i === 0
-                        ? "bg-ink text-paper"
-                        : "bg-brand-soft text-brand group-hover:bg-brand group-hover:text-white"
-                    }`}
+                    className="inline-flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-soft text-[0.6875rem] font-medium text-brand tnum transition-colors duration-500 group-hover:bg-brand group-hover:text-white"
                     aria-hidden="true"
                   >
                     {i + 1}

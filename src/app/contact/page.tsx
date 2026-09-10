@@ -20,13 +20,13 @@ body: "From a partner, not a coordinator. If your enquiry lands outside what we 
   },
   {
     step: "02",
-    title: "Thirty minutes to frame the problem",
-    body: "We will ask what decision this work has to support, what evidence would change your mind, and what has already been tried. No deck.",
+    title: "Thirty minutes to understand the need",
+    body: "We will ask what you are trying to achieve, what subject matter it touches, and what has already been tried. No deck.",
   },
   {
     step: "03",
-    title: "A named team and a fixed shape",
-    body: "Within a week you get a one page proposal: the two to eight experts we would field, their background, the streams, the duration and the price.",
+    title: "Named experts and a fixed shape",
+    body: "Within a week you get a one page proposal: the experts we would field, their background, the streams, the duration and the price.",
   },
 ];
 
@@ -67,14 +67,14 @@ export default function ContactPage() {
           { label: "Contact", href: "/contact" },
         ]}
         titleLines={[
-          "Tell us the decision.",
+          "Tell us what you need.",
           <>
-            We&apos;ll tell you{" "}
-            <span className="accent-italic text-azure">who</span>
+            We&apos;ll find you the{" "}
+            <span className="accent-italic text-azure">right</span>
           </>,
-          "should be in the room.",
+          "expert for it.",
         ]}
-        lead="A first conversation is thirty minutes with a partner. If we are not the right people for the problem, we will say so, and usually point you at who is."
+        lead="A first conversation is thirty minutes with a partner. If nobody in the network is the right match, we will say so, and usually point you at who is."
       />
 
       {/* Form + direct routes */}
@@ -88,9 +88,9 @@ export default function ContactPage() {
               </Reveal>
               <Reveal delay={0.06}>
                 <h2 className="mt-7 max-w-[20ch] text-display-sm text-ink">
-                  Four fields and{" "}
+                  Four fields and a{" "}
                   <span className="accent-italic text-brand">
-                    one honest sentence
+                    sentence on what you need
                   </span>
                   .
                 </h2>

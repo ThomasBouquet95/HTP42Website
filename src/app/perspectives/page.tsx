@@ -120,7 +120,7 @@ export default function PerspectivesPage() {
                 .
               </>
             }
-            lead="Grouped by nothing in particular. If a title is relevant to a decision you are making, ask for it and we will send it across with our current thinking on top."
+            lead="Grouped by nothing in particular. If a title is relevant to something you are working on, ask for it and we will send it across with our current thinking on top."
           />
 
           <Stagger className="mt-14 flex flex-col md:mt-16">

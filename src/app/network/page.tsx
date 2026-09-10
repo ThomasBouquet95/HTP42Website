@@ -13,7 +13,6 @@ import {
   DrawRule,
 } from "@/components/motion/Reveal";
 import { EXPERT_COUNT, disciplines, leadership } from "@/content/network";
-import { proofPoints } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "The Network",
@@ -212,14 +211,9 @@ export default function NetworkPage() {
             {disciplines.map((discipline) => (
               <StaggerItem key={discipline.index}>
                 <div className="group flex h-full flex-col bg-paper p-7 transition-colors duration-700 hover:bg-paper-2 md:p-8">
-                  <div className="flex items-baseline justify-between gap-4">
-                    <span className="eyebrow tnum text-ink-300">
-                      {discipline.index}
-                    </span>
-                    <span className="eyebrow tnum text-brand">
-                      {discipline.count} experts
-                    </span>
-                  </div>
+                  <span className="eyebrow tnum text-ink-300">
+                    {discipline.index}
+                  </span>
                   <h3 className="mt-7 max-w-[20ch] text-[1.1875rem] leading-tight tracking-[-0.026em] text-ink transition-colors duration-500 group-hover:text-brand md:text-[1.3125rem]">
                     {discipline.name}
                   </h3>
@@ -262,18 +256,20 @@ export default function NetworkPage() {
               </Reveal>
               <Reveal delay={0.06}>
                 <h2 className="mt-7 max-w-[18ch] text-display-sm text-white">
-                  We add roughly{" "}
+                  Every expert is{" "}
                   <span className="accent-italic text-azure">
-                    one expert a month
+                    vetted by a partner
                   </span>
-                  .
+                  , then reviewed on every engagement.
                 </h2>
               </Reveal>
               <Reveal delay={0.12}>
                 <p className="lead mt-7 max-w-md text-white/60">
-                  Not because demand is low, but because the qualification bar
-                  is the whole proposition. Every expert is reviewed at senior
-                  level before onboarding, and supported and reviewed after it.
+                  Joining is a systematic review by our partners, on subject
+                  matter depth and on the soft skills that make someone
+                  workable inside a client team. After that, client
+                  satisfaction is tracked on every engagement, and it decides
+                  who gets the next one.
                 </p>
               </Reveal>
               <Reveal delay={0.18}>
@@ -308,19 +304,6 @@ export default function NetworkPage() {
                 ))}
               </Stagger>
 
-              <Reveal delay={0.24}>
-                <dl className="rule-on-dark mt-12 grid grid-cols-2 gap-x-10 gap-y-8 pt-8 lg:grid-cols-4">
-                  {proofPoints.map((point) => (
-                    <div key={point.label}>
-                      <dt className="eyebrow text-white/50">{point.label}</dt>
-                      <dd className="tnum mt-3 text-[1.75rem] leading-none font-medium tracking-[-0.04em] text-white">
-                        {point.value}
-                        {point.suffix}
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
-              </Reveal>
             </div>
           </div>
         </div>
@@ -336,7 +319,7 @@ export default function NetworkPage() {
             <span className="accent-italic text-azure">That is our job.</span>
           </>
         }
-        body="Describe the decision in front of you. We will come back with the two to eight people we would put on it, and why each of them."
+        body="Describe what you need. We will come back with the experts we would put on it, their background, and why each of them."
         secondary={{ label: "See client impact", href: "/impact" }}
       />
     </>

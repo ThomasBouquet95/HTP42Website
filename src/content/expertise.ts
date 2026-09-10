@@ -278,15 +278,15 @@ export const allServices = practices.flatMap((p) =>
 export const engagementModel = [
   {
     step: "01",
-    name: "Frame",
+    name: "Understand",
     duration: "Days 1 to 5",
-    body: "We interrogate the question before answering it. A short framing conversation with the sponsor establishes what decision this work has to support, what evidence would change your mind, and which experts the problem actually needs.",
+    body: "A short conversation with the sponsor establishes what you are trying to achieve, which subject matter it touches, and therefore which expertise the work actually needs.",
   },
   {
     step: "02",
-    name: "Assemble",
+    name: "Match",
     duration: "Week 1",
-    body: "We name the experts from the network, typically two to eight seniors, and publish who does what. You meet them before the engagement starts. No substitutions after signature.",
+    body: "We match the expertise from the network, name the people, and publish who does what. You meet them before the engagement starts. No substitutions after signature.",
   },
   {
     step: "03",
@@ -298,6 +298,6 @@ export const engagementModel = [
     step: "04",
     name: "Land",
     duration: "Final 2 weeks",
-    body: "Structured deliverables and an executive summary designed for the decision you framed in week one. The same experts stay on to help you act on it.",
+    body: "Structured deliverables and an executive summary built around what you set out in week one. The same experts stay on to help you act on it.",
   },
 ] as const;
