@@ -16,32 +16,32 @@ export const EXPERT_COUNT = 50;
 export const leadership: Leader[] = [
   {
     name: "Pascal Bouquet",
-    role: "Chief Executive Officer, Managing Partner",
+    role: "Managing Director & Partner",
     note: "Former Novartis VP and Head of Technology (CTO) for data42. Health data, AI strategy and clinical data systems.",
   },
   {
     name: "Gabriel Eichler",
-    role: "Senior Advisor, Data, AI and Digital Transformation",
+    role: "Partner",
     note: "Former VP and Chief Data Officer for data42 at Novartis. Founder of Oak Health Partners, advising top 10 pharma and investors on data, AI and digital transformation.",
   },
   {
     name: "Jennifer Cubino",
-    role: "Senior Advisor, Clinical Operations and Real World Evidence",
+    role: "Partner",
     note: "Clinical operations executive spanning first in human through post authorisation studies. Deep real world data, EMR and privacy experience, leading global matrixed teams across oncology, immunology and rare disease.",
   },
   {
     name: "Linda D.",
-    role: "Executive Director, Head of Data Strategy & Analytics",
+    role: "Partner",
     note: "Data strategy leader with deep experience in clinical trial reengineering and biostatistics.",
   },
   {
     name: "Marius C.",
-    role: "Chief Technology Officer",
+    role: "Partner",
     note: "Programme director specialising in graph based data science, open source and pharmaceutical data modelling.",
   },
   {
     name: "Venkataraman Balasubramaniam",
-    role: "Partner, Singapore. Enterprise Technical Architect",
+    role: "Partner",
     note: "TOGAF 9 and AWS certified. Designed cloud based analytics environments at Novartis.",
   },
 ];

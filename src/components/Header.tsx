@@ -74,9 +74,12 @@ export function Header() {
               className="hidden items-center gap-8 lg:flex"
             >
               {nav.map((item) => {
+                // "/" is a prefix of every route, so it only matches exactly.
                 const active =
-                  pathname === item.href ||
-                  pathname.startsWith(`${item.href}/`);
+                  item.href === "/"
+                    ? pathname === "/"
+                    : pathname === item.href ||
+                      pathname.startsWith(`${item.href}/`);
                 return (
                   <Link
                     key={item.href}

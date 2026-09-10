@@ -5,9 +5,13 @@ import { offerings } from "@/content/offerings";
 
 /**
  * The two ways clients work with HTP42. This is the commercial model, so it
- * earns full width cards rather than a compact list: the distinction between
- * staffing one expert and assembling a delivery team is the thing prospects
- * most need to understand before they call.
+ * earns full width cards: the distinction between embedding experts and
+ * handing over a programme is the thing prospects most need to understand
+ * before they call.
+ *
+ * Each card splits into a tinted header carrying the name, the promise and
+ * the diagram, then the detail beneath on the paper ground. That gives the
+ * two offerings a clear shape instead of two stacks of prose.
  */
 export function Offerings() {
   return (
@@ -25,7 +29,7 @@ export function Offerings() {
               .
             </>
           }
-          lead="Some clients need experts embedded in their own team for a specific need, over months or years. Others need a programme delivered, from strategy through implementation and change management. The sourcing, the vetting and the accountability are the same either way."
+          lead="Some clients need experts embedded in their own team for a specific need, over months or years. Others need a programme delivered from strategy through implementation. We find and assemble the AI empowered experts for you, and carry the accountability for what they deliver."
         />
 
         <Stagger className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-ink/10 bg-ink/10 md:mt-16 lg:grid-cols-2">
@@ -33,46 +37,42 @@ export function Offerings() {
             const Diagram = offeringDiagrams[offering.icon];
             return (
               <StaggerItem key={offering.slug}>
-                <article className="group flex h-full flex-col bg-paper p-7 transition-colors duration-700 hover:bg-paper/60 md:p-9 lg:p-11">
-                  <div className="flex items-start justify-between gap-6">
-                    <span className="eyebrow tnum text-ink-300">
-                      {offering.index}
-                    </span>
-                    <Diagram className="h-14 w-[4.75rem] shrink-0 md:h-[4.5rem] md:w-24" />
+                <article className="group flex h-full flex-col bg-paper">
+                  {/* Header: identity and promise */}
+                  <div className="relative overflow-hidden border-b border-ink/[0.08] bg-paper-2/70 px-7 pt-7 pb-8 transition-colors duration-700 group-hover:bg-brand-soft/45 md:px-9 md:pt-8 md:pb-9">
+                    <div className="flex items-start justify-between gap-6">
+                      <span className="eyebrow tnum text-ink-300">
+                        {offering.index}
+                      </span>
+                      <Diagram className="h-14 w-[4.75rem] shrink-0 md:h-[4.25rem] md:w-[5.75rem]" />
+                    </div>
+
+                    <h3 className="mt-7 text-[1.625rem] tracking-[-0.032em] text-ink md:text-[1.875rem]">
+                      {offering.name}
+                    </h3>
+
+                    <p className="mt-3 max-w-[30ch] text-[1.0625rem] leading-snug font-medium tracking-[-0.014em] text-brand md:text-[1.125rem]">
+                      {offering.promise}
+                    </p>
                   </div>
 
-                  <h3 className="mt-8 text-[1.625rem] tracking-[-0.03em] text-ink transition-colors duration-500 group-hover:text-brand md:text-[1.875rem]">
-                    {offering.name}
-                  </h3>
+                  {/* Body: how it works */}
+                  <div className="flex flex-1 flex-col px-7 pt-7 pb-8 md:px-9 md:pt-8 md:pb-10">
+                    <p className="body-copy max-w-[46ch]">{offering.body}</p>
 
-                  <p className="mt-4 max-w-[34ch] text-[1.0625rem] leading-relaxed font-medium tracking-[-0.012em] text-brand">
-                    {offering.promise}
-                  </p>
-
-                  <p className="body-copy mt-5 max-w-[48ch]">{offering.body}</p>
-
-                  <ul className="rule mt-9 flex flex-col pt-6">
-                    {offering.points.map((point, i) => (
-                      <li
-                        key={point.label}
-                        className={`flex gap-4 border-ink/[0.08] py-4 ${
-                          i === 0 ? "pt-0" : "border-t"
-                        }`}
-                      >
-                        <span className="eyebrow tnum mt-1.5 shrink-0 text-brand">
-                          0{i + 1}
-                        </span>
-                        <div>
-                          <h4 className="text-[0.9375rem] leading-snug font-medium tracking-[-0.01em] text-ink">
+                    <dl className="mt-8 grid grid-cols-1 gap-x-8 gap-y-5 sm:grid-cols-2">
+                      {offering.points.map((point) => (
+                        <div key={point.label} className="rule pt-4">
+                          <dt className="text-[0.875rem] leading-snug font-medium tracking-[-0.01em] text-ink">
                             {point.label}
-                          </h4>
-                          <p className="mt-1.5 max-w-[44ch] text-[0.875rem] leading-relaxed text-ink-400">
+                          </dt>
+                          <dd className="mt-2 text-[0.8125rem] leading-relaxed text-ink-400">
                             {point.detail}
-                          </p>
+                          </dd>
                         </div>
-                      </li>
-                    ))}
-                  </ul>
+                      ))}
+                    </dl>
+                  </div>
                 </article>
               </StaggerItem>
             );

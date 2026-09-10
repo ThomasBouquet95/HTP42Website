@@ -2,20 +2,7 @@ import Link from "next/link";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
-import { Marquee } from "@/components/ui/Marquee";
 import { EXPERT_COUNT, disciplines, leadership } from "@/content/network";
-
-const ALUMNI = [
-  "Novartis",
-  "Roche · Genentech",
-  "Sanofi",
-  "Novo Nordisk",
-  "Johnson & Johnson",
-  "Amgen",
-  "Nestlé",
-  "CDISC",
-  "data42",
-] as const;
 
 /**
  * The talent proposition: depth matched to the subject matter, with enough of
@@ -70,7 +57,7 @@ export function NetworkTeaser() {
         {/* Leadership */}
         <Reveal delay={0.08}>
           <div className="rule-on-dark mt-16 pt-8 md:mt-20">
-            <h3 className="eyebrow text-azure">Partners &amp; leadership</h3>
+            <h3 className="eyebrow text-azure">Our partners</h3>
             <ul className="mt-7 grid grid-cols-1 gap-x-10 gap-y-7 sm:grid-cols-2 lg:grid-cols-3">
               {leadership.slice(0, 3).map((person) => (
                 <li key={person.name}>
@@ -94,16 +81,6 @@ export function NetworkTeaser() {
             </div>
           </div>
         </Reveal>
-      </div>
-
-      {/* Alumni marquee */}
-      <div className="rule-on-dark relative py-6">
-        <div className="shell mb-4">
-          <p className="eyebrow text-white/50">
-            Our experts held senior roles at
-          </p>
-        </div>
-        <Marquee items={ALUMNI} onDark duration={40} separator="·" />
       </div>
     </section>
   );

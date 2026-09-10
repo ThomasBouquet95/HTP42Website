@@ -1,7 +1,6 @@
 import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Reveal, DrawRule } from "@/components/motion/Reveal";
 import { ClientStrip } from "@/components/ui/ClientStrip";
-import { EXPERT_COUNT } from "@/content/network";
 
 /**
  * The statement of intent. Deliberately one editorial assertion at headline
@@ -65,16 +64,9 @@ export function Positioning() {
 
           {/* Who we work with */}
           <Reveal delay={0.22}>
-            <div className="rule mt-16 pt-7">
-              <h3 className="eyebrow text-ink-300">Who we work with</h3>
-              <div className="mt-7">
-                <ClientStrip />
-              </div>
-              <p className="mt-9 max-w-[56ch] text-[0.8125rem] leading-relaxed text-ink-400">
-                {EXPERT_COUNT}+ vetted senior experts you can access directly,
-                and 500+ more reachable through their own networks. Every one
-                of them reviewed by a partner before they join an engagement.
-              </p>
+            <div className="mt-16 md:mt-20">
+              <h3 className="eyebrow mb-5 text-ink-300">Who we work with</h3>
+              <ClientStrip />
             </div>
           </Reveal>
         </div>

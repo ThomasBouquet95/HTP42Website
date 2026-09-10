@@ -17,6 +17,7 @@ export const site = {
 } as const;
 
 export const nav = [
+  { label: "Home", href: "/" },
   { label: "Expertise", href: "/expertise" },
   { label: "The Network", href: "/network" },
   { label: "Client Impact", href: "/impact" },
@@ -27,10 +28,10 @@ export const nav = [
 /** Headline proof points. Sourced from HTP42 delivery history. */
 export const proofPoints = [
   {
-    value: 200,
-    suffix: "+",
-    label: "Engagements delivered",
-    note: "Across pharma, biotech, CROs and clinical technology companies",
+    value: 5,
+    suffix: "",
+    label: "Partners",
+    note: "Deep life sciences experience and extensive networks of their own",
   },
   {
     value: 50,
@@ -41,8 +42,14 @@ export const proofPoints = [
   {
     value: 500,
     suffix: "+",
-    label: "Extended network through those experts",
-    note: "Reachable through our experts' own networks, and vetted to the same standard before they join an engagement",
+    label: "Extended network",
+    note: "Reachable through our experts' own networks, and screened to the same standard before they join an engagement",
+  },
+  {
+    value: 200,
+    suffix: "+",
+    label: "Engagements delivered",
+    note: "Across pharma, biotech, CROs and clinical technology companies",
   },
 ] as const;
 

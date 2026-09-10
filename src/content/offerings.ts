@@ -14,7 +14,7 @@ export const offerings: Offering[] = [
     index: "01",
     slug: "expert-deployment",
     name: "Expert Deployment",
-    promise: "We find vetted experts. You sign one contract.",
+    promise: "We find proven experts. You sign one contract.",
     body: "You tell us the need. We find the right experts, vet them, and embed them in your team for as long as the need lasts, whether that is a few months or a few years. HTP42 is your single counterparty wherever in the world they sit, and we carry the contracting, administration, payment and legal work so you never manage a roster of independents.",
     points: [
       {
@@ -35,7 +35,7 @@ export const offerings: Offering[] = [
       {
         label: "Continuously managed talent",
         detail:
-          "Vetted before onboarding, reviewed on every engagement, supported throughout.",
+          "Screened by a partner before onboarding, reviewed on every engagement, supported throughout.",
       },
     ],
     icon: "deploy",
@@ -48,9 +48,9 @@ export const offerings: Offering[] = [
     body: "When you need a programme delivered rather than a role filled, we assemble the team from the network. Senior experts who have done it before, empowered by AI rather than padded out with juniors learning your problem on your budget. We take it from strategy through implementation to the change management that makes it hold.",
     points: [
       {
-        label: "Senior only teams",
+        label: "Experts, project managers and a partner",
         detail:
-          "Nobody on the engagement is learning your domain at your expense. Every person is someone you would have hired directly.",
+          "Subject matter experts do the work, experienced project managers keep it moving, and a network partner stands behind the quality of what is delivered.",
       },
       {
         label: "AI augmented delivery",

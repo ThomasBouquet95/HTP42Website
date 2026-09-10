@@ -134,7 +134,7 @@ export default function NetworkPage() {
         <div className="shell section relative">
           <SectionHeader
             index="02"
-            eyebrow="Partners & leadership"
+            eyebrow="Our partners"
             onDark
             title={
               <>
@@ -145,7 +145,7 @@ export default function NetworkPage() {
                 .
               </>
             }
-            lead="An engagement partner is accountable for every piece of work we take on. These are the people who frame it, match the expertise, and stay on it to the end."
+            lead="A partner is accountable for every piece of work we take on. Each brings deep life sciences experience and an extensive network of their own. These are the people who frame the work, match the expertise, and stay on it to the end."
           />
 
           <Stagger className="mt-14 grid grid-cols-1 gap-x-10 gap-y-10 md:mt-16 md:grid-cols-2 lg:grid-cols-3">
