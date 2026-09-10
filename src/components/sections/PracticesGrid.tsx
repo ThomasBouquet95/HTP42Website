@@ -23,10 +23,10 @@ export function PracticesGrid() {
               <span className="accent-italic text-brand">
                 continuous capability
               </span>{" "}
-              from strategy to production.
+              from strategy to execution.
             </>
           }
-          lead="Most firms hand you off between the people who write the strategy and the people who build it. We do not have that seam. The team that recommends the architecture is the team that deploys it."
+          lead="Most firms hand you off between the people who write the strategy and the people who carry it out. We do not have that seam. The expert who recommends the approach is the expert who sees it through."
         />
 
         <Stagger className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-ink/10 bg-ink/10 md:mt-16 md:grid-cols-2">
