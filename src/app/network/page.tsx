@@ -43,7 +43,7 @@ export default function NetworkPage() {
           </>,
           "subject matter.",
         ]}
-        lead="HealthTech Partners 42 was founded in Basel by former Novartis leadership on a simple observation: the people who genuinely know how to fix a pharma data problem are rarely the people a firm has available that quarter."
+        lead="Knowing who to trust with a specific problem is not something a CV database can tell you. It sits with senior leaders who have already worked with these people. Put those leaders and the experts they vouch for in one network, and clients get access they cannot source alone."
         facts={[
           { label: "Senior experts", value: `${EXPERT_COUNT}+` },
           { label: "Disciplines", value: String(disciplines.length) },
@@ -103,11 +103,12 @@ export default function NetworkPage() {
                     not already hold, we source it through our extended network.
                   </p>
                   <p className="body-copy">
-                    A single specialist cannot cover a twenty six week
-                    programme. So we assemble two to eight of them into one
-                    accountable team, name them before you sign, and keep one
-                    engagement partner responsible from framing through to
-                    handover. No substitutions afterwards.
+                    Clients use that two ways. Either we find an expert and
+                    staff them onto your team, with HTP42 as the single
+                    contracting party carrying the administration and legal
+                    work. Or we assemble a senior team from the network and
+                    deliver the programme end to end, named before you sign and
+                    with one engagement partner accountable throughout.
                   </p>
                 </div>
               </Reveal>

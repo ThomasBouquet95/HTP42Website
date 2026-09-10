@@ -107,9 +107,53 @@ export function DiagramTransform({ className }: Props) {
   );
 }
 
+/** Expert Deployment: one expert sourced, placed inside the client's team. */
+export function DiagramDeploy({ className }: Props) {
+  return (
+    <Field className={className}>
+      {/* the client team */}
+      <rect x="52" y="14" width="36" height="44" rx="2" className={S.base} strokeDasharray="3 3" />
+      {[24, 36, 48].map((y) => (
+        <circle key={y} cx="62" cy={y} r="2.6" className={S.fillBase} />
+      ))}
+      {/* the sourced expert */}
+      <circle cx="12" cy="36" r="4" className={S.fillAccent} />
+      <circle cx="12" cy="36" r="9" className={S.accent} />
+      <path d="M23 36h20" className={S.accent} />
+      <path d="M43 36l-4-3.5M43 36l-4 3.5" className={S.accent} />
+      <circle cx="78" cy="36" r="4.5" className={S.accent} />
+      <circle cx="78" cy="36" r="1.8" className={S.fillAccent} />
+    </Field>
+  );
+}
+
+/** Consulting Projects: a senior team converging on one delivery. */
+export function DiagramProject({ className }: Props) {
+  return (
+    <Field className={className}>
+      {[10, 26, 42, 58].map((y, i) => (
+        <g key={y}>
+          <circle cx="10" cy={y + 3} r="3.4" className={i === 0 ? S.fillAccent : S.fillBase} />
+          <path d={`M16 ${y + 3}C32 ${y + 3}, 34 36, 48 36`} className={S.base} />
+        </g>
+      ))}
+      <circle cx="52" cy="36" r="8" className={S.accent} />
+      <circle cx="52" cy="36" r="3" className={S.fillAccent} />
+      <path d="M60 36h12" className={S.accent} />
+      <rect x="72" y="26" width="16" height="20" rx="2" className={S.base} />
+      <path d="M76 33h8M76 39h5" className={S.base} />
+    </Field>
+  );
+}
+
 export const diagrams = {
   brain: DiagramDataAI,
   database: DiagramStandards,
   blueprint: DiagramBlueprint,
   transform: DiagramTransform,
+} as const;
+
+export const offeringDiagrams = {
+  deploy: DiagramDeploy,
+  project: DiagramProject,
 } as const;

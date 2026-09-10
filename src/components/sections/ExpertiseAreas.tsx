@@ -15,7 +15,7 @@ export function ExpertiseAreas() {
     <section id="expertise" className="section bg-paper-2">
       <div className="shell">
         <SectionHeader
-          index="01"
+          index="02"
           eyebrow="Expertise"
           title={
             <>

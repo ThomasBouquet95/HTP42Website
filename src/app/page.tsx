@@ -1,5 +1,6 @@
 import { HomeHero } from "@/components/sections/HomeHero";
 import { Positioning } from "@/components/sections/Positioning";
+import { Offerings } from "@/components/sections/Offerings";
 import { ExpertiseAreas } from "@/components/sections/ExpertiseAreas";
 import { ProofPoints } from "@/components/sections/ProofPoints";
 import { WhyHtp42 } from "@/components/sections/WhyHtp42";
@@ -13,6 +14,7 @@ export default function HomePage() {
     <>
       <HomeHero />
       <Positioning />
+      <Offerings />
       <ExpertiseAreas />
       <ProofPoints />
       <WhyHtp42 />

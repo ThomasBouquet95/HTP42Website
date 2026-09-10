@@ -12,9 +12,8 @@ import { capabilityKeywords } from "@/content/site";
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 const HERO_FACTS = [
-  { value: "50+", label: "Senior experts on call" },
+  { value: "50+", label: "Vetted senior experts on call" },
   { value: "200+", label: "Engagements delivered" },
-  { value: "Basel", label: "Founded by former Novartis leadership" },
 ];
 
 export function HomeHero() {
@@ -103,7 +102,7 @@ export function HomeHero() {
 
         {/* Quiet fact rail */}
         <motion.dl
-          className="rule-on-dark mt-14 grid grid-cols-1 gap-x-10 gap-y-6 pt-7 sm:grid-cols-3 md:mt-16"
+          className="rule-on-dark mt-14 grid grid-cols-1 gap-x-10 gap-y-6 pt-7 sm:grid-cols-2 md:mt-16"
           initial={reduced ? undefined : { opacity: 0, y: 18 }}
           animate={reduced ? undefined : { opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8, ease: EASE }}

@@ -44,11 +44,11 @@ export function Positioning() {
                 stand the team down when the work is done.
               </p>
               <p className="body-copy">
-                That means topic specific matching rather than whoever is
-                available, senior review before anyone is onboarded, and the
-                option to source new experts through our extended network when
-                the brief needs it. Where a single specialist is not enough, we
-                assemble two to eight of them into one accountable team.
+                There are two ways that works. We find an expert and staff them
+                onto your team, with HTP42 as your single contracting party and
+                the administration and legal work on us. Or, when the work needs
+                a team, we assemble one from the network and deliver the
+                programme end to end.
               </p>
             </div>
           </Reveal>

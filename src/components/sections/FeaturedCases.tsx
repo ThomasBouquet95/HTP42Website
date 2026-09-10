@@ -9,7 +9,7 @@ export function FeaturedCases() {
     <section className="section bg-paper-2">
       <div className="shell">
         <SectionHeader
-          index="03"
+          index="04"
           eyebrow="Client impact"
           title={
             <>

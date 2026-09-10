@@ -16,22 +16,18 @@ export function ProofPoints() {
           <div className="flex flex-col gap-4 md:flex-row md:items-baseline md:justify-between">
             <Eyebrow onDark>By the numbers</Eyebrow>
             <p className="max-w-md text-sm leading-relaxed text-white/55">
-              Delivery history across pharma, biotech, CROs and clinical
-              technology vendors.
+              Every expert vetted before onboarding, and reviewed on every
+              engagement afterwards.
             </p>
           </div>
         </Reveal>
 
-        <Stagger className="mt-12 grid grid-cols-1 gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+        <Stagger className="mt-12 grid grid-cols-1 gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
           {proofPoints.map((point) => (
             <StaggerItem key={point.label}>
               <div className="rule-on-dark pt-6">
                 <p className="text-[clamp(2.5rem,1.6rem+2.4vw,3.75rem)] leading-none font-medium tracking-[-0.04em] text-white">
-                  <Counter
-                    value={point.value}
-                    prefix={"prefix" in point ? point.prefix : ""}
-                    suffix={point.suffix}
-                  />
+                  <Counter value={point.value} suffix={point.suffix} />
                 </p>
                 <p className="mt-5 text-[0.9375rem] font-medium tracking-[-0.01em] text-azure">
                   {point.label}

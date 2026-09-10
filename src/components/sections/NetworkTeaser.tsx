@@ -31,7 +31,7 @@ export function NetworkTeaser() {
 
       <div className="shell section relative">
         <SectionHeader
-          index="04"
+          index="05"
           eyebrow="The network"
           onDark
           title={

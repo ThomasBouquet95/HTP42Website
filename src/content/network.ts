@@ -115,7 +115,7 @@ export const modelComparison = {
     },
     {
       dimension: "Scaling up",
-      htp42: "Experts assembled into teams of two to eight",
+      htp42: "One expert staffed, or a senior team assembled",
       large: "Large teams, variable seniority",
       solo: "The capacity of one person",
     },
@@ -126,10 +126,10 @@ export const modelComparison = {
       solo: "Ends when they move to the next client",
     },
     {
-      dimension: "Time to answer",
-      htp42: "6 to 10 weeks typical",
-      large: "One to two quarters",
-      solo: "Bound by their availability",
+      dimension: "Speed of access",
+      htp42: "Days to a named expert, weeks to a team",
+      large: "A procurement cycle, then a staffing cycle",
+      solo: "Bound by one person's availability",
     },
     {
       dimension: "Finding the right person",
