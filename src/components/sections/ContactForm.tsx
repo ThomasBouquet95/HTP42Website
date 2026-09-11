@@ -3,7 +3,16 @@
 import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
+import { site } from "@/content/site";
+import { expertiseAreas } from "@/content/expertise";
 
+const TOPICS = [
+  ...expertiseAreas.map((a) => a.name),
+  "A specific case study",
+  "Joining the expert network",
+  "Briefings, events and convenings",
+  "Something else",
+];
 
 const field =
   "w-full rounded-md border border-ink/15 bg-paper px-4 py-3 text-base tracking-[-0.008em] text-ink transition-colors duration-300 placeholder:text-ink-300 hover:border-ink/30 focus:border-brand focus:outline-none";
@@ -15,20 +24,7 @@ const label = "eyebrow block text-ink-400";
  * fully composed message to the visitor's own mail client. That keeps the
  * enquiry in their sent items, which senior buyers tend to prefer anyway.
  */
-export function ContactForm({
-  contactEmail,
-  areaNames,
-}: {
-  contactEmail: string;
-  areaNames: string[];
-}) {
-  const TOPICS = [
-    ...areaNames,
-    "A specific case study",
-    "Joining the expert network",
-    "Briefings, events and convenings",
-    "Something else",
-  ];
+export function ContactForm() {
   const [sent, setSent] = useState(false);
   const reduced = useReducedMotion();
 
@@ -51,7 +47,7 @@ export function ContactForm({
       "Sent from htp42.com",
     ].join("\n");
 
-    window.location.href = `mailto:${contactEmail}?subject=${encodeURIComponent(
+    window.location.href = `mailto:${site.contact.email}?subject=${encodeURIComponent(
       subject,
     )}&body=${encodeURIComponent(body)}`;
     setSent(true);
@@ -177,10 +173,10 @@ export function ContactForm({
         This form composes the message in your own email client, so nothing is
         stored on this site. Prefer to write directly?{" "}
         <a
-          href={`mailto:${contactEmail}`}
+          href={`mailto:${site.contact.email}`}
           className="link-wipe font-medium text-ink-600"
         >
-          {contactEmail}
+          {site.contact.email}
         </a>
       </p>
     </form>

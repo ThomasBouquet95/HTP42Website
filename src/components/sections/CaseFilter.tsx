@@ -3,8 +3,8 @@
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { CaseRow } from "@/components/ui/CaseRow";
-import type { CaseStudy } from "@/content/cases";
-import type { ExpertiseArea } from "@/content/expertise";
+import { caseStudies } from "@/content/cases";
+import { expertiseAreas } from "@/content/expertise";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 const ALL = "All engagements";
@@ -13,13 +13,7 @@ const ALL = "All engagements";
  * Filters the case list by expertise area. Client side and instant: with seven
  * studies there is nothing to fetch, so the interaction should feel free.
  */
-export function CaseFilter({
-  caseStudies,
-  expertiseAreas,
-}: {
-  caseStudies: CaseStudy[];
-  expertiseAreas: ExpertiseArea[];
-}) {
+export function CaseFilter() {
   const [active, setActive] = useState<string>(ALL);
   const reduced = useReducedMotion();
 

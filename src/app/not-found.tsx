@@ -2,11 +2,9 @@ import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Mark } from "@/components/ui/Logo";
-import { getContent } from "@/content/live";
+import { nav } from "@/content/site";
 
-export default async function NotFound() {
-  const { nav } = await getContent();
-
+export default function NotFound() {
   return (
     <section className="grain relative flex min-h-[80svh] items-center overflow-hidden bg-ink pt-36 pb-20 md:pt-44">
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">

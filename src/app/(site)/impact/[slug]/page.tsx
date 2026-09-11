@@ -6,8 +6,7 @@ import { PageHero } from "@/components/PageHero";
 import { CtaBand } from "@/components/CtaBand";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal, Stagger, StaggerItem, DrawRule } from "@/components/motion/Reveal";
-import { caseStudies } from "@/content/cases";
-import { getContent } from "@/content/live";
+import { caseStudies, getCase } from "@/content/cases";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -17,8 +16,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
-  const content = await getContent();
-  const study = content.caseStudies.find((c) => c.slug === slug);
+  const study = getCase(slug);
   if (!study) return { title: "Case study not found" };
 
   return {
@@ -34,17 +32,13 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 
 export default async function CaseStudyPage({ params }: Params) {
   const { slug } = await params;
-  const content = await getContent();
-  // Slugs are not editable, so the compiled list still defines the routes;
-  // everything shown on the page comes from the merged content.
-  const studies = content.caseStudies;
-  const study = studies.find((c) => c.slug === slug);
+  const study = getCase(slug);
   if (!study) notFound();
 
-  const position = studies.findIndex((c) => c.slug === slug);
-  const next = studies[(position + 1) % studies.length];
+  const position = caseStudies.findIndex((c) => c.slug === slug);
+  const next = caseStudies[(position + 1) % caseStudies.length];
   const previous =
-    studies[(position - 1 + studies.length) % studies.length];
+    caseStudies[(position - 1 + caseStudies.length) % caseStudies.length];
 
   return (
     <>

@@ -1,7 +1,7 @@
 import { Check } from "lucide-react";
 import { Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { audienceDiagrams } from "@/components/ui/AreaDiagram";
-import { getContent } from "@/content/live";
+import { audiences } from "@/content/audiences";
 
 /**
  * The three sided proposition, as one grid. Shared by the homepage network
@@ -18,9 +18,7 @@ import { getContent } from "@/content/live";
  * so the lists start on the same line even though the paragraphs above them
  * differ in length.
  */
-export async function ThreeSides() {
-  const { audiences } = await getContent();
-
+export function ThreeSides() {
   return (
     /*
      * On phones the three cards become a swipe track rather than 1800px of

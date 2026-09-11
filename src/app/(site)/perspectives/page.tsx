@@ -6,8 +6,9 @@ import { CtaBand } from "@/components/CtaBand";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal, Stagger, StaggerItem, DrawRule } from "@/components/motion/Reveal";
+import { perspectives } from "@/content/perspectives";
 import { formatDate } from "@/lib/format";
-import { getContent } from "@/content/live";
+import { site } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Perspectives",
@@ -15,20 +16,17 @@ export const metadata: Metadata = {
     "Short, specific pieces on life sciences data, AI governance, clinical standards and technology strategy, written by the experts who deliver the work.",
 };
 
+const [lead, ...rest] = perspectives;
 
-export default async function PerspectivesPage() {
-  const { perspectives, site } = await getContent();
+function requestLink(title: string) {
+  return `mailto:${site.contact.email}?subject=${encodeURIComponent(
+    `Perspectives: ${title}`,
+  )}&body=${encodeURIComponent(
+    `Hello HTP42,\n\nI'd like to read the full piece: "${title}".\n\nName:\nOrganisation:\nRole:\n`,
+  )}`;
+}
 
-  const [lead, ...rest] = perspectives;
-
-  function requestLink(title: string) {
-    return `mailto:${site.contact.email}?subject=${encodeURIComponent(
-      `Perspectives: ${title}`,
-    )}&body=${encodeURIComponent(
-      `Hello HTP42,\n\nI'd like to read the full piece: "${title}".\n\nName:\nOrganisation:\nRole:\n`,
-    )}`;
-  }
-
+export default function PerspectivesPage() {
   const categories = [...new Set(perspectives.map((p) => p.category))];
 
   return (

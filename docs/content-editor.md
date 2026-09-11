@@ -1,76 +1,96 @@
 # Content editor
 
-A password protected editor at `/admin` for changing the text on the site
-without a deploy. 627 fields, generated from the content tree, so anything
-added to the site later appears in the editor on its own.
+A password protected editor at `/admin`. It shows the real pages of the site
+with their text open for editing, and exports what you changed as a file to
+hand back to a developer.
+
+Nothing publishes from `/admin`. That is deliberate: the repository stays the
+single source of truth for the site's copy, so your edits and a developer's
+edits can never end up as two competing versions of the same sentence.
 
 ## Setting it up
 
-Two environment variables in the Vercel dashboard, under Settings then
-Environment Variables. Add them for Production (and Preview, if you want the
-editor there too), then redeploy.
+One environment variable, in the Vercel dashboard under Settings then
+Environment Variables. Add it and redeploy.
 
-### 1. `ADMIN_PASSWORD` (required)
+### `ADMIN_PASSWORD` (required)
 
-The password for `/admin`. Make it long: it is the only thing standing between
-the public internet and your website's text. A passphrase of four or five
-random words is far stronger than a short complicated one.
+The password for `/admin`. Make it long: it is the only thing between the
+public internet and this editor. A passphrase of four or five random words is
+far stronger than a short complicated one.
 
-### 2. A place to keep the edits
-
-A password on its own cannot save anything. A Vercel deployment has a read only
-filesystem, so the edited text needs somewhere durable to sit.
-
-In the Vercel dashboard: **Storage**, then **Create Database**, then **Blob**,
-and connect it to this project. Vercel adds `BLOB_READ_WRITE_TOKEN` for you.
-Redeploy and the editor can save.
-
-Until that store exists the site is completely fine: it renders the text that
-shipped with the build, and the editor tells you plainly that it cannot save
-yet.
-
-### Optional: `ADMIN_SESSION_SECRET`
+### `ADMIN_SESSION_SECRET` (optional)
 
 Signs the session cookie. Without it the key is derived from the password,
 which is fine, with one consequence worth knowing: changing the password signs
 out every open session. Set this to any long random string if you would rather
 the two were independent.
 
-## How it works
+There is no database and no storage token. Your edits live in your own browser
+until you export them.
 
-- `src/content/*.ts` holds the text that ships with the build. This is still
-  the source of truth and still where a developer edits copy.
-- The editor saves only the fields you actually changed, as a small JSON file
-  of `path: value` pairs, for example
-  `{"offerings.0.promise": "We find proven experts."}`.
-- `getContent()` merges the two on the server. Anything you have not touched
-  falls back to the file, so the site cannot end up blank because a store is
-  empty or unreachable.
-- Saving calls `updateTag`, so the next request to any page serves the new
-  text rather than a cached copy. No redeploy.
+## Using it
 
-### What this means for future code changes
+1. Go to `/admin` and sign in.
+2. Pick a page from the top bar. The real page loads in the preview, and the
+   panel on the right lists the text found on it.
+3. Either click any text in the preview to jump straight to its field, or
+   search for the words you want to change.
+4. Edit in the panel. The preview updates as you type, so you see the sentence
+   in place rather than in a form.
+5. Press **Export** for a file, or **Copy** to put the same content on your
+   clipboard. Send either to your developer.
 
-Because overrides win, a field you have edited in `/admin` will keep your
-version even if the text in `src/content` is later changed by a developer. If
-you want to take the newer text, hit **Revert** on that field, or **Reset all**
-to drop every override at once.
+Desktop, Tablet and Phone buttons change the preview width, which is useful
+for checking that a longer sentence still sits well on a phone.
+
+Your draft is kept in the browser, so you can close the tab and come back to
+it. **Discard** clears it. Nothing is sent anywhere until you export.
+
+## What the export contains
+
+A JSON file, which is the right format here because it names the exact content
+path of every change. Two sentences on the site can be similar, and a path
+removes any doubt about which one you meant:
+
+```json
+{
+  "changes": [
+    {
+      "path": "offerings.0.promise",
+      "where": "How we work with you - Expert Deployment - Promise",
+      "before": "We find proven experts. You sign one contract.",
+      "after": "We find vetted experts. One contract."
+    }
+  ]
+}
+```
+
+It is also readable enough to check by eye before you send it: each entry says
+where the text sits, what it was, and what you want it to be.
 
 ## What is editable and what is not
 
-Editable: every string and number in the content tree. Headlines, leads, card
-copy, case studies, partner biographies, values, navigation labels, contact
-details, the numbers in the band.
+Editable: the text held in `src/content/*.ts`. Card copy, case studies, partner
+biographies, values, disciplines, the three sided proposition, navigation
+labels, contact details, client names, the numbers in the band.
 
-Not editable, by design:
+Not editable yet:
 
-- `slug`, `href` and `url`: they generate URLs, and changing one would break
+- **Section headlines and leads.** Most of these live inline in the section
+  components rather than in the content files, often because the headline
+  carries an italic accent, as in "Embed our experts, or *hand us the
+  solution*", where the accent is markup rather than text. Moving them into
+  the content files is the obvious next step.
+- `slug`, `href` and `url`, which generate URLs, so changing one would break
   every link to it.
-- `icon` and `logo`: they name a component or a file that has to exist.
-- `featured`: a flag rather than copy.
-- Section headlines that carry an italic accent, like "Embed our experts, or
-  *hand us the solution*." The accent is markup rather than text, so those few
-  live in the section components and need a developer.
+- `icon` and `logo`, which name a component or a file that has to exist.
+
+If a field is editable but does not light up in the preview, it is still fully
+editable from the panel search. The preview finds text by matching it exactly,
+so a sentence broken across an italic accent will not be located in the page.
+The export is keyed by content path either way, so what a developer receives is
+never ambiguous.
 
 ## Security
 
@@ -82,19 +102,16 @@ Not editable, by design:
   password is what actually protects this.
 - The session cookie is signed, httpOnly, sameSite and secure in production,
   and lasts 8 hours.
-- `/admin` is disallowed in `robots.txt` and carries `noindex`, and is absent
-  from the sitemap.
-- Writes are validated against the content tree: a path that does not name a
-  real editable field is dropped, so nothing can be injected into the content
-  by crafting a request.
+- `/admin` is disallowed in `robots.txt`, carries `noindex`, and is absent from
+  the sitemap.
+- The editor cannot write to the site at all, so even a compromised password
+  cannot change what the public sees.
 
-## Local development
+## For the developer applying an export
 
-```
-ADMIN_PASSWORD=something
-CONTENT_STORE_FILE=/tmp/htp42-content-overrides.json
-```
-
-in `.env.local`. Edits go to that file instead of Blob. The file driver is
-ignored when `NODE_ENV` is production, so it cannot be used by accident on a
-deployment.
+Each change gives a `path` into the tree assembled in
+`src/content/registry.ts`, so `offerings.0.promise` is
+`offerings[0].promise` in `src/content/offerings.ts`. `before` is there to
+confirm you are editing the sentence the author was looking at; if it no longer
+matches, the copy has moved on since the export and the change needs a
+conversation rather than a find and replace.

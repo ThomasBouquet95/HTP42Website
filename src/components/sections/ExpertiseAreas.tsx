@@ -3,7 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { diagrams } from "@/components/ui/AreaDiagram";
-import { getContent } from "@/content/live";
+import { expertiseAreas } from "@/content/expertise";
 
 /**
  * Illustrative expertise areas as compact editorial cards. These are examples
@@ -16,9 +16,7 @@ import { getContent } from "@/content/live";
  * of step. Below that breakpoint the cards stay a flex column and the link is
  * pushed to the foot, so the bottoms still line up.
  */
-export async function ExpertiseAreas() {
-  const { expertiseAreas } = await getContent();
-
+export function ExpertiseAreas() {
   return (
     <section id="expertise" className="section bg-paper">
       <div className="shell">

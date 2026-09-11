@@ -6,7 +6,6 @@ import {
   Poppins,
 } from "next/font/google";
 import { site } from "@/content/site";
-import { getContent } from "@/content/live";
 import "./globals.css";
 
 const interTight = Inter_Tight({
@@ -37,9 +36,7 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
-export async function generateMetadata(): Promise<Metadata> {
-  const { site } = await getContent();
-  return {
+export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
     default: `${site.shortName} · ${site.tagline}`,
@@ -72,8 +69,7 @@ export async function generateMetadata(): Promise<Metadata> {
     description: site.description,
   },
   robots: { index: true, follow: true },
-  };
-}
+};
 
 export const viewport: Viewport = {
   themeColor: "#0a0f1c",
@@ -81,13 +77,11 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const { site } = await getContent();
-
   return (
     <html
       lang="en-GB"

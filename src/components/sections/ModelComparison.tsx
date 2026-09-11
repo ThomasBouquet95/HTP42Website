@@ -1,15 +1,13 @@
 import { Check, Minus } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
-import { getContent } from "@/content/live";
+import { modelComparison } from "@/content/network";
 
 /**
  * The argument, as a table. On desktop it is a real comparison grid; below the
  * lg breakpoint it becomes stacked per-dimension cards, because a three column
  * table at phone width is unreadable however you style it.
  */
-export async function ModelComparison() {
-  const { modelComparison } = await getContent();
-
+export function ModelComparison() {
   const { rows } = modelComparison;
 
   return (
