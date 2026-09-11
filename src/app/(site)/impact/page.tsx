@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
 import { CtaBand } from "@/components/CtaBand";
@@ -6,6 +5,7 @@ import { CaseFilter } from "@/components/sections/CaseFilter";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { caseStudies } from "@/content/cases";
+import { copy } from "@/content/copy";
 
 export const metadata: Metadata = {
   title: "Client Impact",
@@ -37,20 +37,13 @@ export default function ImpactPage() {
   return (
     <>
       <PageHero
-        eyebrow="Client impact"
+        eyebrow={copy.impactPage.eyebrow}
         breadcrumb={[
           { label: "Home", href: "/" },
           { label: "Client Impact", href: "/impact" },
         ]}
-        titleLines={[
-          "The work, written",
-          "up the way we'd",
-          <Fragment key="accent">
-            <span className="accent-italic text-azure">present it</span>{" "}
-            internally.
-          </Fragment>,
-        ]}
-        lead="We do not name clients. Each study sets out the problem as the client framed it, what our experts did, and what changed as a result."
+        titleLines={copy.impactPage.heroLines}
+        lead={copy.impactPage.heroLead}
         facts={[
           { label: "Case studies", value: String(caseStudies.length) },
           { label: "Years covered", value: years.join(" to ") },
@@ -66,18 +59,10 @@ export default function ImpactPage() {
         <div className="shell">
           <SectionHeader
             index="02"
-            eyebrow="Patterns"
+            eyebrow={copy.impactPage.patterns.eyebrow}
             onDark
-            title={
-              <>
-                Three things{" "}
-                <span className="accent-italic text-azure">
-                  we keep relearning
-                </span>
-                .
-              </>
-            }
-            lead="Read across seven engagements and the same lessons surface. We would rather say them out loud."
+            title={copy.impactPage.patterns.title}
+            lead={copy.impactPage.patterns.lead}
           />
 
           <Stagger className="mt-14 grid grid-cols-1 gap-x-12 gap-y-10 md:mt-16 md:grid-cols-3">
@@ -101,7 +86,7 @@ export default function ImpactPage() {
       </section>
 
       <CtaBand
-        eyebrow="Your engagement"
+        eyebrow={copy.impactPage.engagement.eyebrow}
         title={
           <>
             The eighth case study{" "}

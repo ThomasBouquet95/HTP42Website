@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Eyebrow } from "./Eyebrow";
+import { Accent, isCopy } from "@/components/ui/Accent";
 import { Reveal, DrawRule } from "@/components/motion/Reveal";
 
 /**
@@ -20,7 +21,8 @@ export function SectionHeader({
 }: {
   eyebrow: string;
   index?: string;
-  title: ReactNode;
+  /** Plain text, with the italic accent marked as *like this*, or markup. */
+  title: ReactNode | string;
   lead?: ReactNode;
   aside?: ReactNode;
   onDark?: boolean;
@@ -43,7 +45,7 @@ export function SectionHeader({
               onDark ? "text-white" : "text-ink"
             }`}
           >
-            {title}
+            {isCopy(title) ? <Accent text={title} onDark={onDark} /> : title}
           </h2>
         </Reveal>
         {lead && (
@@ -77,7 +79,7 @@ export function SectionHeader({
                 onDark ? "text-white" : "text-ink"
               }`}
             >
-              {title}
+              {isCopy(title) ? <Accent text={title} onDark={onDark} /> : title}
             </h2>
           </Reveal>
         </div>

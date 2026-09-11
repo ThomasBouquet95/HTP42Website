@@ -7,6 +7,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Reveal } from "@/components/motion/Reveal";
 import { caseStudies } from "@/content/cases";
+import { copy } from "@/content/copy";
 
 /**
  * Engagement examples as a slider. Seven full width rows took more space than
@@ -55,17 +56,9 @@ export function FeaturedCases() {
       <div className="shell">
         <SectionHeader
           index="04"
-          eyebrow="Client impact"
-          title={
-            <>
-              Engagement examples.{" "}
-              <span className="accent-italic text-brand">
-                Problem, intervention,
-              </span>{" "}
-              consequence.
-            </>
-          }
-          lead="We do not name clients, but each of these is written the way we would present it internally, including what was hard."
+          eyebrow={copy.home.cases.eyebrow}
+          title={copy.home.cases.title}
+          lead={copy.home.cases.lead}
         />
 
         {/* Controls */}

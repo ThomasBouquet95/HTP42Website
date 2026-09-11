@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import type { Metadata } from "next";
 import { Mail } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
@@ -9,6 +8,7 @@ import { Reveal, Stagger, StaggerItem, DrawRule } from "@/components/motion/Reve
 import { perspectives } from "@/content/perspectives";
 import { formatDate } from "@/lib/format";
 import { site } from "@/content/site";
+import { copy } from "@/content/copy";
 
 export const metadata: Metadata = {
   title: "Perspectives",
@@ -32,20 +32,13 @@ export default function PerspectivesPage() {
   return (
     <>
       <PageHero
-        eyebrow="Perspectives"
+        eyebrow={copy.perspectivesPage.eyebrow}
         breadcrumb={[
           { label: "Home", href: "/" },
           { label: "Perspectives", href: "/perspectives" },
         ]}
-        titleLines={[
-          "Specific arguments",
-          "about specific",
-          <Fragment key="accent">
-            problems.{" "}
-            <span className="accent-italic text-azure">No trend reports.</span>
-          </Fragment>,
-        ]}
-        lead="Every piece comes out of work we have actually done, written by the expert who did it. Full versions are sent on request."
+        titleLines={copy.perspectivesPage.heroLines}
+        lead={copy.perspectivesPage.heroLead}
         facts={[
           { label: "Pieces", value: String(perspectives.length) },
           { label: "Topics", value: String(categories.length) },
@@ -111,17 +104,9 @@ export default function PerspectivesPage() {
         <div className="shell">
           <SectionHeader
             index="02"
-            eyebrow="More perspectives"
-            title={
-              <>
-                Everything else{" "}
-                <span className="accent-italic text-brand">
-                  we&apos;ve published
-                </span>
-                .
-              </>
-            }
-            lead="If a title is relevant to something you are working on, ask and we will send it across."
+            eyebrow={copy.perspectivesPage.more.eyebrow}
+            title={copy.perspectivesPage.more.title}
+            lead={copy.perspectivesPage.more.lead}
           />
 
           <Stagger className="mt-14 flex flex-col md:mt-16">
@@ -182,7 +167,7 @@ export default function PerspectivesPage() {
       </section>
 
       <CtaBand
-        eyebrow="Briefings"
+        eyebrow={copy.perspectivesPage.briefings.eyebrow}
         title={
           <>
             We also convene these

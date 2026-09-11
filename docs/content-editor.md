@@ -78,22 +78,38 @@ Editable: the text held in `src/content/*.ts`. Card copy, case studies, partner
 biographies, values, disciplines, the three sided proposition, navigation
 labels, contact details, client names, the numbers in the band.
 
-Not editable yet:
+Also editable, and newly so: every section headline, lead and eyebrow, the page
+headlines, and the firm statement on the homepage. These used to live inline in
+the components, which made the most prominent sentences on the site the only
+ones you could not change.
 
-- **Section headlines and leads.** Most of these live inline in the section
-  components rather than in the content files, often because the headline
-  carries an italic accent, as in "Embed our experts, or *hand us the
-  solution*", where the accent is markup rather than text. Moving them into
-  the content files is the obvious next step.
+### Headlines and the italic accent
+
+A headline is written as plain text with the italic accent marked by asterisks:
+
+```
+Embed our experts, or *hand us the solution*.
+```
+
+Edit it like any other sentence and move the asterisks to move the italic. Two
+headlines carry `{expertCount}`, which is filled in from the expert count
+elsewhere in the content, so the sentence and the number in the band cannot
+drift apart. Leave that token in place.
+
+Not editable:
+
 - `slug`, `href` and `url`, which generate URLs, so changing one would break
   every link to it.
 - `icon` and `logo`, which name a component or a file that has to exist.
+- Some smaller interface labels: the form field labels and topic list on the
+  contact page, the fact rails under each page headline, the closing call to
+  action bands, and the captions on the comparison table. These are still
+  inline in their components. They are the remaining work, and they are why a
+  few runs of text on each page still do not highlight.
 
-If a field is editable but does not light up in the preview, it is still fully
-editable from the panel search. The preview finds text by matching it exactly,
-so a sentence broken across an italic accent will not be located in the page.
-The export is keyed by content path either way, so what a developer receives is
-never ambiguous.
+If a field is editable but does not highlight in the preview, it is still fully
+editable from the panel search, and the export is keyed by content path either
+way, so what a developer receives is never ambiguous.
 
 ## Security
 

@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { Accent, isCopy } from "@/components/ui/Accent";
 import { Reveal, RevealLines } from "@/components/motion/Reveal";
 
 /**
@@ -18,7 +19,8 @@ export function PageHero({
   children,
 }: {
   eyebrow: string;
-  titleLines: ReactNode[];
+  /** Each line as plain text, accent marked as *like this*, or markup. */
+  titleLines: (ReactNode | string)[];
   lead?: ReactNode;
   breadcrumb?: { label: string; href: string }[];
   facts?: { label: string; value: string }[];
@@ -60,7 +62,12 @@ export function PageHero({
         </Reveal>
 
         <h1 className="mt-7 max-w-[19ch] text-display text-white md:text-display-lg">
-          <RevealLines lines={titleLines} delay={0.12} />
+          <RevealLines
+            lines={titleLines.map((line, i) =>
+              isCopy(line) ? <Accent key={i} text={line} onDark /> : line,
+            )}
+            delay={0.12}
+          />
         </h1>
 
         {lead && (

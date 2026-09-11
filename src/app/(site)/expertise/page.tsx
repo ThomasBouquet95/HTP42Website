@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
 import { CtaBand } from "@/components/CtaBand";
@@ -9,6 +8,7 @@ import { Reveal, Stagger, StaggerItem, DrawRule } from "@/components/motion/Reve
 import { diagrams } from "@/components/ui/AreaDiagram";
 import { expertiseAreas } from "@/content/expertise";
 import { proofFacts } from "@/content/site";
+import { copy } from "@/content/copy";
 
 export const metadata: Metadata = {
   title: "Expertise",
@@ -20,19 +20,13 @@ export default function ExpertisePage() {
   return (
     <>
       <PageHero
-        eyebrow="Expertise"
+        eyebrow={copy.expertisePage.eyebrow}
         breadcrumb={[
           { label: "Home", href: "/" },
           { label: "Expertise", href: "/expertise" },
         ]}
-        titleLines={[
-          "The range our",
-          "experts cover,",
-          <Fragment key="accent">
-            <span className="accent-italic text-azure">in detail</span>.
-          </Fragment>,
-        ]}
-        lead="You tell us what you need. We match the senior expert who has already done it, and stay accountable until the work lands. The areas below are illustrative."
+        titleLines={copy.expertisePage.heroLines}
+        lead={copy.expertisePage.heroLead}
         facts={proofFacts}
       />
 
@@ -40,7 +34,7 @@ export default function ExpertisePage() {
       <section className="border-b border-ink/10 bg-paper py-10 md:py-12">
         <div className="shell">
           <Reveal>
-            <Eyebrow>Illustrative areas</Eyebrow>
+            <Eyebrow>{copy.expertisePage.areasEyebrow}</Eyebrow>
           </Reveal>
           <Stagger className="mt-6 flex flex-wrap gap-x-2.5 gap-y-2.5">
             {expertiseAreas.map((area) => (
@@ -176,18 +170,8 @@ export default function ExpertisePage() {
       <EngagementModel />
 
       <CtaBand
-        eyebrow="Next step"
-        title={
-          <>
-            Whatever you need,
-            <br />
-            someone in the network has{" "}
-            <span className="accent-italic text-azure">
-              already done it
-            </span>
-            .
-          </>
-        }
+        eyebrow={copy.expertisePage.nextStep.eyebrow}
+        title={copy.expertisePage.ctaTitle}
         body="Tell us what you are trying to achieve. We will match the senior expertise to it, from across the network and beyond it when the brief calls for it."
         secondary={{ label: "Meet the network", href: "/network" }}
       />

@@ -1,6 +1,7 @@
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { offerings } from "@/content/offerings";
+import { copy } from "@/content/copy";
 
 /**
  * The two ways clients work with HTP42. This is the commercial model, so it
@@ -21,17 +22,9 @@ export function Offerings() {
       <div className="shell">
         <SectionHeader
           index="01"
-          eyebrow="How we work with you"
-          title={
-            <>
-              Embed our experts, or{" "}
-              <span className="accent-italic text-brand">
-                hand us the solution
-              </span>
-              .
-            </>
-          }
-          lead="Some clients need experts embedded in their own team. Others need an outcome owned end to end. We find and assemble the AI empowered experts, and carry the accountability."
+          eyebrow={copy.home.offerings.eyebrow}
+          title={copy.home.offerings.title}
+          lead={copy.home.offerings.lead}
         />
 
         {/*

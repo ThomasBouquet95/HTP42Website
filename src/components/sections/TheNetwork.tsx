@@ -6,6 +6,7 @@ import { PartnerPortrait } from "@/components/ui/PartnerPortrait";
 import { ThreeSides } from "@/components/sections/ThreeSides";
 import { EXPERT_COUNT, leadership } from "@/content/network";
 import { networkEffect } from "@/content/audiences";
+import { copy } from "@/content/copy";
 
 /**
  * The network, in one section. Previously this was split across a "why HTP42"
@@ -20,21 +21,15 @@ export function TheNetwork() {
       <div className="shell">
         <SectionHeader
           index="03"
-          eyebrow="The network"
-          title={
-            <>
-              One network,{" "}
-              <span className="accent-italic text-brand">three reasons</span>{" "}
-              to be in it.
-            </>
-          }
-          lead="It starts with the partners. Each brings deep life sciences experience and a network of their own, which is how we reach the right expertise rather than the available expertise."
+          eyebrow={copy.home.network.eyebrow}
+          title={copy.home.network.title}
+          lead={copy.home.network.lead}
         />
 
         {/* The partners */}
         <div className="mt-14 md:mt-16">
           <h3 className="eyebrow border-b border-ink/12 pb-4 text-ink-300">
-            Our partners
+            {copy.home.network.partnersHeading}
           </h3>
           <Stagger className="grid grid-cols-1 gap-x-8 gap-y-10 pt-9 max-sm:gap-y-0 sm:grid-cols-2 lg:grid-cols-4 lg:grid-rows-[auto_auto_auto_auto] lg:gap-y-0">
             {leadership.map((person) => (
@@ -68,14 +63,12 @@ export function TheNetwork() {
         <div className="mt-16 md:mt-20">
           <Reveal>
             <h3 className="eyebrow border-b border-ink/12 pb-4 text-ink-300">
-              Why it works, from three sides
+              {copy.home.network.threeSidesHeading}
             </h3>
           </Reveal>
           <Reveal delay={0.06}>
             <p className="body-copy max-w-[62ch] pt-7">
-              HTP42 solves a different problem for each side, and each side
-              makes the others better. That is the whole design, and it is why
-              the access we can offer clients is difficult to replicate.
+              {copy.home.network.threeSidesLead}
             </p>
           </Reveal>
 

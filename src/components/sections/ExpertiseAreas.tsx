@@ -4,6 +4,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { diagrams } from "@/components/ui/AreaDiagram";
 import { expertiseAreas } from "@/content/expertise";
+import { copy } from "@/content/copy";
 
 /**
  * Illustrative expertise areas as compact editorial cards. These are examples
@@ -22,14 +23,9 @@ export function ExpertiseAreas() {
       <div className="shell">
         <SectionHeader
           index="02"
-          eyebrow="Expertise"
-          title={
-            <>
-              The expertise our clients ask for{" "}
-              <span className="accent-italic text-brand">most often</span>.
-            </>
-          }
-          lead="You tell us what you need. We listen, match the senior expert who has already done it, and stay accountable until the work lands."
+          eyebrow={copy.home.expertise.eyebrow}
+          title={copy.home.expertise.title}
+          lead={copy.home.expertise.lead}
         />
 
         <Stagger className="no-scrollbar mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-ink/10 bg-ink/10 max-sm:-mx-5 max-sm:flex max-sm:snap-x max-sm:snap-mandatory max-sm:gap-3 max-sm:overflow-x-auto max-sm:rounded-none max-sm:border-0 max-sm:bg-transparent max-sm:px-5 max-sm:pb-3 sm:grid-cols-2 md:mt-16 xl:grid-cols-4 xl:grid-rows-[auto_auto_auto_1fr_auto] xl:gap-y-0">

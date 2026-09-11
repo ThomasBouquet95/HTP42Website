@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
 import { CtaBand } from "@/components/CtaBand";
@@ -18,6 +17,7 @@ import { ThreeSides } from "@/components/sections/ThreeSides";
 import { EXPERT_COUNT, disciplines, leadership } from "@/content/network";
 import { networkEffect } from "@/content/audiences";
 import { proofFacts } from "@/content/site";
+import { copy } from "@/content/copy";
 
 export const metadata: Metadata = {
   title: "The Network",
@@ -36,19 +36,13 @@ export default function NetworkPage() {
   return (
     <>
       <PageHero
-        eyebrow="The network"
+        eyebrow={copy.networkPage.eyebrow}
         breadcrumb={[
           { label: "Home", href: "/" },
           { label: "The Network", href: "/network" },
         ]}
-        titleLines={[
-          "Deep expertise,",
-          <Fragment key="matched">
-            <span className="accent-italic text-azure">matched</span> to your
-          </Fragment>,
-          "subject matter.",
-        ]}
-        lead="Knowing who to trust with a specific problem is not something a CV database can tell you. It sits with the senior leaders who have already worked with these people."
+        titleLines={copy.networkPage.heroLines}
+        lead={copy.networkPage.heroLead}
         facts={proofFacts}
       />
 
@@ -57,38 +51,23 @@ export default function NetworkPage() {
         <div className="shell">
           <SectionHeader
             index="01"
-            eyebrow="Why HTP42"
-            title={
-              <>
-                One network,{" "}
-                <span className="accent-italic text-brand">three reasons</span>{" "}
-                to be in it.
-              </>
-            }
+            eyebrow={copy.networkPage.why.eyebrow}
+            title={copy.networkPage.why.title}
             lead={networkEffect}
           />
 
           <div className="mt-14 grid grid-cols-1 gap-x-10 gap-y-6 md:mt-16 md:grid-cols-2">
             <Reveal>
               <p className="body-copy">
-                We hold a curated network of more than {EXPERT_COUNT} senior
-                experts across six disciplines. Each has held the role they now
-                advise on. We match on subject matter rather than availability,
-                review every candidate at senior level before onboarding, and
-                where the brief calls for expertise we do not already hold, we
-                source it through their networks, which reach 500+ senior
-                specialists.
+                {copy.networkPage.why.networkIntro.replace(
+                  "{expertCount}",
+                  String(EXPERT_COUNT),
+                )}
               </p>
             </Reveal>
             <Reveal delay={0.06}>
               <p className="body-copy">
-                Clients use that two ways. Either we find vetted experts and
-                embed them in your own team, with HTP42 as the single
-                contracting party carrying the administration and legal work.
-                Or, for more complex needs, we assemble a senior team to
-                deliver an end to end solution against agreed deliverables,
-                named before you sign and with one engagement partner
-                accountable throughout.
+                {copy.networkPage.why.clientsIntro}
               </p>
             </Reveal>
           </div>
@@ -96,14 +75,12 @@ export default function NetworkPage() {
           <div className="mt-12 md:mt-14">
             <Reveal>
               <h3 className="eyebrow border-b border-ink/12 pb-4 text-ink-300">
-                Why it works, from three sides
+                {copy.networkPage.why.threeSidesHeading}
               </h3>
             </Reveal>
             <Reveal delay={0.06}>
               <p className="body-copy max-w-[62ch] pt-7">
-                HTP42 solves a different problem for each side, and each side
-                makes the others better. That is the whole design, and it is
-                why the access we can offer clients is difficult to replicate.
+                {copy.networkPage.why.threeSidesLead}
               </p>
             </Reveal>
             <div className="mt-9">
@@ -117,14 +94,12 @@ export default function NetworkPage() {
                 id="model"
                 className="eyebrow scroll-mt-28 border-b border-ink/12 pb-4 text-ink-300"
               >
-                The depth of a specialist, with the reach of a team
+                {copy.networkPage.why.modelHeading}
               </h3>
             </Reveal>
             <Reveal delay={0.06}>
               <p className="body-copy max-w-[62ch] pt-7">
-                The table below is the whole argument. One independent adviser
-                gives you depth in one place. A large firm gives you scale
-                without it.
+                {copy.networkPage.why.modelLead}
               </p>
             </Reveal>
             <Reveal delay={0.12}>
@@ -145,18 +120,10 @@ export default function NetworkPage() {
         <div className="shell section relative">
           <SectionHeader
             index="02"
-            eyebrow="Our partners"
+            eyebrow={copy.networkPage.partners.eyebrow}
             onDark
-            title={
-              <>
-                The people who{" "}
-                <span className="accent-italic text-azure">
-                  answer the phone
-                </span>
-                .
-              </>
-            }
-            lead="A partner is accountable for every piece of work we take on. These are the people who frame it, match the expertise, and stay on it to the end."
+            title={copy.networkPage.partners.title}
+            lead={copy.networkPage.partners.lead}
           />
 
           <Stagger className="mt-14 grid grid-cols-1 gap-x-8 gap-y-12 max-sm:gap-y-0 sm:grid-cols-2 md:mt-16 lg:grid-cols-4 lg:grid-rows-[auto_auto_auto_auto] lg:gap-y-0">
@@ -194,17 +161,9 @@ export default function NetworkPage() {
         <div className="shell">
           <SectionHeader
             index="03"
-            eyebrow="Our values"
-            title={
-              <>
-                Six values, and what each one{" "}
-                <span className="accent-italic text-brand">
-                  looks like in delivery
-                </span>
-                .
-              </>
-            }
-            lead="Values only matter if you can see them in the work. Each of these has a practical test attached, and we hold our experts to it."
+            eyebrow={copy.networkPage.values.eyebrow}
+            title={copy.networkPage.values.title}
+            lead={copy.networkPage.values.lead}
           />
 
           <div className="mt-14 md:mt-16">
@@ -218,17 +177,12 @@ export default function NetworkPage() {
         <div className="shell">
           <SectionHeader
             index="04"
-            eyebrow="Where the depth sits"
-            title={
-              <>
-                {EXPERT_COUNT}+ experts across{" "}
-                <span className="accent-italic text-brand">
-                  six disciplines
-                </span>
-                .
-              </>
-            }
-            lead="We publish the shape of the network and its depth, not the individuals. Named profiles are shared under NDA once we know what the engagement needs."
+            eyebrow={copy.networkPage.disciplines.eyebrow}
+            title={copy.networkPage.disciplines.title.replace(
+                "{expertCount}",
+                String(EXPERT_COUNT),
+              )}
+            lead={copy.networkPage.disciplines.lead}
           />
 
           <Stagger className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-ink/10 bg-ink/10 md:mt-16 md:grid-cols-2 lg:grid-cols-3">
@@ -335,7 +289,7 @@ export default function NetworkPage() {
       </section>
 
       <CtaBand
-        eyebrow="Work with the network"
+        eyebrow={copy.networkPage.join.eyebrow}
         title={
           <>
             You do not need to know

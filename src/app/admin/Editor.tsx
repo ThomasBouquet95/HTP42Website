@@ -52,6 +52,18 @@ const WIDTHS = [
 
 type Draft = Record<string, string>;
 
+/**
+ * How a field is attached to the preview.
+ *
+ * "text" is a single text node, which covers most copy. "accent" is a headline
+ * written with an italic accent, as in "The people who *answer the phone*.":
+ * it renders as text, then a span, then text, so no single node holds the
+ * whole sentence and it has to be matched and rewritten at element level.
+ */
+type Anchor =
+  | { kind: "text"; node: Text; template: string; original: string }
+  | { kind: "accent"; el: Element; accentClass: string };
+
 export function Editor({ fields }: { fields: Field[] }) {
   const frame = useRef<HTMLIFrameElement>(null);
   const [draft, setDraft] = useState<Draft>({});
@@ -74,6 +86,20 @@ export function Editor({ fields }: { fields: Field[] }) {
   const current = useCallback(
     (path: string) => draft[path] ?? String(byPath.get(path)?.value ?? ""),
     [draft, byPath],
+  );
+
+  /**
+   * What a field's text actually looks like on the page. A couple of headlines
+   * carry `{expertCount}` so the sentence and the number in the band cannot
+   * drift apart; the page shows the number, so matching has to as well.
+   */
+  const rendered = useCallback(
+    (text: string) =>
+      text.replace(
+        /\{expertCount\}/g,
+        String(byPath.get("expertCount")?.value ?? ""),
+      ),
+    [byPath],
   );
 
   // Restore the draft before the first preview scan, so reopening the editor
@@ -132,9 +158,7 @@ export function Editor({ fields }: { fields: Field[] }) {
    * of a longer run can be rewritten from the original every time rather than
    * from whatever the last keystroke left behind.
    */
-  const anchors = useRef<
-    Map<string, { node: Text; template: string; original: string }[]>
-  >(new Map());
+  const anchors = useRef<Map<string, Anchor[]>>(new Map());
 
   /** How many elements we tagged last scan, and a guard so our own writes to
    *  the preview do not look like the page changing underneath us. */
@@ -145,17 +169,38 @@ export function Editor({ fields }: { fields: Field[] }) {
   const applyDraft = useCallback(() => {
     suppress.current = true;
     for (const [path, list] of anchors.current) {
-      const shown = current(path);
-      for (const { node, template, original } of list) {
-        const next =
-          template === original ? shown : template.replace(original, shown);
-        if (node.nodeValue !== next) node.nodeValue = next;
+      const shown = rendered(current(path));
+      for (const anchor of list) {
+        if (anchor.kind === "text") {
+          const { node, template, original } = anchor;
+          const next =
+            template === original ? shown : template.replace(original, shown);
+          if (node.nodeValue !== next) node.nodeValue = next;
+          continue;
+        }
+        // Rebuild the headline, keeping the accent span's own classes so the
+        // italic still looks like the site's italic.
+        const { el, accentClass } = anchor;
+        if (el.textContent === shown.replace(/\*/g, "")) continue;
+        const doc = el.ownerDocument;
+        el.textContent = "";
+        shown.split(/\*([^*]+)\*/g).forEach((part, i) => {
+          if (!part) return;
+          if (i % 2 === 1) {
+            const span = doc.createElement("span");
+            span.className = accentClass;
+            span.textContent = part;
+            el.appendChild(span);
+          } else {
+            el.appendChild(doc.createTextNode(part));
+          }
+        });
       }
     }
     window.setTimeout(() => {
       suppress.current = false;
     }, 0);
-  }, [current]);
+  }, [current, rendered]);
 
   /** Resolve every field to its nodes in the freshly loaded preview. */
   const scanPreview = useCallback(() => {
@@ -172,21 +217,41 @@ export function Editor({ fields }: { fields: Field[] }) {
     }
     const corpus = nodes.map((n) => n.nodeValue).join(" ");
 
-    const found = new Map<
-      string,
-      { node: Text; template: string; original: string }[]
-    >();
+    /**
+     * Elements whose whole text could be an accented headline. Keyed by their
+     * rendered text, keeping the most specific match, so a headline is tagged
+     * on its own element rather than on a section that happens to contain
+     * nothing else.
+     */
+    const accentTargets = new Map<string, Element>();
+    const doc = frame.current?.contentDocument;
+    if (doc) {
+      doc
+        .querySelectorAll('h1, h2, h3, h4, h5, p, span, li, dt, blockquote')
+        .forEach((el) => {
+          if (!el.querySelector('[class*="accent-italic"]')) return;
+          const text = (el.textContent ?? "").trim();
+          if (!text) return;
+          const held = accentTargets.get(text);
+          if (!held || el.childElementCount < held.childElementCount) {
+            accentTargets.set(text, el);
+          }
+        });
+    }
+
+    const found = new Map<string, Anchor[]>();
     for (const field of fields) {
-      const original = String(field.value);
+      const original = rendered(String(field.value));
       if (original.length < 2) continue;
 
       // The page may already be showing a draft value, so accept either.
-      const shown = current(field.path);
+      const shown = rendered(current(field.path));
       const hit = exact.get(original) ?? exact.get(shown);
       if (hit) {
         found.set(
           field.path,
           hit.map((node) => ({
+            kind: "text" as const,
             node,
             template: node.nodeValue ?? "",
             original: (node.nodeValue ?? "").trim(),
@@ -195,11 +260,32 @@ export function Editor({ fields }: { fields: Field[] }) {
         continue;
       }
       // Part of a longer run of text.
+      // A headline with an italic accent: match the element, not a node.
+      if (original.includes("*")) {
+        const rendered = original.replace(/\*/g, "");
+        const el = accentTargets.get(rendered);
+        if (el) {
+          const accent = el.querySelector('[class*="accent-italic"]');
+          found.set(field.path, [
+            {
+              kind: "accent",
+              el,
+              accentClass: accent?.className ?? "accent-italic text-brand",
+            },
+          ]);
+          continue;
+        }
+      }
       if (original.length >= 12 && corpus.includes(original)) {
         const node = nodes.find((n) => n.nodeValue?.includes(original));
         if (node) {
           found.set(field.path, [
-            { node, template: node.nodeValue ?? "", original },
+            {
+              kind: "text",
+              node,
+              template: node.nodeValue ?? "",
+              original,
+            },
           ]);
         }
       }
@@ -210,8 +296,9 @@ export function Editor({ fields }: { fields: Field[] }) {
     // fails the moment a reader clicks a card rather than the sentence inside
     // it, because the element's text is then several fields concatenated.
     for (const [path, list] of found) {
-      for (const { node } of list) {
-        const el = node.parentElement;
+      for (const anchor of list) {
+        const el =
+          anchor.kind === "text" ? anchor.node.parentElement : anchor.el;
         if (el && !el.hasAttribute(PATH_ATTR)) el.setAttribute(PATH_ATTR, path);
       }
     }
@@ -227,7 +314,7 @@ export function Editor({ fields }: { fields: Field[] }) {
     window.setTimeout(() => {
       suppress.current = false;
     }, 0);
-  }, [fields, current, textNodes, applyDraft]);
+  }, [fields, current, rendered, textNodes, applyDraft]);
 
   /** Clicking text in the preview jumps to the field that produced it. */
   const wirePreview = useCallback(() => {
@@ -332,6 +419,13 @@ export function Editor({ fields }: { fields: Field[] }) {
     const afterQuiet = () => {
       const doc = el.contentDocument;
       if (!doc) return;
+      // Switching pages replaces the document under us. Scanning a page that
+      // is still loading means touching it mid hydration, which is the one
+      // thing that must not happen, so wait and look again.
+      if (doc.readyState !== "complete") {
+        nudge();
+        return;
+      }
       if (!settled) {
         settled = true;
         onLoadRef.current();
@@ -360,7 +454,9 @@ export function Editor({ fields }: { fields: Field[] }) {
     };
 
     el.addEventListener("load", start);
-    if (el.contentDocument?.readyState !== "loading") start();
+    // "interactive" means parsed but not finished, and hydration is usually
+    // still to come, so only a complete document is scanned without a load.
+    if (el.contentDocument?.readyState === "complete") start();
 
     return () => {
       el.removeEventListener("load", start);

@@ -11,6 +11,7 @@ import {
 import { audiences, networkEffect } from "@/content/audiences";
 import { caseStudies } from "@/content/cases";
 import { perspectives } from "@/content/perspectives";
+import { copy } from "@/content/copy";
 
 /**
  * Every piece of editable content on the site, in one tree.
@@ -26,6 +27,7 @@ import { perspectives } from "@/content/perspectives";
  * the flattened service list as well.
  */
 export const contentDefaults = {
+  copy,
   site,
   nav,
   proofPoints,
@@ -76,6 +78,7 @@ export type Field = {
 };
 
 const LABELS: Record<string, string> = {
+  copy: "Pages and sections",
   site: "Site",
   nav: "Navigation",
   proofPoints: "Numbers band",

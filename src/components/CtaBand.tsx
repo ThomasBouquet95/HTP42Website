@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/motion/Reveal";
 import { site } from "@/content/site";
+import { copy } from "@/content/copy";
 
 /**
  * The closing band, repeated on every page. Dark, quiet, one clear ask —
@@ -12,7 +13,7 @@ export function CtaBand({
   eyebrow = "Start here",
   title,
   body,
-  primary = { label: "Start a conversation", href: "/contact" },
+  primary = { label: copy.ui.startConversation, href: "/contact" },
   secondary,
 }: {
   eyebrow?: string;

@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import type { Metadata } from "next";
 import { Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
@@ -6,6 +5,7 @@ import { ContactForm } from "@/components/sections/ContactForm";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal, Stagger, StaggerItem, DrawRule } from "@/components/motion/Reveal";
 import { site } from "@/content/site";
+import { copy } from "@/content/copy";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -62,20 +62,13 @@ export default function ContactPage() {
   return (
     <>
       <PageHero
-        eyebrow="Contact"
+        eyebrow={copy.contactPage.eyebrow}
         breadcrumb={[
           { label: "Home", href: "/" },
           { label: "Contact", href: "/contact" },
         ]}
-        titleLines={[
-          "Tell us what you need.",
-          <Fragment key="accent">
-            We&apos;ll find you the{" "}
-            <span className="accent-italic text-azure">right</span>
-          </Fragment>,
-          "expert for it.",
-        ]}
-        lead="A first conversation is thirty minutes with a partner. If nobody in the network is the right match, we will say so."
+        titleLines={copy.contactPage.heroLines}
+        lead={copy.contactPage.heroLead}
       />
 
       {/* Form + direct routes */}

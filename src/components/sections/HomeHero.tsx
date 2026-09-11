@@ -7,6 +7,8 @@ import { Marquee } from "@/components/ui/Marquee";
 import { NetworkField } from "@/components/ui/NetworkField";
 import { RevealLines } from "@/components/motion/Reveal";
 import { capabilityKeywords } from "@/content/site";
+import { Accent } from "@/components/ui/Accent";
+import { copy } from "@/content/copy";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -44,17 +46,9 @@ export function HomeHero() {
             <RevealLines
               delay={0.14}
               stagger={0.1}
-              lines={[
-                "Life sciences data",
-                "and AI, led by the",
-                <>
-                  people who{" "}
-                  <span className="accent-italic text-azure">built it</span>
-                </>,
-                <span key="l4" className="accent-italic text-azure">
-                  inside pharma.
-                </span>,
-              ]}
+              lines={copy.home.heroLines.map((line, i) => (
+                <Accent key={i} text={line} onDark />
+              ))}
             />
           </h1>
 
@@ -64,8 +58,7 @@ export function HomeHero() {
             animate={reduced ? undefined : { opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.55, ease: EASE }}
           >
-            A senior expert network for life sciences. Business, technology and
-            scientific expertise, all of it with deep industry experience.
+            {copy.home.heroLead}
           </motion.p>
 
           <motion.div
@@ -80,10 +73,10 @@ export function HomeHero() {
               size="lg"
               withArrow
             >
-              Start a conversation
+              {copy.ui.startConversation}
             </Button>
             <Button href="/impact" variant="outline-dark" size="lg">
-              See client impact
+              {copy.ui.seeClientImpact}
             </Button>
           </motion.div>
         </div>

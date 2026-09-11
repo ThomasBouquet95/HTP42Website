@@ -5,6 +5,7 @@ import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { featuredPerspectives } from "@/content/perspectives";
 import { formatDate } from "@/lib/format";
+import { copy } from "@/content/copy";
 
 export function PerspectivesTeaser() {
   return (
@@ -12,17 +13,9 @@ export function PerspectivesTeaser() {
       <div className="shell">
         <SectionHeader
           index="05"
-          eyebrow="Perspectives"
-          title={
-            <>
-              What we think, before{" "}
-              <span className="accent-italic text-brand">
-                anyone pays us for it
-              </span>
-              .
-            </>
-          }
-          lead="Short, specific pieces on the problems we keep meeting. No trend reports."
+          eyebrow={copy.home.perspectives.eyebrow}
+          title={copy.home.perspectives.title}
+          lead={copy.home.perspectives.lead}
         />
 
         <Stagger className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-ink/10 bg-ink/10 md:mt-16 md:grid-cols-3">

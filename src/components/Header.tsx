@@ -13,6 +13,7 @@ import {
 import { Menu, X } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
 import { nav, site } from "@/content/site";
+import { copy } from "@/content/copy";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -55,7 +56,7 @@ export function Header() {
         href="#main"
         className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-sm focus:text-paper"
       >
-        Skip to content
+        {copy.ui.skipToContent}
       </a>
 
       <header
@@ -102,7 +103,7 @@ export function Header() {
                 href="/contact"
                 className="hidden h-10 items-center rounded-full bg-white px-5 text-xs font-medium tracking-[-0.008em] text-ink transition-all duration-500 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:bg-azure hover:text-white sm:inline-flex"
               >
-                Start a conversation
+                {copy.ui.startConversation}
               </Link>
 
               <button
@@ -188,7 +189,7 @@ export function Header() {
                   href="/contact"
                   className="inline-flex h-12 items-center justify-center rounded-full bg-white px-6 text-sm font-medium tracking-[-0.008em] text-ink transition-colors duration-500 hover:bg-azure hover:text-white"
                 >
-                  Start a conversation
+                  {copy.ui.startConversation}
                 </Link>
 
                 <div className="mt-9">

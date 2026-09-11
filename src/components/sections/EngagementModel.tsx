@@ -1,6 +1,7 @@
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { engagementModel } from "@/content/expertise";
+import { copy } from "@/content/copy";
 
 /**
  * How an engagement actually runs. Four steps on a single horizontal spine —
@@ -16,17 +17,10 @@ export function EngagementModel() {
       <div className="shell section relative">
         <SectionHeader
           index="05"
-          eyebrow="How we work"
+          eyebrow={copy.home.engagement.eyebrow}
           onDark
-          title={
-            <>
-              Understood in days.{" "}
-              <span className="accent-italic text-azure">
-                Matched in a week.
-              </span>
-            </>
-          }
-          lead="The shape rarely changes. We establish what you need, name the experts it takes, and get them working. The same people stay on it to the end."
+          title={copy.home.engagement.title}
+          lead={copy.home.engagement.lead}
         />
 
         <div className="relative mt-16 md:mt-20">

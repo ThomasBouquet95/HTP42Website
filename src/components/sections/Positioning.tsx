@@ -1,6 +1,8 @@
 import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Reveal, DrawRule } from "@/components/motion/Reveal";
 import { ClientStrip } from "@/components/ui/ClientStrip";
+import { Accent } from "@/components/ui/Accent";
+import { copy } from "@/content/copy";
 
 /**
  * The statement of intent. Deliberately one editorial assertion at headline
@@ -15,7 +17,7 @@ export function Positioning() {
     >
       <div className="shell">
         <h2 id="the-firm-heading" className="sr-only">
-          The firm
+          {copy.home.positioning.heading}
         </h2>
 
         <DrawRule />
@@ -23,33 +25,17 @@ export function Positioning() {
         <div className="pt-9 lg:pt-12">
           <Reveal>
             <p className="max-w-[34ch] text-display-sm leading-[1.16] tracking-[-0.03em] text-ink">
-              We bring the{" "}
-              <span className="accent-italic text-brand">
-                specific deep expertise
-              </span>{" "}
-              your problem needs.
+              <Accent text={copy.home.positioning.statement} />
             </p>
           </Reveal>
 
           <Reveal delay={0.1}>
             <div className="mt-11 grid max-w-4xl grid-cols-1 gap-x-12 gap-y-6 md:grid-cols-2">
               <p className="body-copy">
-                Business, technology and scientific expertise, all of it with
-                deep life sciences experience. Former VPs, CTOs, heads of
-                function, principal architects and clinical leaders who have
-                held the roles they now advise on, at Novartis, Roche, Sanofi,
-                Novo Nordisk, Johnson &amp; Johnson and Amgen. We match the
-                subject matter your problem actually calls for, name those
-                people before you sign, and stand the team down when the work
-                is done.
+                {copy.home.positioning.whoWeBring}
               </p>
               <p className="body-copy">
-                There are two ways that works. We find vetted experts and
-                embed them in your team for as long as the need lasts, with
-                HTP42 as your single contracting party and the administration
-                and legal work on us. Or, for more complex needs, we
-                assemble a senior team to deliver an end to end solution,
-                against deliverables agreed before we start.
+                {copy.home.positioning.howItWorks}
               </p>
             </div>
           </Reveal>
@@ -57,7 +43,7 @@ export function Positioning() {
           <Reveal delay={0.16}>
             <div className="mt-11">
               <ArrowLink href="/network">
-                How the network works
+                {copy.home.positioning.networkLink}
               </ArrowLink>
             </div>
           </Reveal>
@@ -65,7 +51,7 @@ export function Positioning() {
           {/* Who we work with */}
           <Reveal delay={0.22}>
             <div className="mt-16 md:mt-20">
-              <h3 className="eyebrow mb-5 text-ink-300">Who we work with</h3>
+              <h3 className="eyebrow mb-5 text-ink-300">{copy.home.positioning.clientsHeading}</h3>
             </div>
           </Reveal>
         </div>
