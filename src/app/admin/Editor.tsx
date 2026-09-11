@@ -13,15 +13,27 @@ import { signOut } from "@/app/admin/actions";
  * repository the single source of truth for the site's copy, and it means the
  * editor needs no database and no second environment variable.
  *
- * Fields are matched to the preview by their exact text, which is why no
- * component needed a data attribute to make this work. The consequence is that
- * matching is best effort: a sentence broken across an italic accent will not
- * be found in the page. Those fields stay fully editable in the panel, they
- * just do not light up in the preview, and the export is keyed by content path
- * either way, so what a developer receives is never ambiguous.
+ * Fields are located in the preview by matching their exact text, once per
+ * page load, which is why no component needed annotating for this to work. The
+ * element holding each one is then tagged with its content path, so a click
+ * resolves to an exact field rather than being guessed from text at click
+ * time. That matters because the moment a reader clicks a card rather than the
+ * sentence inside it, the element's text is several fields concatenated and
+ * matches nothing.
+ *
+ * The consequence of matching by text is that it is best effort: a sentence
+ * broken across an italic accent is not found in the page. Those fields stay
+ * fully editable from the panel search, they just do not highlight, and the
+ * export is keyed by content path either way, so what a developer receives is
+ * never ambiguous.
  */
 
 const DRAFT_KEY = "htp42-content-draft-v1";
+
+/** Marks the element in the preview that holds a given field. */
+const PATH_ATTR = "data-htp42-path";
+/** Marks the one currently selected, so it is obvious which is which. */
+const ACTIVE_ATTR = "data-htp42-active";
 
 const PAGES = [
   { label: "Home", path: "/" },
@@ -48,7 +60,9 @@ export function Editor({ fields }: { fields: Field[] }) {
   const [width, setWidth] = useState(WIDTHS[0].value);
   const [query, setQuery] = useState("");
   const [onPage, setOnPage] = useState<Set<string>>(new Set());
-  const [focusPath, setFocusPath] = useState<string | null>(null);
+  const [selected, setSelected] = useState<string | null>(null);
+  const [focusTick, setFocusTick] = useState(0);
+  const [miss, setMiss] = useState(false);
   const [copied, setCopied] = useState(false);
 
   const byPath = useMemo(
@@ -122,8 +136,14 @@ export function Editor({ fields }: { fields: Field[] }) {
     Map<string, { node: Text; template: string; original: string }[]>
   >(new Map());
 
+  /** How many elements we tagged last scan, and a guard so our own writes to
+   *  the preview do not look like the page changing underneath us. */
+  const tagCount = useRef(0);
+  const suppress = useRef(false);
+
   /** Write the draft into the nodes already resolved for this page. */
   const applyDraft = useCallback(() => {
+    suppress.current = true;
     for (const [path, list] of anchors.current) {
       const shown = current(path);
       for (const { node, template, original } of list) {
@@ -132,12 +152,16 @@ export function Editor({ fields }: { fields: Field[] }) {
         if (node.nodeValue !== next) node.nodeValue = next;
       }
     }
+    window.setTimeout(() => {
+      suppress.current = false;
+    }, 0);
   }, [current]);
 
   /** Resolve every field to its nodes in the freshly loaded preview. */
   const scanPreview = useCallback(() => {
     const nodes = textNodes();
     if (nodes.length === 0) return;
+    suppress.current = true;
 
     const exact = new Map<string, Text[]>();
     for (const node of nodes) {
@@ -181,25 +205,29 @@ export function Editor({ fields }: { fields: Field[] }) {
       }
     }
 
+    // Tag the element that holds each field, so a click resolves to an exact
+    // path instead of being matched by its text at click time. Text matching
+    // fails the moment a reader clicks a card rather than the sentence inside
+    // it, because the element's text is then several fields concatenated.
+    for (const [path, list] of found) {
+      for (const { node } of list) {
+        const el = node.parentElement;
+        if (el && !el.hasAttribute(PATH_ATTR)) el.setAttribute(PATH_ATTR, path);
+      }
+    }
+
     anchors.current = found;
+    tagCount.current =
+      frame.current?.contentDocument?.querySelectorAll(`[${PATH_ATTR}]`)
+        .length ?? 0;
     setOnPage(new Set(found.keys()));
     applyDraft();
+    // Release on the next task, after the mutations we just made have been
+    // delivered to the observer.
+    window.setTimeout(() => {
+      suppress.current = false;
+    }, 0);
   }, [fields, current, textNodes, applyDraft]);
-
-  /**
-   * Which field produced a given run of text. Held in a ref so the listener
-   * installed in the preview always consults the latest draft rather than the
-   * values that existed when it was attached.
-   */
-  const matchText = useRef<(text: string) => string | null>(() => null);
-  matchText.current = (text: string) => {
-    const exact = fields.find((f) => current(f.path) === text);
-    if (exact) return exact.path;
-    const inside = fields.find(
-      (f) => current(f.path).length > 11 && text.includes(current(f.path)),
-    );
-    return inside?.path ?? null;
-  };
 
   /** Clicking text in the preview jumps to the field that produced it. */
   const wirePreview = useCallback(() => {
@@ -209,20 +237,61 @@ export function Editor({ fields }: { fields: Field[] }) {
     if (!doc || doc.__htp42Wired) return;
     doc.__htp42Wired = true;
 
+    // Make it visible which text can be edited. Without this the preview looks
+    // like an ordinary page and there is nothing to suggest clicking it does
+    // anything.
+    const style = doc.createElement("style");
+    style.textContent = `
+      [${PATH_ATTR}] { cursor: text; }
+      [${PATH_ATTR}]:hover {
+        outline: 2px solid rgba(20, 80, 200, 0.45);
+        outline-offset: 3px;
+        border-radius: 2px;
+        background-color: rgba(20, 80, 200, 0.06);
+      }
+      [${ACTIVE_ATTR}] {
+        outline: 2px solid rgba(20, 80, 200, 0.9) !important;
+        outline-offset: 3px;
+        border-radius: 2px;
+        background-color: rgba(20, 80, 200, 0.1) !important;
+      }
+    `;
+    doc.head.appendChild(style);
+
     doc.addEventListener(
       "click",
       (event) => {
         const target = event.target as HTMLElement | null;
-        const text = target?.textContent?.trim();
-        if (!text) return;
-        const path = matchText.current(text);
-        if (!path) return;
-        // Only swallow the click when it actually resolved to a field, so
-        // links and buttons in the preview still work.
+        if (!target) return;
+        // Resolve only by tag, never by guessing from text. Clicking the
+        // padding of a card used to fall through to a fuzzy text match and
+        // land on whichever field happened to appear first inside it, which
+        // is worse than doing nothing.
+        const tagged = target.closest?.(`[${PATH_ATTR}]`);
+        let path = tagged?.getAttribute(PATH_ATTR) ?? null;
+        if (!path) {
+          // A container holding exactly one field is unambiguous, so allow it.
+          const inside = target.querySelectorAll?.(`[${PATH_ATTR}]`);
+          if (inside?.length === 1) {
+            path = inside[0].getAttribute(PATH_ATTR);
+          }
+        }
+
+        if (!path) {
+          // A dead click reads as a broken feature, so say what happened.
+          if (target.textContent?.trim()) {
+            setMiss(true);
+            window.setTimeout(() => setMiss(false), 2600);
+          }
+          return;
+        }
+        // Only swallow the click when it resolved to a field, so links and
+        // buttons elsewhere in the preview still behave normally.
         event.preventDefault();
         event.stopPropagation();
         setQuery("");
-        setFocusPath(path);
+        setSelected(path);
+        setFocusTick((n) => n + 1);
       },
       true,
     );
@@ -244,10 +313,60 @@ export function Editor({ fields }: { fields: Field[] }) {
   useEffect(() => {
     const el = frame.current;
     if (!el) return;
-    const handle = () => onLoadRef.current();
-    el.addEventListener("load", handle);
-    if (el.contentDocument?.readyState === "complete") handle();
-    return () => el.removeEventListener("load", handle);
+    /**
+     * Nothing may touch the previewed page until its own React has hydrated.
+     * Tagging an element beforehand puts an attribute in the tree that was not
+     * in the server HTML, which React reports as a hydration mismatch and may
+     * repair by throwing the subtree away, taking the tag with it.
+     *
+     * Rather than guess at how long hydration takes, wait for the page to go
+     * quiet. Hydration is itself a burst of DOM changes, so a short spell with
+     * none means it has finished. The same observer then keeps watch: the page
+     * re-renders parts of itself as you scroll, and if our tags are ever lost
+     * we put them back. Only childList is observed, so our own attribute and
+     * text writes do not wake it.
+     */
+    let settled = false;
+    let timer = 0;
+
+    const afterQuiet = () => {
+      const doc = el.contentDocument;
+      if (!doc) return;
+      if (!settled) {
+        settled = true;
+        onLoadRef.current();
+        return;
+      }
+      const tagged = doc.querySelectorAll(`[${PATH_ATTR}]`).length;
+      if (tagged < tagCount.current) onLoadRef.current();
+    };
+
+    const nudge = () => {
+      window.clearTimeout(timer);
+      timer = window.setTimeout(afterQuiet, 350);
+    };
+
+    const observer = new MutationObserver(() => {
+      if (suppress.current) return;
+      nudge();
+    });
+
+    const start = () => {
+      settled = false;
+      const body = el.contentDocument?.body;
+      if (body) observer.observe(body, { childList: true, subtree: true });
+      // A page that never mutates would otherwise never be scanned.
+      nudge();
+    };
+
+    el.addEventListener("load", start);
+    if (el.contentDocument?.readyState !== "loading") start();
+
+    return () => {
+      el.removeEventListener("load", start);
+      observer.disconnect();
+      window.clearTimeout(timer);
+    };
     // Only the page matters here. Depending on the callbacks would re-attach
     // and re-scan on every keystroke, because they close over the draft.
   }, [page]);
@@ -258,14 +377,35 @@ export function Editor({ fields }: { fields: Field[] }) {
     if (loaded) applyDraft();
   }, [draft, loaded, applyDraft]);
 
+  // Selecting from the preview brings the matching field into view and focuses
+  // it. The tick is what distinguishes "the reader clicked the page" from
+  // "the reader is already typing in this field", so typing is never
+  // interrupted by a scroll.
   useEffect(() => {
-    if (!focusPath) return;
-    const el = document.getElementById(`field-${focusPath}`);
+    if (!selected || focusTick === 0) return;
+    const el = document.getElementById(`field-${selected}`);
     el?.scrollIntoView({ block: "center", behavior: "smooth" });
     (el as HTMLInputElement | HTMLTextAreaElement | null)?.focus();
-    const timer = window.setTimeout(() => setFocusPath(null), 1200);
-    return () => window.clearTimeout(timer);
-  }, [focusPath]);
+  }, [selected, focusTick]);
+
+  // Mark the selected element in the preview, and bring it into view when the
+  // selection came from the panel rather than from the page.
+  useEffect(() => {
+    const doc = frame.current?.contentDocument;
+    if (!doc) return;
+    doc
+      .querySelectorAll(`[${ACTIVE_ATTR}]`)
+      .forEach((el) => el.removeAttribute(ACTIVE_ATTR));
+    if (!selected) return;
+    const el = doc.querySelector(`[${PATH_ATTR}="${selected}"]`);
+    if (!el) return;
+    el.setAttribute(ACTIVE_ATTR, "true");
+    const rect = el.getBoundingClientRect();
+    const view = doc.documentElement.clientHeight;
+    if (rect.top < 0 || rect.bottom > view) {
+      el.scrollIntoView({ block: "center", behavior: "smooth" });
+    }
+  }, [selected, onPage]);
 
   const visible = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -451,9 +591,16 @@ export function Editor({ fields }: { fields: Field[] }) {
               className="w-full rounded-md border border-ink/15 bg-paper px-3 py-2 text-sm outline-none focus-visible:border-brand focus-visible:ring-2 focus-visible:ring-brand/25"
             />
             <p className="mt-2 text-xs text-ink-400">
-              {query
-                ? `${visible.length} of ${fields.length} fields`
-                : `${visible.length} fields on this page. Click text in the preview to jump to it.`}
+              {miss ? (
+                <span className="text-amber-700">
+                  That text is not editable yet. Hover the preview to see what
+                  is.
+                </span>
+              ) : query ? (
+                `${visible.length} of ${fields.length} fields`
+              ) : (
+                `${visible.length} editable on this page. Click any highlighted text to edit it.`
+              )}
             </p>
           </div>
 
@@ -504,6 +651,7 @@ export function Editor({ fields }: { fields: Field[] }) {
                         <textarea
                           id={`field-${field.path}`}
                           value={value}
+                          onFocus={() => setSelected(field.path)}
                           rows={Math.min(9, Math.ceil(value.length / 44) + 1)}
                           onChange={(event) =>
                             setDraft((d) => ({
@@ -520,6 +668,7 @@ export function Editor({ fields }: { fields: Field[] }) {
                           id={`field-${field.path}`}
                           type={field.kind === "number" ? "number" : "text"}
                           value={value}
+                          onFocus={() => setSelected(field.path)}
                           onChange={(event) =>
                             setDraft((d) => ({
                               ...d,

@@ -34,11 +34,14 @@ until you export them.
 1. Go to `/admin` and sign in.
 2. Pick a page from the top bar. The real page loads in the preview, and the
    panel on the right lists the text found on it.
-3. Either click any text in the preview to jump straight to its field, or
-   search for the words you want to change.
-4. Edit in the panel. The preview updates as you type, so you see the sentence
-   in place rather than in a form.
-5. Press **Export** for a file, or **Copy** to put the same content on your
+3. Hover the preview: any text you can edit outlines in blue. Click it and the
+   panel jumps to that field. Clicking something that is not editable says so
+   rather than doing nothing.
+4. Or search for the words you want to change.
+5. Edit in the panel. The preview updates as you type, so you see the sentence
+   in place rather than in a form. Focusing a field also outlines it in the
+   preview and scrolls it into view, so the two stay in step.
+6. Press **Export** for a file, or **Copy** to put the same content on your
    clipboard. Send either to your developer.
 
 Desktop, Tablet and Phone buttons change the preview width, which is useful
