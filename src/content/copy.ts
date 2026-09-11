@@ -60,12 +60,12 @@ export const copy = {
     },
     network: {
       eyebrow: "The network",
-      title: "One network, *three reasons* to be in it.",
+      title: "One network, built from *trusted relationships*.",
       lead: "It starts with the partners. Each brings deep life sciences experience and a network of their own, which is how we reach the right expertise rather than the available expertise.",
       partnersHeading: "Our partners",
       threeSidesHeading: "Why it works, from three sides",
       threeSidesLead:
-        "HTP42 solves a different problem for each side, and each side makes the others better. That is the whole design, and it is why the access we can offer clients is difficult to replicate.",
+        "HTP42 solves a different problem for each side of the network. Together, they make the whole model stronger, creating access and expertise that is difficult for clients to replicate elsewhere.",
     },
     cases: {
       eyebrow: "Client impact",
@@ -79,7 +79,7 @@ export const copy = {
     },
     perspectives: {
       eyebrow: "Perspectives",
-      title: "What we think, before *anyone pays us for it*.",
+      title: "What we see, *from the front line*.",
       lead: "Short, specific pieces on the problems we keep meeting. No trend reports.",
     },
   },

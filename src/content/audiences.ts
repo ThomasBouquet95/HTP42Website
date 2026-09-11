@@ -22,7 +22,7 @@ export const audiences: Audience[] = [
     icon: "clients",
     label: "Pharma, biotech and clinical technology teams",
     problem:
-      "You need highly specific expertise. Large consultancies are costly and generalist, hiring is slow, and managing independents creates its own contracting overhead.",
+      "You need highly specific expertise. Large consultancies are often costly and broad, hiring is slow and constrained by headcount, and managing independents creates additional contracting and administrative overhead.",
     gains: [
       "Access to hard to find experts, matched to each specific need",
       "Vetted, high quality talent through continuous talent management",
@@ -36,12 +36,12 @@ export const audiences: Audience[] = [
     icon: "leaders",
     label: "Partners who bring opportunities and reputation",
     problem:
-      "You know who to trust beyond a CV. But putting that judgment to work means carrying the admin, contracting and payment chasing that comes with it.",
+      "You know who to trust beyond a CV. HTP42 gives you the structure to bring those people into engagements without the burden of administration, contracting or payment management.",
     gains: [
-      "You focus on clients and projects, we carry admin, contracting, payment and legal",
-      "Specialists you can put your reputation behind, vetted to a shared standard",
-      "Opportunities generated across the whole network, not just your own",
-      "The scale to lead larger projects than you could staff alone",
+      "Focus on clients and delivery while we handle the operational and legal backbone",
+      "Bring trusted specialists into projects under a shared quality standard",
+      "Access opportunities generated across the full HTP42 network",
+      "Lead larger engagements than you could staff independently",
     ],
   },
   {
@@ -50,12 +50,12 @@ export const audiences: Audience[] = [
     icon: "experts",
     label: "Specialists who would rather deliver than sell",
     problem:
-      "You want to focus on delivery, not on selling yourself. Your pipeline leans on your own network, and you miss the tools and peers of a larger firm.",
+      "You want to apply your expertise, not spend your time on business development. HTP42 brings relevant opportunities, a strong peer network and the support needed to deliver effectively.",
     gains: [
-      "Relevant projects without having to sell continuously",
-      "Opportunities generated across the HTP42 network, not just your contacts",
-      "Specialists in other domains to call on when a brief reaches past yours",
-      "Shared IP, tools and centres of excellence to build on",
+      "Relevant engagements without continuous selling",
+      "Opportunities generated across the HTP42 network, not only your own contacts",
+      "Access to specialists in adjacent domains when broader expertise is needed",
+      "Shared tools, IP, technology partners and delivery support",
     ],
   },
 ];

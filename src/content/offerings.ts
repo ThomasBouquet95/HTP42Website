@@ -20,10 +20,10 @@ export const offerings: Offering[] = [
       {
         label: "One or several experts, embedded with your team",
         detail:
-          "Matched to your needs, working directly within your organisation for short term support or longer term assignments.",
+          "Matched to your needs, working directly within your organization for short-term support or longer-term assignments.",
       },
       {
-        label: "One counterparty, wherever the expert is based",
+        label: "One counterparty, wherever the expert is based.",
         detail:
           "We handle contracting, administration, payments and legal, giving you a single point of contact across the engagement.",
       },
@@ -44,10 +44,10 @@ export const offerings: Offering[] = [
       {
         label: "A holistic team shaped to your need",
         detail:
-          "We bring together the right mix of subject matter experts, project leadership and partner oversight around the specific needs of each engagement.",
+          "We bring together the right mix of subject-matter experts, project leadership and partner oversight around the specific needs of each engagement.",
       },
       {
-        label: "End to end support",
+        label: "End-to-end support",
         detail:
           "From strategy and design through implementation and adoption, we support the engagement across the full lifecycle and stay involved through delivery.",
       },

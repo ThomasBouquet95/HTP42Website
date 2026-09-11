@@ -8,7 +8,7 @@ export const site = {
   positioning:
     "A senior expert network for life sciences data, AI and technology. We find vetted experts for your need, or assemble the team to deliver an end to end solution.",
   description:
-    "HealthTech Partners 42 is a network of senior experts helping life sciences companies solve complex data, AI and technology challenges.",
+    "HealthTech Partners 42 is a network of senior experts helping life sciences companies solve complex data, AI and technology challenges. We provide individual specialists or assemble tailored teams to deliver projects from strategy through execution.",
   contact: {
     email: "ops@htp42.com",
     phone: "+1 (888) 456 7890",
@@ -41,13 +41,13 @@ export const proofPoints = [
     value: 50,
     suffix: "+",
     label: "Experts",
-    note: "Every expert is personally reviewed by a partner for subject matter depth and proven delivery experience before joining the network",
+    note: "Every expert is personally reviewed by a partner for subject-matter depth and proven delivery experience before joining the network",
   },
   {
     value: 500,
     suffix: "+",
     label: "Extended network",
-    note: "Additional specialists sourced through our experts' trusted networks and screened to the same standard before joining an engagement",
+    note: "Additional specialists sourced through our experts’ trusted networks and screened to the same standard before joining an engagement",
   },
   {
     value: 200,
