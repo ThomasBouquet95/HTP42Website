@@ -7,8 +7,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Reveal, Stagger, StaggerItem, DrawRule } from "@/components/motion/Reveal";
 import { diagrams } from "@/components/ui/AreaDiagram";
-import { expertiseAreas } from "@/content/expertise";
-import { proofFacts } from "@/content/site";
+import { getContent } from "@/content/live";
 
 export const metadata: Metadata = {
   title: "Expertise",
@@ -16,7 +15,9 @@ export const metadata: Metadata = {
     "A senior expert network at the intersection of life sciences, data, AI and technology. The areas shown here are illustrative examples of where our experts work, not a service catalogue."
 };
 
-export default function ExpertisePage() {
+export default async function ExpertisePage() {
+  const { expertiseAreas, proofFacts } = await getContent();
+
   return (
     <>
       <PageHero

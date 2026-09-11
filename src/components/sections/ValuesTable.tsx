@@ -1,5 +1,5 @@
 import { Stagger, StaggerItem } from "@/components/motion/Reveal";
-import { values } from "@/content/network";
+import { getContent } from "@/content/live";
 
 /**
  * The six values as an editorial three column register: the value, what it
@@ -7,7 +7,9 @@ import { values } from "@/content/network";
  * cards so the "what it means practically" column stays comparable down the
  * page, and stacked below the lg breakpoint.
  */
-export function ValuesTable() {
+export async function ValuesTable() {
+  const { values } = await getContent();
+
   return (
     <div>
       {/* Column headings, desktop only. The rows carry their own labels below. */}

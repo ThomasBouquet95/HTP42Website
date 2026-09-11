@@ -2,13 +2,13 @@ import { Mark } from "@/components/ui/Logo";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/motion/Reveal";
-import { site } from "@/content/site";
+import { getContent } from "@/content/live";
 
 /**
  * The closing band, repeated on every page. Dark, quiet, one clear ask —
  * and a second, lower-commitment route for people who are not ready to talk.
  */
-export function CtaBand({
+export async function CtaBand({
   eyebrow = "Start here",
   title,
   body,
@@ -21,6 +21,8 @@ export function CtaBand({
   primary?: { label: string; href: string };
   secondary?: { label: string; href: string };
 }) {
+  const { site } = await getContent();
+
   return (
     <section className="grain relative overflow-hidden bg-ink">
       <Backdrop />

@@ -1,38 +1,38 @@
 import Link from "next/link";
 import { Linkedin, Mail, MapPin } from "lucide-react";
 import { LogoStacked } from "@/components/ui/Logo";
-import { site } from "@/content/site";
-import { expertiseAreas } from "@/content/expertise";
-import { caseStudies } from "@/content/cases";
+import { getContent } from "@/content/live";
 
-const columns = [
-  {
-    heading: "Expertise",
-    links: expertiseAreas.map((a) => ({
-      label: a.name,
-      href: `/expertise#${a.slug}`,
-    })),
-  },
-  {
-    heading: "Client impact",
-    links: caseStudies.slice(0, 5).map((c) => ({
-      label: c.title,
-      href: `/impact/${c.slug}`,
-    })),
-  },
-  {
-    heading: "Firm",
-    links: [
-      { label: "The network", href: "/network" },
-      { label: "Our model", href: "/network#model" },
-      { label: "Where the depth sits", href: "/network#disciplines" },
-      { label: "Perspectives", href: "/perspectives" },
-      { label: "Contact", href: "/contact" },
-    ],
-  },
-];
+export async function Footer() {
+  const { site, expertiseAreas, caseStudies } = await getContent();
 
-export function Footer() {
+  const columns = [
+    {
+      heading: "Expertise",
+      links: expertiseAreas.map((a) => ({
+        label: a.name,
+        href: `/expertise#${a.slug}`,
+      })),
+    },
+    {
+      heading: "Client impact",
+      links: caseStudies.slice(0, 5).map((c) => ({
+        label: c.title,
+        href: `/impact/${c.slug}`,
+      })),
+    },
+    {
+      heading: "Firm",
+      links: [
+        { label: "The network", href: "/network" },
+        { label: "Our model", href: "/network#model" },
+        { label: "Where the depth sits", href: "/network#disciplines" },
+        { label: "Perspectives", href: "/perspectives" },
+        { label: "Contact", href: "/contact" },
+      ],
+    },
+  ];
+
   const year = new Date().getFullYear();
 
   return (

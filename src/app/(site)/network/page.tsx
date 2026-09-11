@@ -15,9 +15,7 @@ import {
 } from "@/components/motion/Reveal";
 import { PartnerPortrait } from "@/components/ui/PartnerPortrait";
 import { ThreeSides } from "@/components/sections/ThreeSides";
-import { EXPERT_COUNT, disciplines, leadership } from "@/content/network";
-import { networkEffect } from "@/content/audiences";
-import { proofFacts } from "@/content/site";
+import { getContent } from "@/content/live";
 
 export const metadata: Metadata = {
   title: "The Network",
@@ -32,7 +30,9 @@ const JOIN_CRITERIA = [
   "You use AI seriously in your own practice, and you bring the judgment that makes its output trustworthy.",
 ];
 
-export default function NetworkPage() {
+export default async function NetworkPage() {
+  const { expertCount: EXPERT_COUNT, disciplines, leadership, networkEffect, proofFacts } = await getContent();
+
   return (
     <>
       <PageHero

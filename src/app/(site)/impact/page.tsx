@@ -5,7 +5,7 @@ import { CtaBand } from "@/components/CtaBand";
 import { CaseFilter } from "@/components/sections/CaseFilter";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Stagger, StaggerItem } from "@/components/motion/Reveal";
-import { caseStudies } from "@/content/cases";
+import { getContent } from "@/content/live";
 
 export const metadata: Metadata = {
   title: "Client Impact",
@@ -31,7 +31,9 @@ body: "Three of these engagements carried straight on from recommendation into e
   },
 ];
 
-export default function ImpactPage() {
+export default async function ImpactPage() {
+  const { caseStudies, expertiseAreas } = await getContent();
+
   const years = [...new Set(caseStudies.map((c) => c.year))].sort();
 
   return (
@@ -59,7 +61,7 @@ export default function ImpactPage() {
         ]}
       />
 
-      <CaseFilter />
+      <CaseFilter caseStudies={caseStudies} expertiseAreas={expertiseAreas} />
 
       {/* What the seven have in common */}
       <section className="section bg-ink-900 text-white">

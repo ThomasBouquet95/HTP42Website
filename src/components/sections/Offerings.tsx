@@ -1,6 +1,6 @@
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Stagger, StaggerItem } from "@/components/motion/Reveal";
-import { offerings } from "@/content/offerings";
+import { getContent } from "@/content/live";
 
 /**
  * The two ways clients work with HTP42. This is the commercial model, so it
@@ -15,7 +15,9 @@ import { offerings } from "@/content/offerings";
  * rather than by luck. No icons: with the diagrams gone the typography and the
  * hairline rules carry the structure.
  */
-export function Offerings() {
+export async function Offerings() {
+  const { offerings } = await getContent();
+
   return (
     <section id="offerings" className="section scroll-mt-24 bg-paper-2">
       <div className="shell">

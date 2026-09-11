@@ -4,8 +4,7 @@ import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { PartnerPortrait } from "@/components/ui/PartnerPortrait";
 import { ThreeSides } from "@/components/sections/ThreeSides";
-import { EXPERT_COUNT, leadership } from "@/content/network";
-import { networkEffect } from "@/content/audiences";
+import { getContent } from "@/content/live";
 
 /**
  * The network, in one section. Previously this was split across a "why HTP42"
@@ -14,7 +13,9 @@ import { networkEffect } from "@/content/audiences";
  * reader needs: who the partners are, then why the three sided model produces
  * access a client could not source alone.
  */
-export function TheNetwork() {
+export async function TheNetwork() {
+  const { expertCount: EXPERT_COUNT, leadership, networkEffect } = await getContent();
+
   return (
     <section id="network" className="section scroll-mt-24 bg-paper">
       <div className="shell">

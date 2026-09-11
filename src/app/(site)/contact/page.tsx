@@ -5,7 +5,7 @@ import { PageHero } from "@/components/PageHero";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal, Stagger, StaggerItem, DrawRule } from "@/components/motion/Reveal";
-import { site } from "@/content/site";
+import { getContent } from "@/content/live";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -31,34 +31,36 @@ body: "From a partner, not a coordinator. If your enquiry lands outside what we 
   },
 ];
 
-const DIRECT = [
-  {
-    icon: Mail,
-    label: "Email",
-    value: site.contact.email,
-    href: `mailto:${site.contact.email}`,
-  },
-  {
-    icon: Phone,
-    label: "Telephone",
-    value: site.contact.phone,
-    href: `tel:${site.contact.phone.replace(/[^+\d]/g, "")}`,
-  },
-  {
-    icon: Linkedin,
-    label: "LinkedIn",
-    value: "HealthTech Partners 42",
-    href: site.contact.linkedin,
-    external: true,
-  },
-  {
-    icon: MapPin,
-    label: "Headquarters",
-    value: site.contact.hq,
-  },
-];
+export default async function ContactPage() {
+  const { site, expertiseAreas } = await getContent();
 
-export default function ContactPage() {
+  const DIRECT = [
+    {
+      icon: Mail,
+      label: "Email",
+      value: site.contact.email,
+      href: `mailto:${site.contact.email}`,
+    },
+    {
+      icon: Phone,
+      label: "Telephone",
+      value: site.contact.phone,
+      href: `tel:${site.contact.phone.replace(/[^+\d]/g, "")}`,
+    },
+    {
+      icon: Linkedin,
+      label: "LinkedIn",
+      value: "HealthTech Partners 42",
+      href: site.contact.linkedin,
+      external: true,
+    },
+    {
+      icon: MapPin,
+      label: "Headquarters",
+      value: site.contact.hq,
+    },
+  ];
+
   return (
     <>
       <PageHero
@@ -98,7 +100,10 @@ export default function ContactPage() {
               </Reveal>
               <Reveal delay={0.12}>
                 <div className="mt-10">
-                  <ContactForm />
+                  <ContactForm
+                    contactEmail={site.contact.email}
+                    areaNames={expertiseAreas.map((a) => a.name)}
+                  />
                 </div>
               </Reveal>
             </div>

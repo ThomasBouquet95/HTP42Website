@@ -3,10 +3,12 @@ import { ArrowUpRight } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
-import { featuredPerspectives } from "@/content/perspectives";
 import { formatDate } from "@/lib/format";
+import { getContent } from "@/content/live";
 
-export function PerspectivesTeaser() {
+export async function PerspectivesTeaser() {
+  const { featuredPerspectives } = await getContent();
+
   return (
     <section className="section bg-paper">
       <div className="shell">

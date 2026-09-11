@@ -1,12 +1,14 @@
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Stagger, StaggerItem } from "@/components/motion/Reveal";
-import { engagementModel } from "@/content/expertise";
+import { getContent } from "@/content/live";
 
 /**
  * How an engagement actually runs. Four steps on a single horizontal spine —
  * the connecting line is what turns four cards into one process.
  */
-export function EngagementModel() {
+export async function EngagementModel() {
+  const { engagementModel } = await getContent();
+
   return (
     <section className="grain relative overflow-hidden bg-ink">
       <div

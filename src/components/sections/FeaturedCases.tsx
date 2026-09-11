@@ -6,7 +6,7 @@ import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Reveal } from "@/components/motion/Reveal";
-import { caseStudies } from "@/content/cases";
+import type { CaseStudy } from "@/content/cases";
 
 /**
  * Engagement examples as a slider. Seven full width rows took more space than
@@ -17,7 +17,7 @@ import { caseStudies } from "@/content/cases";
  * scrollable, works with touch and trackpad, degrades to a plain scroller,
  * and never autoplays.
  */
-export function FeaturedCases() {
+export function FeaturedCases({ caseStudies }: { caseStudies: CaseStudy[] }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);

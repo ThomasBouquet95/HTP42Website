@@ -1,4 +1,4 @@
-import { clients } from "@/content/site";
+import { getContent } from "@/content/live";
 
 /**
  * The client strip, as a continuous rotation. Nine names will not sit in one
@@ -11,7 +11,13 @@ import { clients } from "@/content/site";
  * keeps the loop seamless without measuring anything. It holds still for
  * anyone who has asked for reduced motion.
  */
-export function ClientStrip({ onDark = false }: { onDark?: boolean }) {
+export async function ClientStrip({
+  onDark = false,
+}: {
+  onDark?: boolean;
+}) {
+  const { clients } = await getContent();
+
   const run = (
     <ul className="flex shrink-0 items-center" aria-hidden="true">
       {clients.map((client) => (

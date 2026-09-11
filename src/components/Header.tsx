@@ -12,11 +12,20 @@ import {
 } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
-import { nav, site } from "@/content/site";
+
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-export function Header() {
+export function Header({
+  nav,
+  site,
+}: {
+  nav: readonly { label: string; href: string }[];
+  site: {
+    shortName: string;
+    contact: { email: string; phone: string; hq: string };
+  };
+}) {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);

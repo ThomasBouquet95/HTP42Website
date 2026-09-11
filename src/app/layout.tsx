@@ -5,9 +5,8 @@ import {
   JetBrains_Mono,
   Poppins,
 } from "next/font/google";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
 import { site } from "@/content/site";
+import { getContent } from "@/content/live";
 import "./globals.css";
 
 const interTight = Inter_Tight({
@@ -38,7 +37,9 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
-export const metadata: Metadata = {
+export async function generateMetadata(): Promise<Metadata> {
+  const { site } = await getContent();
+  return {
   metadataBase: new URL(site.url),
   title: {
     default: `${site.shortName} · ${site.tagline}`,
@@ -71,7 +72,8 @@ export const metadata: Metadata = {
     description: site.description,
   },
   robots: { index: true, follow: true },
-};
+  };
+}
 
 export const viewport: Viewport = {
   themeColor: "#0a0f1c",
@@ -79,20 +81,20 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const { site } = await getContent();
+
   return (
     <html
       lang="en-GB"
       className={`${interTight.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} ${poppins.variable}`}
     >
       <body>
-        <Header />
-        <main id="main">{children}</main>
-        <Footer />
+        {children}
         <script
           type="application/ld+json"
           // Organisation schema — helps the firm surface correctly in search.

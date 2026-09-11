@@ -1,10 +1,12 @@
 import { Counter } from "@/components/ui/Counter";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
-import { proofPoints } from "@/content/site";
+import { getContent } from "@/content/live";
 
 /** The numbers band. Counters, tabular figures, no chart — restraint reads as confidence. */
-export function ProofPoints() {
+export async function ProofPoints() {
+  const { proofPoints } = await getContent();
+
   return (
     <section className="grain relative overflow-hidden bg-ink-900">
       <div

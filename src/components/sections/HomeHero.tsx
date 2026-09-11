@@ -6,12 +6,15 @@ import { Button } from "@/components/ui/Button";
 import { Marquee } from "@/components/ui/Marquee";
 import { NetworkField } from "@/components/ui/NetworkField";
 import { RevealLines } from "@/components/motion/Reveal";
-import { capabilityKeywords } from "@/content/site";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 
-export function HomeHero() {
+export function HomeHero({
+  capabilityKeywords,
+}: {
+  capabilityKeywords: readonly string[];
+}) {
   const reduced = useReducedMotion();
   const { scrollY } = useScroll();
 
