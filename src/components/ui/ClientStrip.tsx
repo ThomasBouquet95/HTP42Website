@@ -29,7 +29,7 @@ export function ClientStrip({ onDark = false }: { onDark?: boolean }) {
             />
           ) : (
             <span
-              className={`block whitespace-nowrap text-[1.125rem] leading-none font-medium tracking-[-0.018em] md:text-[1.375rem] ${
+              className={`block whitespace-nowrap text-lg leading-none font-medium tracking-[-0.018em] md:text-xl ${
                 onDark ? "text-white/60" : "text-ink-300"
               }`}
             >

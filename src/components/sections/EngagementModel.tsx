@@ -60,10 +60,10 @@ export function EngagementModel() {
                     </span>
                   </div>
 
-                  <h3 className="mt-6 text-xl tracking-[-0.028em] text-white md:text-[1.375rem]">
+                  <h3 className="mt-6 text-xl tracking-[-0.028em] text-white">
                     {step.name}
                   </h3>
-                  <p className="mt-4 text-[0.875rem] leading-relaxed text-white/60">
+                  <p className="mt-4 text-sm leading-relaxed text-white/60">
                     {step.body}
                   </p>
                 </div>

@@ -120,7 +120,7 @@ export default function ContactPage() {
                         <span className="eyebrow text-ink-300">
                           {item.label}
                         </span>
-                        <span className="mt-1.5 text-[0.9375rem] font-medium tracking-[-0.012em] text-ink">
+                        <span className="mt-1.5 text-base font-medium tracking-[-0.012em] text-ink">
                           {item.value}
                         </span>
                       </span>
@@ -162,7 +162,7 @@ export default function ContactPage() {
                     {site.contact.presence.map((city) => (
                       <li
                         key={city}
-                        className="flex items-baseline gap-3 text-[0.9375rem] text-ink-600"
+                        className="flex items-baseline gap-3 text-base text-ink-600"
                       >
                         <span
                           className="size-1 shrink-0 rounded-full bg-brand/50"
@@ -172,7 +172,7 @@ export default function ContactPage() {
                       </li>
                     ))}
                   </ul>
-                  <p className="mt-6 max-w-[30ch] text-[0.8125rem] leading-relaxed text-ink-400">
+                  <p className="mt-6 max-w-[30ch] text-xs leading-relaxed text-ink-400">
                     Our experts are based across Europe, North America and Asia
                     Pacific. Engagements run wherever the client does.
                   </p>
@@ -207,7 +207,7 @@ export default function ContactPage() {
                 </h2>
               </Reveal>
               <Reveal delay={0.12}>
-                <p className="mt-7 max-w-sm text-[0.9375rem] leading-relaxed text-white/60">
+                <p className="mt-7 max-w-sm text-base leading-relaxed text-white/60">
                   We are a small firm. Every enquiry is read by a partner, and
                   the ones we cannot help get told so quickly.
                 </p>
@@ -227,10 +227,10 @@ export default function ContactPage() {
                         {item.step}
                       </span>
                       <div>
-                        <h3 className="max-w-[26ch] text-[1.125rem] tracking-[-0.024em] text-white md:text-[1.25rem]">
+                        <h3 className="max-w-[26ch] text-lg tracking-[-0.024em] text-white">
                           {item.title}
                         </h3>
-                        <p className="mt-3 max-w-[52ch] text-[0.9375rem] leading-relaxed text-white/60">
+                        <p className="mt-3 max-w-[52ch] text-base leading-relaxed text-white/60">
                           {item.body}
                         </p>
                       </div>

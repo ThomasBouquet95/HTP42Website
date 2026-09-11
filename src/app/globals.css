@@ -36,8 +36,29 @@
   --font-brand: var(--font-poppins), var(--font-inter-tight), ui-sans-serif,
     system-ui, sans-serif;
 
-  /* ---- Fluid display scale ------------------------------------------- */
-  --text-eyebrow: 0.6875rem;
+  /* ---- Type scale -----------------------------------------------------
+   * One ladder, roughly a 1.1 ratio. Every size on the site comes from here.
+   * It replaced about twenty five ad hoc values (text-[0.9375rem] and the
+   * like) that had accumulated into sizes nobody could tell apart: 1.125 and
+   * 1.1875 side by side, 1.25 and 1.3125, four separate one off clamps in the
+   * same visual role. The numeric steps deliberately override Tailwind's
+   * defaults so that text-sm and text-lg mean the house sizes.
+   */
+  --text-eyebrow: 0.6875rem; /* 11 — mono labels */
+  --text-xs: 0.8125rem; /* 13 — dense lists, meta */
+  --text-sm: 0.875rem; /* 14 — secondary copy */
+  --text-base: 1rem; /* 16 — reading size, interface text, labels */
+  --text-lg: 1.1875rem; /* 19 — card titles */
+  --text-xl: 1.375rem; /* 22 — sub headings */
+  --text-2xl: 1.75rem; /* 28 — large card titles */
+  --text-3xl: 2rem; /* 32 — section sub heads */
+
+  /* Fluid steps, for statements and figures */
+  --text-statement: clamp(1.375rem, 1.1rem + 0.9vw, 1.75rem);
+  --text-figure: clamp(2rem, 1.4rem + 1.6vw, 2.75rem);
+  --text-figure-lg: clamp(2.5rem, 1.6rem + 2.4vw, 3.75rem);
+
+  /* Display, for headlines */
   --text-display-sm: clamp(1.75rem, 1.2rem + 2.2vw, 2.75rem);
   --text-display: clamp(2.25rem, 1.35rem + 3.6vw, 4.25rem);
   --text-display-lg: clamp(2.5rem, 1.15rem + 4.9vw, 4.9rem);
@@ -150,7 +171,9 @@
 
 /* Vertical rhythm for full sections */
 @utility section {
-  padding-block: clamp(4.5rem, 3rem + 7vw, 9.5rem);
+  /* The floor is set for a phone, where 4.5rem top and bottom put 150px of
+     nothing between every section. Desktop is capped and unchanged. */
+  padding-block: clamp(3.25rem, 2.25rem + 6vw, 9.5rem);
 }
 
 @utility section-sm {
@@ -179,21 +202,17 @@
 }
 
 @utility lead {
-  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.3125rem);
+  font-size: var(--text-lg);
   line-height: 1.55;
   letter-spacing: -0.011em;
   color: var(--color-ink-600);
 }
 
 @utility body-copy {
-  font-size: 1rem;
+  font-size: var(--text-base);
   line-height: 1.68;
   letter-spacing: -0.003em;
   color: var(--color-ink-400);
-
-  @media (min-width: 1024px) {
-    font-size: 1.0625rem;
-  }
 }
 
 /* Tabular figures for stats / metrics */

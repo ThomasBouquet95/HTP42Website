@@ -174,13 +174,13 @@ export default function NetworkPage() {
                     sizes="(min-width: 1024px) 22vw, (min-width: 640px) 44vw, 5.5rem"
                   />
                 </div>
-                <h3 className="mt-6 text-[1.25rem] tracking-[-0.026em] text-white transition-colors duration-500 group-hover:text-azure max-sm:mt-0">
+                <h3 className="mt-6 text-lg tracking-[-0.026em] text-white transition-colors duration-500 group-hover:text-azure max-sm:mt-0">
                   {person.name}
                 </h3>
-                <p className="mt-2 text-[0.8125rem] leading-snug font-medium tracking-[-0.006em] text-azure/90">
+                <p className="mt-2 text-xs leading-snug font-medium tracking-[-0.006em] text-azure/90">
                   {person.role}
                 </p>
-                <p className="mt-4 max-w-[40ch] text-[0.875rem] leading-relaxed text-white/60 max-sm:col-span-2">
+                <p className="mt-4 max-w-[40ch] text-sm leading-relaxed text-white/60 max-sm:col-span-2">
                   {person.note}
                 </p>
               </StaggerItem>
@@ -238,10 +238,10 @@ export default function NetworkPage() {
                   <span className="eyebrow tnum text-ink-300">
                     {discipline.index}
                   </span>
-                  <h3 className="mt-7 max-w-[20ch] text-[1.1875rem] leading-tight tracking-[-0.026em] text-ink transition-colors duration-500 group-hover:text-brand md:text-[1.3125rem]">
+                  <h3 className="mt-7 max-w-[20ch] text-lg leading-tight tracking-[-0.026em] text-ink transition-colors duration-500 group-hover:text-brand md:text-xl">
                     {discipline.name}
                   </h3>
-                  <p className="mt-4 text-[0.875rem] leading-relaxed text-ink-400">
+                  <p className="mt-4 text-sm leading-relaxed text-ink-400">
                     {discipline.summary}
                   </p>
                 </div>
@@ -251,7 +251,7 @@ export default function NetworkPage() {
 
           <Reveal delay={0.1}>
             <div className="rule mt-12 pt-7">
-              <p className="max-w-[62ch] text-[0.9375rem] leading-relaxed text-ink-600">
+              <p className="max-w-[62ch] text-base leading-relaxed text-ink-600">
                 Not seeing your subject? The bench is the starting point, not
                 the limit. Our experts' own networks reach 500+ more senior
                 specialists, and we source from them when a brief calls for
@@ -321,7 +321,7 @@ export default function NetworkPage() {
                       <span className="eyebrow tnum mt-1 shrink-0 text-azure/90">
                         0{i + 1}
                       </span>
-                      <p className="max-w-[52ch] text-[0.9375rem] leading-relaxed text-white/60">
+                      <p className="max-w-[52ch] text-base leading-relaxed text-white/60">
                         {criterion}
                       </p>
                     </div>

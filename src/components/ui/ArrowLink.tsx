@@ -31,7 +31,7 @@ export function ArrowLink({
   );
 
   const cls = `group inline-flex items-center gap-2 font-medium tracking-[-0.01em] transition-colors duration-300 ${
-    size === "sm" ? "text-[0.8125rem]" : "text-[0.9375rem]"
+    size === "sm" ? "text-xs" : "text-base"
   } ${
     onDark ? "text-white hover:text-azure" : "text-ink hover:text-brand"
   } ${className}`;

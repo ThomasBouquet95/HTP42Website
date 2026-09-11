@@ -15,7 +15,7 @@ const TOPICS = [
 ];
 
 const field =
-  "w-full rounded-md border border-ink/15 bg-paper px-4 py-3 text-[0.9375rem] tracking-[-0.008em] text-ink transition-colors duration-300 placeholder:text-ink-300 hover:border-ink/30 focus:border-brand focus:outline-none";
+  "w-full rounded-md border border-ink/15 bg-paper px-4 py-3 text-base tracking-[-0.008em] text-ink transition-colors duration-300 placeholder:text-ink-300 hover:border-ink/30 focus:border-brand focus:outline-none";
 
 const label = "eyebrow block text-ink-400";
 
@@ -145,7 +145,7 @@ export function ContactForm() {
       <div className="flex flex-wrap items-center gap-x-5 gap-y-3 pt-1">
         <button
           type="submit"
-          className="group inline-flex h-[3.125rem] items-center justify-center gap-2.5 rounded-full bg-ink px-7 text-[0.875rem] font-medium tracking-[-0.008em] text-paper transition-all duration-500 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:bg-brand hover:shadow-[0_8px_24px_-8px_rgba(20,80,200,0.45)]"
+          className="group inline-flex h-[3.125rem] items-center justify-center gap-2.5 rounded-full bg-ink px-7 text-sm font-medium tracking-[-0.008em] text-paper transition-all duration-500 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:bg-brand hover:shadow-[0_8px_24px_-8px_rgba(20,80,200,0.45)]"
         >
           Send enquiry
           <ArrowRight
@@ -157,7 +157,7 @@ export function ContactForm() {
 
         {sent && (
           <motion.p
-            className="inline-flex items-center gap-2 text-[0.8125rem] font-medium text-brand"
+            className="inline-flex items-center gap-2 text-xs font-medium text-brand"
             initial={reduced ? undefined : { opacity: 0, x: -8 }}
             animate={reduced ? undefined : { opacity: 1, x: 0 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}

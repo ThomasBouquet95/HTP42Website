@@ -42,14 +42,14 @@ export function Logo({
       <Mark className="h-[1.15rem] w-auto text-azure transition-opacity duration-500 group-hover:opacity-80" />
       <span className="flex flex-col leading-none">
         <span
-          className={`font-brand text-[0.9375rem] font-medium tracking-[-0.012em] ${
+          className={`font-brand text-base font-medium tracking-[-0.012em] ${
             onDark ? "text-white" : "text-ink"
           }`}
         >
           HealthTech
         </span>
         <span
-          className={`font-brand mt-[0.15rem] text-[0.6875rem] font-normal tracking-[0.015em] ${
+          className={`font-brand mt-[0.15rem] text-eyebrow font-normal tracking-[0.015em] ${
             onDark ? "text-white/60" : "text-ink-400"
           }`}
         >
@@ -77,14 +77,14 @@ export function LogoStacked({
       <Mark className="h-6 w-auto text-azure transition-opacity duration-500 group-hover:opacity-80" />
       <span className="flex flex-col leading-[1.15]">
         <span
-          className={`font-brand text-[1.1875rem] font-medium tracking-[-0.012em] ${
+          className={`font-brand text-lg font-medium tracking-[-0.012em] ${
             onDark ? "text-white" : "text-ink"
           }`}
         >
           HealthTech
         </span>
         <span
-          className={`font-brand text-[1.1875rem] font-normal tracking-[-0.008em] ${
+          className={`font-brand text-lg font-normal tracking-[-0.008em] ${
             onDark ? "text-white/70" : "text-ink-600"
           }`}
         >

@@ -57,7 +57,7 @@ export function LegalPage({
                     <span className="eyebrow tnum text-ink-300">
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <h2 className="text-[1.25rem] tracking-[-0.026em] text-ink md:text-[1.5rem]">
+                    <h2 className="text-lg tracking-[-0.026em] text-ink md:text-xl">
                       {section.heading}
                     </h2>
                   </div>

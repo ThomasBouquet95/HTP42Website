@@ -59,7 +59,7 @@ export function CaseFilter() {
                   type="button"
                   onClick={() => setActive(filter.label)}
                   aria-pressed={on}
-                  className={`group inline-flex items-baseline gap-2 rounded-full border px-4 py-2 text-[0.8125rem] font-medium tracking-[-0.006em] transition-all duration-500 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] ${
+                  className={`group inline-flex items-baseline gap-2 rounded-full border px-4 py-2 text-xs font-medium tracking-[-0.006em] transition-all duration-500 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] ${
                     on
                       ? "border-ink bg-ink text-paper"
                       : "border-ink/12 text-ink-600 hover:border-ink/35 hover:bg-ink/[0.03]"

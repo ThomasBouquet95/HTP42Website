@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 type Variant = "solid" | "light" | "outline" | "outline-dark" | "ghost";
 
 const base =
-  "group relative inline-flex items-center justify-center gap-2.5 rounded-full text-[0.875rem] font-medium tracking-[-0.008em] transition-all duration-500 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-offset-4";
+  "group relative inline-flex items-center justify-center gap-2.5 rounded-full text-sm font-medium tracking-[-0.008em] transition-all duration-500 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-offset-4";
 
 const sizes = {
   sm: "h-9 px-4",

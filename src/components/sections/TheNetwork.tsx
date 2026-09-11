@@ -50,13 +50,13 @@ export function TheNetwork() {
                     sizes="(min-width: 1024px) 22vw, (min-width: 640px) 44vw, 5.5rem"
                   />
                 </div>
-                <h4 className="mt-5 text-[1.125rem] tracking-[-0.024em] text-ink transition-colors duration-500 group-hover:text-brand max-sm:mt-0 md:text-[1.25rem]">
+                <h4 className="mt-5 text-lg tracking-[-0.024em] text-ink transition-colors duration-500 group-hover:text-brand max-sm:mt-0">
                   {person.name}
                 </h4>
-                <p className="mt-1.5 text-[0.8125rem] font-medium tracking-[-0.006em] text-brand">
+                <p className="mt-1.5 text-xs font-medium tracking-[-0.006em] text-brand">
                   {person.role}
                 </p>
-                <p className="mt-3 max-w-[40ch] text-[0.875rem] leading-relaxed text-ink-400 max-sm:col-span-2 max-sm:mt-4">
+                <p className="mt-3 max-w-[40ch] text-sm leading-relaxed text-ink-400 max-sm:col-span-2 max-sm:mt-4">
                   {person.note}
                 </p>
               </StaggerItem>
@@ -87,7 +87,7 @@ export function TheNetwork() {
         {/* What the three sides add up to */}
         <Reveal delay={0.1}>
           <div className="rule mt-14 flex flex-col gap-8 pt-8 lg:flex-row lg:items-end lg:justify-between">
-            <p className="max-w-[52ch] text-[clamp(1.25rem,1.05rem+0.7vw,1.625rem)] leading-[1.32] tracking-[-0.022em] text-ink">
+            <p className="max-w-[52ch] text-statement leading-[1.32] tracking-[-0.022em] text-ink">
               {networkEffect}
             </p>
             <div className="shrink-0">

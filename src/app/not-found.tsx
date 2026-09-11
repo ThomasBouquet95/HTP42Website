@@ -47,7 +47,7 @@ export default function NotFound() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="group flex items-baseline gap-3.5 border-b border-white/10 py-3 text-[1.0625rem] tracking-[-0.022em] text-white/80 transition-colors duration-500 hover:text-azure"
+                  className="group flex items-baseline gap-3.5 border-b border-white/10 py-3 text-lg tracking-[-0.022em] text-white/80 transition-colors duration-500 hover:text-azure"
                 >
                   <span className="eyebrow tnum text-white/45">
                     {String(i + 1).padStart(2, "0")}

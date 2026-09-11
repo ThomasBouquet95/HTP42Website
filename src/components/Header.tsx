@@ -85,7 +85,7 @@ export function Header() {
                     key={item.href}
                     href={item.href}
                     aria-current={active ? "page" : undefined}
-                    className={`link-nav text-[0.875rem] font-medium tracking-[-0.008em] transition-colors duration-400 ${
+                    className={`link-nav text-sm font-medium tracking-[-0.008em] transition-colors duration-400 ${
                       active
                         ? "text-azure"
                         : "text-white/70 hover:text-white"
@@ -100,7 +100,7 @@ export function Header() {
             <div className="flex items-center gap-2">
               <Link
                 href="/contact"
-                className="hidden h-10 items-center rounded-full bg-white px-5 text-[0.8125rem] font-medium tracking-[-0.008em] text-ink transition-all duration-500 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:bg-azure hover:text-white sm:inline-flex"
+                className="hidden h-10 items-center rounded-full bg-white px-5 text-xs font-medium tracking-[-0.008em] text-ink transition-all duration-500 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:bg-azure hover:text-white sm:inline-flex"
               >
                 Start a conversation
               </Link>
@@ -166,7 +166,7 @@ export function Header() {
                   >
                     <Link
                       href={item.href}
-                      className="flex items-baseline gap-4 py-5 text-[1.75rem] font-medium tracking-[-0.028em] text-white"
+                      className="flex items-baseline gap-4 py-5 text-2xl font-medium tracking-[-0.028em] text-white"
                     >
                       <span className="eyebrow tnum text-white/50">
                         {String(i + 1).padStart(2, "0")}
@@ -186,7 +186,7 @@ export function Header() {
                 {/* The header CTA is hidden below 640px, so the panel carries it. */}
                 <Link
                   href="/contact"
-                  className="inline-flex h-12 items-center justify-center rounded-full bg-white px-6 text-[0.875rem] font-medium tracking-[-0.008em] text-ink transition-colors duration-500 hover:bg-azure hover:text-white"
+                  className="inline-flex h-12 items-center justify-center rounded-full bg-white px-6 text-sm font-medium tracking-[-0.008em] text-ink transition-colors duration-500 hover:bg-azure hover:text-white"
                 >
                   Start a conversation
                 </Link>
@@ -194,7 +194,7 @@ export function Header() {
                 <div className="mt-9">
                   <a
                     href={`mailto:${site.contact.email}`}
-                    className="text-[1.0625rem] font-medium text-azure"
+                    className="text-lg font-medium text-azure"
                   >
                     {site.contact.email}
                   </a>

@@ -53,7 +53,7 @@ export function PartnerPortrait({
       ) : (
         <span
           aria-hidden="true"
-          className={`absolute inset-0 flex items-center justify-center text-[1.75rem] tracking-[-0.03em] transition-colors duration-700 md:text-[2rem] ${
+          className={`absolute inset-0 flex items-center justify-center text-2xl tracking-[-0.03em] transition-colors duration-700 md:text-3xl ${
             onDark
               ? "text-white/35 group-hover:text-azure/70"
               : "text-brand/45 group-hover:text-brand/70"

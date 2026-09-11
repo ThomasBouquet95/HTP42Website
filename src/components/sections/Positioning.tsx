@@ -22,7 +22,7 @@ export function Positioning() {
 
         <div className="pt-9 lg:pt-12">
           <Reveal>
-            <p className="max-w-[34ch] text-[clamp(1.6rem,1.1rem+1.7vw,2.6rem)] leading-[1.16] tracking-[-0.03em] text-ink">
+            <p className="max-w-[34ch] text-display-sm leading-[1.16] tracking-[-0.03em] text-ink">
               We bring the{" "}
               <span className="accent-italic text-brand">
                 specific deep expertise

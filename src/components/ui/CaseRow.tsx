@@ -39,23 +39,23 @@ export function CaseRow({
             </span>
             <span className="eyebrow text-brand">{study.year}</span>
           </div>
-          <p className="mt-4 max-w-[24ch] text-[0.8125rem] leading-snug text-ink-400">
+          <p className="mt-4 max-w-[24ch] text-xs leading-snug text-ink-400">
             {study.clientType}
           </p>
-          <p className="mt-2.5 text-[0.8125rem] text-ink-300">
+          <p className="mt-2.5 text-xs text-ink-300">
             {study.duration} · {study.team}
           </p>
         </div>
 
         {/* Claim */}
         <div className="lg:col-span-8">
-          <h3 className="text-[1.375rem] leading-[1.12] tracking-[-0.03em] text-ink transition-colors duration-500 group-hover:text-brand md:text-[1.75rem] lg:text-[2rem]">
+          <h3 className="text-xl leading-[1.12] tracking-[-0.03em] text-ink transition-colors duration-500 group-hover:text-brand md:text-2xl lg:text-3xl">
             {study.title}
           </h3>
-          <p className="mt-2.5 text-[0.9375rem] font-medium tracking-[-0.01em] text-ink-400">
+          <p className="mt-2.5 text-base font-medium tracking-[-0.01em] text-ink-400">
             {study.kicker}
           </p>
-          <p className="mt-5 max-w-[62ch] text-[0.9375rem] leading-relaxed text-ink-600">
+          <p className="mt-5 max-w-[62ch] text-base leading-relaxed text-ink-600">
             {study.headline}
           </p>
 
@@ -63,7 +63,7 @@ export function CaseRow({
             {study.tags.map((tag) => (
               <li
                 key={tag}
-                className="rounded-full border border-ink/10 px-3 py-1 text-[0.6875rem] font-medium tracking-[0.02em] text-ink-400 transition-colors duration-700 group-hover:border-brand/25 group-hover:text-ink-600"
+                className="rounded-full border border-ink/10 px-3 py-1 text-eyebrow font-medium tracking-[0.02em] text-ink-400 transition-colors duration-700 group-hover:border-brand/25 group-hover:text-ink-600"
               >
                 {tag}
               </li>

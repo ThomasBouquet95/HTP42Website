@@ -39,17 +39,17 @@ export function PerspectivesTeaser() {
                   </span>
                 </div>
 
-                <h3 className="mt-7 text-[1.25rem] leading-[1.16] tracking-[-0.028em] text-ink transition-colors duration-500 group-hover:text-brand md:text-[1.375rem]">
+                <h3 className="mt-7 text-lg leading-[1.16] tracking-[-0.028em] text-ink transition-colors duration-500 group-hover:text-brand md:text-xl">
                   {piece.title}
                 </h3>
 
-                <p className="mt-4 text-[0.875rem] leading-relaxed text-ink-400">
+                <p className="mt-4 text-sm leading-relaxed text-ink-400">
                   {piece.standfirst}
                 </p>
 
                 <div className="mt-auto flex items-end justify-between gap-4 pt-8">
                   <div>
-                    <p className="text-[0.8125rem] font-medium text-ink-600">
+                    <p className="text-xs font-medium text-ink-600">
                       {piece.author}
                     </p>
                     <p className="mt-1 text-xs text-ink-300">

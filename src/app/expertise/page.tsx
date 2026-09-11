@@ -47,7 +47,7 @@ export default function ExpertisePage() {
               <StaggerItem key={area.slug}>
                 <a
                   href={`#${area.slug}`}
-                  className="group inline-flex items-baseline gap-2.5 rounded-full border border-ink/12 px-4 py-2 text-[0.8125rem] font-medium tracking-[-0.006em] text-ink-600 transition-all duration-500 hover:border-brand/40 hover:bg-brand-soft hover:text-brand"
+                  className="group inline-flex items-baseline gap-2.5 rounded-full border border-ink/12 px-4 py-2 text-xs font-medium tracking-[-0.006em] text-ink-600 transition-all duration-500 hover:border-brand/40 hover:bg-brand-soft hover:text-brand"
                 >
                   <span className="eyebrow tnum text-ink-300 transition-colors duration-500 group-hover:text-brand">
                     {area.index}
@@ -87,7 +87,7 @@ export default function ExpertisePage() {
                     </Reveal>
 
                     <Reveal delay={0.12}>
-                      <p className="mt-6 max-w-[34ch] text-[1.0625rem] leading-relaxed font-medium tracking-[-0.012em] text-brand">
+                      <p className="mt-6 max-w-[34ch] text-lg leading-relaxed font-medium tracking-[-0.012em] text-brand">
                         {area.promise}
                       </p>
                     </Reveal>
@@ -123,11 +123,11 @@ export default function ExpertisePage() {
                             </span>
                           </div>
 
-                          <h3 className="mt-5 max-w-[26ch] text-[1.5rem] leading-[1.14] tracking-[-0.03em] text-ink transition-colors duration-500 group-hover:text-brand md:text-[1.75rem]">
+                          <h3 className="mt-5 max-w-[26ch] text-xl leading-[1.14] tracking-[-0.03em] text-ink transition-colors duration-500 group-hover:text-brand md:text-2xl">
                             {service.name}
                           </h3>
 
-                          <p className="mt-4 max-w-[52ch] text-[1.0625rem] leading-relaxed tracking-[-0.011em] text-ink-600">
+                          <p className="mt-4 max-w-[52ch] text-base leading-relaxed tracking-[-0.011em] text-ink-600">
                             {service.summary}
                           </p>
 
@@ -143,7 +143,7 @@ export default function ExpertisePage() {
                               {service.deliverables.map((item) => (
                                 <li
                                   key={item}
-                                  className="flex gap-3 text-[0.875rem] leading-snug text-ink-600"
+                                  className="flex gap-3 text-sm leading-snug text-ink-600"
                                 >
                                   <span
                                     className="mt-[0.4375rem] size-1 shrink-0 rounded-full bg-brand/50"

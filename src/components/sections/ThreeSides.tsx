@@ -49,11 +49,11 @@ export function ThreeSides() {
 
               <Diagram className="mt-6 h-14 w-[4.75rem] md:h-16 md:w-[5.5rem]" />
 
-              <h4 className="mt-6 max-w-[22ch] text-[1.0625rem] leading-tight tracking-[-0.024em] text-ink transition-colors duration-500 group-hover:text-brand md:text-[1.1875rem]">
+              <h4 className="mt-6 max-w-[22ch] text-lg leading-tight tracking-[-0.024em] text-ink transition-colors duration-500 group-hover:text-brand md:text-lg">
                 {audience.label}
               </h4>
 
-              <p className="mt-4 max-w-[40ch] text-[0.875rem] leading-relaxed text-ink-600">
+              <p className="mt-4 max-w-[40ch] text-sm leading-relaxed text-ink-600">
                 {audience.problem}
               </p>
 
@@ -63,7 +63,7 @@ export function ThreeSides() {
                   {audience.gains.map((gain) => (
                     <li
                       key={gain}
-                      className="flex gap-2.5 text-[0.8125rem] leading-snug text-ink-600"
+                      className="flex gap-2.5 text-xs leading-snug text-ink-600"
                     >
                       <Check
                         className="mt-[0.1875rem] size-3 shrink-0 text-brand"

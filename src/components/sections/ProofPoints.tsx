@@ -26,13 +26,13 @@ export function ProofPoints() {
           {proofPoints.map((point) => (
             <StaggerItem key={point.label}>
               <div className="rule-on-dark pt-6">
-                <p className="text-[clamp(2.5rem,1.6rem+2.4vw,3.75rem)] leading-none font-medium tracking-[-0.04em] text-white">
+                <p className="text-figure-lg leading-none font-medium tracking-[-0.04em] text-white">
                   <Counter value={point.value} suffix={point.suffix} />
                 </p>
-                <p className="mt-5 text-[0.9375rem] font-medium tracking-[-0.01em] text-azure">
+                <p className="mt-5 text-base font-medium tracking-[-0.01em] text-azure">
                   {point.label}
                 </p>
-                <p className="mt-2.5 max-w-[26ch] text-[0.8125rem] leading-relaxed text-white/55">
+                <p className="mt-2.5 max-w-[26ch] text-xs leading-relaxed text-white/55">
                   {point.note}
                 </p>
               </div>

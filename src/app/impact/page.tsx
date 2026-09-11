@@ -87,10 +87,10 @@ export default function ImpactPage() {
                   <span className="eyebrow tnum text-white/50">
                     {pattern.index}
                   </span>
-                  <h3 className="mt-6 max-w-[20ch] text-xl tracking-[-0.028em] text-white md:text-[1.375rem]">
+                  <h3 className="mt-6 max-w-[20ch] text-xl tracking-[-0.028em] text-white">
                     {pattern.title}
                   </h3>
-                  <p className="mt-4 text-[0.9375rem] leading-relaxed text-white/60">
+                  <p className="mt-4 text-base leading-relaxed text-white/60">
                     {pattern.body}
                   </p>
                 </div>

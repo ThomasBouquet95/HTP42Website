@@ -74,7 +74,7 @@ export default function PerspectivesPage() {
                 </Reveal>
 
                 <Reveal delay={0.06}>
-                  <h2 className="mt-7 max-w-[24ch] text-display-sm tracking-[-0.032em] text-ink md:text-[clamp(2rem,1.2rem+2.2vw,3.25rem)]">
+                  <h2 className="mt-7 max-w-[24ch] text-display-sm tracking-[-0.032em] text-ink">
                     {lead.title}
                   </h2>
                 </Reveal>
@@ -88,12 +88,12 @@ export default function PerspectivesPage() {
                 <Reveal delay={0.16}>
                   <div className="rule pt-6">
                     <h3 className="eyebrow text-ink-300">Written by</h3>
-                    <p className="mt-3 text-[0.9375rem] font-medium tracking-[-0.012em] text-ink">
+                    <p className="mt-3 text-base font-medium tracking-[-0.012em] text-ink">
                       {lead.author}
                     </p>
                     <a
                       href={requestLink(lead.title)}
-                      className="group mt-7 inline-flex items-center gap-2.5 rounded-full bg-ink px-5 py-2.5 text-[0.8125rem] font-medium text-paper transition-colors duration-500 hover:bg-brand"
+                      className="group mt-7 inline-flex items-center gap-2.5 rounded-full bg-ink px-5 py-2.5 text-xs font-medium text-paper transition-colors duration-500 hover:bg-brand"
                     >
                       <Mail className="size-3.5" strokeWidth={1.75} aria-hidden="true" />
                       Request the full piece
@@ -143,19 +143,19 @@ export default function PerspectivesPage() {
                           {piece.category}
                         </span>
                       </div>
-                      <p className="mt-4 text-[0.8125rem] text-ink-300">
+                      <p className="mt-4 text-xs text-ink-300">
                         {formatDate(piece.date)} · {piece.readTime}
                       </p>
                     </div>
 
                     <div className="lg:col-span-6">
-                      <h3 className="max-w-[30ch] text-[1.25rem] leading-[1.16] tracking-[-0.028em] text-ink md:text-[1.5rem]">
+                      <h3 className="max-w-[30ch] text-lg leading-[1.16] tracking-[-0.028em] text-ink md:text-xl">
                         {piece.title}
                       </h3>
-                      <p className="mt-4 max-w-[58ch] text-[0.9375rem] leading-relaxed text-ink-600">
+                      <p className="mt-4 max-w-[58ch] text-base leading-relaxed text-ink-600">
                         {piece.standfirst}
                       </p>
-                      <p className="mt-4 text-[0.8125rem] text-ink-400">
+                      <p className="mt-4 text-xs text-ink-400">
                         {piece.author}
                       </p>
                     </div>
@@ -163,7 +163,7 @@ export default function PerspectivesPage() {
                     <div className="flex items-start lg:col-span-3 lg:justify-end">
                       <a
                         href={requestLink(piece.title)}
-                        className="inline-flex items-center gap-2.5 rounded-full border border-ink/15 px-4 py-2 text-[0.8125rem] font-medium text-ink transition-all duration-500 hover:border-brand hover:bg-brand hover:text-white"
+                        className="inline-flex items-center gap-2.5 rounded-full border border-ink/15 px-4 py-2 text-xs font-medium text-ink transition-all duration-500 hover:border-brand hover:bg-brand hover:text-white"
                       >
                         <Mail
                           className="size-3.5"

@@ -48,12 +48,12 @@ export function ModelComparison() {
                 >
                   <th
                     scope="row"
-                    className="px-6 py-5 align-top text-[0.875rem] font-medium tracking-[-0.008em] text-ink"
+                    className="px-6 py-5 align-top text-sm font-medium tracking-[-0.008em] text-ink"
                   >
                     {row.dimension}
                   </th>
                   <td className="bg-brand-soft/60 px-6 py-5 align-top transition-colors duration-500 group-hover:bg-brand-soft">
-                    <span className="flex gap-2.5 text-[0.875rem] leading-snug font-medium text-ink">
+                    <span className="flex gap-2.5 text-sm leading-snug font-medium text-ink">
                       <Check
                         className="mt-0.5 size-3.5 shrink-0 text-brand"
                         strokeWidth={2.25}
@@ -63,7 +63,7 @@ export function ModelComparison() {
                     </span>
                   </td>
                   <td className="px-6 py-5 align-top">
-                    <span className="flex gap-2.5 text-[0.875rem] leading-snug text-ink-400">
+                    <span className="flex gap-2.5 text-sm leading-snug text-ink-400">
                       <Minus
                         className="mt-0.5 size-3.5 shrink-0 text-ink-200"
                         strokeWidth={2}
@@ -73,7 +73,7 @@ export function ModelComparison() {
                     </span>
                   </td>
                   <td className="px-6 py-5 align-top">
-                    <span className="flex gap-2.5 text-[0.875rem] leading-snug text-ink-400">
+                    <span className="flex gap-2.5 text-sm leading-snug text-ink-400">
                       <Minus
                         className="mt-0.5 size-3.5 shrink-0 text-ink-200"
                         strokeWidth={2}
@@ -94,13 +94,13 @@ export function ModelComparison() {
         {rows.map((row, i) => (
           <Reveal key={row.dimension} delay={i * 0.05} y={12}>
             <div className="overflow-hidden rounded-lg border border-ink/12">
-              <p className="border-b border-ink/10 bg-paper-2 px-5 py-3.5 text-[0.875rem] font-medium tracking-[-0.008em] text-ink">
+              <p className="border-b border-ink/10 bg-paper-2 px-5 py-3.5 text-sm font-medium tracking-[-0.008em] text-ink">
                 {row.dimension}
               </p>
               <dl className="divide-y divide-ink/[0.08]">
                 <div className="bg-brand-soft px-5 py-4">
                   <dt className="eyebrow text-brand">HTP42</dt>
-                  <dd className="mt-2 flex gap-2.5 text-[0.875rem] leading-snug font-medium text-ink">
+                  <dd className="mt-2 flex gap-2.5 text-sm leading-snug font-medium text-ink">
                     <Check
                       className="mt-0.5 size-3.5 shrink-0 text-brand"
                       strokeWidth={2.25}
@@ -112,7 +112,7 @@ export function ModelComparison() {
                 <div className="grid grid-cols-1 divide-y divide-ink/[0.08] sm:grid-cols-2 sm:divide-x sm:divide-y-0">
                   <div className="px-5 py-4">
                     <dt className="eyebrow text-ink-300">Large consultancy</dt>
-                    <dd className="mt-2 text-[0.875rem] leading-snug text-ink-400">
+                    <dd className="mt-2 text-sm leading-snug text-ink-400">
                       {row.large}
                     </dd>
                   </div>
@@ -120,7 +120,7 @@ export function ModelComparison() {
                     <dt className="eyebrow text-ink-300">
                       Independent consultant
                     </dt>
-                    <dd className="mt-2 text-[0.875rem] leading-snug text-ink-400">
+                    <dd className="mt-2 text-sm leading-snug text-ink-400">
                       {row.solo}
                     </dd>
                   </div>

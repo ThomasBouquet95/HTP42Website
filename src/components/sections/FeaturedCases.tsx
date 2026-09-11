@@ -122,15 +122,15 @@ export function FeaturedCases() {
                     <span className="eyebrow text-brand">{study.year}</span>
                   </div>
 
-                  <h3 className="mt-6 text-[1.0625rem] leading-tight tracking-[-0.024em] text-ink transition-colors duration-500 group-hover:text-brand md:text-[1.1875rem]">
+                  <h3 className="mt-6 text-lg leading-tight tracking-[-0.024em] text-ink transition-colors duration-500 group-hover:text-brand md:text-lg">
                     {study.title}
                   </h3>
 
-                  <p className="mt-2.5 text-[0.8125rem] leading-snug font-medium text-ink-400">
+                  <p className="mt-2.5 text-xs leading-snug font-medium text-ink-400">
                     {study.kicker}
                   </p>
 
-                  <p className="mt-5 text-[0.875rem] leading-relaxed text-ink-600">
+                  <p className="mt-5 text-sm leading-relaxed text-ink-600">
                     {study.headline}
                   </p>
 
@@ -138,13 +138,13 @@ export function FeaturedCases() {
                     <dl className="flex flex-wrap gap-x-5 gap-y-1.5 border-t border-ink/[0.09] pt-4">
                       <div className="flex gap-1.5">
                         <dt className="sr-only">Client</dt>
-                        <dd className="text-[0.75rem] text-ink-400">
+                        <dd className="text-xs text-ink-400">
                           {study.clientType}
                         </dd>
                       </div>
                     </dl>
                     <div className="mt-4 flex items-center justify-between gap-4">
-                      <span className="text-[0.75rem] text-ink-300">
+                      <span className="text-xs text-ink-300">
                         {study.duration} · {study.team}
                       </span>
                       <ArrowUpRight

@@ -31,12 +31,12 @@ export function ValuesTable() {
               <div className="lg:col-span-4">
                 <div className="flex items-baseline gap-4">
                   <span
-                    className="inline-flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-soft text-[0.6875rem] font-medium text-brand tnum transition-colors duration-500 group-hover:bg-brand group-hover:text-white"
+                    className="inline-flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-soft text-eyebrow font-medium text-brand tnum transition-colors duration-500 group-hover:bg-brand group-hover:text-white"
                     aria-hidden="true"
                   >
                     {i + 1}
                   </span>
-                  <h4 className="text-[1.125rem] leading-tight tracking-[-0.024em] text-ink transition-colors duration-500 group-hover:text-brand md:text-[1.25rem]">
+                  <h4 className="text-lg leading-tight tracking-[-0.024em] text-ink transition-colors duration-500 group-hover:text-brand">
                     {value.title}
                   </h4>
                 </div>
@@ -44,7 +44,7 @@ export function ValuesTable() {
 
               {/* Definition */}
               <div className="lg:col-span-4">
-                <p className="max-w-[44ch] text-[0.9375rem] leading-relaxed text-ink-600">
+                <p className="max-w-[44ch] text-base leading-relaxed text-ink-600">
                   {value.definition}
                 </p>
               </div>
@@ -58,7 +58,7 @@ export function ValuesTable() {
                   {value.practice.map((item) => (
                     <li
                       key={item}
-                      className="flex gap-3 text-[0.875rem] leading-snug text-ink-400"
+                      className="flex gap-3 text-sm leading-snug text-ink-400"
                     >
                       <span
                         className="mt-[0.4375rem] size-1 shrink-0 rounded-full bg-brand/50"

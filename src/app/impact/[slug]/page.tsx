@@ -70,10 +70,10 @@ export default async function CaseStudyPage({ params }: Params) {
                     i === study.metrics.length - 1 ? "border-b-0" : ""
                   } ${i === 0 ? "sm:pl-0" : ""}`}
                 >
-                  <p className="text-[clamp(2rem,1.4rem+1.6vw,2.75rem)] leading-none font-medium tracking-[-0.04em] text-ink tnum">
+                  <p className="text-figure leading-none font-medium tracking-[-0.04em] text-ink tnum">
                     {metric.value}
                   </p>
-                  <p className="mt-4 max-w-[22ch] text-[0.875rem] leading-snug text-ink-400">
+                  <p className="mt-4 max-w-[22ch] text-sm leading-snug text-ink-400">
                     {metric.label}
                   </p>
                 </div>
@@ -95,7 +95,7 @@ export default async function CaseStudyPage({ params }: Params) {
                   <Eyebrow index="01">The challenge</Eyebrow>
                 </Reveal>
                 <Reveal delay={0.06}>
-                  <p className="mt-7 max-w-[34ch] text-[clamp(1.375rem,1.1rem+0.9vw,1.75rem)] leading-[1.24] tracking-[-0.026em] text-ink">
+                  <p className="mt-7 max-w-[34ch] text-statement leading-[1.24] tracking-[-0.026em] text-ink">
                     {study.challenge}
                   </p>
                 </Reveal>
@@ -117,7 +117,7 @@ export default async function CaseStudyPage({ params }: Params) {
                   <Eyebrow index="02">Our approach</Eyebrow>
                 </Reveal>
                 <Reveal delay={0.06}>
-                  <p className="mt-7 max-w-[34ch] text-[clamp(1.375rem,1.1rem+0.9vw,1.75rem)] leading-[1.24] tracking-[-0.026em] text-ink">
+                  <p className="mt-7 max-w-[34ch] text-statement leading-[1.24] tracking-[-0.026em] text-ink">
                     {study.approach}
                   </p>
                 </Reveal>
@@ -179,7 +179,7 @@ export default async function CaseStudyPage({ params }: Params) {
                         <Check className="size-3.5" strokeWidth={2.25} />
                       </span>
                       <div>
-                        <h3 className="text-[1.125rem] tracking-[-0.024em] text-ink md:text-[1.25rem]">
+                        <h3 className="text-lg tracking-[-0.024em] text-ink">
                           {outcome.label}
                         </h3>
                         <p className="body-copy mt-2.5 max-w-[58ch]">
@@ -214,7 +214,7 @@ export default async function CaseStudyPage({ params }: Params) {
             </Eyebrow>
           </Reveal>
           <Reveal delay={0.08}>
-            <blockquote className="mt-9 max-w-[42ch] text-[clamp(1.625rem,1.1rem+1.9vw,2.75rem)] leading-[1.18] tracking-[-0.03em] text-white">
+            <blockquote className="mt-9 max-w-[42ch] text-display-sm leading-[1.18] tracking-[-0.03em] text-white">
               {study.impact}
             </blockquote>
           </Reveal>
@@ -223,7 +223,7 @@ export default async function CaseStudyPage({ params }: Params) {
             <div className="rule-on-dark mt-14 grid grid-cols-1 gap-x-12 gap-y-8 pt-8 md:grid-cols-3">
               <div>
                 <h3 className="eyebrow text-white/50">Client</h3>
-                <p className="mt-3 max-w-[30ch] text-[0.9375rem] leading-snug text-white/75">
+                <p className="mt-3 max-w-[30ch] text-base leading-snug text-white/75">
                   {study.client}
                 </p>
               </div>
@@ -231,7 +231,7 @@ export default async function CaseStudyPage({ params }: Params) {
                 <h3 className="eyebrow text-white/50">Expertise involved</h3>
                 <ul className="mt-3 space-y-1.5">
                   {study.areas.map((area) => (
-                    <li key={area} className="text-[0.9375rem] text-white/75">
+                    <li key={area} className="text-base text-white/75">
                       {area}
                     </li>
                   ))}
@@ -243,7 +243,7 @@ export default async function CaseStudyPage({ params }: Params) {
                   {study.tags.map((tag) => (
                     <li
                       key={tag}
-                      className="rounded-full border border-white/15 px-3 py-1 text-[0.6875rem] font-medium tracking-[0.02em] text-white/60"
+                      className="rounded-full border border-white/15 px-3 py-1 text-eyebrow font-medium tracking-[0.02em] text-white/60"
                     >
                       {tag}
                     </li>
@@ -271,7 +271,7 @@ export default async function CaseStudyPage({ params }: Params) {
                 />
                 <span className="eyebrow">Previous</span>
               </span>
-              <span className="max-w-[30ch] text-[1.0625rem] leading-snug tracking-[-0.022em] text-ink transition-colors duration-500 group-hover:text-brand md:text-[1.1875rem]">
+              <span className="max-w-[30ch] text-lg leading-snug tracking-[-0.022em] text-ink transition-colors duration-500 group-hover:text-brand md:text-lg">
                 {previous.title}
               </span>
             </Link>
@@ -288,7 +288,7 @@ export default async function CaseStudyPage({ params }: Params) {
                   aria-hidden="true"
                 />
               </span>
-              <span className="max-w-[30ch] text-[1.0625rem] leading-snug tracking-[-0.022em] text-ink transition-colors duration-500 group-hover:text-brand md:text-[1.1875rem]">
+              <span className="max-w-[30ch] text-lg leading-snug tracking-[-0.022em] text-ink transition-colors duration-500 group-hover:text-brand md:text-lg">
                 {next.title}
               </span>
             </Link>
