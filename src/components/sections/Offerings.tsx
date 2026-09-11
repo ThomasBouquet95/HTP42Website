@@ -31,7 +31,7 @@ export function Offerings() {
               .
             </>
           }
-          lead="Some clients need experts embedded in their own team. Others need a result delivered against defined deliverables. We find and assemble the AI empowered experts, and carry the accountability."
+          lead="Some clients need experts embedded in their own team. Others need an outcome owned end to end. We find and assemble the AI empowered experts, and carry the accountability."
         />
 
         {/*

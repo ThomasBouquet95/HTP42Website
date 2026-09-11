@@ -14,23 +14,23 @@ export const offerings: Offering[] = [
     index: "01",
     slug: "expert-deployment",
     name: "Expert Deployment",
-    promise: "We find proven experts. You sign one contract.",
-    body: "You tell us the need. We find the right experts from our network or its extended reach, check their credentials and track record, and embed them for as long as the need lasts.",
+    promise: "Proven experts. One counterparty.",
+    body: "Tell us what you need. We identify the right expert from our network or extended reach, validate their expertise and delivery record, and embed them into your team for as long as required.",
     points: [
       {
-        label: "One expert or several, embedded in your team",
+        label: "One or several experts, embedded with your team",
         detail:
-          "Matched on subject matter, working inside your team and reporting into it, over the short to long term.",
+          "Matched to your needs, working directly within your organisation for short term support or longer term assignments.",
       },
       {
-        label: "A fixed day rate, and one contract",
+        label: "One counterparty, wherever the expert is based",
         detail:
-          "One counterparty, wherever in the world they sit. Contracting, administration, payment and legal sit with us.",
+          "We handle contracting, administration, payments and legal, giving you a single point of contact across the engagement.",
       },
       {
-        label: "Proven experts, continuously managed",
+        label: "Proven experts, actively managed",
         detail:
-          "Screened by a partner, reviewed on every engagement, and replaced by us if the fit is wrong.",
+          "Every expert is screened by a partner, reviewed throughout the engagement, and replaced by us if the fit is not right.",
       },
     ],
   },
@@ -38,23 +38,23 @@ export const offerings: Offering[] = [
     index: "02",
     slug: "consulting-projects",
     name: "Consulting Projects",
-    promise: "Senior experts empowered by AI.",
-    body: "When you need a result rather than a role filled, we assemble the team from the network and own the delivery of it.",
+    promise: "A senior team, amplified by AI.",
+    body: "When you need an outcome rather than additional capacity, we assemble the right team around your challenge and take ownership of delivery from strategy through execution.",
     points: [
       {
         label: "A holistic team shaped to your need",
         detail:
-          "Subject matter experts do the work, project managers keep it moving, a partner stands behind the quality. All empowered by AI.",
+          "We bring together the right mix of subject matter experts, project leadership and partner oversight around the specific needs of each engagement.",
       },
       {
-        label: "Defined deliverables, agreed before we start",
+        label: "End to end support",
         detail:
-          "Scope and outputs fixed up front, so you know what lands and when.",
+          "From strategy and design through implementation and adoption, we support the engagement across the full lifecycle and stay involved through delivery.",
       },
       {
-        label: "An end to end solution",
+        label: "Technology solutions, built in",
         detail:
-          "Strategy, design, implementation and the change that decides whether any of it holds.",
+          "Where technology is part of the answer, we bring in trusted technology partners who can provide and implement the required solution as part of the engagement.",
       },
     ],
   },
