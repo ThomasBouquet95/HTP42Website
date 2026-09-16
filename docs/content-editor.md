@@ -106,6 +106,9 @@ Not editable:
   action bands, and the captions on the comparison table. These are still
   inline in their components. They are the remaining work, and they are why a
   few runs of text on each page still do not highlight.
+- New entries in a list. You can reword every technology partner, value or case
+  study that exists, but adding a fourth partner to a list of three is a code
+  change. Ask a developer for those.
 
 If a field is editable but does not highlight in the preview, it is still fully
 editable from the panel search, and the export is keyed by content path either

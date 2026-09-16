@@ -5,7 +5,14 @@ export type Offering = {
   promise: string;
   body: string;
   /** Three lines that define what the offering actually is. */
-  points: { label: string; detail: string }[];
+  points: {
+    label: string;
+    detail: string;
+    /** Named outside companies. A point that has them is drawn as a
+     * highlighted block, because it is the one place in this section where
+     * the subject is somebody other than HTP42. */
+    partners?: string[];
+  }[];
 };
 
 /** The two ways clients work with HTP42. */
@@ -55,6 +62,7 @@ export const offerings: Offering[] = [
         label: "Technology solutions, built in",
         detail:
           "Where technology is part of the answer, we bring in trusted technology partners who can provide and implement the required solution as part of the engagement.",
+        partners: ["eClinical Solutions"],
       },
     ],
   },

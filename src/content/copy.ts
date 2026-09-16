@@ -52,6 +52,9 @@ export const copy = {
       eyebrow: "How we work with you",
       title: "Embed our experts, or *hand us the solution*.",
       lead: "Some clients need experts embedded in their own team. Others need an outcome owned end to end. We find and assemble the AI empowered experts, and carry the accountability.",
+      /** Sits above the named technology partners. Deliberately open ended:
+       * the list is a sample, not the whole roster. */
+      partnersLabel: "Including",
     },
     expertise: {
       eyebrow: "Expertise",
