@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type RefObject } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
 /**
@@ -16,8 +16,16 @@ import { motion, useReducedMotion } from "framer-motion";
  * that. The loop is deterministic trigonometry on elapsed time, so it needs no
  * state and never re-renders React.
  *
+ * The same loop reads the cursor, which is why `pointer` is a ref rather than a
+ * prop with a value: a mouse move must never re-render React, it just changes
+ * what the next frame draws. Near the cursor the field leans in, the links it
+ * touches brighten, and the nearest experts connect to it. The cursor becomes a
+ * node in the network rather than a light shone on it.
+ *
  * It also stops when the hero scrolls out of view, which matters on a phone.
  */
+
+export type PointerState = { x: number; y: number; active: boolean };
 
 type Node = { x: number; y: number; r: number; hub?: boolean };
 
@@ -52,6 +60,10 @@ const EDGES: [number, number][] = [
   [6, 14], [13, 14], [11, 15], [12, 15], [10, 11], [9, 10],
 ];
 
+const EDGE_BASE = EDGES.map(([a, b]) => (a === 0 || b === 0 ? 0.34 : 0.15));
+
+const NODE_BASE = NODES.map((n, i) => (i === 0 ? 1 : n.hub ? 0.75 : 0.4));
+
 /**
  * Signals travel from the first node to the second. All of them run inward,
  * which is the picture we want: expertise converging into one accountable
@@ -83,17 +95,37 @@ const DRIFT = NODES.map((n, i) => {
   };
 });
 
+/** How far a node can be pulled toward the cursor, in viewBox units. Hubs and
+ * the core resist, for the same reason they drift least. */
+const PULL = NODES.map((n, i) => (i === 0 ? 4 : n.hub ? 8 : 15));
+
+/** The cursor's reach, in viewBox units. The field is 460 across, so this is
+ * roughly a third of it: enough to feel alive, small enough to stay local. */
+const REACH = 155;
+
+/** Links drawn from the cursor to the experts nearest it. */
+const LINKS = 3;
+
 /** Seconds the drift takes to reach full amplitude, so it eases in behind the
  * entry animation instead of fighting it. */
 const RAMP = 2.6;
 
-export function NetworkField({ className = "" }: { className?: string }) {
+export function NetworkField({
+  className = "",
+  pointer,
+}: {
+  className?: string;
+  pointer?: RefObject<PointerState>;
+}) {
   const reduced = useReducedMotion();
   const svgRef = useRef<SVGSVGElement>(null);
   const nodeRefs = useRef<(SVGGElement | null)[]>([]);
+  const dotRefs = useRef<(SVGCircleElement | null)[]>([]);
   const edgeRefs = useRef<(SVGLineElement | null)[]>([]);
   const signalRefs = useRef<(SVGCircleElement | null)[]>([]);
   const trailRefs = useRef<(SVGLineElement | null)[]>([]);
+  const linkRefs = useRef<(SVGLineElement | null)[]>([]);
+  const cursorRef = useRef<SVGCircleElement>(null);
 
   useEffect(() => {
     if (reduced) return;
@@ -104,6 +136,27 @@ export function NetworkField({ className = "" }: { className?: string }) {
     let running = true;
     const start = performance.now();
     const pos = NODES.map((n) => ({ x: n.x, y: n.y }));
+    const lift = NODES.map(() => 0);
+
+    // The cursor, smoothed. It trails the real pointer by a few frames, and
+    // that lag is most of what makes the field feel weighted rather than twitchy.
+    let sx = 0;
+    let sy = 0;
+    let placed = false;
+    // 0 when the pointer is away, 1 when it is over the hero. Everything the
+    // cursor does is multiplied by it, so leaving eases out instead of cutting.
+    let influence = 0;
+
+    // Hoisted so the per frame search for the nearest nodes allocates nothing.
+    const nearIdx = [-1, -1, -1];
+    const nearDist = [0, 0, 0];
+
+    let box: DOMRect | null = null;
+    const remeasure = () => {
+      box = null;
+    };
+    window.addEventListener("scroll", remeasure, { passive: true });
+    window.addEventListener("resize", remeasure);
 
     const tick = (now: number) => {
       if (!running) return;
@@ -112,16 +165,65 @@ export function NetworkField({ className = "" }: { className?: string }) {
       // ease the amplitude in rather than switching it on
       const amp = ramp * ramp * (3 - 2 * ramp);
 
+      // Where is the cursor, in viewBox units? The graphic is parallaxed and
+      // sized by its container, so this has to come from the measured box.
+      const p = pointer?.current;
+      let over = false;
+      if (p?.active) {
+        // Cached: reading it every frame would force a layout on every frame,
+        // and the box only moves when the page scrolls or resizes.
+        if (!box) box = svg.getBoundingClientRect();
+        if (box.width > 0 && box.height > 0) {
+          const mx = ((p.x - box.left) / box.width) * 460;
+          const my = ((p.y - box.top) / box.height) * 460;
+          if (!placed) {
+            sx = mx;
+            sy = my;
+            placed = true;
+          }
+          sx += (mx - sx) * 0.13;
+          sy += (my - sy) * 0.13;
+          over = true;
+        }
+      }
+      if (!over) placed = false;
+      influence += ((over ? 1 : 0) - influence) * 0.07;
+      const live = influence > 0.004;
+
       for (let i = 0; i < NODES.length; i++) {
         const d = DRIFT[i];
-        const dx = Math.sin(t * d.wx * Math.PI * 2 + d.px) * d.ax * amp;
-        const dy = Math.cos(t * d.wy * Math.PI * 2 + d.py) * d.ay * amp;
-        pos[i].x = NODES[i].x + dx;
-        pos[i].y = NODES[i].y + dy;
+        let x = NODES[i].x + Math.sin(t * d.wx * Math.PI * 2 + d.px) * d.ax * amp;
+        let y = NODES[i].y + Math.cos(t * d.wy * Math.PI * 2 + d.py) * d.ay * amp;
+
+        // Lean toward the cursor, hardest at the centre of its reach.
+        let f = 0;
+        if (live) {
+          const gx = sx - x;
+          const gy = sy - y;
+          const dist = Math.hypot(gx, gy);
+          if (dist < REACH) {
+            f = (1 - dist / REACH) ** 2 * influence;
+            const step = (f * PULL[i]) / (dist || 1);
+            x += gx * step;
+            y += gy * step;
+          }
+        }
+        lift[i] = f;
+        pos[i].x = x;
+        pos[i].y = y;
+
         nodeRefs.current[i]?.setAttribute(
           "transform",
-          `translate(${dx.toFixed(2)} ${dy.toFixed(2)})`,
+          `translate(${(x - NODES[i].x).toFixed(2)} ${(y - NODES[i].y).toFixed(2)})`,
         );
+        const dot = dotRefs.current[i];
+        if (dot) {
+          dot.setAttribute(
+            "fill-opacity",
+            Math.min(1, NODE_BASE[i] + f * 0.55).toFixed(3),
+          );
+          dot.setAttribute("r", (NODES[i].r * (1 + f * 0.4)).toFixed(2));
+        }
       }
 
       for (let i = 0; i < EDGES.length; i++) {
@@ -132,6 +234,13 @@ export function NetworkField({ className = "" }: { className?: string }) {
         line.setAttribute("y1", pos[a].y.toFixed(2));
         line.setAttribute("x2", pos[b].x.toFixed(2));
         line.setAttribute("y2", pos[b].y.toFixed(2));
+        // A link lights up from whichever of its two ends the cursor is near,
+        // so the light travels along the graph rather than sitting in a disc.
+        const f = Math.max(lift[a], lift[b]);
+        line.setAttribute(
+          "stroke-opacity",
+          Math.min(0.85, EDGE_BASE[i] + f * 0.5).toFixed(3),
+        );
       }
 
       for (let i = 0; i < SIGNALS.length; i++) {
@@ -168,6 +277,51 @@ export function NetworkField({ className = "" }: { className?: string }) {
         }
       }
 
+      // The cursor joins the network: a soft glow where it sits, and a link to
+      // each of the nearest experts.
+      const glow = cursorRef.current;
+      if (glow) {
+        glow.setAttribute("cx", sx.toFixed(2));
+        glow.setAttribute("cy", sy.toFixed(2));
+        glow.setAttribute("opacity", (influence * 0.9).toFixed(3));
+      }
+      // Top three by a scan, not a sort: this runs on every frame.
+      nearIdx[0] = nearIdx[1] = nearIdx[2] = -1;
+      nearDist[0] = nearDist[1] = nearDist[2] = Infinity;
+      if (live) {
+        for (let i = 0; i < pos.length; i++) {
+          const d = Math.hypot(sx - pos[i].x, sy - pos[i].y);
+          if (d >= REACH) continue;
+          if (d < nearDist[0]) {
+            nearDist[2] = nearDist[1]; nearIdx[2] = nearIdx[1];
+            nearDist[1] = nearDist[0]; nearIdx[1] = nearIdx[0];
+            nearDist[0] = d; nearIdx[0] = i;
+          } else if (d < nearDist[1]) {
+            nearDist[2] = nearDist[1]; nearIdx[2] = nearIdx[1];
+            nearDist[1] = d; nearIdx[1] = i;
+          } else if (d < nearDist[2]) {
+            nearDist[2] = d; nearIdx[2] = i;
+          }
+        }
+      }
+      for (let k = 0; k < LINKS; k++) {
+        const link = linkRefs.current[k];
+        if (!link) continue;
+        const i = nearIdx[k];
+        if (i < 0) {
+          link.setAttribute("opacity", "0");
+          continue;
+        }
+        link.setAttribute("x1", sx.toFixed(2));
+        link.setAttribute("y1", sy.toFixed(2));
+        link.setAttribute("x2", pos[i].x.toFixed(2));
+        link.setAttribute("y2", pos[i].y.toFixed(2));
+        link.setAttribute(
+          "opacity",
+          ((1 - nearDist[k] / REACH) * 0.55 * influence).toFixed(3),
+        );
+      }
+
       frame = requestAnimationFrame(tick);
     };
 
@@ -191,8 +345,10 @@ export function NetworkField({ className = "" }: { className?: string }) {
       running = false;
       if (frame) cancelAnimationFrame(frame);
       io.disconnect();
+      window.removeEventListener("scroll", remeasure);
+      window.removeEventListener("resize", remeasure);
     };
-  }, [reduced]);
+  }, [reduced, pointer]);
 
   return (
     <svg
@@ -212,6 +368,11 @@ export function NetworkField({ className = "" }: { className?: string }) {
           <stop offset="0%" stopColor="#bcdcff" stopOpacity="1" />
           <stop offset="100%" stopColor="#4a9dff" stopOpacity="0" />
         </radialGradient>
+        <radialGradient id="nf-cursor" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#bcdcff" stopOpacity="0.55" />
+          <stop offset="55%" stopColor="#4a9dff" stopOpacity="0.16" />
+          <stop offset="100%" stopColor="#4a9dff" stopOpacity="0" />
+        </radialGradient>
       </defs>
 
       {/* Edges: drawn in, then held, and redrawn each frame to follow the nodes. */}
@@ -219,7 +380,6 @@ export function NetworkField({ className = "" }: { className?: string }) {
         {EDGES.map(([a, b], i) => {
           const p = NODES[a];
           const q = NODES[b];
-          const isSpine = a === 0 || b === 0;
           return (
             <motion.line
               key={i}
@@ -230,7 +390,7 @@ export function NetworkField({ className = "" }: { className?: string }) {
               y1={p.y}
               x2={q.x}
               y2={q.y}
-              strokeOpacity={isSpine ? 0.34 : 0.15}
+              strokeOpacity={EDGE_BASE[i]}
               initial={reduced ? undefined : { pathLength: 0, opacity: 0 }}
               animate={reduced ? undefined : { pathLength: 1, opacity: 1 }}
               transition={{
@@ -273,6 +433,36 @@ export function NetworkField({ className = "" }: { className?: string }) {
               />
             </g>
           ))}
+        </g>
+      )}
+
+      {/* The cursor's own links into the network. */}
+      {!reduced && (
+        <g>
+          {Array.from({ length: LINKS }, (_, k) => (
+            <line
+              key={k}
+              ref={(el) => {
+                linkRefs.current[k] = el;
+              }}
+              x1="0"
+              y1="0"
+              x2="0"
+              y2="0"
+              stroke="#bcdcff"
+              strokeWidth="0.8"
+              strokeLinecap="round"
+              opacity="0"
+            />
+          ))}
+          <circle
+            ref={cursorRef}
+            cx="0"
+            cy="0"
+            r="17"
+            fill="url(#nf-cursor)"
+            opacity="0"
+          />
         </g>
       )}
 
@@ -332,11 +522,14 @@ export function NetworkField({ className = "" }: { className?: string }) {
                 </>
               )}
               <circle
+                ref={(el) => {
+                  dotRefs.current[i] = el;
+                }}
                 cx={n.x}
                 cy={n.y}
                 r={n.r}
                 fill={i === 0 ? "url(#nf-core)" : "#4a9dff"}
-                fillOpacity={i === 0 ? 1 : n.hub ? 0.75 : 0.4}
+                fillOpacity={NODE_BASE[i]}
               />
             </g>
           </motion.g>
