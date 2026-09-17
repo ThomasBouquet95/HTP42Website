@@ -52,7 +52,10 @@ export function usePointerField<
     const el = ref.current;
     const target = styleRef.current ?? ref.current;
     if (!el || !target || !enabled) return;
-    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    // The light that follows the cursor needs a cursor. A tap does not, so the
+    // click listener below is attached either way: this check only gates the
+    // move tracking.
+    const fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
     let frame = 0;
     let x = 0;
@@ -97,20 +100,22 @@ export function usePointerField<
     // A click is a person joining the network. Clicks that were aimed at
     // something — a button, a link, the text you were selecting — are not.
     const onClick = (e: MouseEvent) => {
-      const target = e.target as Element | null;
-      if (target?.closest("a, button, input, textarea, select, [role='button']")) return;
+      const hit = e.target as Element | null;
+      if (hit?.closest("a, button, input, textarea, select, [role='button']")) return;
       if ((window.getSelection()?.toString().length ?? 0) > 0) return;
       taps.current.x = e.clientX;
       taps.current.y = e.clientY;
       taps.current.n += 1;
     };
 
-    el.addEventListener("pointermove", onMove, { passive: true });
     el.addEventListener("click", onClick);
-    el.addEventListener("pointerleave", onLeave);
-    // A pointer can also leave by the window losing focus, which fires no
-    // pointerleave on some platforms.
-    window.addEventListener("blur", onLeave);
+    if (fine) {
+      el.addEventListener("pointermove", onMove, { passive: true });
+      el.addEventListener("pointerleave", onLeave);
+      // A pointer can also leave by the window losing focus, which fires no
+      // pointerleave on some platforms.
+      window.addEventListener("blur", onLeave);
+    }
 
     return () => {
       if (frame) cancelAnimationFrame(frame);

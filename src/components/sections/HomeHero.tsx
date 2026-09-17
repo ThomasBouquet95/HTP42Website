@@ -126,17 +126,18 @@ export function HomeHero() {
 
       <div className="shell relative w-full">
         <div className="max-w-4xl">
-          {/* Below lg the mark leads the page at logo size instead of sitting
-              behind the headline as a watermark. The network is not drawn at
-              this size: the people would be seven pixels across. */}
+          {/* Below lg the network leads the page instead of sitting behind the
+              headline as a watermark. It is the phone layout, not this one
+              scaled down: a smaller mark with five people round it at a size
+              where the figure inside each one can actually be read. */}
           <motion.div
-            className="mb-9 w-[5.25rem] sm:w-[6rem] lg:hidden"
+            className="mb-9 w-full max-w-[19rem] sm:max-w-[23rem] lg:hidden"
             initial={reduced ? false : { opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
             aria-hidden="true"
           >
-            <LogoField compact className="h-auto w-full" />
+            <LogoField compact className="h-auto w-full" taps={taps} />
           </motion.div>
 
           <h1 className="text-display-lg leading-[0.98] text-white lg:text-display-xl">

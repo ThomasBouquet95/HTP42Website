@@ -40,104 +40,164 @@ import { useReducedMotionSafe } from "@/components/motion/useReducedMotionSafe";
  * It stops when the hero scrolls out of view, which matters on a phone.
  */
 
-const FIELD_W = 460;
-const FIELD_H = 380;
-const TAU = Math.PI * 2;
+/**
+ * Two layouts, because a phone is not a small desktop. Wide puts the mark
+ * large and off to the right with the headline beside it, and has to keep the
+ * whole network out of the headline column. Narrow sits above the headline
+ * with the full width to itself, so the ring can go all the way round, and it
+ * carries fewer people at a larger size: five that can be read beat nine that
+ * cannot.
+ */
+type Spec = {
+  w: number;
+  h: number;
+  cx: number;
+  cy: number;
+  /** How much bigger than its own 100 × 55.48 artboard the mark is drawn. */
+  scale: number;
+  /** Which anchors carry a person, how far out, and on what cycle. */
+  ring: { anchor: number; reach: number; period: number; phase: number; size: number }[];
+  /** Ring neighbours joined to each other. */
+  peers: [number, number][];
+  /** The degree beyond the ring: reached through someone rather than by us. */
+  satellites: { via: number; x: number; y: number; size: number }[];
+  /** Bubble radius before each person's own size multiplier. */
+  r: number;
+  /** Leftmost a clicked person may stand. On wide that is the headline. */
+  guard: number;
+  dust: number;
+};
 
-/** Where the mark sits in the field, and how much bigger than its own
- * 100 × 55.48 artboard it is drawn. */
-const CX = 230;
-const CY = 188;
 const MARK_W = 100;
 const MARK_H = 55.48;
-const MARK_SCALE = 2.36;
-const MARK_X = CX - (MARK_W * MARK_SCALE) / 2;
-const MARK_Y = CY - (MARK_H * MARK_SCALE) / 2;
+const TAU = Math.PI * 2;
 
-/** A point on the logo's own artboard, in field coordinates. */
-function onMark(x: number, y: number) {
-  return { x: MARK_X + x * MARK_SCALE, y: MARK_Y + y * MARK_SCALE };
+/**
+ * Points on the outline of the mark, in its own artboard units, sampled from
+ * the real path rather than guessed, so every link lands exactly on the edge
+ * of the logo. Only outer edge points: an anchor on the crossing would make
+ * its link cross the mark. Listed clockwise from the apex of the large loop,
+ * so consecutive entries are neighbours on the ring.
+ */
+const ANCHOR_PTS: [number, number][] = [
+  [24.93, 0.03], // apex of the large loop
+  [45.54, 8.83], // over the large loop, inboard
+  [74.11, 6.45], // over the small loop
+  [90.64, 8.32], // upper right
+  [99.93, 25.05], // far right
+  [96.75, 35.85], // lower right
+  [79.62, 44.35], // under the small loop
+  [37.65, 54.26], // under the large loop, inboard
+  [20.72, 54.17], // under the large loop
+];
+
+function build(spec: Spec) {
+  const markX = spec.cx - (MARK_W * spec.scale) / 2;
+  const markY = spec.cy - (MARK_H * spec.scale) / 2;
+  const onMark = (x: number, y: number) => ({
+    x: markX + x * spec.scale,
+    y: markY + y * spec.scale,
+  });
+  const anchors = ANCHOR_PTS.map(([x, y]) => onMark(x, y));
+  // Everyone is pushed out from their anchor along the ray from the centre of
+  // the mark, so their link runs away from the logo and never over it.
+  const ring = spec.ring.map((b) => {
+    const a = anchors[b.anchor];
+    const dx = a.x - spec.cx;
+    const dy = a.y - spec.cy;
+    const len = Math.hypot(dx, dy) || 1;
+    return {
+      ...b,
+      ax: a.x,
+      ay: a.y,
+      x: a.x + (dx / len) * b.reach,
+      y: a.y + (dy / len) * b.reach,
+    };
+  });
+  // Faint fixed dots behind everything. Not people and not links: the sense
+  // that the picture is a detail of something larger.
+  const dust = Array.from({ length: spec.dust }, (_, i) => {
+    const a = (i * 2.39996) % TAU; // golden angle, so they never band
+    const rad = spec.h * 0.31 + ((i * 53) % Math.round(spec.h * 0.34));
+    return {
+      x: spec.cx + Math.cos(a) * rad * 1.34,
+      y: spec.cy + Math.sin(a) * rad * 0.96,
+      r: 0.8 + ((i * 7) % 3) * 0.5,
+      o: 0.1 + ((i * 11) % 5) * 0.035,
+    };
+  }).filter(
+    (d) => d.x > spec.guard && d.x < spec.w - 6 && d.y > 6 && d.y < spec.h - 6,
+  );
+  return { ...spec, markX, markY, anchors, ring, dust };
 }
 
-/**
- * Points on the outline of the mark, sampled from the real path rather than
- * guessed, so every link lands exactly on the edge of the logo. Only outer
- * edge points: an anchor on the crossing would make its link cross the mark.
- * Listed clockwise from the apex of the large loop, so consecutive entries are
- * neighbours on the ring.
- */
-const ANCHORS = [
-  onMark(24.93, 0.03), // apex of the large loop
-  onMark(45.54, 8.83), // over the large loop, inboard
-  onMark(74.11, 6.45), // over the small loop
-  onMark(90.64, 8.32), // upper right
-  onMark(99.93, 25.05), // far right
-  onMark(96.75, 35.85), // lower right
-  onMark(79.62, 44.35), // under the small loop
-  onMark(37.65, 54.26), // under the large loop, inboard
-  onMark(20.72, 54.17), // under the large loop
-];
+type Layout = ReturnType<typeof build>;
 
 /**
- * The inner ring: the people HTP42 holds itself. Each is pushed out from its
- * anchor along the ray from the centre of the mark, so its link runs away from
- * the logo and never over it, and they are listed in ring order so consecutive
- * entries can be joined to each other.
- *
- * Nothing sits to the left of the mark, and that is deliberate rather than an
- * oversight: the graphic overlaps the headline column, so a person out there
- * would land on the type. The ring runs over the top, down the right and back
- * under the large loop. Measured at 1024, the tightest case: 40px between the
- * leftmost bubble and the headline.
+ * Nothing sits to the left of the mark here, and that is deliberate rather
+ * than an oversight: the graphic overlaps the headline column, so a person out
+ * there would land on the type. The ring runs over the top, down the right and
+ * back under the large loop. Measured at 1024, the tightest case: 33px between
+ * the leftmost person and the headline in the worst frame.
  */
-const RING = [
-  { anchor: 0, reach: 84, period: 11.5, phase: 0.6, size: 1.0 },
-  { anchor: 1, reach: 72, period: 13.9, phase: 3.0, size: 0.92 },
-  { anchor: 2, reach: 92, period: 10.4, phase: 7.6, size: 0.96 },
-  { anchor: 3, reach: 80, period: 11.1, phase: 8.9, size: 0.9 },
-  { anchor: 4, reach: 84, period: 12.2, phase: 1.4, size: 1.0 },
-  { anchor: 5, reach: 74, period: 14.3, phase: 4.1, size: 0.86 },
-  { anchor: 6, reach: 88, period: 13.4, phase: 9.8, size: 0.9 },
-  { anchor: 7, reach: 76, period: 11.8, phase: 2.2, size: 0.94 },
-  { anchor: 8, reach: 86, period: 10.9, phase: 6.4, size: 1.04 },
-].map((b) => {
-  const a = ANCHORS[b.anchor];
-  const dx = a.x - CX;
-  const dy = a.y - CY;
-  const len = Math.hypot(dx, dy) || 1;
-  return {
-    ...b,
-    ax: a.x,
-    ay: a.y,
-    x: a.x + (dx / len) * b.reach,
-    y: a.y + (dy / len) * b.reach,
-  };
+const WIDE = build({
+  w: 460,
+  h: 380,
+  cx: 230,
+  cy: 188,
+  scale: 2.36,
+  r: 16,
+  guard: 96,
+  dust: 26,
+  ring: [
+    { anchor: 0, reach: 84, period: 11.5, phase: 0.6, size: 1.0 },
+    { anchor: 1, reach: 72, period: 13.9, phase: 3.0, size: 0.92 },
+    { anchor: 2, reach: 92, period: 10.4, phase: 7.6, size: 0.96 },
+    { anchor: 3, reach: 80, period: 11.1, phase: 8.9, size: 0.9 },
+    { anchor: 4, reach: 84, period: 12.2, phase: 1.4, size: 1.0 },
+    { anchor: 5, reach: 74, period: 14.3, phase: 4.1, size: 0.86 },
+    { anchor: 6, reach: 88, period: 13.4, phase: 9.8, size: 0.9 },
+    { anchor: 7, reach: 76, period: 11.8, phase: 2.2, size: 0.94 },
+    { anchor: 8, reach: 86, period: 10.9, phase: 6.4, size: 1.04 },
+  ],
+  peers: [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8]],
+  satellites: [
+    { via: 0, x: 155, y: 40, size: 0.6 },
+    { via: 2, x: 287, y: 36, size: 0.54 },
+    { via: 3, x: 443, y: 120, size: 0.56 },
+    { via: 6, x: 330, y: 322, size: 0.55 },
+    { via: 8, x: 120, y: 352, size: 0.6 },
+  ],
 });
 
-/** Ring neighbours, joined to each other. Not a closed loop: the two ends of
- * the arc are on either side of the gap the headline occupies. */
-const PEERS: [number, number][] = [
-  [0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8],
-];
-
 /**
- * The outer degree: specialists reached through someone on the ring rather
- * than through us. They are smaller and dimmer because they are further out,
- * and they only exist while the person who introduced them is connected.
+ * The phone. The mark is smaller so the people can be bigger: at the width a
+ * phone actually has, nine of them would be seven pixels across and read as
+ * dots. Five, all the way round, at a size where the figure inside is legible.
+ * No outer degree: at this size it would be a smudge.
  */
-const SATELLITES = [
-  { via: 0, x: 155, y: 40, size: 0.6 },
-  { via: 2, x: 287, y: 36, size: 0.54 },
-  { via: 3, x: 443, y: 120, size: 0.56 },
-  { via: 6, x: 330, y: 322, size: 0.55 },
-  { via: 8, x: 120, y: 352, size: 0.6 },
-];
+const NARROW = build({
+  w: 360,
+  h: 232,
+  cx: 180,
+  cy: 114,
+  scale: 1.5,
+  r: 19,
+  guard: 22,
+  dust: 14,
+  ring: [
+    { anchor: 0, reach: 52, period: 9.6, phase: 0.4, size: 1.0 },
+    { anchor: 2, reach: 54, period: 11.3, phase: 3.4, size: 0.94 },
+    { anchor: 4, reach: 56, period: 10.2, phase: 6.1, size: 1.0 },
+    { anchor: 6, reach: 52, period: 12.1, phase: 1.8, size: 0.96 },
+    { anchor: 8, reach: 52, period: 10.8, phase: 4.7, size: 1.0 },
+  ],
+  peers: [[0, 1], [1, 2], [2, 3], [3, 4]],
+  satellites: [],
+});
 
 /** How many clicks can be in flight at once. */
 const GUESTS = 4;
-
-/** Bubble radius before its own size multiplier. */
-const R = 16;
 
 /**
  * The cycle, as fractions of a period: surface, reach out, hold, let go. The
@@ -163,11 +223,12 @@ const LEAN = 11;
 const RAMP = 2.2;
 
 /**
- * The centreline of the mark, as the two ellipses a lemniscate is built from,
- * meeting at the crossing. Fitted to the middle of the stroke rather than
- * guessed: at angle 0 the left ellipse is exactly the crossing point, at 180
- * it is the middle of the stroke at the far left edge, and top and bottom sit
- * mid stroke there too. Same for the right, which is the smaller loop.
+ * The centreline of the mark, in artboard units, as the two ellipses a
+ * lemniscate is built from meeting at the crossing. Fitted to the middle of
+ * the stroke rather than guessed: at angle 0 the left ellipse is exactly the
+ * crossing point, at 180 it is the middle of the stroke at the far left edge,
+ * and top and bottom sit mid stroke there too. Same for the right, which is
+ * the smaller loop.
  *
  * Light travelling this path, clipped to the mark, reads as colour moving
  * around the infinity rather than a sheen passing over it. The travelling
@@ -181,7 +242,7 @@ const SPLIT = 0.59;
 /** Seconds for one full circuit. */
 const FLOW = 7.4;
 
-function flowPoint(u: number, out: { x: number; y: number }) {
+function flowPoint(L: Layout, u: number, out: { x: number; y: number }) {
   let x: number;
   let y: number;
   if (u < SPLIT) {
@@ -195,8 +256,8 @@ function flowPoint(u: number, out: { x: number; y: number }) {
     x = LOOP_R.cx + Math.cos(a) * LOOP_R.rx;
     y = LOOP_R.cy + Math.sin(a) * LOOP_R.ry;
   }
-  out.x = MARK_X + x * MARK_SCALE;
-  out.y = MARK_Y + y * MARK_SCALE;
+  out.x = L.markX + x * L.scale;
+  out.y = L.markY + y * L.scale;
 }
 
 /** Per bubble drift, derived from the index so it is identical on the server
@@ -209,21 +270,6 @@ const DRIFT = (i: number) => ({
   px: (i * 1.7) % TAU,
   py: (i * 2.3) % TAU,
 });
-
-/**
- * Faint dots behind everything, fixed. They are not people and they are not
- * links: they are the sense that the picture is a detail of something larger.
- */
-const DUST = Array.from({ length: 26 }, (_, i) => {
-  const a = (i * 2.39996) % TAU; // golden angle, so they never band
-  const r = 118 + ((i * 53) % 130);
-  return {
-    x: CX + Math.cos(a) * r * 1.34,
-    y: CY + Math.sin(a) * r * 0.96,
-    r: 0.8 + ((i * 7) % 3) * 0.5,
-    o: 0.1 + ((i * 11) % 5) * 0.035,
-  };
-}).filter((d) => d.x > 96 && d.x < FIELD_W - 6 && d.y > 6 && d.y < FIELD_H - 6);
 
 /** Smoothstep. */
 const ease = (u: number) => u * u * (3 - 2 * u);
@@ -262,23 +308,24 @@ function at(l: Link, t: number, p: { x: number; y: number }) {
   p.y = l.y0 + (l.y1 - l.y0) * t;
 }
 
-/** Where a clicked person can stand: inside the field, clear of the headline
- * column, and never on top of the logo. */
-function place(x: number, y: number, out: { x: number; y: number }) {
-  let px = Math.min(Math.max(x, 96), FIELD_W - 24);
-  let py = Math.min(Math.max(y, 26), FIELD_H - 26);
-  const rx = (MARK_W * MARK_SCALE) / 2 + 28;
-  const ry = (MARK_H * MARK_SCALE) / 2 + 28;
-  const dx = px - CX;
-  const dy = py - CY;
+/** Where a clicked person can stand: inside the field, clear of whatever the
+ * layout guards on the left, and never on top of the logo. */
+function place(L: Layout, x: number, y: number, out: { x: number; y: number }) {
+  const pad = L.r + 6;
+  let px = Math.min(Math.max(x, L.guard), L.w - pad);
+  let py = Math.min(Math.max(y, pad), L.h - pad);
+  const rx = (MARK_W * L.scale) / 2 + pad;
+  const ry = (MARK_H * L.scale) / 2 + pad;
+  const dx = px - L.cx;
+  const dy = py - L.cy;
   const t = Math.hypot(dx / rx, dy / ry);
   if (t < 1) {
     const k = t < 0.05 ? 1 : 1 / t;
-    px = CX + dx * k;
-    py = CY + dy * k;
+    px = L.cx + dx * k;
+    py = L.cy + dy * k;
   }
-  out.x = Math.min(Math.max(px, 96), FIELD_W - 24);
-  out.y = Math.min(Math.max(py, 26), FIELD_H - 26);
+  out.x = Math.min(Math.max(px, L.guard), L.w - pad);
+  out.y = Math.min(Math.max(py, pad), L.h - pad);
 }
 
 export function LogoField({
@@ -288,14 +335,14 @@ export function LogoField({
   taps,
 }: {
   className?: string;
-  /** Just the mark and the light going round it, cropped to its own box. Used
-   * on phones, where the graphic sits above the headline at logo size and a
-   * network of people would be too small to read. */
+  /** The phone layout: fewer people, larger, all the way round a smaller
+   * mark. See NARROW. */
   compact?: boolean;
   pointer?: React.RefObject<PointerState>;
   taps?: React.RefObject<TapState>;
 }) {
   const reduced = useReducedMotionSafe();
+  const L = compact ? NARROW : WIDE;
   const svgRef = useRef<SVGSVGElement>(null);
   /* The hero renders this twice, one for phones and one from lg up, and the
    * one that is not in use is display:none. Shared ids would mean the visible
@@ -329,19 +376,19 @@ export function LogoField({
     let running = true;
     const start = performance.now();
 
-    // Below lg the network is display:none, because the graphic sits under the
-    // headline there and opaque discs cannot share that space with type. The
-    // loop has to know, or it would spend every frame animating nothing.
+    // The wide layout's network is display:none below lg, where the phone
+    // layout takes over. The loop has to know, or it would spend every frame
+    // animating elements nobody can see.
     const wide = window.matchMedia("(min-width: 64rem)");
-    let peopled = !compact && wide.matches;
+    let peopled = compact || wide.matches;
     const onWidth = (e: MediaQueryListEvent) => {
-      peopled = !compact && e.matches;
+      peopled = compact || e.matches;
     };
     wide.addEventListener("change", onWidth);
 
     // Live state, all of it scratch space reused every frame so the loop
     // allocates nothing.
-    const pos = RING.map((b) => ({ x: b.x, y: b.y, s: 1, show: 0, lift: 0 }));
+    const pos = L.ring.map((b) => ({ x: b.x, y: b.y, s: 1, show: 0, lift: 0 }));
     const link: Link = { x0: 0, y0: 0, x1: 0, y1: 0 };
     const dot = { x: 0, y: 0 };
     const spot = { x: 0, y: 0 };
@@ -375,8 +422,8 @@ export function LogoField({
       if (p?.active) {
         if (!box) box = svg.getBoundingClientRect();
         if (box.width > 0 && box.height > 0) {
-          const mx = ((p.x - box.left) / box.width) * FIELD_W;
-          const my = ((p.y - box.top) / box.height) * FIELD_H;
+          const mx = ((p.x - box.left) / box.width) * L.w;
+          const my = ((p.y - box.top) / box.height) * L.h;
           if (!placed) {
             sx = mx;
             sy = my;
@@ -398,8 +445,9 @@ export function LogoField({
         if (!box) box = svg.getBoundingClientRect();
         if (box.width > 0 && box.height > 0) {
           place(
-            ((tap.x - box.left) / box.width) * FIELD_W,
-            ((tap.y - box.top) / box.height) * FIELD_H,
+            L,
+            ((tap.x - box.left) / box.width) * L.w,
+            ((tap.y - box.top) / box.height) * L.h,
             spot,
           );
           const g = guests[next];
@@ -410,8 +458,8 @@ export function LogoField({
           // introduced to the nearest point on the mark
           let best = 0;
           let bestD = Infinity;
-          for (let i = 0; i < ANCHORS.length; i++) {
-            const d = Math.hypot(ANCHORS[i].x - g.x, ANCHORS[i].y - g.y);
+          for (let i = 0; i < L.anchors.length; i++) {
+            const d = Math.hypot(L.anchors[i].x - g.x, L.anchors[i].y - g.y);
             if (d < bestD) {
               bestD = d;
               best = i;
@@ -424,8 +472,8 @@ export function LogoField({
       let markLift = 0;
 
       // ---- the ring ----------------------------------------------------
-      for (let i = 0; peopled && i < RING.length; i++) {
-        const b = RING[i];
+      for (let i = 0; peopled && i < L.ring.length; i++) {
+        const b = L.ring[i];
         const group = ringRefs.current[i];
         const spoke = spokeRefs.current[i];
         const state = pos[i];
@@ -485,7 +533,7 @@ export function LogoField({
           if (a > 0 && a < 1) {
             halo.setAttribute("cx", bx.toFixed(1));
             halo.setAttribute("cy", by.toFixed(1));
-            halo.setAttribute("r", (R * scale * (1 + a * 1.5)).toFixed(1));
+            halo.setAttribute("r", (L.r * scale * (1 + a * 1.5)).toFixed(1));
             halo.setAttribute("opacity", ((1 - a) * 0.5 * ramp).toFixed(3));
           } else {
             halo.setAttribute("opacity", "0");
@@ -495,7 +543,7 @@ export function LogoField({
         // the link into the mark
         const grow = ease(span(u, APPEAR, LINKED));
         const drop = ease(span(u, RELEASE, GONE));
-        span2(bx, by, b.ax, b.ay, R * scale + 4, 2, link);
+        span2(bx, by, b.ax, b.ay, L.r * scale + 4, 2, link);
         spoke.setAttribute("d", path(link));
         spoke.setAttribute("stroke-dasharray", `${Math.max(0, grow - drop)} 1`);
         spoke.setAttribute("stroke-dashoffset", `${-drop}`);
@@ -533,8 +581,8 @@ export function LogoField({
       }
 
       // ---- the ring joined to itself -----------------------------------
-      for (let i = 0; peopled && i < PEERS.length; i++) {
-        const [a, c] = PEERS[i];
+      for (let i = 0; peopled && i < L.peers.length; i++) {
+        const [a, c] = L.peers[i];
         const el = peerRefs.current[i];
         if (!el) continue;
         const A = pos[a];
@@ -545,7 +593,7 @@ export function LogoField({
           peerDotRefs.current[i]?.setAttribute("opacity", "0");
           continue;
         }
-        span2(A.x, A.y, B.x, B.y, R * A.s + 3, R * B.s + 3, link);
+        span2(A.x, A.y, B.x, B.y, L.r * A.s + 3, L.r * B.s + 3, link);
         el.setAttribute("d", path(link));
         el.setAttribute(
           "opacity",
@@ -569,12 +617,12 @@ export function LogoField({
       }
 
       // ---- one degree further out ---------------------------------------
-      for (let i = 0; peopled && i < SATELLITES.length; i++) {
-        const s = SATELLITES[i];
+      for (let i = 0; peopled && i < L.satellites.length; i++) {
+        const s = L.satellites[i];
         const group = satRefs.current[i];
         const el = satLinkRefs.current[i];
         if (!group || !el) continue;
-        const host = RING[s.via];
+        const host = L.ring[s.via];
         const hu = ((t + host.phase) % host.period) / host.period;
         // they exist only while the person who introduced them is connected
         const v = span(hu, 0.34, 0.66);
@@ -597,7 +645,7 @@ export function LogoField({
         );
         group.setAttribute("opacity", (show * ramp * 0.9).toFixed(3));
         const H = pos[s.via];
-        span2(bx, by, H.x, H.y, R * scale + 3, R * H.s + 3, link);
+        span2(bx, by, H.x, H.y, L.r * scale + 3, L.r * H.s + 3, link);
         el.setAttribute("d", path(link));
         el.setAttribute("opacity", (show * ramp * 0.42).toFixed(3));
       }
@@ -630,13 +678,13 @@ export function LogoField({
           const a = span(age, 0, 0.26);
           halo.setAttribute("cx", g.x.toFixed(1));
           halo.setAttribute("cy", g.y.toFixed(1));
-          halo.setAttribute("r", (R * scale * (1 + a * 2.1)).toFixed(1));
+          halo.setAttribute("r", (L.r * scale * (1 + a * 2.1)).toFixed(1));
           halo.setAttribute("opacity", a < 1 ? ((1 - a) * 0.6).toFixed(3) : "0");
         }
-        const a = ANCHORS[g.anchor];
+        const a = L.anchors[g.anchor];
         const grow = ease(span(age, 0.08, 0.26));
         const goes = ease(span(age, 0.82, 1));
-        span2(g.x, g.y, a.x, a.y, R * scale + 4, 2, link);
+        span2(g.x, g.y, a.x, a.y, L.r * scale + 4, 2, link);
         el.setAttribute("d", path(link));
         el.setAttribute("stroke-dasharray", `${Math.max(0, grow - goes)} 1`);
         el.setAttribute("stroke-dashoffset", `${-goes}`);
@@ -649,7 +697,7 @@ export function LogoField({
       for (let i = 0; i < 2; i++) {
         const el = flowRefs.current[i];
         if (!el) continue;
-        flowPoint(((t / FLOW + i * 0.5) % 1), dot);
+        flowPoint(L, (t / FLOW + i * 0.5) % 1, dot);
         el.setAttribute("cx", dot.x.toFixed(1));
         el.setAttribute("cy", dot.y.toFixed(1));
         el.setAttribute("opacity", (ramp * (i ? 0.6 : 0.85)).toFixed(3));
@@ -657,7 +705,7 @@ export function LogoField({
 
       // The mark brightens as signals land, and again under the cursor.
       const near = live
-        ? Math.max(0, 1 - Math.hypot(sx - CX, sy - CY) / 190) * influence
+        ? Math.max(0, 1 - Math.hypot(sx - L.cx, sy - L.cy) / (L.w * 0.41)) * influence
         : 0;
       glowRef.current?.setAttribute(
         "opacity",
@@ -691,7 +739,7 @@ export function LogoField({
       window.removeEventListener("scroll", remeasure);
       window.removeEventListener("resize", remeasure);
     };
-  }, [reduced, compact, pointer, taps]);
+  }, [reduced, L, pointer, taps]);
 
   /** One expert. The same figure every time, deliberately: the people in the
    * network are not illustrated individually and the graphic should not
@@ -700,9 +748,9 @@ export function LogoField({
    * written, which is sixty times a second. */
   const person = (key: string, dim = false) => (
     <g key={key}>
-      <circle r={R} fill={`url(#${id("glass")})`} />
+      <circle r={L.r} fill={`url(#${id("glass")})`} />
       <circle
-        r={R}
+        r={L.r}
         fill="none"
         stroke="#4a9dff"
         strokeOpacity={dim ? 0.34 : 0.5}
@@ -729,11 +777,7 @@ export function LogoField({
   return (
     <svg
       ref={svgRef}
-      viewBox={
-        compact
-          ? `${MARK_X - 9} ${MARK_Y - 9} ${MARK_W * MARK_SCALE + 18} ${MARK_H * MARK_SCALE + 18}`
-          : `0 0 ${FIELD_W} ${FIELD_H}`
-      }
+      viewBox={`0 0 ${L.w} ${L.h}`}
       fill="none"
       className={className}
       aria-hidden="true"
@@ -771,14 +815,14 @@ export function LogoField({
           <path
             d={MARK_PATH}
             clipRule="evenodd"
-            transform={`translate(${MARK_X} ${MARK_Y}) scale(${MARK_SCALE})`}
+            transform={`translate(${L.markX} ${L.markY}) scale(${L.scale})`}
           />
         </clipPath>
       </defs>
 
       {/* The sense that this is a detail of something larger. */}
-      <g className={compact ? "hidden" : "hidden lg:block"}>
-        {DUST.map((d, i) => (
+      <g className={compact ? "" : "hidden lg:block"}>
+        {L.dust.map((d, i) => (
           <circle
             key={i}
             cx={d.x}
@@ -791,17 +835,15 @@ export function LogoField({
       </g>
 
       {/* The glow the mark sits in. */}
-      {!compact && (
       <ellipse
         ref={glowRef}
-        cx={CX}
-        cy={CY}
-        rx={190}
-        ry={140}
+        cx={L.cx}
+        cy={L.cy}
+        rx={L.w * 0.41}
+        ry={L.h * 0.37}
         fill={`url(#${id("halo")})`}
         opacity="0"
       />
-      )}
 
       {/* Every link, under the mark so they run behind it rather than over it.
 
@@ -809,12 +851,12 @@ export function LogoField({
           the headline, and the mark alone reads as a watermark where a network
           of opaque discs would read as a collision. */}
       <g
-        className={compact ? "hidden" : "hidden lg:block"}
+        className={compact ? "" : "hidden lg:block"}
         fill="none"
         strokeLinecap="round"
       >
         {/* ring to ring */}
-        {PEERS.map((_, i) => (
+        {L.peers.map((_, i) => (
           <path
             key={`p${i}`}
             ref={(el) => {
@@ -826,7 +868,7 @@ export function LogoField({
           />
         ))}
         {/* the outer degree, to whoever introduced them */}
-        {SATELLITES.map((_, i) => (
+        {L.satellites.map((_, i) => (
           <path
             key={`s${i}`}
             ref={(el) => {
@@ -839,7 +881,7 @@ export function LogoField({
           />
         ))}
         {/* ring to mark */}
-        {RING.map((_, i) => (
+        {L.ring.map((_, i) => (
           <path
             key={`r${i}`}
             ref={(el) => {
@@ -867,8 +909,8 @@ export function LogoField({
       </g>
 
       {/* Signals, and the bloom where each one lands. */}
-      <g className={compact ? "hidden" : "hidden lg:block"}>
-        {RING.map((b, i) => (
+      <g className={compact ? "" : "hidden lg:block"}>
+        {L.ring.map((b, i) => (
           <g key={`sg${i}`}>
             <circle
               ref={(el) => {
@@ -899,7 +941,7 @@ export function LogoField({
             />
           </g>
         ))}
-        {PEERS.map((_, i) => (
+        {L.peers.map((_, i) => (
           <circle
             key={`pd${i}`}
             ref={(el) => {
@@ -930,9 +972,9 @@ export function LogoField({
         initial={reduced ? false : { opacity: 0, scale: 0.94 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.1, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-        style={{ transformOrigin: `${CX}px ${CY}px` }}
+        style={{ transformOrigin: `${L.cx}px ${L.cy}px` }}
       >
-        <g transform={`translate(${MARK_X} ${MARK_Y}) scale(${MARK_SCALE})`}>
+        <g transform={`translate(${L.markX} ${L.markY}) scale(${L.scale})`}>
           <path d={MARK_PATH} fill={`url(#${id("mark")})`} fillRule="evenodd" />
         </g>
         {/* and the light running round it */}
@@ -943,7 +985,7 @@ export function LogoField({
               ref={(el) => {
                 flowRefs.current[i] = el;
               }}
-              r={i ? 52 : 68}
+              r={L.scale * (i ? 22 : 29)}
               fill={`url(#${id("flow")})`}
               opacity="0"
             />
@@ -952,8 +994,8 @@ export function LogoField({
       </motion.g>
 
       {/* The people. */}
-      <g className={compact ? "hidden" : "hidden lg:block"}>
-        {SATELLITES.map((s, i) => (
+      <g className={compact ? "" : "hidden lg:block"}>
+        {L.satellites.map((s, i) => (
           <g
             key={`sat${i}`}
             data-bubble=""
@@ -966,7 +1008,7 @@ export function LogoField({
             {person(`sf${i}`, true)}
           </g>
         ))}
-        {RING.map((b, i) => (
+        {L.ring.map((b, i) => (
           <g
             key={`ring${i}`}
             data-bubble=""
