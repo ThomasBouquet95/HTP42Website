@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useId, useRef } from "react";
 import { motion } from "framer-motion";
 import { MARK_PATH } from "@/components/ui/Logo";
 import type { PointerState, TapState } from "@/components/motion/usePointerField";
@@ -162,9 +162,42 @@ const LEAN = 11;
 /** Seconds the whole field takes to ease in behind the entry animation. */
 const RAMP = 2.2;
 
-/** How far a link bows away from its chord, as a fraction of the chord. A
- * straight spoke reads as a diagram; a slight curve reads as a connection. */
-const BOW = 0.11;
+/**
+ * The centreline of the mark, as the two ellipses a lemniscate is built from,
+ * meeting at the crossing. Fitted to the middle of the stroke rather than
+ * guessed: at angle 0 the left ellipse is exactly the crossing point, at 180
+ * it is the middle of the stroke at the far left edge, and top and bottom sit
+ * mid stroke there too. Same for the right, which is the smaller loop.
+ *
+ * Light travelling this path, clipped to the mark, reads as colour moving
+ * around the infinity rather than a sheen passing over it. The travelling
+ * light is far wider than the stroke, so the fit only has to be close.
+ */
+const LOOP_L = { cx: 31.4, cy: 26.5, rx: 25.6, ry: 22.3 };
+const LOOP_R = { cx: 75.7, cy: 26.5, rx: 18.7, ry: 14.25 };
+/** Share of the trip spent on the larger loop, in proportion to its perimeter,
+ * so the light does not race around the small one. */
+const SPLIT = 0.59;
+/** Seconds for one full circuit. */
+const FLOW = 7.4;
+
+function flowPoint(u: number, out: { x: number; y: number }) {
+  let x: number;
+  let y: number;
+  if (u < SPLIT) {
+    const a = (u / SPLIT) * TAU;
+    x = LOOP_L.cx + Math.cos(a) * LOOP_L.rx;
+    y = LOOP_L.cy + Math.sin(a) * LOOP_L.ry;
+  } else {
+    // the other way round the smaller loop, which is what makes the path
+    // cross itself instead of tracing a peanut
+    const a = Math.PI - ((u - SPLIT) / (1 - SPLIT)) * TAU;
+    x = LOOP_R.cx + Math.cos(a) * LOOP_R.rx;
+    y = LOOP_R.cy + Math.sin(a) * LOOP_R.ry;
+  }
+  out.x = MARK_X + x * MARK_SCALE;
+  out.y = MARK_Y + y * MARK_SCALE;
+}
 
 /** Per bubble drift, derived from the index so it is identical on the server
  * and the client. Without it the ring is a diagram pinned to the page. */
@@ -198,54 +231,35 @@ const ease = (u: number) => u * u * (3 - 2 * u);
 const span = (u: number, a: number, b: number) =>
   u <= a ? 0 : u >= b ? 1 : (u - a) / (b - a);
 
-type Link = { x0: number; y0: number; cx: number; cy: number; x1: number; y1: number };
+type Link = { x0: number; y0: number; x1: number; y1: number };
 
 /**
- * A curved link between two points, bowed away from the centre of the mark so
- * the whole picture reads as arcs around the logo rather than spokes into it.
+ * A link between two points, trimmed at both ends so it starts and stops clear
+ * of whatever it joins rather than running under it.
  */
-function curve(
+function span2(
   x0: number, y0: number, x1: number, y1: number,
   from: number, to: number, out: Link,
-): number {
+) {
   const vx = x1 - x0;
   const vy = y1 - y0;
   const len = Math.hypot(vx, vy) || 1;
   const ux = vx / len;
   const uy = vy / len;
-  // trim each end back so the link starts and stops clear of what it joins
-  const sx = x0 + ux * from;
-  const sy = y0 + uy * from;
-  const ex = x1 - ux * to;
-  const ey = y1 - uy * to;
-  const mx = (sx + ex) / 2;
-  const my = (sy + ey) / 2;
-  // bow along whichever perpendicular points away from the mark
-  let nx = -uy;
-  let ny = ux;
-  if ((mx - CX) * nx + (my - CY) * ny < 0) {
-    nx = -nx;
-    ny = -ny;
-  }
-  const bow = Math.hypot(ex - sx, ey - sy) * BOW;
-  out.x0 = sx;
-  out.y0 = sy;
-  out.cx = mx + nx * bow;
-  out.cy = my + ny * bow;
-  out.x1 = ex;
-  out.y1 = ey;
-  return len;
+  out.x0 = x0 + ux * from;
+  out.y0 = y0 + uy * from;
+  out.x1 = x1 - ux * to;
+  out.y1 = y1 - uy * to;
 }
 
 const path = (l: Link) =>
-  `M${l.x0.toFixed(1)} ${l.y0.toFixed(1)}Q${l.cx.toFixed(1)} ${l.cy.toFixed(1)} ${l.x1.toFixed(1)} ${l.y1.toFixed(1)}`;
+  `M${l.x0.toFixed(1)} ${l.y0.toFixed(1)}L${l.x1.toFixed(1)} ${l.y1.toFixed(1)}`;
 
-/** A point along a quadratic curve, computed rather than queried: asking the
- * DOM for it would force a layout for every signal on every frame. */
+/** A point along a link, computed rather than queried: asking the DOM for it
+ * would force a layout for every signal on every frame. */
 function at(l: Link, t: number, p: { x: number; y: number }) {
-  const m = 1 - t;
-  p.x = m * m * l.x0 + 2 * m * t * l.cx + t * t * l.x1;
-  p.y = m * m * l.y0 + 2 * m * t * l.cy + t * t * l.y1;
+  p.x = l.x0 + (l.x1 - l.x0) * t;
+  p.y = l.y0 + (l.y1 - l.y0) * t;
 }
 
 /** Where a clicked person can stand: inside the field, clear of the headline
@@ -269,15 +283,26 @@ function place(x: number, y: number, out: { x: number; y: number }) {
 
 export function LogoField({
   className = "",
+  compact = false,
   pointer,
   taps,
 }: {
   className?: string;
+  /** Just the mark and the light going round it, cropped to its own box. Used
+   * on phones, where the graphic sits above the headline at logo size and a
+   * network of people would be too small to read. */
+  compact?: boolean;
   pointer?: React.RefObject<PointerState>;
   taps?: React.RefObject<TapState>;
 }) {
   const reduced = useReducedMotionSafe();
   const svgRef = useRef<SVGSVGElement>(null);
+  /* The hero renders this twice, one for phones and one from lg up, and the
+   * one that is not in use is display:none. Shared ids would mean the visible
+   * copy painting with a gradient that lives inside a hidden subtree, which
+   * paints as nothing at all. So every id is per instance. */
+  const uid = useId().replace(/:/g, "");
+  const id = (name: string) => `lf-${name}-${uid}`;
 
   const ringRefs = useRef<(SVGGElement | null)[]>([]);
   const spokeRefs = useRef<(SVGPathElement | null)[]>([]);
@@ -293,6 +318,7 @@ export function LogoField({
   const guestHaloRefs = useRef<(SVGCircleElement | null)[]>([]);
   const markRef = useRef<SVGGElement>(null);
   const glowRef = useRef<SVGEllipseElement>(null);
+  const flowRefs = useRef<(SVGCircleElement | null)[]>([]);
 
   useEffect(() => {
     if (reduced) return;
@@ -307,16 +333,16 @@ export function LogoField({
     // headline there and opaque discs cannot share that space with type. The
     // loop has to know, or it would spend every frame animating nothing.
     const wide = window.matchMedia("(min-width: 64rem)");
-    let peopled = wide.matches;
+    let peopled = !compact && wide.matches;
     const onWidth = (e: MediaQueryListEvent) => {
-      peopled = e.matches;
+      peopled = !compact && e.matches;
     };
     wide.addEventListener("change", onWidth);
 
     // Live state, all of it scratch space reused every frame so the loop
     // allocates nothing.
     const pos = RING.map((b) => ({ x: b.x, y: b.y, s: 1, show: 0, lift: 0 }));
-    const link: Link = { x0: 0, y0: 0, cx: 0, cy: 0, x1: 0, y1: 0 };
+    const link: Link = { x0: 0, y0: 0, x1: 0, y1: 0 };
     const dot = { x: 0, y: 0 };
     const spot = { x: 0, y: 0 };
     const guests = Array.from({ length: GUESTS }, () => ({
@@ -469,7 +495,7 @@ export function LogoField({
         // the link into the mark
         const grow = ease(span(u, APPEAR, LINKED));
         const drop = ease(span(u, RELEASE, GONE));
-        curve(bx, by, b.ax, b.ay, R * scale + 4, 2, link);
+        span2(bx, by, b.ax, b.ay, R * scale + 4, 2, link);
         spoke.setAttribute("d", path(link));
         spoke.setAttribute("stroke-dasharray", `${Math.max(0, grow - drop)} 1`);
         spoke.setAttribute("stroke-dashoffset", `${-drop}`);
@@ -519,7 +545,7 @@ export function LogoField({
           peerDotRefs.current[i]?.setAttribute("opacity", "0");
           continue;
         }
-        curve(A.x, A.y, B.x, B.y, R * A.s + 3, R * B.s + 3, link);
+        span2(A.x, A.y, B.x, B.y, R * A.s + 3, R * B.s + 3, link);
         el.setAttribute("d", path(link));
         el.setAttribute(
           "opacity",
@@ -571,7 +597,7 @@ export function LogoField({
         );
         group.setAttribute("opacity", (show * ramp * 0.9).toFixed(3));
         const H = pos[s.via];
-        curve(bx, by, H.x, H.y, R * scale + 3, R * H.s + 3, link);
+        span2(bx, by, H.x, H.y, R * scale + 3, R * H.s + 3, link);
         el.setAttribute("d", path(link));
         el.setAttribute("opacity", (show * ramp * 0.42).toFixed(3));
       }
@@ -610,12 +636,23 @@ export function LogoField({
         const a = ANCHORS[g.anchor];
         const grow = ease(span(age, 0.08, 0.26));
         const goes = ease(span(age, 0.82, 1));
-        curve(g.x, g.y, a.x, a.y, R * scale + 4, 2, link);
+        span2(g.x, g.y, a.x, a.y, R * scale + 4, 2, link);
         el.setAttribute("d", path(link));
         el.setAttribute("stroke-dasharray", `${Math.max(0, grow - goes)} 1`);
         el.setAttribute("stroke-dashoffset", `${-goes}`);
         el.setAttribute("opacity", (show * 0.8).toFixed(3));
         markLift = Math.max(markLift, rise * (1 - ease(span(age, 0.3, 0.6))) * 0.4);
+      }
+
+      // Light going round the loop, for ever, which is the whole point of the
+      // shape. Two of them, half a circuit apart, so the mark is never dark.
+      for (let i = 0; i < 2; i++) {
+        const el = flowRefs.current[i];
+        if (!el) continue;
+        flowPoint(((t / FLOW + i * 0.5) % 1), dot);
+        el.setAttribute("cx", dot.x.toFixed(1));
+        el.setAttribute("cy", dot.y.toFixed(1));
+        el.setAttribute("opacity", (ramp * (i ? 0.6 : 0.85)).toFixed(3));
       }
 
       // The mark brightens as signals land, and again under the cursor.
@@ -654,7 +691,7 @@ export function LogoField({
       window.removeEventListener("scroll", remeasure);
       window.removeEventListener("resize", remeasure);
     };
-  }, [reduced, pointer, taps]);
+  }, [reduced, compact, pointer, taps]);
 
   /** One expert. The same figure every time, deliberately: the people in the
    * network are not illustrated individually and the graphic should not
@@ -663,7 +700,7 @@ export function LogoField({
    * written, which is sixty times a second. */
   const person = (key: string, dim = false) => (
     <g key={key}>
-      <circle r={R} fill="url(#lf-glass)" />
+      <circle r={R} fill={`url(#${id("glass")})`} />
       <circle
         r={R}
         fill="none"
@@ -692,7 +729,11 @@ export function LogoField({
   return (
     <svg
       ref={svgRef}
-      viewBox={`0 0 ${FIELD_W} ${FIELD_H}`}
+      viewBox={
+        compact
+          ? `${MARK_X - 9} ${MARK_Y - 9} ${MARK_W * MARK_SCALE + 18} ${MARK_H * MARK_SCALE + 18}`
+          : `0 0 ${FIELD_W} ${FIELD_H}`
+      }
       fill="none"
       className={className}
       aria-hidden="true"
@@ -701,25 +742,42 @@ export function LogoField({
       <defs>
         {/* Deeper than the logo's flat azure. At hero size a flat bright blue
             competes with the headline; this keeps the mark unmistakably the
-            brand without making it the loudest thing on the screen. */}
-        <linearGradient id="lf-mark" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#62aef2" />
-          <stop offset="52%" stopColor="#2578e2" />
-          <stop offset="100%" stopColor="#1550ae" />
+            brand without making it the loudest thing on the screen. Shallow on
+            purpose: a strong diagonal gradient has a bright end of its own,
+            and the eye reads that as the highlight instead of the one that is
+            actually travelling. */}
+        <linearGradient id={id("mark")} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#3583e4" />
+          <stop offset="55%" stopColor="#2670d2" />
+          <stop offset="100%" stopColor="#1a58ad" />
         </linearGradient>
-        <radialGradient id="lf-halo">
+        <radialGradient id={id("halo")}>
           <stop offset="0%" stopColor="#4a9dff" stopOpacity="0.5" />
           <stop offset="55%" stopColor="#2e7fdb" stopOpacity="0.14" />
           <stop offset="100%" stopColor="#2e7fdb" stopOpacity="0" />
         </radialGradient>
-        <radialGradient id="lf-glass" cx="38%" cy="30%" r="78%">
+        <radialGradient id={id("glass")} cx="38%" cy="30%" r="78%">
           <stop offset="0%" stopColor="#24395c" stopOpacity="0.95" />
           <stop offset="100%" stopColor="#0c1424" stopOpacity="0.95" />
         </radialGradient>
+        <radialGradient id={id("flow")}>
+          <stop offset="0%" stopColor="#dcefff" stopOpacity="0.9" />
+          <stop offset="45%" stopColor="#7cc0ff" stopOpacity="0.4" />
+          <stop offset="100%" stopColor="#4a9dff" stopOpacity="0" />
+        </radialGradient>
+        {/* The mark as a stencil, so the travelling light is only ever seen
+            inside the logo. */}
+        <clipPath id={id("inside")} clipRule="evenodd">
+          <path
+            d={MARK_PATH}
+            clipRule="evenodd"
+            transform={`translate(${MARK_X} ${MARK_Y}) scale(${MARK_SCALE})`}
+          />
+        </clipPath>
       </defs>
 
       {/* The sense that this is a detail of something larger. */}
-      <g className="hidden lg:block">
+      <g className={compact ? "hidden" : "hidden lg:block"}>
         {DUST.map((d, i) => (
           <circle
             key={i}
@@ -733,22 +791,28 @@ export function LogoField({
       </g>
 
       {/* The glow the mark sits in. */}
+      {!compact && (
       <ellipse
         ref={glowRef}
         cx={CX}
         cy={CY}
         rx={190}
         ry={140}
-        fill="url(#lf-halo)"
+        fill={`url(#${id("halo")})`}
         opacity="0"
       />
+      )}
 
       {/* Every link, under the mark so they run behind it rather than over it.
 
           Hidden below lg, with the people: down there the graphic sits behind
           the headline, and the mark alone reads as a watermark where a network
           of opaque discs would read as a collision. */}
-      <g className="hidden lg:block" fill="none" strokeLinecap="round">
+      <g
+        className={compact ? "hidden" : "hidden lg:block"}
+        fill="none"
+        strokeLinecap="round"
+      >
         {/* ring to ring */}
         {PEERS.map((_, i) => (
           <path
@@ -803,7 +867,7 @@ export function LogoField({
       </g>
 
       {/* Signals, and the bloom where each one lands. */}
-      <g className="hidden lg:block">
+      <g className={compact ? "hidden" : "hidden lg:block"}>
         {RING.map((b, i) => (
           <g key={`sg${i}`}>
             <circle
@@ -821,7 +885,7 @@ export function LogoField({
               cx={b.ax}
               cy={b.ay}
               r="4"
-              fill="url(#lf-halo)"
+              fill={`url(#${id("halo")})`}
               opacity="0"
             />
             <circle
@@ -869,12 +933,26 @@ export function LogoField({
         style={{ transformOrigin: `${CX}px ${CY}px` }}
       >
         <g transform={`translate(${MARK_X} ${MARK_Y}) scale(${MARK_SCALE})`}>
-          <path d={MARK_PATH} fill="url(#lf-mark)" fillRule="evenodd" />
+          <path d={MARK_PATH} fill={`url(#${id("mark")})`} fillRule="evenodd" />
+        </g>
+        {/* and the light running round it */}
+        <g clipPath={`url(#${id("inside")})`}>
+          {[0, 1].map((i) => (
+            <circle
+              key={i}
+              ref={(el) => {
+                flowRefs.current[i] = el;
+              }}
+              r={i ? 52 : 68}
+              fill={`url(#${id("flow")})`}
+              opacity="0"
+            />
+          ))}
         </g>
       </motion.g>
 
       {/* The people. */}
-      <g className="hidden lg:block">
+      <g className={compact ? "hidden" : "hidden lg:block"}>
         {SATELLITES.map((s, i) => (
           <g
             key={`sat${i}`}

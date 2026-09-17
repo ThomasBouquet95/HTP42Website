@@ -114,7 +114,7 @@ export function HomeHero() {
           class, so with both on one element the graphic sat at full strength
           on phones no matter what the class said. Nested, they multiply. */}
       <div
-        className="pointer-events-none absolute top-[2%] -right-[48%] w-[30rem] max-w-none opacity-[0.2] sm:-right-[16%] sm:w-[34rem] sm:opacity-50 lg:top-[7%] lg:right-[1%] lg:w-[clamp(22rem,calc(53vw_-_7.3rem),46rem)] lg:opacity-100"
+        className="pointer-events-none absolute top-[7%] right-[1%] hidden w-[clamp(22rem,calc(53vw_-_7.3rem),46rem)] max-w-none lg:block"
         aria-hidden="true"
       >
         <motion.div
@@ -126,6 +126,18 @@ export function HomeHero() {
 
       <div className="shell relative w-full">
         <div className="max-w-4xl">
+          {/* Below lg the mark leads the page at logo size instead of sitting
+              behind the headline as a watermark. The network is not drawn at
+              this size: the people would be seven pixels across. */}
+          <motion.div
+            className="mb-9 w-[5.25rem] sm:w-[6rem] lg:hidden"
+            initial={reduced ? false : { opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
+            aria-hidden="true"
+          >
+            <LogoField compact className="h-auto w-full" />
+          </motion.div>
 
           <h1 className="text-display-lg leading-[0.98] text-white lg:text-display-xl">
             <RevealLines
