@@ -26,14 +26,6 @@
   --color-azure: #1e91f9;
   --color-azure-dim: #2e7fdb;
 
-  /* ---- Secondary accent: technology partners only --------------------
-   * The one deliberate exception to the single blue above. Naming outside
-   * companies is the only place on the site where the subject is not HTP42,
-   * and it needs to read that way at a glance. Deep enough to pass AA on its
-   * own tint (5.2:1) and on paper (5.8:1).
-   */
-  --color-teal: #0b6f6a;
-  --color-teal-soft: #e4f2f0;
 
   /* ---- Type ---------------------------------------------------------- */
   --font-sans: var(--font-inter-tight), ui-sans-serif, system-ui, -apple-system,

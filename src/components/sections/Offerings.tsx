@@ -76,30 +76,40 @@ export function Offerings() {
                         point.partners
                           ? /* The one point that names companies other than
                                HTP42, so it is the one point drawn as a panel
-                               rather than a hairline row, in the secondary
-                               accent rather than the brand blue.
+                               rather than a hairline row, and inverted into
+                               the site's dark navy so it reads as a different
+                               kind of statement rather than a louder one.
 
-                               mt-1 + pt-4 is the row's own pt-5, split either
-                               side of the panel edge, so this label lands on
-                               the same line as the third point opposite. */
-                            "mt-1 rounded-lg border border-teal/20 bg-teal-soft/70 px-4 pt-4 pb-5 md:px-5"
+                               5px + pt-4 is the plain row's 1px rule plus its
+                               pt-5, split either side of the panel edge, so
+                               this label lands on exactly the same line as the
+                               third point in the card opposite. */
+                            "mt-[5px] rounded-lg bg-ink-900 px-4 pt-4 pb-5 md:px-5"
                           : "border-t border-ink/[0.09] pt-5 pb-6 last:pb-0"
                       }
                     >
-                      <dt className="text-base leading-snug font-medium tracking-[-0.012em] text-ink">
+                      <dt
+                        className={`text-base leading-snug font-medium tracking-[-0.012em] ${
+                          point.partners ? "text-white" : "text-ink"
+                        }`}
+                      >
                         {point.label}
                       </dt>
-                      <dd className="mt-2 max-w-[52ch] text-sm leading-relaxed text-ink-400">
+                      <dd
+                        className={`mt-2 max-w-[52ch] text-sm leading-relaxed ${
+                          point.partners ? "text-white/70" : "text-ink-400"
+                        }`}
+                      >
                         {point.detail}
                         {point.partners && (
                           <ul className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1.5">
-                            <li className="eyebrow text-teal">
+                            <li className="eyebrow text-azure">
                               {copy.home.offerings.partnersLabel}
                             </li>
                             {point.partners.map((partner) => (
                               <li
                                 key={partner}
-                                className="rounded-full border border-teal/25 bg-paper px-2.5 py-1 text-xs font-medium tracking-[-0.006em] text-teal"
+                                className="rounded-full border border-white/25 bg-white/[0.06] px-2.5 py-1 text-xs font-medium tracking-[-0.006em] text-white"
                               >
                                 {partner}
                               </li>
