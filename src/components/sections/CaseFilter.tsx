@@ -1,10 +1,11 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { CaseRow } from "@/components/ui/CaseRow";
 import { caseStudies } from "@/content/cases";
 import { expertiseAreas } from "@/content/expertise";
+import { useReducedMotionSafe } from "@/components/motion/useReducedMotionSafe";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 const ALL = "All engagements";
@@ -15,7 +16,7 @@ const ALL = "All engagements";
  */
 export function CaseFilter() {
   const [active, setActive] = useState<string>(ALL);
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionSafe();
 
   const filters = useMemo(() => {
     const counts = new Map<string, number>();
@@ -94,8 +95,8 @@ export function CaseFilter() {
               <motion.div
                 key={study.slug}
                 layout={!reduced}
-                initial={reduced ? undefined : { opacity: 0, y: 10 }}
-                animate={reduced ? undefined : { opacity: 1, y: 0 }}
+                initial={reduced ? false : { opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
                 exit={reduced ? undefined : { opacity: 0, y: -6 }}
                 transition={{ duration: 0.45, delay: i * 0.03, ease: EASE }}
               >

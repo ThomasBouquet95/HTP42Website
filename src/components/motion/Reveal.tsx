@@ -1,7 +1,8 @@
 "use client";
 
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import type { ElementType, ReactNode } from "react";
+import { useReducedMotionSafe } from "@/components/motion/useReducedMotionSafe";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -30,7 +31,7 @@ export function Reveal({
   as = "div",
   once = true,
 }: RevealProps) {
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionSafe();
   const MotionTag = motion[as as keyof typeof motion] as typeof motion.div;
 
   if (reduced) {
@@ -75,7 +76,7 @@ export function Stagger({
   stagger?: number;
   as?: ElementType;
 }) {
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionSafe();
   const MotionTag = motion[as as keyof typeof motion] as typeof motion.div;
 
   if (reduced) {
@@ -106,7 +107,7 @@ export function StaggerItem({
   className?: string;
   as?: ElementType;
 }) {
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionSafe();
   const MotionTag = motion[as as keyof typeof motion] as typeof motion.div;
 
   if (reduced) {
@@ -138,7 +139,7 @@ export function RevealLines({
   delay?: number;
   stagger?: number;
 }) {
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionSafe();
 
   return (
     <span className={className}>
@@ -180,14 +181,14 @@ export function DrawRule({
   delay?: number;
   onDark?: boolean;
 }) {
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionSafe();
   return (
     <motion.div
       className={`h-px w-full origin-left ${
         onDark ? "bg-white/18" : "bg-ink/12"
       } ${className}`}
-      initial={reduced ? undefined : { scaleX: 0 }}
-      whileInView={reduced ? undefined : { scaleX: 1 }}
+      initial={reduced ? false : { scaleX: 0 }}
+      whileInView={{ scaleX: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 1.1, delay, ease: EASE }}
     />

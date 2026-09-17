@@ -1,7 +1,10 @@
 "use client";
 
 import { useEffect, useRef, type RefObject } from "react";
-import type { PointerState } from "@/components/ui/NetworkField";
+
+/** Where the cursor is, in client coordinates, and whether it is on the
+ * tracked element at all. Read inside an animation frame, never rendered. */
+export type PointerState = { x: number; y: number; active: boolean };
 
 /**
  * Tracks the cursor over one element and publishes it two ways:

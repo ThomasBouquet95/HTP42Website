@@ -1,15 +1,16 @@
 "use client";
 
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Marquee } from "@/components/ui/Marquee";
-import { NetworkField } from "@/components/ui/NetworkField";
+import { LogoField } from "@/components/ui/LogoField";
 import { usePointerField } from "@/components/motion/usePointerField";
 import { RevealLines } from "@/components/motion/Reveal";
 import { capabilityKeywords } from "@/content/site";
 import { Accent } from "@/components/ui/Accent";
 import { copy } from "@/content/copy";
+import { useReducedMotionSafe } from "@/components/motion/useReducedMotionSafe";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -23,7 +24,7 @@ const REVEAL_MASK =
 
 
 export function HomeHero() {
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionSafe();
   const { scrollY } = useScroll();
 
   // The cursor drives two things: the light and grid below, through CSS custom
@@ -67,7 +68,7 @@ export function HomeHero() {
             the compositor and costs nothing per frame. That difference is the
             whole reason this is three nested elements rather than one. */}
         <div
-          className="absolute top-0 left-0 size-[48rem] transition-opacity duration-500 ease-out"
+          className="absolute top-0 left-0 size-[38rem] transition-opacity duration-500 ease-out"
           style={{
             opacity: "var(--pointer-on, 0)",
             transform: GLOW_AT,
@@ -77,7 +78,7 @@ export function HomeHero() {
           }}
         />
         <div
-          className="absolute top-0 left-0 size-[34rem] transition-opacity duration-500 ease-out"
+          className="absolute top-0 left-0 size-[27rem] transition-opacity duration-500 ease-out"
           style={{
             opacity: "var(--pointer-on, 0)",
             transform: GLOW_AT,
@@ -96,20 +97,31 @@ export function HomeHero() {
               backgroundImage:
                 "repeating-linear-gradient(to right, rgba(255,255,255,0.20) 0 1px, transparent 1px calc(var(--pointer-w, 100vw) / 12)), repeating-linear-gradient(to bottom, rgba(255,255,255,0.14) 0 1px, transparent 1px 7.5rem)",
               backgroundPosition:
-                "calc(17rem - var(--pointer-x, 0px)) calc(17rem - var(--pointer-y, 0px))",
+                "calc(13.5rem - var(--pointer-x, 0px)) calc(13.5rem - var(--pointer-y, 0px))",
             }}
           />
         </div>
       </div>
 
-      {/* Constellation */}
-      <motion.div
-        style={reduced ? undefined : { y: fieldY, opacity: fieldOpacity }}
-        className="pointer-events-none absolute top-[2%] -right-[48%] w-[30rem] max-w-none opacity-[0.18] sm:-right-[16%] sm:w-[34rem] sm:opacity-45 lg:top-[4%] lg:right-[-4%] lg:w-[42rem] lg:opacity-100 xl:right-[2%] xl:w-[46rem]"
+      {/* The mark, with the network joining it. One fluid width from lg up
+          rather than a step per breakpoint: the ring of bubbles has to clear
+          the headline, and the headline's right edge barely moves while the
+          viewport does, so a step would be right at one width and wrong either
+          side of it. */}
+      {/* Two elements, not one. The outer holds the responsive opacity, the
+          inner the scroll fade: an inline opacity from Framer beats a Tailwind
+          class, so with both on one element the graphic sat at full strength
+          on phones no matter what the class said. Nested, they multiply. */}
+      <div
+        className="pointer-events-none absolute top-[2%] -right-[48%] w-[30rem] max-w-none opacity-[0.2] sm:-right-[16%] sm:w-[34rem] sm:opacity-50 lg:top-[7%] lg:right-[1%] lg:w-[clamp(22rem,calc(53vw_-_7.3rem),46rem)] lg:opacity-100"
         aria-hidden="true"
       >
-        <NetworkField className="h-auto w-full" pointer={pointer} />
-      </motion.div>
+        <motion.div
+          style={reduced ? undefined : { y: fieldY, opacity: fieldOpacity }}
+        >
+          <LogoField className="h-auto w-full" pointer={pointer} />
+        </motion.div>
+      </div>
 
       <div className="shell relative w-full">
         <div className="max-w-4xl">
@@ -126,8 +138,8 @@ export function HomeHero() {
 
           <motion.p
             className="lead mt-8 max-w-xl text-white/60"
-            initial={reduced ? undefined : { opacity: 0, y: 16 }}
-            animate={reduced ? undefined : { opacity: 1, y: 0 }}
+            initial={reduced ? false : { opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.55, ease: EASE }}
           >
             {copy.home.heroLead}
@@ -135,8 +147,8 @@ export function HomeHero() {
 
           <motion.div
             className="mt-10 flex flex-wrap items-center gap-3"
-            initial={reduced ? undefined : { opacity: 0, y: 16 }}
-            animate={reduced ? undefined : { opacity: 1, y: 0 }}
+            initial={reduced ? false : { opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.66, ease: EASE }}
           >
             <Button
@@ -157,8 +169,8 @@ export function HomeHero() {
       {/* Capability marquee on the section seam */}
       <motion.div
         className="rule-on-dark relative mt-20 py-5 md:mt-24"
-        initial={reduced ? undefined : { opacity: 0 }}
-        animate={reduced ? undefined : { opacity: 1 }}
+        initial={reduced ? false : { opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.95 }}
       >
         <Marquee items={capabilityKeywords} onDark duration={58} />
@@ -167,14 +179,14 @@ export function HomeHero() {
       {/* Scroll cue */}
       <motion.div
         className="pointer-events-none absolute right-5 bottom-24 hidden items-center gap-2.5 lg:flex xl:right-16"
-        initial={reduced ? undefined : { opacity: 0 }}
-        animate={reduced ? undefined : { opacity: 1 }}
+        initial={reduced ? false : { opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.2 }}
         aria-hidden="true"
       >
         <span className="eyebrow text-white/50">Scroll</span>
         <motion.span
-          animate={reduced ? undefined : { y: [0, 6, 0] }}
+          animate={reduced ? { y: 0 } : { y: [0, 6, 0] }}
           transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
         >
           <ArrowDown className="size-3.5 text-azure/60" strokeWidth={1.75} />

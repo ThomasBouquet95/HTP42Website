@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
 import { site } from "@/content/site";
 import { expertiseAreas } from "@/content/expertise";
+import { useReducedMotionSafe } from "@/components/motion/useReducedMotionSafe";
 
 const TOPICS = [
   ...expertiseAreas.map((a) => a.name),
@@ -26,7 +27,7 @@ const label = "eyebrow block text-ink-400";
  */
 export function ContactForm() {
   const [sent, setSent] = useState(false);
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionSafe();
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -158,8 +159,8 @@ export function ContactForm() {
         {sent && (
           <motion.p
             className="inline-flex items-center gap-2 text-xs font-medium text-brand"
-            initial={reduced ? undefined : { opacity: 0, x: -8 }}
-            animate={reduced ? undefined : { opacity: 1, x: 0 }}
+            initial={reduced ? false : { opacity: 0, x: -8 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             role="status"
           >
