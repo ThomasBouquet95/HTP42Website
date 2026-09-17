@@ -34,6 +34,7 @@ export function HomeHero() {
     ref: sectionRef,
     styleRef: ambientRef,
     pointer,
+    taps,
   } = usePointerField<HTMLElement>(!reduced);
 
   // A slow lift on the graphic only — the type stays put so it never blurs.
@@ -119,7 +120,7 @@ export function HomeHero() {
         <motion.div
           style={reduced ? undefined : { y: fieldY, opacity: fieldOpacity }}
         >
-          <LogoField className="h-auto w-full" pointer={pointer} />
+          <LogoField className="h-auto w-full" pointer={pointer} taps={taps} />
         </motion.div>
       </div>
 

@@ -6,6 +6,11 @@ import { useEffect, useRef, type RefObject } from "react";
  * tracked element at all. Read inside an animation frame, never rendered. */
 export type PointerState = { x: number; y: number; active: boolean };
 
+/** The last click, and a running count of them. A consumer keeps the count it
+ * has already acted on, which is how it tells a new click from the same one
+ * seen again on the next frame. */
+export type TapState = { x: number; y: number; n: number };
+
 /**
  * Tracks the cursor over one element and publishes it two ways:
  *
@@ -36,10 +41,12 @@ export function usePointerField<
   ref: RefObject<T | null>;
   styleRef: RefObject<S | null>;
   pointer: RefObject<PointerState>;
+  taps: RefObject<TapState>;
 } {
   const ref = useRef<T>(null);
   const styleRef = useRef<S>(null);
   const pointer = useRef<PointerState>({ x: 0, y: 0, active: false });
+  const taps = useRef<TapState>({ x: 0, y: 0, n: 0 });
 
   useEffect(() => {
     const el = ref.current;
@@ -87,7 +94,19 @@ export function usePointerField<
       schedule();
     };
 
+    // A click is a person joining the network. Clicks that were aimed at
+    // something — a button, a link, the text you were selecting — are not.
+    const onClick = (e: MouseEvent) => {
+      const target = e.target as Element | null;
+      if (target?.closest("a, button, input, textarea, select, [role='button']")) return;
+      if ((window.getSelection()?.toString().length ?? 0) > 0) return;
+      taps.current.x = e.clientX;
+      taps.current.y = e.clientY;
+      taps.current.n += 1;
+    };
+
     el.addEventListener("pointermove", onMove, { passive: true });
+    el.addEventListener("click", onClick);
     el.addEventListener("pointerleave", onLeave);
     // A pointer can also leave by the window losing focus, which fires no
     // pointerleave on some platforms.
@@ -97,10 +116,11 @@ export function usePointerField<
       if (frame) cancelAnimationFrame(frame);
       window.removeEventListener("resize", measure);
       el.removeEventListener("pointermove", onMove);
+      el.removeEventListener("click", onClick);
       el.removeEventListener("pointerleave", onLeave);
       window.removeEventListener("blur", onLeave);
     };
   }, [enabled]);
 
-  return { ref, styleRef, pointer };
+  return { ref, styleRef, pointer, taps };
 }
