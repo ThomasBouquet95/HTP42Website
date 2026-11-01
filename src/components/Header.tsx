@@ -12,13 +12,20 @@ import {
 } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
+import { useActiveSection } from "@/components/motion/useActiveSection";
 import { nav, site } from "@/content/site";
 import { copy } from "@/content/copy";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
+/** The section each nav item points at, in document order. */
+const SECTIONS = nav.map((item) => item.href.replace("/#", ""));
+
 export function Header() {
   const pathname = usePathname();
+  const onePager = pathname === "/";
+  // Off the one page there is no section to be in, so nothing is marked.
+  const active = useActiveSection(onePager ? SECTIONS : []);
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -75,21 +82,14 @@ export function Header() {
               className="hidden items-center gap-8 lg:flex"
             >
               {nav.map((item) => {
-                // "/" is a prefix of every route, so it only matches exactly.
-                const active =
-                  item.href === "/"
-                    ? pathname === "/"
-                    : pathname === item.href ||
-                      pathname.startsWith(`${item.href}/`);
+                const here = active === item.href.replace("/#", "");
                 return (
                   <Link
                     key={item.href}
                     href={item.href}
-                    aria-current={active ? "page" : undefined}
+                    aria-current={here ? "location" : undefined}
                     className={`link-nav text-sm font-medium tracking-[-0.008em] transition-colors duration-400 ${
-                      active
-                        ? "text-azure"
-                        : "text-white/70 hover:text-white"
+                      here ? "text-azure" : "text-white/70 hover:text-white"
                     }`}
                   >
                     {item.label}
@@ -100,7 +100,7 @@ export function Header() {
 
             <div className="flex items-center gap-2">
               <Link
-                href="/contact"
+                href="/#contact"
                 className="hidden h-10 items-center rounded-full bg-white px-5 text-xs font-medium tracking-[-0.008em] text-ink transition-all duration-500 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:bg-azure hover:text-white sm:inline-flex"
               >
                 {copy.ui.startConversation}
@@ -167,6 +167,7 @@ export function Header() {
                   >
                     <Link
                       href={item.href}
+                      onClick={() => setOpen(false)}
                       className="flex items-baseline gap-4 py-5 text-2xl font-medium tracking-[-0.028em] text-white"
                     >
                       <span className="eyebrow tnum text-white/50">
@@ -186,7 +187,8 @@ export function Header() {
               >
                 {/* The header CTA is hidden below 640px, so the panel carries it. */}
                 <Link
-                  href="/contact"
+                  href="/#contact"
+                  onClick={() => setOpen(false)}
                   className="inline-flex h-12 items-center justify-center rounded-full bg-white px-6 text-sm font-medium tracking-[-0.008em] text-ink transition-colors duration-500 hover:bg-azure hover:text-white"
                 >
                   {copy.ui.startConversation}

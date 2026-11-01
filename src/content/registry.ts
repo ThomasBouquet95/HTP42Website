@@ -1,13 +1,7 @@
 import { site, proofPoints, nav, clients, capabilityKeywords } from "@/content/site";
 import { offerings } from "@/content/offerings";
-import { expertiseAreas, engagementModel } from "@/content/expertise";
-import {
-  EXPERT_COUNT,
-  leadership,
-  disciplines,
-  modelComparison,
-  values,
-} from "@/content/network";
+import { expertiseAreas } from "@/content/expertise";
+import { EXPERT_COUNT, leadership } from "@/content/network";
 import { audiences, networkEffect } from "@/content/audiences";
 import { caseStudies } from "@/content/cases";
 import { perspectives } from "@/content/perspectives";
@@ -35,12 +29,8 @@ export const contentDefaults = {
   capabilityKeywords,
   offerings,
   expertiseAreas,
-  engagementModel,
   expertCount: EXPERT_COUNT,
   leadership,
-  disciplines,
-  modelComparison,
-  values,
   audiences,
   networkEffect,
   caseStudies,
@@ -86,12 +76,8 @@ const LABELS: Record<string, string> = {
   capabilityKeywords: "Capability marquee",
   offerings: "How we work with you",
   expertiseAreas: "Expertise areas",
-  engagementModel: "Engagement model",
   expertCount: "Expert count",
   leadership: "Partners",
-  disciplines: "Disciplines",
-  modelComparison: "Model comparison",
-  values: "Values",
   audiences: "Three sided proposition",
   networkEffect: "Network effect line",
   caseStudies: "Case studies",

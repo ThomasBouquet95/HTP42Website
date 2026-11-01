@@ -1,8 +1,8 @@
 # Content editor
 
-A password protected editor at `/admin`. It shows the real pages of the site
-with their text open for editing, and exports what you changed as a file to
-hand back to a developer.
+A password protected editor at `/admin`. It shows the real site with its text
+open for editing, and exports what you changed as a file to hand back to a
+developer.
 
 Nothing publishes from `/admin`. That is deliberate: the repository stays the
 single source of truth for the site's copy, so your edits and a developer's
@@ -32,8 +32,9 @@ until you export them.
 ## Using it
 
 1. Go to `/admin` and sign in.
-2. Pick a page from the top bar. The real page loads in the preview, and the
-   panel on the right lists the text found on it.
+2. The site loads in the preview and the panel on the right lists the text
+   found on it. The top bar switches between the one page the site has and
+   the two legal pages.
 3. Hover the preview: any text you can edit outlines in blue. Click it and the
    panel jumps to that field. Clicking something that is not editable says so
    rather than doing nothing.
@@ -78,10 +79,10 @@ Editable: the text held in `src/content/*.ts`. Card copy, case studies, partner
 biographies, values, disciplines, the three sided proposition, navigation
 labels, contact details, client names, the numbers in the band.
 
-Also editable, and newly so: every section headline, lead and eyebrow, the page
-headlines, and the firm statement on the homepage. These used to live inline in
-the components, which made the most prominent sentences on the site the only
-ones you could not change.
+Also editable: every section headline, lead and eyebrow, the hero headline,
+and the firm statement. These used to live inline in the components, which
+made the most prominent sentences on the site the only ones you could not
+change.
 
 ### Headlines and the italic accent
 
@@ -101,11 +102,9 @@ Not editable:
 - `slug`, `href` and `url`, which generate URLs, so changing one would break
   every link to it.
 - `icon` and `logo`, which name a component or a file that has to exist.
-- Some smaller interface labels: the form field labels and topic list on the
-  contact page, the fact rails under each page headline, the closing call to
-  action bands, and the captions on the comparison table. These are still
-  inline in their components. They are the remaining work, and they are why a
-  few runs of text on each page still do not highlight.
+- Some smaller interface labels: the fact rails on the legal pages and the
+  closing call to action band. These are still inline in their components,
+  and they are why a few runs of text still do not highlight.
 - New entries in a list. You can reword every technology partner, value or case
   study that exists, but adding a fourth partner to a list of three is a code
   change. Ask a developer for those.

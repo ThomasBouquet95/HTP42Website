@@ -84,7 +84,6 @@ export function LegalPage({
           </>
         }
         body="We would rather answer a question about our terms than have you guess at the answer."
-        primary={{ label: "Contact us", href: "/contact" }}
       />
     </>
   );

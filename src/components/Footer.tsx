@@ -1,34 +1,19 @@
 import Link from "next/link";
 import { Linkedin, Mail, MapPin } from "lucide-react";
 import { LogoStacked } from "@/components/ui/Logo";
-import { site } from "@/content/site";
+import { site, nav } from "@/content/site";
 import { expertiseAreas } from "@/content/expertise";
-import { caseStudies } from "@/content/cases";
 
+/**
+ * Two columns, not four. A footer sitemap that lists every page is useful on a
+ * site with pages; here it would be a list of the same five anchors as the
+ * header, twice. So: the sections, and what the expertise section covers.
+ */
 const columns = [
+  { heading: "Sections", links: nav.map((n) => ({ ...n })) },
   {
     heading: "Expertise",
-    links: expertiseAreas.map((a) => ({
-      label: a.name,
-      href: `/expertise#${a.slug}`,
-    })),
-  },
-  {
-    heading: "Client impact",
-    links: caseStudies.slice(0, 5).map((c) => ({
-      label: c.title,
-      href: `/impact/${c.slug}`,
-    })),
-  },
-  {
-    heading: "Firm",
-    links: [
-      { label: "The network", href: "/network" },
-      { label: "Our model", href: "/network#model" },
-      { label: "Where the depth sits", href: "/network#disciplines" },
-      { label: "Perspectives", href: "/perspectives" },
-      { label: "Contact", href: "/contact" },
-    ],
+    links: expertiseAreas.map((a) => ({ label: a.name, href: "/#expertise" })),
   },
 ];
 
@@ -83,7 +68,7 @@ export function Footer() {
 
           {/* Sitemap */}
           {columns.map((col) => (
-            <div key={col.heading} className="md:col-span-4 lg:col-span-2">
+            <div key={col.heading} className="md:col-span-4 lg:col-span-3">
               <h3 className="eyebrow text-azure">{col.heading}</h3>
               <ul className="mt-5 space-y-3">
                 {col.links.map((link) => (

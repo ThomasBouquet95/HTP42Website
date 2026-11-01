@@ -166,14 +166,14 @@ export function HomeHero() {
             transition={{ duration: 0.8, delay: 0.66, ease: EASE }}
           >
             <Button
-              href="/contact"
+              href="#contact"
               variant="light"
               size="lg"
               withArrow
             >
               {copy.ui.startConversation}
             </Button>
-            <Button href="/impact" variant="outline-dark" size="lg">
+            <Button href="#impact" variant="outline-dark" size="lg">
               {copy.ui.seeClientImpact}
             </Button>
           </motion.div>

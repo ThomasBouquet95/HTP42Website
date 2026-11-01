@@ -84,6 +84,9 @@
   html {
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
+    /* Every in page link lands under the fixed header because of this one
+       line. Sections carry no scroll margin of their own: a section that did
+       would add to this rather than replace it, and land twice as low. */
     scroll-padding-top: 6rem;
   }
 

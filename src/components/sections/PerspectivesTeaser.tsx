@@ -1,15 +1,24 @@
-import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { Mail } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { ArrowLink } from "@/components/ui/ArrowLink";
-import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
+import { Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { featuredPerspectives } from "@/content/perspectives";
 import { formatDate } from "@/lib/format";
+import { site } from "@/content/site";
 import { copy } from "@/content/copy";
+
+/** The pieces are not published on the site; they are sent on request. With
+ * no page to open, the card is the request. */
+function requestLink(title: string) {
+  return `mailto:${site.contact.email}?subject=${encodeURIComponent(
+    `Perspectives: ${title}`,
+  )}&body=${encodeURIComponent(
+    `Hello HTP42,\n\nI'd like to read the full piece: "${title}".\n\nName:\nOrganisation:\nRole:\n`,
+  )}`;
+}
 
 export function PerspectivesTeaser() {
   return (
-    <section className="section bg-paper">
+    <section id="perspectives" className="section bg-paper">
       <div className="shell">
         <SectionHeader
           index="05"
@@ -21,8 +30,8 @@ export function PerspectivesTeaser() {
         <Stagger className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-ink/10 bg-ink/10 md:mt-16 md:grid-cols-3">
           {featuredPerspectives.map((piece) => (
             <StaggerItem key={piece.slug}>
-              <Link
-                href={`/perspectives#${piece.slug}`}
+              <a
+                href={requestLink(piece.title)}
                 className="group flex h-full flex-col bg-paper p-7 transition-colors duration-700 hover:bg-paper-2 md:p-8"
               >
                 <div className="flex items-baseline justify-between gap-4">
@@ -49,22 +58,15 @@ export function PerspectivesTeaser() {
                       {formatDate(piece.date)}
                     </p>
                   </div>
-                  <ArrowUpRight
-                    className="arrow-step size-4 shrink-0 text-ink-300 transition-colors duration-500 group-hover:text-brand"
-                    strokeWidth={1.75}
-                    aria-hidden="true"
-                  />
+                  <span className="inline-flex shrink-0 items-center gap-1.5 text-xs font-medium text-ink-400 transition-colors duration-500 group-hover:text-brand">
+                    <Mail className="size-3.5" strokeWidth={1.75} aria-hidden="true" />
+                    <span className="link-wipe">Request it</span>
+                  </span>
                 </div>
-              </Link>
+              </a>
             </StaggerItem>
           ))}
         </Stagger>
-
-        <Reveal delay={0.1}>
-          <div className="mt-11">
-            <ArrowLink href="/perspectives">All perspectives</ArrowLink>
-          </div>
-        </Reveal>
       </div>
     </section>
   );

@@ -18,13 +18,17 @@ export const site = {
   },
 } as const;
 
+/**
+ * The site is one page. Every nav item is a section of it, written as a root
+ * relative hash so the same link works from the legal pages as well as from
+ * the page itself.
+ */
 export const nav = [
-  { label: "Home", href: "/" },
-  { label: "Expertise", href: "/expertise" },
-  { label: "The Network", href: "/network" },
-  { label: "Client Impact", href: "/impact" },
-  { label: "Perspectives", href: "/perspectives" },
-  { label: "Contact", href: "/contact" },
+  { label: "Expertise", href: "/#expertise" },
+  { label: "The Network", href: "/#network" },
+  { label: "Client Impact", href: "/#impact" },
+  { label: "Perspectives", href: "/#perspectives" },
+  { label: "Contact", href: "/#contact" },
 ] as const;
 
 /** Headline proof points. Sourced from HTP42 delivery history. */
@@ -94,13 +98,5 @@ export const clients: Client[] = [
   { name: "Appsilon" },
 ];
 
-/**
- * The same four numbers as a hero facts rail. The homepage band and the
- * interior page heroes read from one source, so they cannot drift apart.
- */
-export const proofFacts = proofPoints.map((point) => ({
-  label: point.label,
-  value: `${point.value}${point.suffix}`,
-}));
 
 

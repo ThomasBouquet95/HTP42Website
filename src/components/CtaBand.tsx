@@ -1,3 +1,4 @@
+import { Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import { Mark } from "@/components/ui/Logo";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -6,14 +7,24 @@ import { site } from "@/content/site";
 import { copy } from "@/content/copy";
 
 /**
- * The closing band, repeated on every page. Dark, quiet, one clear ask —
- * and a second, lower-commitment route for people who are not ready to talk.
+ * The closing band, and the contact section the navigation points at. Dark,
+ * quiet, one clear ask, and the ways to reach us underneath it.
+ *
+ * There is no form. A form on a one page site is a third party dependency and
+ * a spam target in exchange for a field or two, and the ask here is a thirty
+ * minute conversation with a partner: an email with a subject line already
+ * filled in gets there faster and lands in a place they actually read.
  */
 export function CtaBand({
   eyebrow = "Start here",
   title,
   body,
-  primary = { label: copy.ui.startConversation, href: "/contact" },
+  primary = {
+    label: copy.ui.startConversation,
+    href: `mailto:${site.contact.email}?subject=${encodeURIComponent(
+      "A conversation with HTP42",
+    )}`,
+  },
   secondary,
 }: {
   eyebrow?: string;
@@ -23,7 +34,10 @@ export function CtaBand({
   secondary?: { label: string; href: string };
 }) {
   return (
-    <section className="grain relative overflow-hidden bg-ink">
+    <section
+      id="contact"
+      className="grain relative overflow-hidden bg-ink"
+    >
       <Backdrop />
       <div className="shell section relative">
         <div className="grid grid-cols-1 gap-x-12 gap-y-10 lg:grid-cols-12">
@@ -73,23 +87,68 @@ export function CtaBand({
             </Reveal>
 
             <Reveal delay={0.24}>
-              <div className="rule-on-dark mt-10 flex flex-wrap items-center gap-x-8 gap-y-2 pt-5">
-                <a
-                  href={`mailto:${site.contact.email}`}
-                  className="link-wipe text-sm font-medium text-white/85"
-                >
-                  {site.contact.email}
-                </a>
-                <span className="eyebrow text-white/50">
-                  {site.contact.hq}
-                </span>
-              </div>
+              <ul className="rule-on-dark mt-10 flex flex-col gap-3 pt-6">
+                {reach().map((item) => (
+                  <li key={item.label}>
+                    {item.href ? (
+                      <a
+                        href={item.href}
+                        {...(item.external
+                          ? { target: "_blank", rel: "noreferrer noopener" }
+                          : {})}
+                        className="group inline-flex items-center gap-2.5 text-sm text-white/70 transition-colors duration-500 hover:text-azure"
+                      >
+                        <item.icon
+                          className="size-3.5 shrink-0"
+                          strokeWidth={1.75}
+                          aria-hidden="true"
+                        />
+                        <span className="link-wipe">{item.label}</span>
+                      </a>
+                    ) : (
+                      <span className="inline-flex items-center gap-2.5 text-sm text-white/55">
+                        <item.icon
+                          className="size-3.5 shrink-0"
+                          strokeWidth={1.75}
+                          aria-hidden="true"
+                        />
+                        {item.label}
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ul>
             </Reveal>
           </div>
         </div>
       </div>
     </section>
   );
+}
+
+/** Every way in, in the order people use them. */
+function reach() {
+  return [
+    {
+      icon: Mail,
+      label: site.contact.email,
+      href: `mailto:${site.contact.email}`,
+      external: false,
+    },
+    {
+      icon: Phone,
+      label: site.contact.phone,
+      href: `tel:${site.contact.phone.replace(/[^+\d]/g, "")}`,
+      external: false,
+    },
+    {
+      icon: Linkedin,
+      label: "LinkedIn",
+      href: site.contact.linkedin,
+      external: true,
+    },
+    { icon: MapPin, label: site.contact.hq, href: null, external: false },
+  ];
 }
 
 /** An oversized, very low-contrast mark bleeding off the right edge. */

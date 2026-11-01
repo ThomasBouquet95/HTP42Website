@@ -42,7 +42,7 @@ export function Positioning() {
 
           <Reveal delay={0.16}>
             <div className="mt-11">
-              <ArrowLink href="/network">
+              <ArrowLink href="#network">
                 {copy.home.positioning.networkLink}
               </ArrowLink>
             </div>

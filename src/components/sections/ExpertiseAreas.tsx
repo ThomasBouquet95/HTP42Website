@@ -1,5 +1,3 @@
-import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { diagrams } from "@/components/ui/AreaDiagram";
@@ -28,17 +26,16 @@ export function ExpertiseAreas() {
           lead={copy.home.expertise.lead}
         />
 
-        <Stagger className="no-scrollbar mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-ink/10 bg-ink/10 max-sm:-mx-5 max-sm:flex max-sm:snap-x max-sm:snap-mandatory max-sm:gap-3 max-sm:overflow-x-auto max-sm:rounded-none max-sm:border-0 max-sm:bg-transparent max-sm:px-5 max-sm:pb-3 sm:grid-cols-2 md:mt-16 xl:grid-cols-4 xl:grid-rows-[auto_auto_auto_1fr_auto] xl:gap-y-0">
+        <Stagger className="no-scrollbar mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-ink/10 bg-ink/10 max-sm:-mx-5 max-sm:flex max-sm:snap-x max-sm:snap-mandatory max-sm:gap-3 max-sm:overflow-x-auto max-sm:rounded-none max-sm:border-0 max-sm:bg-transparent max-sm:px-5 max-sm:pb-3 sm:grid-cols-2 md:mt-16 xl:grid-cols-4 xl:grid-rows-[auto_auto_auto_1fr] xl:gap-y-0">
           {expertiseAreas.map((area) => {
             const Diagram = diagrams[area.icon];
             return (
               <StaggerItem
                 key={area.slug}
-                className="max-sm:w-[82%] max-sm:shrink-0 max-sm:snap-start xl:row-span-5 xl:grid xl:grid-rows-subgrid"
+                className="max-sm:w-[82%] max-sm:shrink-0 max-sm:snap-start xl:row-span-4 xl:grid xl:grid-rows-subgrid"
               >
-                <Link
-                  href={`/expertise#${area.slug}`}
-                  className="group relative flex h-full flex-col bg-paper p-6 transition-colors duration-700 hover:bg-brand-soft/35 max-sm:rounded-lg max-sm:border max-sm:border-ink/12 md:p-7 xl:row-span-5 xl:grid xl:grid-rows-subgrid"
+                <div
+                  className="group relative flex h-full flex-col bg-paper p-6 transition-colors duration-700 hover:bg-brand-soft/35 max-sm:rounded-lg max-sm:border max-sm:border-ink/12 md:p-7 xl:row-span-4 xl:grid xl:grid-rows-subgrid"
                 >
                   {/* 1. number and diagram */}
                   <div className="flex items-start justify-between gap-6">
@@ -58,7 +55,10 @@ export function ExpertiseAreas() {
                     {area.promise}
                   </p>
 
-                  {/* 4. representative service lines */}
+                  {/* 4. representative service lines. They used to sit above
+                      a link into a page of their own; with one page there is
+                      nowhere to go, so the list runs to the foot of the card
+                      and the subgrid closes on it. */}
                   <ul className="rule mt-6 flex flex-col pt-4">
                     {area.services.map((service) => (
                       <li
@@ -70,16 +70,7 @@ export function ExpertiseAreas() {
                     ))}
                   </ul>
 
-                  {/* 5. the way in */}
-                  <span className="mt-auto inline-flex items-center gap-2 pt-7 text-xs font-medium text-ink transition-colors duration-500 group-hover:text-brand">
-                    <span className="link-wipe">Explore this area</span>
-                    <ArrowUpRight
-                      className="arrow-step size-3.5"
-                      strokeWidth={1.75}
-                      aria-hidden="true"
-                    />
-                  </span>
-                </Link>
+                </div>
               </StaggerItem>
             );
           })}

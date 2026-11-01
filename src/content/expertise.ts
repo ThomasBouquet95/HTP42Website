@@ -274,30 +274,3 @@ export const allServices = expertiseAreas.flatMap((a) =>
   a.services.map((s) => ({ ...s, area: a.name, areaSlug: a.slug })),
 );
 
-/** How engagements actually run. */
-export const engagementModel = [
-  {
-    step: "01",
-    name: "Understand",
-    duration: "Days 1 to 5",
-    body: "A short conversation establishes what you are trying to achieve, and therefore which expertise the work needs.",
-  },
-  {
-    step: "02",
-    name: "Match",
-    duration: "Week 1",
-    body: "We match the expertise, name the people, and publish who does what. You meet them before we start.",
-  },
-  {
-    step: "03",
-    name: "Run",
-    duration: "Weeks 2 to 8",
-    body: "Parallel workstreams under one accountable lead, with a working session every two weeks so there are no surprises at the end.",
-  },
-  {
-    step: "04",
-    name: "Land",
-    duration: "Final 2 weeks",
-    body: "Structured deliverables and an executive summary built around what you set out in week one. The same experts stay on to help you act.",
-  },
-] as const;

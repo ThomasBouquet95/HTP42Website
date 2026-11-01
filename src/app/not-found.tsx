@@ -35,7 +35,7 @@ export default function NotFound() {
           >
             Back to the homepage
           </Button>
-          <Button href="/contact" variant="outline-dark" size="lg">
+          <Button href="/#contact" variant="outline-dark" size="lg">
             Contact us
           </Button>
         </div>

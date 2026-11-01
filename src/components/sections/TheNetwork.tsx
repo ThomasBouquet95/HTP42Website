@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { PartnerPortrait } from "@/components/ui/PartnerPortrait";
 import { ThreeSides } from "@/components/sections/ThreeSides";
@@ -17,7 +16,7 @@ import { copy } from "@/content/copy";
  */
 export function TheNetwork() {
   return (
-    <section id="network" className="section scroll-mt-24 bg-paper">
+    <section id="network" className="section bg-paper">
       <div className="shell">
         <SectionHeader
           index="03"
@@ -83,11 +82,9 @@ export function TheNetwork() {
             <p className="max-w-[52ch] text-statement leading-[1.32] tracking-[-0.022em] text-ink">
               {networkEffect}
             </p>
-            <div className="shrink-0">
-              <ArrowLink href="/network">
-                {EXPERT_COUNT}+ experts. See how the network works
-              </ArrowLink>
-            </div>
+            <p className="shrink-0 text-statement leading-[1.32] tracking-[-0.022em] text-brand">
+              {EXPERT_COUNT}+ experts
+            </p>
           </div>
         </Reveal>
       </div>

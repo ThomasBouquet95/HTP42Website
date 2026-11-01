@@ -35,13 +35,11 @@ const PATH_ATTR = "data-htp42-path";
 /** Marks the one currently selected, so it is obvious which is which. */
 const ACTIVE_ATTR = "data-htp42-active";
 
+/** The site is one page plus the two legal ones. */
 const PAGES = [
   { label: "Home", path: "/" },
-  { label: "Expertise", path: "/expertise" },
-  { label: "The Network", path: "/network" },
-  { label: "Client Impact", path: "/impact" },
-  { label: "Perspectives", path: "/perspectives" },
-  { label: "Contact", path: "/contact" },
+  { label: "Privacy", path: "/privacy" },
+  { label: "Terms", path: "/terms" },
 ];
 
 const WIDTHS = [

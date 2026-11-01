@@ -18,7 +18,7 @@ import { copy } from "@/content/copy";
  */
 export function Offerings() {
   return (
-    <section id="offerings" className="section scroll-mt-24 bg-paper-2">
+    <section id="offerings" className="section bg-paper-2">
       <div className="shell">
         <SectionHeader
           index="01"
