@@ -24,7 +24,7 @@ export const leadership: Leader[] = [
   {
     name: "Gabriel Eichler",
     role: "Partner",
-    note: "Former VP and Chief Data Officer for data42 at Novartis. Founder of Oak Health Partners, advising top 10 pharma and investors.",
+    note: "Former VP and Chief Data Officer for data42 at Novartis. Advises top 10 pharma and investors.",
     photo: "/team/gabriel-eichler.jpg",
   },
   {
@@ -34,10 +34,10 @@ export const leadership: Leader[] = [
     photo: "/team/jennifer-cubino.jpg",
   },
   {
-    name: "Linda D.",
+    name: "Linda Dib",
     role: "Partner",
     note: "Data strategy leader with deep experience in clinical trial reengineering and biostatistics.",
-    photo: "/team/linda-d.jpg",
+    photo: "/team/linda-dib.jpg",
   },
 ];
 

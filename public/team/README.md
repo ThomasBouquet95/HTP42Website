@@ -1,7 +1,7 @@
 # Partner portraits
 
-Square portraits for the partner cards on the homepage network section and on
-`/network`. Referenced from `photo` in `src/content/network.ts`.
+Square portraits for the partner cards in the network section. Referenced
+from `photo` in `src/content/network.ts`.
 
 ## Contract
 
@@ -10,7 +10,7 @@ Square portraits for the partner cards on the homepage network section and on
 | Pascal Bouquet | `pascal-bouquet.jpg` |
 | Gabriel Eichler | `gabriel-eichler.jpg` |
 | Jennifer Cubino | `jennifer-cubino.jpg` |
-| Linda D. | `linda-d.jpg` |
+| Linda Dib | `linda-dib.jpg` |
 
 - Square, 800 x 800 or larger. The cards crop to a square and anchor to the
   top of the frame, so leave a little headroom above the head and keep the

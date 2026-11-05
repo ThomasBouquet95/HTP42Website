@@ -18,7 +18,7 @@ export const perspectives: Perspective[] = [
     category: "Data & AI",
     readTime: "8 min read",
     date: "2026-07-22",
-    author: "Linda D., Partner",
+    author: "Linda Dib, Partner",
     featured: true,
   },
   {
