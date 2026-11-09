@@ -39,6 +39,12 @@ export const leadership: Leader[] = [
     note: "Data strategy leader with deep experience in clinical trial reengineering and biostatistics.",
     photo: "/team/linda-dib.jpg",
   },
+  {
+    name: "Rachel Ougier Simonin",
+    role: "Partner",
+    note: "Former Head of Global Enterprise Portfolio Management at Novartis. Business transformation, operational excellence and AI-enabled change.",
+    photo: "/team/rachel-ougier-simonin.jpg",
+  },
 ];
 
 

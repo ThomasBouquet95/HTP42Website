@@ -30,7 +30,7 @@ export function TheNetwork() {
           <h3 className="eyebrow border-b border-ink/12 pb-4 text-ink-300">
             {copy.home.network.partnersHeading}
           </h3>
-          <Stagger className="grid grid-cols-1 gap-x-8 gap-y-10 pt-9 max-sm:gap-y-0 sm:grid-cols-2 lg:grid-cols-4 lg:grid-rows-[auto_auto_auto_auto] lg:gap-y-0">
+          <Stagger className="grid grid-cols-1 gap-x-8 gap-y-10 pt-9 max-sm:gap-y-0 sm:grid-cols-2 lg:grid-cols-5 lg:grid-rows-[auto_auto_auto_auto] lg:gap-x-6 lg:gap-y-0 xl:gap-x-8">
             {leadership.map((person) => (
               <StaggerItem
                 key={person.name}
@@ -41,7 +41,7 @@ export function TheNetwork() {
                   <PartnerPortrait
                     name={person.name}
                     photo={person.photo}
-                    sizes="(min-width: 1024px) 22vw, (min-width: 640px) 44vw, 5.5rem"
+                    sizes="(min-width: 1024px) 18vw, (min-width: 640px) 44vw, 5.5rem"
                   />
                 </div>
                 <h4 className="mt-5 text-lg tracking-[-0.024em] text-ink transition-colors duration-500 group-hover:text-brand max-sm:mt-0">
