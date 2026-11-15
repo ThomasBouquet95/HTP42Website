@@ -20,6 +20,7 @@ export const copy = {
     skipToContent: "Skip to content",
     startConversation: "Start a conversation",
     seeClientImpact: "See client impact",
+    exploreOsb: "Explore OpenStudyBuilder",
     scrollCue: "Scroll",
     exploreArea: "Explore this area",
     expertiseAtWork: "See this expertise at work",
@@ -74,18 +75,6 @@ export const copy = {
       eyebrow: "Client impact",
       title: "Engagement examples. *Problem, intervention,* consequence.",
       lead: "We do not name clients, but each of these is written the way we would present it internally, including what was hard.",
-    },
-    osb: {
-      eyebrow: "OpenStudyBuilder",
-      title: "We host the sandbox, and *deploy it in production*.",
-      lead: "OpenStudyBuilder is the open source clinical metadata repository started by Novo Nordisk. We run the free Community Sandbox for the project, and we take sponsors from first login to a production estate.",
-      cta: "Explore OpenStudyBuilder",
-      sandbox: "Request sandbox access",
-      facts: [
-        "Community Sandbox, free on request",
-        "26 week production deployment",
-        "8 named specialists",
-      ],
     },
     perspectives: {
       eyebrow: "Perspectives",

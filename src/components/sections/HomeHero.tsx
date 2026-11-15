@@ -176,6 +176,11 @@ export function HomeHero() {
             <Button href="#impact" variant="outline-dark" size="lg">
               {copy.ui.seeClientImpact}
             </Button>
+            {/* The one destination that is a page rather than a section. It
+                sits here because people arrive looking for it by name. */}
+            <Button href="/openstudybuilder" variant="outline-dark" size="lg">
+              {copy.ui.exploreOsb}
+            </Button>
           </motion.div>
         </div>
       </div>

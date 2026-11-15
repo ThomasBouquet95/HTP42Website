@@ -18,14 +18,8 @@ import { copy } from "@/content/copy";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-/** The sections of the one page, in document order. The navigation also holds
- * one real page, which is not a section and is skipped here. */
-const SECTIONS = nav
-  .filter((item) => item.href.startsWith("/#"))
-  .map((item) => item.href.slice(2));
-
-/** True for a nav item that leaves the page rather than scrolling it. */
-const isPage = (href: string) => !href.startsWith("/#");
+/** The section each nav item points at, in document order. */
+const SECTIONS = nav.map((item) => item.href.slice(2));
 
 export function Header() {
   const pathname = usePathname();
@@ -87,20 +81,15 @@ export function Header() {
               aria-label="Primary"
               /* Six items rather than five: at lg the row cleared the logo and the
                  button by fifteen pixels, which reads as a collision. */
-              className="hidden items-center gap-6 lg:flex xl:gap-8"
+              className="hidden items-center gap-5 lg:flex xl:gap-8"
             >
               {nav.map((item) => {
-                // A page is current when you are on it; a section when you
-                // have scrolled into it. Both can never be true at once,
-                // because off the one page nothing is marked a section.
-                const here = isPage(item.href)
-                  ? pathname === item.href
-                  : active === item.href.slice(2);
+                const here = active === item.href.slice(2);
                 return (
                   <Link
                     key={item.href}
                     href={item.href}
-                    aria-current={here ? (isPage(item.href) ? "page" : "location") : undefined}
+                    aria-current={here ? "location" : undefined}
                     className={`link-nav text-sm font-medium tracking-[-0.008em] transition-colors duration-400 ${
                       here ? "text-azure" : "text-white/70 hover:text-white"
                     }`}

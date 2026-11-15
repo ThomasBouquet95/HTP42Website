@@ -19,6 +19,12 @@ export type CaseStudy = {
   impact: string;
   /** Featured metrics rendered as a strip on the detail page. */
   metrics: { value: string; label: string }[];
+  /**
+   * Set where the subject of the engagement has a page of its own. The way
+   * through sits at the foot of the open panel, because someone who has just
+   * read the engagement end to end is the likeliest person to want it.
+   */
+  readMore?: { label: string; note: string; href: string };
   featured?: boolean;
 };
 
@@ -36,6 +42,11 @@ export const caseStudies: CaseStudy[] = [
     tags: ["OpenStudyBuilder", "CDISC", "AWS", "SDTM and ADaM", "Go live"],
     headline:
       "The largest single OpenStudyBuilder deployment in HTP42's history, delivered end to end as prime technical subcontractor.",
+    readMore: {
+      label: "Explore OpenStudyBuilder",
+      note: "What OpenStudyBuilder is, what you can try in the sandbox, and how a deployment like this one runs.",
+      href: "/openstudybuilder",
+    },
     challenge:
       "A global pharmaceutical sponsor needed a structured, sprint based OpenStudyBuilder implementation integrated with its clinical data environment, inside a multi party governance model where no single supplier owned the whole picture.",
     challengeDetail: [

@@ -5,7 +5,6 @@ import { ExpertiseAreas } from "@/components/sections/ExpertiseAreas";
 import { ProofPoints } from "@/components/sections/ProofPoints";
 import { TheNetwork } from "@/components/sections/TheNetwork";
 import { ClientImpact } from "@/components/sections/ClientImpact";
-import { OpenStudyBuilder } from "@/components/sections/OpenStudyBuilder";
 import { PerspectivesTeaser } from "@/components/sections/PerspectivesTeaser";
 import { CtaBand } from "@/components/CtaBand";
 
@@ -28,7 +27,6 @@ export default function HomePage() {
       <ProofPoints />
       <TheNetwork />
       <ClientImpact />
-      <OpenStudyBuilder />
       <PerspectivesTeaser />
       <CtaBand />
     </>

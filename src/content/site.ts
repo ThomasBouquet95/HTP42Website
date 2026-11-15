@@ -26,14 +26,17 @@ export const site = {
  * relative hash so the same link works from the legal pages as well as from
  * the page itself.
  */
+/**
+ * The sections of the one page, in the order you scroll through them, so the
+ * navigation is a map of the page rather than a list of destinations. Nothing
+ * here leaves the page: OpenStudyBuilder has a page of its own and is reached
+ * from the hero and from the engagement it belongs to, not from here.
+ */
 export const nav = [
+  { label: "How we work with you", href: "/#offerings" },
   { label: "Expertise", href: "/#expertise" },
   { label: "The Network", href: "/#network" },
   { label: "Client Impact", href: "/#impact" },
-  // The one entry that is a page rather than a section of this one. It is in
-  // the navigation because people arrive looking for it by name, and they
-  // should not have to scroll two thirds of the way down to find it.
-  { label: "OpenStudyBuilder", href: "/openstudybuilder" },
   { label: "Perspectives", href: "/#perspectives" },
   { label: "Contact", href: "/#contact" },
 ] as const;

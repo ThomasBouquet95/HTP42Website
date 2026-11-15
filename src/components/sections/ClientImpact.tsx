@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Plus } from "lucide-react";
+import { Button } from "@/components/ui/Button";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { useReducedMotionSafe } from "@/components/motion/useReducedMotionSafe";
@@ -234,6 +235,19 @@ function Detail({ study }: { study: CaseStudy }) {
       <p className="mt-10 max-w-[70ch] border-l-2 border-brand/30 pl-5 text-base leading-relaxed text-ink-600">
         {study.impact}
       </p>
+
+      {study.readMore ? (
+        <div className="mt-9 flex flex-col items-start gap-5 rounded-xl border border-ink/10 bg-ink/[0.02] px-6 py-6 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
+          <p className="max-w-[52ch] text-sm leading-relaxed text-ink-600">
+            {study.readMore.note}
+          </p>
+          <div className="shrink-0">
+            <Button href={study.readMore.href} withArrow>
+              {study.readMore.label}
+            </Button>
+          </div>
+        </div>
+      ) : null}
 
       <ul className="mt-8 flex flex-wrap gap-2">
         {study.tags.map((tag) => (
