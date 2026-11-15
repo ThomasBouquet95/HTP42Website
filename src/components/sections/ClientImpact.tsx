@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Plus } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -24,6 +24,32 @@ import { copy } from "@/content/copy";
 export function ClientImpact() {
   const [open, setOpen] = useState<string[]>([]);
   const reduced = useReducedMotionSafe();
+
+  // A link from elsewhere can name one engagement: /#case-<slug> opens it and
+  // scrolls to it. Without this the only thing another page could link to was
+  // the section, and the reader arrived at seven closed rows with no idea
+  // which one they had been sent to.
+  useEffect(() => {
+    const show = () => {
+      const slug = window.location.hash.replace(/^#case-/, "");
+      if (slug === window.location.hash || !slug) return;
+      if (!caseStudies.some((c) => c.slug === slug)) return;
+      setOpen((was) => (was.includes(slug) ? was : [...was, slug]));
+      // Not on the next frame. The row is still opening, and every section
+      // above it is still running its own entry animation, so anything
+      // measured now is wrong by the time the smooth scroll lands. Wait for
+      // the panel to finish, then aim at the row's heading; the page's
+      // scroll-padding clears the fixed header.
+      window.setTimeout(() => {
+        document
+          .getElementById(`case-${slug}-control`)
+          ?.scrollIntoView({ block: "start" });
+      }, 700);
+    };
+    show();
+    window.addEventListener("hashchange", show);
+    return () => window.removeEventListener("hashchange", show);
+  }, []);
 
   const toggle = (slug: string) =>
     setOpen((was) =>
