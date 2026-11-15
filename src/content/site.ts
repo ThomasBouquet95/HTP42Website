@@ -15,6 +15,9 @@ export const site = {
     hq: "Basel, Switzerland",
     presence: ["Basel", "Paris", "Copenhagen", "Singapore"],
     linkedin: "https://www.linkedin.com/company/100788161",
+    /** Where the OpenStudyBuilder project's own documentation sends people to
+     * ask for access to the sandbox we host for it. */
+    osbSandbox: "openstudybuilder@htp42.com",
   },
 } as const;
 
@@ -27,6 +30,10 @@ export const nav = [
   { label: "Expertise", href: "/#expertise" },
   { label: "The Network", href: "/#network" },
   { label: "Client Impact", href: "/#impact" },
+  // The one entry that is a page rather than a section of this one. It is in
+  // the navigation because people arrive looking for it by name, and they
+  // should not have to scroll two thirds of the way down to find it.
+  { label: "OpenStudyBuilder", href: "/openstudybuilder" },
   { label: "Perspectives", href: "/#perspectives" },
   { label: "Contact", href: "/#contact" },
 ] as const;
