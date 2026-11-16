@@ -18,8 +18,14 @@ import { copy } from "@/content/copy";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-/** The section each nav item points at, in document order. */
-const SECTIONS = nav.map((item) => item.href.slice(2));
+/** The sections of the one page, in document order. The navigation also holds
+ * one real page, which is not a section and is skipped here. */
+const SECTIONS = nav
+  .filter((item) => item.href.startsWith("/#"))
+  .map((item) => item.href.slice(2));
+
+/** True of a nav item that leaves the page rather than scrolling it. */
+const isPage = (href: string) => !href.startsWith("/#");
 
 export function Header() {
   const pathname = usePathname();
@@ -79,17 +85,20 @@ export function Header() {
 
             <nav
               aria-label="Primary"
-              /* Six items rather than five: at lg the row cleared the logo and the
-                 button by fifteen pixels, which reads as a collision. */
               className="hidden items-center gap-5 lg:flex xl:gap-8"
             >
               {nav.map((item) => {
-                const here = active === item.href.slice(2);
+                // A page is current when you are on it, a section once you
+                // have scrolled into it. Both are never true at once, because
+                // off the one page nothing is marked a section.
+                const here = isPage(item.href)
+                  ? pathname === item.href
+                  : active === item.href.slice(2);
                 return (
                   <Link
                     key={item.href}
                     href={item.href}
-                    aria-current={here ? "location" : undefined}
+                    aria-current={here ? (isPage(item.href) ? "page" : "location") : undefined}
                     className={`link-nav text-sm font-medium tracking-[-0.008em] transition-colors duration-400 ${
                       here ? "text-azure" : "text-white/70 hover:text-white"
                     }`}
@@ -103,7 +112,11 @@ export function Header() {
             <div className="flex items-center gap-2">
               <Link
                 href="/#contact"
-                className="hidden h-10 items-center rounded-full bg-white px-5 text-xs font-medium tracking-[-0.008em] text-ink transition-all duration-500 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:bg-azure hover:text-white sm:inline-flex"
+                /* Seven nav items, the logo and this button do not fit a
+                   1024 row. Between lg and xl the row is the navigation on its
+                   own, where Contact is one of the items anyway; the button is
+                   back at xl, and below lg it sits beside the menu button. */
+                className="hidden h-10 items-center rounded-full bg-white px-5 text-xs font-medium tracking-[-0.008em] text-ink transition-all duration-500 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:bg-azure hover:text-white sm:inline-flex lg:hidden xl:inline-flex"
               >
                 {copy.ui.startConversation}
               </Link>

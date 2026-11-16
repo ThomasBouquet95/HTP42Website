@@ -24,6 +24,10 @@ const LINKS = {
     "Request Sandbox Access",
   )}`,
   talkToExpert: "/#contact",
+  // The running Community Sandbox, for people who already have an account.
+  sandbox: "https://sandbox.openstudybuilder.com/",
+  // The CDISC Maturity Navigator, served from public/ at its own address.
+  maturity: "/maturity",
   github: "https://github.com/NovoNordisk-OpenSource/openstudybuilder-solution",
   project: "https://openstudybuilder.com",
   // TODO: still a single issue rather than a newsletter landing page. The OSB
@@ -143,6 +147,17 @@ export default function OpenStudyBuilderPage() {
           <div className={styles.actions}>
             <Link href={LINKS.sandboxRequest} className={styles.primary}>
               Request Sandbox access
+            </Link>
+            <a
+              href={LINKS.sandbox}
+              className={styles.secondary}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Go to OSB Sandbox
+            </a>
+            <Link href={LINKS.maturity} className={styles.secondary}>
+              Maturity Assessment of your clinical standard
             </Link>
             <Link href={LINKS.talkToExpert} className={styles.secondary}>
               Talk to an OSB expert

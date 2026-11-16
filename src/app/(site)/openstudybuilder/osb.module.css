@@ -22,6 +22,11 @@
   background: var(--osb-bg);
   font-family: inherit;
   padding: clamp(3rem, 8vw, 6rem) clamp(1.25rem, 5vw, 4rem);
+  /* The site header is fixed, 4rem tall and 5rem from md up, and this page
+     begins underneath it. At 390 the 3rem the clamp bottoms out at put the
+     kicker behind the logo, so the top padding clears the header first and
+     sets the hero's own air after it. */
+  padding-top: calc(4rem + clamp(2rem, 6vw, 5rem));
 }
 
 /* The draft referenced styles.heroText, which was never defined, so the hero

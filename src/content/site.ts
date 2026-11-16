@@ -27,16 +27,17 @@ export const site = {
  * the page itself.
  */
 /**
- * The sections of the one page, in the order you scroll through them, so the
- * navigation is a map of the page rather than a list of destinations. Nothing
- * here leaves the page: OpenStudyBuilder has a page of its own and is reached
- * from the hero and from the engagement it belongs to, not from here.
+ * The sections of the one page, in the order you scroll through them, plus the
+ * one destination that is a page of its own. OpenStudyBuilder sits after the
+ * engagement that is its deployment, and its href is the page's own URL, so it
+ * can be read out, shared and typed in rather than only scrolled to.
  */
 export const nav = [
   { label: "How we work with you", href: "/#offerings" },
   { label: "Expertise", href: "/#expertise" },
   { label: "The Network", href: "/#network" },
   { label: "Client Impact", href: "/#impact" },
+  { label: "OpenStudyBuilder", href: "/openstudybuilder" },
   { label: "Perspectives", href: "/#perspectives" },
   { label: "Contact", href: "/#contact" },
 ] as const;
