@@ -106,6 +106,28 @@
 
 .secondary:hover { border-color: var(--osb-muted); }
 
+/* The one filled blue action on this page. Three bordered buttons in a row
+   read as one group and the assessment disappeared into it, so this one is
+   stated in the accent. Azure carries ink rather than white: white on azure
+   is 3.2:1, which this text is too small to get away with, and ink on azure
+   is 6.1:1. */
+.accent {
+  display: inline-block;
+  padding: 0.9rem 1.5rem;
+  border: 1px solid var(--osb-accent);
+  border-radius: 999px;
+  background: var(--osb-accent);
+  color: var(--color-ink);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color .5s cubic-bezier(.16,1,.3,1),
+    border-color .5s cubic-bezier(.16,1,.3,1);
+}
+.accent:hover {
+  background: #ffffff;
+  border-color: #ffffff;
+}
+
 .sandboxCard {
   border: 1px solid var(--osb-accent);
   border-radius: 14px;

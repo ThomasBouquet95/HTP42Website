@@ -156,7 +156,7 @@ export default function OpenStudyBuilderPage() {
             >
               Go to OSB Sandbox
             </a>
-            <Link href={LINKS.maturity} className={styles.secondary}>
+            <Link href={LINKS.maturity} className={styles.accent}>
               Maturity Assessment of your clinical standard
             </Link>
             <Link href={LINKS.talkToExpert} className={styles.secondary}>
