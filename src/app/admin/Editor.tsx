@@ -348,6 +348,19 @@ export function Editor({ fields }: { fields: Field[] }) {
       (event) => {
         const target = event.target as HTMLElement | null;
         if (!target) return;
+        // Let the reader navigate the preview instead of editing: holding
+        // Cmd/Ctrl/Alt/Shift, or double-clicking, falls through so links,
+        // in-page anchors and buttons behave normally (useful when a nav item
+        // is itself editable text and a plain click would select it).
+        if (
+          event.metaKey ||
+          event.ctrlKey ||
+          event.altKey ||
+          event.shiftKey ||
+          event.detail >= 2
+        ) {
+          return;
+        }
         // Resolve only by tag, never by guessing from text. Clicking the
         // padding of a card used to fall through to a fuzzy text match and
         // land on whichever field happened to appear first inside it, which
@@ -594,6 +607,10 @@ export function Editor({ fields }: { fields: Field[] }) {
             </button>
           ))}
         </nav>
+
+        <span className="hidden text-[11px] text-ink-300 sm:inline">
+          Click text to edit · ⌘/Ctrl-click or double-click to follow a link
+        </span>
 
         <div
           className="flex items-center gap-1"
