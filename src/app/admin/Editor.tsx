@@ -35,9 +35,19 @@ const PATH_ATTR = "data-htp42-path";
 /** Marks the one currently selected, so it is obvious which is which. */
 const ACTIVE_ATTR = "data-htp42-active";
 
-/** The site is one page plus the two legal ones. */
+/**
+ * Everywhere the preview can go, in the order the site presents them. Clicking
+ * one takes the preview there, and following a link inside the preview marks
+ * the page you land on, so the row always says where you are.
+ *
+ * The last three hold no editable text yet: their copy lives in the page files
+ * rather than in the content registry, and the Navigator draws itself in the
+ * browser. They are here to be looked at.
+ */
 const PAGES = [
   { label: "Home", path: "/" },
+  { label: "OpenStudyBuilder", path: "/openstudybuilder" },
+  { label: "Maturity Navigator", path: "/maturity" },
   { label: "Privacy", path: "/privacy" },
   { label: "Terms", path: "/terms" },
 ];
@@ -67,6 +77,13 @@ export function Editor({ fields }: { fields: Field[] }) {
   const [draft, setDraft] = useState<Draft>({});
   const [loaded, setLoaded] = useState(false);
   const [page, setPage] = useState(PAGES[0].path);
+
+  /** Take the preview to a page, and mark it straight away. */
+  const go = (path: string) => {
+    setPage(path);
+    const win = frame.current?.contentWindow;
+    if (win) win.location.href = path;
+  };
   const [width, setWidth] = useState(WIDTHS[0].value);
   const [query, setQuery] = useState("");
   const [onPage, setOnPage] = useState<Set<string>>(new Set());
@@ -427,9 +444,21 @@ export function Editor({ fields }: { fields: Field[] }) {
     let settled = false;
     let timer = 0;
 
+    /**
+     * Whatever the preview says it is showing. A link inside it is a Next.js
+     * link, so most moves are client side: the document is never replaced and
+     * no load event fires. The observer sees the swap either way, which is why
+     * this is read here as well as on load.
+     */
+    const syncPath = () => {
+      const at = el.contentWindow?.location.pathname;
+      if (at) setPage((was) => (was === at ? was : at));
+    };
+
     const afterQuiet = () => {
       const doc = el.contentDocument;
       if (!doc) return;
+      syncPath();
       // Switching pages replaces the document under us. Scanning a page that
       // is still loading means touching it mid hydration, which is the one
       // thing that must not happen, so wait and look again.
@@ -458,6 +487,7 @@ export function Editor({ fields }: { fields: Field[] }) {
 
     const start = () => {
       settled = false;
+      syncPath();
       const body = el.contentDocument?.body;
       if (body) observer.observe(body, { childList: true, subtree: true });
       // A page that never mutates would otherwise never be scanned.
@@ -595,7 +625,7 @@ export function Editor({ fields }: { fields: Field[] }) {
             <button
               key={p.path}
               type="button"
-              onClick={() => setPage(p.path)}
+              onClick={() => go(p.path)}
               aria-current={page === p.path ? "page" : undefined}
               className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
                 page === p.path
@@ -684,7 +714,9 @@ export function Editor({ fields }: { fields: Field[] }) {
           >
             <iframe
               ref={frame}
-              src={page}
+              /* Set once. Every move after this one is made on the preview's
+                 own window, by go() or by a link inside it. */
+              src={PAGES[0].path}
               title="Site preview"
               className="h-full w-full border-0"
             />
