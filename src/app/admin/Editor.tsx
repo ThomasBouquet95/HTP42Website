@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { Field } from "@/content/registry";
+import { nav } from "@/content/site";
 import { signOut } from "@/app/admin/actions";
 
 /**
@@ -52,6 +53,15 @@ const PAGES = [
   { label: "Terms", path: "/terms" },
 ];
 
+/**
+ * The sections of the home page, taken from the site's own navigation so the
+ * two cannot drift. They are the rest of "where the preview can go": the site
+ * is one page, so most of it is a section rather than a page.
+ */
+const SECTIONS = nav
+  .filter((item) => item.href.startsWith("/#"))
+  .map((item) => ({ label: item.label, href: item.href }));
+
 const WIDTHS = [
   { label: "Desktop", value: 1440 },
   { label: "Tablet", value: 820 },
@@ -80,7 +90,7 @@ export function Editor({ fields }: { fields: Field[] }) {
 
   /** Take the preview to a page, and mark it straight away. */
   const go = (path: string) => {
-    setPage(path);
+    setPage(path.split("#")[0] || "/");
     const win = frame.current?.contentWindow;
     if (win) win.location.href = path;
   };
@@ -638,9 +648,26 @@ export function Editor({ fields }: { fields: Field[] }) {
           ))}
         </nav>
 
-        <span className="hidden text-[11px] text-ink-300 sm:inline">
-          Click text to edit · ⌘/Ctrl-click or double-click to follow a link
-        </span>
+        {page === "/" ? (
+          /* The rule belongs to this group rather than standing between the
+             two, so that when the row wraps it leads the sections onto the
+             next line instead of being left hanging at the end of the last. */
+          <nav
+            className="flex flex-wrap items-center gap-x-3 gap-y-1 border-l border-ink/15 pl-3"
+            aria-label="Sections of the home page"
+          >
+            {SECTIONS.map((sec) => (
+              <button
+                key={sec.href}
+                type="button"
+                onClick={() => go(sec.href)}
+                className="text-xs text-ink-300 transition-colors hover:text-ink"
+              >
+                {sec.label}
+              </button>
+            ))}
+          </nav>
+        ) : null}
 
         <div
           className="flex items-center gap-1"
